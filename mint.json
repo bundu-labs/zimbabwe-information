@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Zimbabwe Travel Information",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/noBgWhite.svg",
+    "light": "/logo/noBgColor.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
