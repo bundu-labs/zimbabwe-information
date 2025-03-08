@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Zimbabwe Travel Info",
+  "name": "Zimbabwe Travel Information",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -18,34 +18,42 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@travel-info.co.zw"
+      "url": "mailto:info@travel-info.co.zw"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Book a Trip",
+    "url": "https://travel-info.co.zw/book"
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "Travel Essentials",
+      "url": "essentials"
+    },
+    {
+      "name": "Destinations",
+      "url": "destinations"
+    },
+    {
+      "name": "Trip Planning",
+      "url": "planning"
     }
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "Travel Tips",
+      "icon": "lightbulb",
+      "url": "travel-tips"
     },
     {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "icon": "people-group",
+      "url": "community"
     },
     {
-      "name": "Blog",
+      "name": "Travel Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "blog"
     }
   ],
   "navigation": [
@@ -53,39 +61,59 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
+        "about-zimbabwe",
+        "when-to-visit"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Travel Essentials",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "essentials/visas-and-entry",
+        "essentials/health-and-safety",
+        "essentials/currency-and-money",
+        "essentials/transportation",
+        "essentials/accommodation",
+        "essentials/communication"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Top Destinations",
       "pages": [
-        "api-reference/introduction"
+        "destinations/victoria-falls",
+        "destinations/hwange-national-park",
+        "destinations/great-zimbabwe",
+        "destinations/mana-pools",
+        "destinations/matobo-hills",
+        "destinations/eastern-highlands",
+        "destinations/kariba",
+        "destinations/harare",
+        "destinations/bulawayo",
+        "destinations/gonarezhou"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Culture & Experiences",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "culture/people-and-tribes",
+        "culture/art-and-music",
+        "culture/cuisine",
+        "culture/festivals-and-events"
+      ]
+    },
+    {
+      "group": "Trip Planning",
+      "pages": [
+        "planning/sample-itineraries",
+        "planning/budget-travel",
+        "planning/luxury-travel",
+        "planning/family-travel",
+        "planning/safari-planning"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "twitter": "https://twitter.com/zimbabwetravel",
+    "instagram": "https://instagram.com/zimbabwe_travel_guide",
+    "facebook": "https://facebook.com/zimbabwetravelguide"
   }
 }
