@@ -123,5 +123,22 @@
     "ga4": {
         "measurementId": "G-RGN0G4LG3Z"
     }
+  },
+  {
+  // ... existing configuration
+  "style": {
+    "font": {
+      "custom": {
+        "title": "Bebas Neue",
+        "heading": "Playfair Display",
+        "body": "Poppins",
+        "code": "ui-monospace"
+      }
+    }
+  },
+  "modeToggle": {
+    "default": "light"
+  },
+  "css": ["custom.css"]
   }
 }

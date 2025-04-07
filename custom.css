@@ -1,0 +1,253 @@
+/* 
+ * Custom stylesheet for Zimbabwe Travel Information
+ * Featuring Bebas Neue for headings and Poppins for body text
+ */
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* 
+ * Base Typography 
+ */
+
+/* Set font variables */
+:root {
+  --font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-title: 'Bebas Neue', 'Impact', sans-serif;
+  --font-family-heading: 'Playfair Display', Georgia, serif;
+}
+
+/* Body text */
+body {
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* 
+ * Headings 
+ */
+
+/* Title styling (H1) */
+h1, .heading1 {
+  font-family: 'Bebas Neue', 'Impact', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 400; /* Bebas Neue only comes in regular weight */
+  line-height: 1.1;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Headings (H2-H6) use Playfair Display */
+h2, h3, h4, h5, h6,
+.heading2, .heading3, .heading4, .heading5, .heading6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Title (H1) */
+h1, .heading1 {
+  font-size: 3.5rem;
+}
+
+/* Headings (H2-H6) */
+h2, .heading2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+h3, .heading3 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+h4, .heading4 {
+  font-size: 1.65rem;
+  font-weight: 500;
+}
+
+h5, .heading5 {
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+h6, .heading6 {
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+/* 
+ * Navigation & UI Elements 
+ */
+
+/* Navigation tabs */
+.tab-button {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 500;
+}
+
+/* Sidebar navigation */
+.sidebar-item {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.sidebar-title {
+  font-family: 'Bebas Neue', 'Impact', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Buttons */
+button, 
+.button,
+.primary-button {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Cards */
+.card-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-description {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+/* Code blocks - use monospace font */
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* 
+ * Component Specific Styling 
+ */
+
+/* Accordion */
+.accordion-title {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 600;
+}
+
+/* Tables */
+th {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 600;
+}
+
+td {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+/* 
+ * Additional UI Refinements 
+ */
+
+/* Adjust paragraph spacing */
+p {
+  margin-bottom: 1rem;
+}
+
+/* List styling */
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Link styling */
+a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Blockquotes */
+blockquote {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  margin-left: 0;
+}
+
+/* Header Hero Section - Make more impactful */
+.hero h1 {
+  font-family: 'Bebas Neue', 'Impact', sans-serif;
+  font-size: 4.5rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  max-width: 42rem;
+}
+
+/* Card grid improvements */
+.card-grid {
+  gap: 1.5rem;
+}
+
+/* Footer text */
+footer {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+/* Additional styling for page title sections */
+.page-title {
+  font-family: 'Bebas Neue', 'Impact', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Section titles that need emphasis */
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1, .heading1 {
+    font-size: 2.75rem;
+  }
+  
+  h2, .heading2 {
+    font-size: 2.25rem;
+  }
+  
+  h3, .heading3 {
+    font-size: 1.75rem;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+  }
+}
