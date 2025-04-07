@@ -9,87 +9,81 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "anchors": [
+    "tabs": [
       {
-        "anchor": "Discover",
-        "icon": "book-open",
-        "tabs": [
+        "tab": "Discover",
+         "groups": [
           {
-            "tab": "Documentation",
-            "groups": [
-              {
-                "group": "Get Started",
-                "pages": [
-                  "introduction",
-                  "about-zimbabwe",
-                  "when-to-visit"
-                ]
-              },
-              {
-                "group": "Culture & Experiences",
-                "pages": [
-                  "culture/people-and-tribes",
-                  "culture/art-and-music",
-                  "culture/cuisine",
-                  "culture/festivals-and-events"
-                ]
-              }
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "about-zimbabwe",
+              "when-to-visit"
+             ]
+           },
+           {
+            "group": "Culture & Experiences",
+            "pages": [
+              "culture/people-and-tribes",
+              "culture/art-and-music",
+              "culture/cuisine",
+              "culture/festivals-and-events"
+             ]
+          }
+         ]
+       },
+       {
+        "tab": "Travel Essentials",
+        "groups": [
+          {
+            "group": "Travel Essentials",
+            "pages": [
+              "essentials/visas-and-entry",
+              "essentials/health-and-safety",
+              "essentials/currency-and-money",
+              "essentials/transportation",
+              "essentials/accommodation",
+              "essentials/communication"
             ]
-          },
+          }
+         ]
+       },
           {
-            "tab": "Travel Essentials",
-            "groups": [
-              {
-                "group": "Travel Essentials",
-                "pages": [
-                  "essentials/visas-and-entry",
-                  "essentials/health-and-safety",
-                  "essentials/currency-and-money",
-                  "essentials/transportation",
-                  "essentials/accommodation",
-                  "essentials/communication"
-                ]
-              }
-            ]
-          },
+         "tab": "Destinations",
+         "groups": [
+           {
+             "group": "Top Destinations",
+             "pages": [
+              "destinations/victoria-falls",
+              "destinations/hwange-national-park",
+              "destinations/great-zimbabwe",
+              "destinations/mana-pools",
+              "destinations/matobo-hills",
+              "destinations/eastern-highlands",
+              "destinations/kariba",
+              "destinations/harare",
+              "destinations/bulawayo",
+              "destinations/gonarezhou"
+             ]
+           }
+         ]
+      },
+      {
+        "tab": "Trip Planning",
+        "groups": [
           {
-            "tab": "Destinations",
-            "groups": [
-              {
-                "group": "Top Destinations",
-                "pages": [
-                  "destinations/victoria-falls",
-                  "destinations/hwange-national-park",
-                  "destinations/great-zimbabwe",
-                  "destinations/mana-pools",
-                  "destinations/matobo-hills",
-                  "destinations/eastern-highlands",
-                  "destinations/kariba",
-                  "destinations/harare",
-                  "destinations/bulawayo",
-                  "destinations/gonarezhou"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Trip Planning",
-            "groups": [
-              {
-                "group": "Trip Planning",
-                "pages": [
-                  "planning/sample-itineraries",
-                  "planning/budget-travel",
-                  "planning/luxury-travel",
-                  "planning/family-travel",
-                  "planning/safari-planning"
-                ]
-              }
+            "group": "Trip Planning",
+            "pages": [
+               "planning/sample-itineraries",
+               "planning/budget-travel",
+               "planning/luxury-travel",
+               "planning/family-travel",
+               "planning/safari-planning"
             ]
           }
         ]
-      }
-    ]
+       }
+     ]
   },
   "logo": {
     "light": "/logo/noBgColor.svg",
