@@ -1,0 +1,116 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Zimbabwe Travel Information",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#07C983",
+    "dark": "#0D9373"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "anchors": [
+      {
+        "anchor": "Documentation",
+        "icon": "book-open",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Get Started",
+                "pages": [
+                  "introduction",
+                  "about-zimbabwe",
+                  "when-to-visit"
+                ]
+              },
+              {
+                "group": "Culture & Experiences",
+                "pages": [
+                  "culture/people-and-tribes",
+                  "culture/art-and-music",
+                  "culture/cuisine",
+                  "culture/festivals-and-events"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Travel Essentials",
+            "groups": [
+              {
+                "group": "Travel Essentials",
+                "pages": [
+                  "essentials/visas-and-entry",
+                  "essentials/health-and-safety",
+                  "essentials/currency-and-money",
+                  "essentials/transportation",
+                  "essentials/accommodation",
+                  "essentials/communication"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Destinations",
+            "groups": [
+              {
+                "group": "Top Destinations",
+                "pages": [
+                  "destinations/victoria-falls",
+                  "destinations/hwange-national-park",
+                  "destinations/great-zimbabwe",
+                  "destinations/mana-pools",
+                  "destinations/matobo-hills",
+                  "destinations/eastern-highlands",
+                  "destinations/kariba",
+                  "destinations/harare",
+                  "destinations/bulawayo",
+                  "destinations/gonarezhou"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Trip Planning",
+            "groups": [
+              {
+                "group": "Trip Planning",
+                "pages": [
+                  "planning/sample-itineraries",
+                  "planning/budget-travel",
+                  "planning/luxury-travel",
+                  "planning/family-travel",
+                  "planning/safari-planning"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/noBgColor.svg",
+    "dark": "/logo/noBgWhite.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@travel-info.co.zw"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Book a Trip",
+      "href": "https://form.typeform.com/to/xgE1uuXn?utm_source=travel-info&utm_campaign=book-a-trip"
+    }
+  },
+  "footer": {
+    "socials": {
+      "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo"
+    }
+  }
+}
