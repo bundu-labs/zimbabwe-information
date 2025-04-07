@@ -27,6 +27,10 @@
   },
   "tabs": [
     {
+      "name": "Discover",
+      "url": "discover"
+    },
+    {
       "name": "Travel Essentials",
       "url": "essentials"
     },
