@@ -82,6 +82,18 @@
             ]
           }
         ]
+       },
+       {
+        "tab": "Support",
+        "groups": [
+          {
+            "group": "Help & Resources",
+            "pages": [
+              "contact",
+              "faq"
+            ]
+          }
+        ]
        }
      ]
   },
