@@ -132,20 +132,6 @@
     }
   },
   "footer": {
-    "links": [
-      {
-        "label": "Privacy Policy",
-        "href": "https://travel-info.co.zw/privacy-policy"
-      },
-      {
-        "label": "Cookie Policy",
-        "href": "https://travel-info.co.zw/cookie-policy"
-      },
-      {
-        "label": "Terms of Service",
-        "href": "https://travel-info.co.zw/terms-of-service"
-      }
-    ],
     "socials": {
       "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo"
     }
