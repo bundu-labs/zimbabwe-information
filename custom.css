@@ -34,7 +34,7 @@ body {
 /* Title styling (H1) */
 h1, .heading1 {
   font-family: 'Bebas Neue', 'Impact', sans-serif;
-  letter-spacing: 1.0em;
+  letter-spacing: 1.4em;
   text-transform: uppercase;
   font-weight: 400; /* Bebas Neue only comes in regular weight */
   line-height: 1.2;
@@ -55,7 +55,7 @@ h2, h3, h4, h5, h6,
 
 /* Title (H1) */
 h1, .heading1 {
-  font-size: 5.6rem;
+  font-size: 6.4rem;
 }
 
 /* Headings (H2-H6) */
