@@ -150,5 +150,5 @@
  "modeToggle": {
     "default": "light"
   },
-  "css": ["custom.css"],
+  "css": ["custom.css"]
 }
