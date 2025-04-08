@@ -34,11 +34,11 @@ body {
 /* Title styling (H1) */
 h1, .heading1 {
   font-family: 'Bebas Neue', 'Impact', sans-serif;
-  letter-spacing: 0.08em;
+  letter-spacing: 1.0em;
   text-transform: uppercase;
   font-weight: 400; /* Bebas Neue only comes in regular weight */
   line-height: 1.6;
-  margin-top: 1.2em;
+  margin-top: 0.8em;
   margin-bottom: 0.6em;
 }
 
