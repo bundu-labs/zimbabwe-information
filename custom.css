@@ -60,27 +60,27 @@ h1, .heading1 {
 
 /* Headings (H2-H6) */
 h2, .heading2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
 }
 
 h3, .heading3 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
 h4, .heading4 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
 h5, .heading5 {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
 h6, .heading6 {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   font-weight: 500;
 }
 
