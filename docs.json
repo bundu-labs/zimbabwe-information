@@ -12,27 +12,27 @@
     "tabs": [
       {
         "tab": "Discover",
-         "groups": [
+        "groups": [
           {
             "group": "Get Started",
             "pages": [
               "introduction",
               "about-zimbabwe",
               "when-to-visit"
-             ]
-           },
-           {
+            ]
+          },
+          {
             "group": "Culture & Experiences",
             "pages": [
               "culture/people-and-tribes",
               "culture/art-and-music",
               "culture/cuisine",
               "culture/festivals-and-events"
-             ]
+            ]
           }
-         ]
-       },
-       {
+        ]
+      },
+      {
         "tab": "Travel Essentials",
         "groups": [
           {
@@ -46,14 +46,14 @@
               "essentials/communication"
             ]
           }
-         ]
-       },
+        ]
+      },
+      {
+        "tab": "Destinations",
+        "groups": [
           {
-         "tab": "Destinations",
-         "groups": [
-           {
-             "group": "Top Destinations",
-             "pages": [
+            "group": "Top Destinations",
+            "pages": [
               "destinations/victoria-falls",
               "destinations/hwange-national-park",
               "destinations/great-zimbabwe",
@@ -64,9 +64,9 @@
               "destinations/harare",
               "destinations/bulawayo",
               "destinations/gonarezhou"
-             ]
-           }
-         ]
+            ]
+          }
+        ]
       },
       {
         "tab": "Trip Planning",
@@ -74,16 +74,16 @@
           {
             "group": "Trip Planning",
             "pages": [
-               "planning/sample-itineraries",
-               "planning/budget-travel",
-               "planning/luxury-travel",
-               "planning/family-travel",
-               "planning/safari-planning"
+              "planning/sample-itineraries",
+              "planning/budget-travel",
+              "planning/luxury-travel",
+              "planning/family-travel",
+              "planning/safari-planning"
             ]
           }
         ]
-       },
-       {
+      },
+      {
         "tab": "Support",
         "groups": [
           {
@@ -94,8 +94,8 @@
             ]
           }
         ]
-       }
-     ]
+      }
+    ]
   },
   "logo": {
     "light": "/logo/noBgColor.svg",
@@ -121,24 +121,21 @@
   },
   "integrations": {
     "ga4": {
-        "measurementId": "G-RGN0G4LG3Z"
+      "measurementId": "G-RGN0G4LG3Z"
     }
   },
-  {
-   // ... existing configuration
-   "style": {
-     "font": {
-       "custom": {
-         "title": "Bebas Neue",
-         "heading": "Playfair Display",
-         "body": "Poppins",
-         "code": "ui-monospace"
-       }
-     }
-   },
-   "modeToggle": {
-     "default": "light"
-   },
-   "css": ["custom.css"]
-  }
+  "style": {
+    "font": {
+      "custom": {
+        "title": "Bebas Neue",
+        "heading": "Playfair Display",
+        "body": "Poppins",
+        "code": "ui-monospace"
+      }
+    }
+  },
+  "modeToggle": {
+    "default": "light"
+  },
+  "css": ["custom.css"]
 }
