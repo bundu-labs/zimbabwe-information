@@ -102,7 +102,7 @@ h6, .heading6 {
 
 .sidebar-title {
   font-family: 'Bebas Neue', 'Impact', sans-serif;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 
@@ -192,8 +192,8 @@ blockquote {
 /* Header Hero Section - Make more impactful */
 .hero h1 {
   font-family: 'Bebas Neue', 'Impact', sans-serif;
-  font-size: 4.5rem;
-  letter-spacing: 0.07em;
+  font-size: 5.6rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
