@@ -110,7 +110,7 @@
         "light": "/logo/noBgColor.svg",
         "dark": "/logo/noBgWhite.svg"
     },
-    "navbar": {
+    "navigation": {
         "links": [
             {
                 "label": "Support",
@@ -118,11 +118,11 @@
             },
             {
                 "label": "Contact",
-                "href": "/contact"
+                "pages": "/contact"
             },
             {
                 "label": "Privacy",
-                "href": "/privacy-policy"
+                "pages": "/privacy-policy"
             }
         ],
         "primary": {
@@ -132,18 +132,18 @@
         }
     },
     "footer": {
-        "links": [
+        "pages": [
             {
                 "label": "Privacy Policy",
-                "href": "/privacy-policy"
+                "pages": "/privacy-policy"
             },
             {
                 "label": "Cookie Policy",
-                "href": "/cookie-policy"
+                "pages": "/cookie-policy"
             },
             {
                 "label": "Terms of Service",
-                "href": "/terms-of-service"
+                "pages": "/terms-of-service"
             }
         ],
         "socials": {
