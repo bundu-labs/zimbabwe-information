@@ -222,6 +222,7 @@ footer {
   font-family: 'Bebas Neue', 'Impact', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  font-size: 4.8rem;
 }
 
 /* Section titles that need emphasis */
@@ -231,6 +232,7 @@ footer {
   border-bottom: 2px solid var(--primary-color);
   padding-bottom: 0.5rem;
   margin-bottom: 1.5rem;
+  font-size: 3.2rem;
 }
 
 /* Responsive adjustments */
