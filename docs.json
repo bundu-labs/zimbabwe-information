@@ -136,6 +136,9 @@
         "ga4": {
             "measurementId": "G-RGN0G4LG3Z"
         }
+        "gtm": {
+            "tagId": "GTM-KKBVH8FV"
+        }
     },
     "style": {
         "font": {
