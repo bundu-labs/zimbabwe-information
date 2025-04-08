@@ -151,4 +151,8 @@
     "default": "light"
   },
   "css": ["custom.css"]
+  },
+  {
+  "customJs": ["open-widget.js"]
+  } 
 }
