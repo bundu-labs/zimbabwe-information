@@ -110,7 +110,7 @@
         "light": "/logo/noBgColor.svg",
         "dark": "/logo/noBgWhite.svg"
     },
-    "navigation": {
+    "navbar": {
         "links": [
             {
                 "label": "Support",
@@ -118,11 +118,11 @@
             },
             {
                 "label": "Contact",
-                "pages": "/contact"
+                "pages": "contact"
             },
             {
                 "label": "Privacy",
-                "pages": "/privacy-policy"
+                "pages": "privacy-policy"
             }
         ],
         "primary": {
