@@ -96,20 +96,28 @@
                     }
                 ]
             },
-            {
-                "tab": "Support",
-                "groups": [
-                    {
-                        "group": "Help & Resources",
-                        "pages": [
-                            "contact",
-                            "faq"
-                        ]
-                    }
-                ]
-            }
+       {
+        "tab": "Support",
+        "groups": [
+          {
+            "group": "Help & Resources",
+            "pages": [
+              "contact",
+              "faq"
+            ]
+          },
+          {
+            "group": "Legal",
+            "pages": [
+              "privacy-policy",
+              "cookie-policy",
+              "terms-of-service"
+            ]
+          }
         ]
-    },
+       }
+     ]
+  },
     "logo": {
         "light": "/logo/noBgColor.svg",
         "dark": "/logo/noBgWhite.svg"
