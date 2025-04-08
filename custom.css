@@ -55,7 +55,7 @@ h2, h3, h4, h5, h6,
 
 /* Title (H1) */
 h1, .heading1 {
-  font-size: 8.0rem;
+  font-size: 3rem;
 }
 
 /* Headings (H2-H6) */
@@ -192,7 +192,7 @@ blockquote {
 /* Header Hero Section - Make more impactful */
 .hero h1 {
   font-family: 'Bebas Neue', 'Impact', sans-serif;
-  font-size: 6.0rem;
+  font-size: 3rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 1rem;
@@ -236,9 +236,9 @@ footer {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-  h1, .heading1 {
-    font-size: 2.75rem;
+@media (max-width: 640px) {
+  .sm\:text-3xl {
+    font-size: 3rem;
   }
   
   h2, .heading2 {
