@@ -135,9 +135,6 @@
     "integrations": {
         "ga4": {
             "measurementId": "G-RGN0G4LG3Z"
-        },
-        "amplitude": {
-            "apiKey": "6f58b6dab72ea3cc929c1e9d647aed96"
         }
     },
     "style": {
