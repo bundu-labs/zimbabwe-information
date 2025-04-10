@@ -18,8 +18,81 @@ We're here to help you plan your perfect Zimbabwean adventure. Whether you have 
   </Card>
 </CardGroup>
 
-<Card title="Contact Form" icon="envelope-open-text" href="https://forms.helpdesk.com?licenseID=2046191682&contactFormID=b016bbb4-e37a-4519-8259-fe4a2e6693ce">
-  <iframe sandbox="allow-scripts allow-popups allow-forms allow-same-origin" width="100%" height="670px" src="https://forms.helpdesk.com?licenseID=2046191682&contactFormID=b016bbb4-e37a-4519-8259-fe4a2e6693ce" />
+<Card title="Contact Form" icon="envelope-open-text">
+  <!-- Wrapper div to apply source styling -->
+<div class="form-container">
+  <!-- Modified iframe with class instead of inline styles -->
+  <iframe 
+    sandbox="allow-scripts allow-popups allow-forms allow-same-origin" 
+    width="100%" 
+    class="helpdesk-form" 
+    src="https://forms.helpdesk.com?licenseID=2046191682&contactFormID=b016bbb4-e37a-4519-8259-fe4a2e6693ce">
+    Your browser does not allow embedded content.
+  </iframe>
+</div>
+
+<!-- CSS to control the iframe and apply source styling -->
+<style>
+  .form-container {
+    /* You can add any container styling here */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .helpdesk-form {
+    border: 0;
+    height: 660px;
+    overflow: hidden;
+    overflow-x: auto;
+    
+    /* Add this to enable source styling if the embedded content allows it */
+    background: transparent;
+    
+    /* Optional: Make the iframe responsive */
+    width: 100%;
+  }
+  
+  /* Add a script to communicate with the iframe */
+  @media (prefers-color-scheme: dark) {
+    .helpdesk-form {
+      /* Additional styling for dark mode if your site supports it */
+    }
+  }
+</style>
+
+<!-- Optional: Script to pass styling information to the iframe content -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.querySelector('.helpdesk-form');
+    
+    // Function to send message to iframe
+    function sendStylesMessage() {
+      // Get computed styles from parent document
+      const computedStyle = window.getComputedStyle(document.body);
+      
+      // Create a style object to send
+      const styleToSend = {
+        fontFamily: computedStyle.fontFamily,
+        color: computedStyle.color,
+        backgroundColor: computedStyle.backgroundColor,
+        fontSize: computedStyle.fontSize
+      };
+      
+      // Send message to iframe
+      iframe.contentWindow.postMessage({
+        type: 'APPLY_PARENT_STYLES',
+        styles: styleToSend
+      }, 'https://forms.helpdesk.com');
+    }
+    
+    // When iframe loads, try to send styles
+    iframe.addEventListener('load', function() {
+      // Wait a bit to ensure the iframe content is ready
+      setTimeout(sendStylesMessage, 1000);
+    });
+  });
+</script>
 </Card>
 
 ## Join Our Community
