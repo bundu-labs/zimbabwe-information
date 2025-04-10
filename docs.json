@@ -113,8 +113,8 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:support@travel-info.co.zw"
+        "label": "FAQs",
+        "href": "https://travel-info.co.zw/faq"
       },
       {
         "label": "Contact",
