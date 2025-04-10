@@ -41,8 +41,8 @@ export default function HelpDeskForm() {
       <iframe 
         ref={iframeRef}
         sandbox="allow-scripts allow-popups allow-forms allow-same-origin" 
-        width="100%" 
-        className="w-full h-[660px] border-0 dark:bg-gray-900"
+        width="100%" height="670px"
+        className="w-full h-[670px] border-0 dark:bg-gray-900"
         src="https://forms.helpdesk.com?licenseID=2046191682&contactFormID=b016bbb4-e37a-4519-8259-fe4a2e6693ce"
         title="Helpdesk Support Form"
       >
