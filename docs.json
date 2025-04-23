@@ -138,7 +138,11 @@
   },
   "scripts": [
     {
-      "src": "/analytics.js",
+      "src": "components/analytics.js",
+      "async": true
+    },
+    {
+      "src": "components/trustpilot.js",
       "async": true
     }
   ],
