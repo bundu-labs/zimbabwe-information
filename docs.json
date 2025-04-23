@@ -169,11 +169,5 @@
   },
   "css": [
     "custom.css"
-  ],
-  "scripts": [
-    {
-      "src": "/analytics.js",
-      "async": true
-    }
   ]
 }
