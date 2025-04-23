@@ -3,3 +3,5 @@
 
   amplitude.init('6f58b6dab72ea3cc929c1e9d647aed96');
 </script>
+<script src="https://cmp.osano.com/kG3iFPFifL/af9189f5-e91d-4904-8164-7f059f2037bb/osano.js"></script>
+<script src="https://cdn.amplitude.com/script/6f58b6dab72ea3cc929c1e9d647aed96.js"></script><script>window.amplitude.init('6f58b6dab72ea3cc929c1e9d647aed96', {"fetchRemoteConfig":true,"autocapture":true});</script>
