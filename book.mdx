@@ -191,93 +191,124 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 ### Fill out the form below to get started on your Zimbabwe journey!
 ### We will respond within 24 hours to discuss your travel plans and provide a personalized quote.
 
-import { useState } from 'react';
+import React from "react";
+import { useForm, ValidationError } from "@formspree/react";
 
-export default function BookingForm() {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    'travel-dates': '',
-    'group-size': '',
-    budget: '',
-    interests: [],
-    accommodation: '',
-    services: [],
-    'special-requests': '',
-    'hear-about': '',
-    'terms-agreement': false,
-    'newsletter-subscribe': false,
-    _gotcha: '',
-  });
+export function BookingForm() {
+  const [state, handleSubmit] = useForm("xjkwdbrk");
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === 'checkbox' && name === 'terms-agreement') {
-      setForm({ ...form, [name]: checked });
-    } else if (type === 'checkbox' && name === 'newsletter-subscribe') {
-      setForm({ ...form, [name]: checked });
-    } else if (type === 'checkbox' && name === 'interests') {
-      setForm((prev) => {
-        const interests = prev.interests.includes(value)
-          ? prev.interests.filter((i) => i !== value)
-          : [...prev.interests, value];
-        return { ...prev, interests };
-      });
-    } else if (type === 'checkbox' && name === 'services') {
-      setForm((prev) => {
-        const services = prev.services.includes(value)
-          ? prev.services.filter((i) => i !== value)
-          : [...prev.services, value];
-        return { ...prev, services };
-      });
-    } else {
-      setForm({ ...form, [name]: value });
-    }
-  };
+  if (state.succeeded) {
+    return <p>Thanks for joining!</p>;
+  }
 
   return (
-    <div className="booking-form">
-      <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="styled-form">
-        <div className="form-group">
-          <label htmlFor="name">Full Name<span aria-hidden="true">*</span></label>
-          <input type="text" id="name" name="name" required value={form.name} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email Address<span aria-hidden="true">*</span></label>
-          <input type="email" id="email" name="email" required value={form.email} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="travel-dates">Preferred Travel Dates<span aria-hidden="true">*</span></label>
+    <form className="grid gap-y-6" onSubmit={handleSubmit}>
+      <fieldset>
+        <legend className="col-span-full mb-6 font-[family-name:--font-family-display] text-xl font-medium text-[--color-text-default]">
+          Personal Information
+        </legend>
+        
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="name"
+          >
+            Full Name*
+          </label>
           <input
+            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="email"
+          >
+            Email Address*
+          </label>
+          <input
+            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
+            id="email"
+            name="email"
+            placeholder="Enter your email address"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="phone"
+          >
+            Phone Number
+          </label>
+          <input
+            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
+            id="phone"
+            name="phone"
+            placeholder="Enter your phone number"
+          />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend className="col-span-full mb-6 font-[family-name:--font-family-display] text-xl font-medium text-[--color-text-default]">
+          Travel Details
+        </legend>
+        
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="travel-dates"
+          >
+            Preferred Travel Dates*
+          </label>
+          <input
+            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
             type="text"
             id="travel-dates"
             name="travel-dates"
             placeholder="DD/MM/YYYY - DD/MM/YYYY"
             required
-            value={form['travel-dates']}
-            onChange={handleChange}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="group-size">Number of Travelers<span aria-hidden="true">*</span></label>
+
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="group-size"
+          >
+            Number of Travelers*
+          </label>
           <input
+            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
             type="number"
             id="group-size"
             name="group-size"
             min="1"
+            placeholder="Enter number of travelers"
             required
-            value={form['group-size']}
-            onChange={handleChange}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="budget">Approximate Budget Per Person (USD)</label>
-          <select id="budget" name="budget" value={form.budget} onChange={handleChange}>
+
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="budget"
+          >
+            Budget Range (USD)*
+          </label>
+          <select
+            className="bg-caret-down h-10 appearance-none rounded-md border-0 bg-white bg-[size:1.5em_1.5em] bg-[position:right_0.5rem_center] bg-no-repeat px-3 pe-10 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
+            id="budget"
+            name="budget"
+            required
+          >
             <option value="">Please select</option>
             <option value="budget">$1,000 - $2,000</option>
             <option value="mid-range">$2,000 - $4,000</option>
@@ -286,8 +317,13 @@ export default function BookingForm() {
           </select>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="interests">Travel Interests (select all that apply)</label>
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="interests"
+          >
+            Travel Interests (select all that apply)
+          </label>
           <div className="checkbox-group">
             <label>
               <input
@@ -371,9 +407,20 @@ export default function BookingForm() {
             </label>
           </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="accommodation">Preferred Accommodation Style</label>
-          <select id="accommodation" name="accommodation" value={form.accommodation} onChange={handleChange}>
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="accommodation"
+          >
+            Preferred Accommodation Style
+          </label>
+          <select
+            className="bg-caret-down h-10 appearance-none rounded-md border-0 bg-white bg-[size:1.5em_1.5em] bg-[position:right_0.5rem_center] bg-no-repeat px-3 pe-10 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
+            id="accommodation"
+            name="accommodation"
+            value={form.accommodation}
+            onChange={handleChange}
+          >
             <option value="">Please select</option>
             <option value="budget">Budget-friendly</option>
             <option value="mid-range">Mid-range</option>
@@ -381,8 +428,13 @@ export default function BookingForm() {
             <option value="mixed">Mix of styles</option>
           </select>
         </div>
-        <div className="form-group">
-          <label htmlFor="services">Services Required (select all that apply)</label>
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="services"
+          >
+            Services Required (select all that apply)
+          </label>
           <div className="checkbox-group">
             <label>
               <input
@@ -446,34 +498,32 @@ export default function BookingForm() {
             </label>
           </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="special-requests">Special Requests or Additional Information</label>
+        <div className="flex flex-col gap-y-1.5">
+          <label
+            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
+            htmlFor="special-requests"
+          >
+            Special Requests or Additional Information
+          </label>
           <textarea
+            className="resize-y appearance-none rounded-md border-0 px-3 py-2 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
             id="special-requests"
             name="special-requests"
             rows={5}
-            value={form['special-requests']}
-            onChange={handleChange}
-          ></textarea>
+            placeholder="Any additional information or special requests"
+          />
         </div>
-        <div className="form-group">
-          <label htmlFor="hear-about">How did you hear about Zimbabwe Travel Information?</label>
-          <select id="hear-about" name="hear-about" value={form['hear-about']} onChange={handleChange}>
-            <option value="">Please select</option>
-            <option value="search">Search Engine</option>
-            <option value="social">Social Media</option>
-            <option value="friend">Friend/Family Recommendation</option>
-            <option value="travel-agent">Travel Agent</option>
-            <option value="blog">Blog or Article</option>
-            <option value="previous">Previous Customer</option>
-            <option value="other">Other</option>
-          </select>
+
+        <div className="flex flex-row-reverse gap-x-6">
+          <button
+            className="cursor-pointer rounded-md bg-[--color-primary] px-8 py-4 text-sm font-medium leading-4 text-white transition-colors duration-200 hover:bg-[--color-primary-active] focus-visible:bg-[--color-primary-active] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-[--color-highlight]"
+            type="submit"
+          >
+            Submit Booking Request
+          </button>
         </div>
-        <button type="submit" className="submit-button">
-          Submit Booking Request
-        </button>
-      </form>
-    </div>
+      </fieldset>
+    </form>
   );
 }
 
