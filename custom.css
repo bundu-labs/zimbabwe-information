@@ -253,3 +253,98 @@ footer {
     font-size: 3rem;
   }
 }
+/* Booking Form Styling */
+.styled-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  font-family: system-ui, sans-serif;
+}
+
+.styled-form fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.styled-form legend {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.styled-form label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.styled-form input[type="text"],
+.styled-form input[type="email"],
+.styled-form input[type="tel"],
+.styled-form input[type="number"],
+.styled-form input[type="date"],
+.styled-form select,
+.styled-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.styled-form input:focus,
+.styled-form select:focus,
+.styled-form textarea:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.styled-form .date-range {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.styled-form .interests label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.styled-form .checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.styled-form .checkbox-label input {
+  margin-right: 0.5rem;
+}
+
+.styled-form .submit-button {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.styled-form .submit-button:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 500px) {
+  .styled-form .date-range {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
