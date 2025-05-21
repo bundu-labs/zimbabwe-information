@@ -1,6 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "palm",
+  "theme": {
+    "name": "palm",
+    "font": {
+      "custom": {
+        "title": "Bebas Neue",
+        "heading": "Playfair Display",
+        "body": "Poppins",
+        "code": "ui-monospace"
+      }
+    }
+  },
   "name": "Zimbabwe Travel Information",
   "colors": {
     "primary": "#0D9373",
@@ -161,21 +171,6 @@
       "href": "https://form.typeform.com/to/xgE1uuXn?utm_source=travel-info&utm_campaign=book-a-trip"
     }
   },
-  "footer": {
-    "socials": {
-      "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo"
-    }
-  },
-  "scripts": [
-    {
-      "src": "components/analytics.js",
-      "async": true
-    },
-    {
-      "src": "components/trustpilot.js",
-      "async": true
-    }
-  ],
   "integrations": {
     "ga4": {
       "measurementId": "G-RGN0G4LG3Z"
@@ -184,20 +179,10 @@
       "tagId": "GTM-KKBVH8FV"
     }
   },
-  "style": {
-    "font": {
-      "custom": {
-        "title": "Bebas Neue",
-        "heading": "Playfair Display",
-        "body": "Poppins",
-        "code": "ui-monospace"
-      }
+  
+  "footer": {
+    "socials": {
+      "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo"
     }
-  },
-  "modeToggle": {
-    "default": "light"
-  },
-  "css": [
-    "custom.css"
-  ]
+  }
 }
