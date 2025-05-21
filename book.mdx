@@ -188,294 +188,263 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 
 ---
 ## Book Your Adventure
-### Fill out the form below to get started on your Zimbabwe journey!
-### We will respond within 24 hours to discuss your travel plans and provide a personalized quote.
 
-import { useState } from 'react';
-
-export default function BookingForm() {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    'travel-dates': '',
-    'group-size': '',
-    budget: '',
-    interests: [],
-    accommodation: '',
-    services: [],
-    'special-requests': '',
-    'hear-about': '',
-    'terms-agreement': false,
-    'newsletter-subscribe': false,
-    _gotcha: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === 'checkbox' && name === 'terms-agreement') {
-      setForm({ ...form, [name]: checked });
-    } else if (type === 'checkbox' && name === 'newsletter-subscribe') {
-      setForm({ ...form, [name]: checked });
-    } else if (type === 'checkbox' && name === 'interests') {
-      setForm((prev) => {
-        const interests = prev.interests.includes(value)
-          ? prev.interests.filter((i) => i !== value)
-          : [...prev.interests, value];
-        return { ...prev, interests };
-      });
-    } else if (type === 'checkbox' && name === 'services') {
-      setForm((prev) => {
-        const services = prev.services.includes(value)
-          ? prev.services.filter((i) => i !== value)
-          : [...prev.services, value];
-        return { ...prev, services };
-      });
-    } else {
-      setForm({ ...form, [name]: value });
-    }
-  };
-
-  return (
-    <div className="booking-form">
-      <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="styled-form">
-        <div className="form-group">
-          <label htmlFor="name">Full Name<span aria-hidden="true">*</span></label>
-          <input type="text" id="name" name="name" required value={form.name} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email Address<span aria-hidden="true">*</span></label>
-          <input type="email" id="email" name="email" required value={form.email} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="travel-dates">Preferred Travel Dates<span aria-hidden="true">*</span></label>
-          <input
-            type="text"
-            id="travel-dates"
-            name="travel-dates"
-            placeholder="DD/MM/YYYY - DD/MM/YYYY"
-            required
-            value={form['travel-dates']}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="group-size">Number of Travelers<span aria-hidden="true">*</span></label>
-          <input
-            type="number"
-            id="group-size"
-            name="group-size"
-            min="1"
-            required
-            value={form['group-size']}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="budget">Approximate Budget Per Person (USD)</label>
-          <select id="budget" name="budget" value={form.budget} onChange={handleChange}>
-            <option value="">Please select</option>
-            <option value="budget">$1,000 - $2,000</option>
-            <option value="mid-range">$2,000 - $4,000</option>
-            <option value="luxury">$4,000 - $6,000</option>
-            <option value="ultra-luxury">$6,000+</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="interests">Travel Interests (select all that apply)</label>
-          <div className="checkbox-group">
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="wildlife"
-                checked={form.interests.includes('wildlife')}
-                onChange={handleChange}
-              />{' '}
-              Wildlife & Safaris
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="adventure"
-                checked={form.interests.includes('adventure')}
-                onChange={handleChange}
-              />{' '}
-              Adventure Activities
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="culture"
-                checked={form.interests.includes('culture')}
-                onChange={handleChange}
-              />{' '}
-              Cultural Experiences
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="history"
-                checked={form.interests.includes('history')}
-                onChange={handleChange}
-              />{' '}
-              Historical Sites
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="nature"
-                checked={form.interests.includes('nature')}
-                onChange={handleChange}
-              />{' '}
-              Nature & Landscapes
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="relaxation"
-                checked={form.interests.includes('relaxation')}
-                onChange={handleChange}
-              />{' '}
-              Relaxation
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="photography"
-                checked={form.interests.includes('photography')}
-                onChange={handleChange}
-              />{' '}
-              Photography
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="food"
-                checked={form.interests.includes('food')}
-                onChange={handleChange}
-              />{' '}
-              Food & Culinary
-            </label>
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="accommodation">Preferred Accommodation Style</label>
-          <select id="accommodation" name="accommodation" value={form.accommodation} onChange={handleChange}>
-            <option value="">Please select</option>
-            <option value="budget">Budget-friendly</option>
-            <option value="mid-range">Mid-range</option>
-            <option value="luxury">Luxury</option>
-            <option value="mixed">Mix of styles</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="services">Services Required (select all that apply)</label>
-          <div className="checkbox-group">
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="itinerary"
-                checked={form.services.includes('itinerary')}
-                onChange={handleChange}
-              />{' '}
-              Custom Itinerary Creation
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="accommodation"
-                checked={form.services.includes('accommodation')}
-                onChange={handleChange}
-              />{' '}
-              Accommodation Bookings
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="activities"
-                checked={form.services.includes('activities')}
-                onChange={handleChange}
-              />{' '}
-              Activity Reservations
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="transportation"
-                checked={form.services.includes('transportation')}
-                onChange={handleChange}
-              />{' '}
-              Transportation Arrangements
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="guide"
-                checked={form.services.includes('guide')}
-                onChange={handleChange}
-              />{' '}
-              Guide Services
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="consultation"
-                checked={form.services.includes('consultation')}
-                onChange={handleChange}
-              />{' '}
-              Virtual Consultation
-            </label>
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="special-requests">Special Requests or Additional Information</label>
-          <textarea
-            id="special-requests"
-            name="special-requests"
-            rows={5}
-            value={form['special-requests']}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="hear-about">How did you hear about Zimbabwe Travel Information?</label>
-          <select id="hear-about" name="hear-about" value={form['hear-about']} onChange={handleChange}>
-            <option value="">Please select</option>
-            <option value="search">Search Engine</option>
-            <option value="social">Social Media</option>
-            <option value="friend">Friend/Family Recommendation</option>
-            <option value="travel-agent">Travel Agent</option>
-            <option value="blog">Blog or Article</option>
-            <option value="previous">Previous Customer</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <button type="submit" className="submit-button">
-          Submit Booking Request
-        </button>
-      </form>
+<Card title="Booking Request Form" icon="file-pen">
+  <form 
+    action="https://formspree.io/f/xjkwdbrk" 
+    method="POST"
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1.5rem',
+      padding: '1rem'
+    }}
+  >
+    <div>
+      <label>
+        Full Name*
+        <input 
+          type="text" 
+          name="name" 
+          required 
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginTop: '0.25rem',
+            borderRadius: '0.375rem',
+            border: '1px solid var(--color-border-default)'
+          }}
+        />
+      </label>
     </div>
-  );
-}
+
+    <div>
+      <label>
+        Email Address*
+        <input 
+          type="email" 
+          name="email" 
+          required 
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginTop: '0.25rem',
+            borderRadius: '0.375rem',
+            border: '1px solid var(--color-border-default)'
+          }}
+        />
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Phone Number
+        <input 
+          type="tel" 
+          name="phone" 
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginTop: '0.25rem',
+            borderRadius: '0.375rem',
+            border: '1px solid var(--color-border-default)'
+          }}
+        />
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Travel Dates*
+        <input 
+          type="text" 
+          name="travel-dates" 
+          placeholder="DD/MM/YYYY - DD/MM/YYYY"
+          required
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginTop: '0.25rem',
+            borderRadius: '0.375rem',
+            border: '1px solid var(--color-border-default)'
+          }}
+        />
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Number of Travelers*
+        <input 
+          type="number" 
+          name="group-size" 
+          min="1"
+          required
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginTop: '0.25rem',
+            borderRadius: '0.375rem',
+            border: '1px solid var(--color-border-default)'
+          }}
+        />
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Approximate Budget Per Person (USD)
+        <select 
+          name="budget" 
+          required
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginTop: '0.25rem',
+            borderRadius: '0.375rem',
+            border: '1px solid var(--color-border-default)'
+          }}
+        >
+          <option value="">Please select</option>
+          <option value="budget">$1,000 - $2,000</option>
+          <option value="mid-range">$2,000 - $4,000</option>
+          <option value="luxury">$4,000 - $6,000</option>
+          <option value="ultra-luxury">$6,000+</option>
+        </select>
+      </label>
+    </div>
+
+    <div>
+      <p style={{ marginBottom: '0.5rem' }}>Travel Interests</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" name="interests[]" value="wildlife" />
+          Wildlife & Safaris
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" name="interests[]" value="adventure" />
+          Adventure Activities
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" name="interests[]" value="culture" />
+          Cultural Experiences
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" name="interests[]" value="history" />
+          Historical Sites
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" name="interests[]" value="nature" />
+          Nature & Landscapes
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" name="interests[]" value="relaxation" />
+          Relaxation
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" name="interests[]" value="photography" />
+          Photography
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" name="interests[]" value="food" />
+          Food & Culinary
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <label>
+        Preferred Accommodation Style
+        <select 
+          name="accommodation" 
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginTop: '0.25rem',
+            borderRadius: '0.375rem',
+            border: '1px solid var(--color-border-default)'
+          }}
+        >
+          <option value="">Please select</option>
+          <option value="budget">Budget-friendly</option>
+          <option value="mid-range">Mid-range</option>
+          <option value="luxury">Luxury</option>
+          <option value="mixed">Mix of styles</option>
+        </select>
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Services Required (select all that apply)
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.25rem' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <input type="checkbox" name="services[]" value="itinerary" />
+            Custom Itinerary Creation
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <input type="checkbox" name="services[]" value="accommodation" />
+            Accommodation Bookings
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <input type="checkbox" name="services[]" value="activities" />
+            Activity Reservations
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <input type="checkbox" name="services[]" value="transportation" />
+            Transportation Arrangements
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <input type="checkbox" name="services[]" value="guide" />
+            Guide Services
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <input type="checkbox" name="services[]" value="consultation" />
+            Virtual Consultation
+          </label>
+        </div>
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Special Requests or Additional Information
+        <textarea 
+          name="special-requests"
+          rows="4"
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginTop: '0.25rem',
+            borderRadius: '0.375rem',
+            border: '1px solid var(--color-border-default)'
+          }}
+        ></textarea>
+      </label>
+    </div>
+
+    <div>
+      <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <input type="checkbox" name="terms" required />
+        I agree to the Terms & Conditions*
+      </label>
+    </div>
+
+    <button 
+      type="submit"
+      style={{
+        backgroundColor: 'var(--color-primary)',
+        color: 'white',
+        padding: '0.75rem 1.5rem',
+        borderRadius: '0.375rem',
+        border: 'none',
+        cursor: 'pointer'
+      }}
+    >
+      Submit Booking Request
+    </button>
+  </form>
+</Card>
 
 ---
 
