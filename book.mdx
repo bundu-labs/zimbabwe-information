@@ -469,29 +469,6 @@ export default function BookingForm() {
             <option value="other">Other</option>
           </select>
         </div>
-        <div className="form-group">
-          <label>
-            <input
-              type="checkbox"
-              name="terms-agreement"
-              required
-              checked={form['terms-agreement']}
-              onChange={handleChange}
-            />{' '}
-            I agree to the <a href="/terms-conditions" target="_blank" rel="noopener noreferrer">Terms & Conditions</a><span aria-hidden="true">*</span>
-          </label>
-        </div>
-        <div className="form-group">
-          <label>
-            <input
-              type="checkbox"
-              name="newsletter-subscribe"
-              checked={form['newsletter-subscribe']}
-              onChange={handleChange}
-            />{' '}
-            Subscribe to our newsletter for Zimbabwe travel inspiration and exclusive offers
-          </label>
-        </div>
         <button type="submit" className="submit-button">
           Submit Booking Request
         </button>
@@ -539,5 +516,3 @@ The spirit of Ubuntu ("I am because we are") guides our approach to travel in Zi
 [Learn more about our Community Guidelines](/community-guidelines)
 
 ---
-
-*Images on this page courtesy of Zimbabwe Tourism Authority and our verified local partners*
