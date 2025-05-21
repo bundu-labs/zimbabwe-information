@@ -31,15 +31,6 @@
             ]
           },
           {
-            "group": "Community Engagement",
-            "pages": [
-              "get-involved/student-contributors-program",
-              "get-involved/travel-enthusiast-community",
-              "get-involved/business-partner-network",
-              "get-involved/local-expert-connections"
-            ]
-          },
-          {
             "group": "Wildlife & Nature",
             "pages": [
               "wildlife/animals-and-birds",
@@ -109,6 +100,20 @@
           }
         ]
       },
+      {
+        "tab": "Community Engagement",
+        "groups": [
+          {
+            "group": "Get Involved",
+            "pages": [
+              "get-involved/student-contributors-program",
+              "get-involved/travel-enthusiast-community",
+              "get-involved/business-partner-network",
+              "get-involved/local-expert-connections"
+            ]
+          }
+        ]
+},
       {
         "tab": "Support",
         "groups": [
