@@ -188,135 +188,114 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 
 ---
 <Card title="Booking Request Form" icon="file-pen">
-  Please fill out the form below to help us understand your travel needs. We will get back to you within 24 hours with a personalized proposal.
 
-  <form action="https://formspree.io/f/xjkwdbrk" method="POST">
-    <div className="booking-form">
-      {/* Basic Information */}
-      <div className="form-group">
-        <Select 
-          label="Service Type*"
-          name="service-type"
-          required
-        >
-          <option value="">Select Service Type</option>
-          <option value="self-planned">Self-Planned Travel Review ($25)</option>
-          <option value="custom-7">Custom Itinerary - Up to 7 Days ($75)</option>
-          <option value="custom-14">Custom Itinerary - Up to 14 Days ($125)</option>
-          <option value="custom-15">Custom Itinerary - 15+ Days ($150)</option>
-          <option value="full-service">Full Service Booking Assistance</option>
-          <option value="consultation-30">30-Min Virtual Consultation ($40)</option>
-          <option value="consultation-60">60-Min Virtual Consultation ($75)</option>
-        </Select>
-      </div>
+Please fill out the form below to help us understand your travel needs. We will get back to you within 24 hours with a personalized proposal.
 
-      <div className="form-group">
-        <Input
-          type="text"
-          label="Full Name*"
-          name="name"
-          required
-        />
-      </div>
+<form
+  action="https://formspree.io/f/xjkwdbrk"
+  method="POST"
+  style={{
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.5rem',
+    marginTop: '1rem'
+  }}
+>
+  <div>
+    <label htmlFor="service-type">Service Type*</label>
+    <select name="service-type" id="service-type" required>
+      <option value="">Select Service Type</option>
+      <option value="self-planned">Self-Planned Travel Review ($25)</option>
+      <option value="custom-7">Custom Itinerary - Up to 7 Days ($75)</option>
+      <option value="custom-14">Custom Itinerary - Up to 14 Days ($125)</option>
+      <option value="custom-15">Custom Itinerary - 15+ Days ($150)</option>
+      <option value="full-service">Full Service Booking Assistance</option>
+      <option value="consultation-30">30-Min Virtual Consultation ($40)</option>
+      <option value="consultation-60">60-Min Virtual Consultation ($75)</option>
+    </select>
+  </div>
 
-      <div className="form-group">
-        <Input
-          type="email"
-          label="Email Address*"
-          name="email"
-          required
-        />
-      </div>
+  <div>
+    <label htmlFor="name">Full Name*</label>
+    <input type="text" id="name" name="name" required />
+  </div>
 
-      <div className="form-group">
-        <Input
-          type="tel"
-          label="Phone Number"
-          name="phone"
-        />
-      </div>
+  <div>
+    <label htmlFor="email">Email Address*</label>
+    <input type="email" id="email" name="email" required />
+  </div>
 
-      <div className="form-group">
-        <Input
-          type="text"
-          label="Preferred Travel Dates*"
-          name="travel-dates"
-          placeholder="DD/MM/YYYY - DD/MM/YYYY"
-          required
-        />
-      </div>
+  <div>
+    <label htmlFor="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" />
+  </div>
 
-      <div className="form-group">
-        <Select
-          label="Budget Range (USD)*"
-          name="budget"
-          required
-        >
-          <option value="">Select Budget Range</option>
-          <option value="budget">$1,000 - $2,000</option>
-          <option value="mid-range">$2,000 - $4,000</option>
-          <option value="luxury">$4,000 - $6,000</option>
-          <option value="ultra-luxury">$6,000+</option>
-        </Select>
-      </div>
+  <div>
+    <label htmlFor="travel-dates">Preferred Travel Dates*</label>
+    <input 
+      type="text" 
+      id="travel-dates" 
+      name="travel-dates" 
+      placeholder="DD/MM/YYYY - DD/MM/YYYY" 
+      required 
+    />
+  </div>
 
-      <div className="form-group">
-        <fieldset>
-          <legend>Travel Interests</legend>
-          <div className="checkbox-grid">
-            <Checkbox name="interests[]" value="wildlife" label="Wildlife & Safaris" />
-            <Checkbox name="interests[]" value="adventure" label="Adventure Activities" />
-            <Checkbox name="interests[]" value="culture" label="Cultural Experiences" />
-            <Checkbox name="interests[]" value="history" label="Historical Sites" />
-          </div>
-        </fieldset>
-      </div>
+  <div>
+    <label htmlFor="budget">Budget Range (USD)*</label>
+    <select name="budget" id="budget" required>
+      <option value="">Select Budget Range</option>
+      <option value="budget">$1,000 - $2,000</option>
+      <option value="mid-range">$2,000 - $4,000</option>
+      <option value="luxury">$4,000 - $6,000</option>
+      <option value="ultra-luxury">$6,000+</option>
+    </select>
+  </div>
 
-      <div className="form-group">
-        <TextArea
-          label="Special Requests"
-          name="special-requests"
-          rows="4"
-          placeholder="Any additional information or special requests"
-        />
-      </div>
-
-      <div className="form-group">
-        <Checkbox
-          name="terms"
-          required
-          label={<>I agree to the <a href="/terms">Terms & Conditions</a>*</>}
-        />
-      </div>
-
-      <input type="hidden" name="_subject" value="New Travel Booking Request" />
-      
-      <Button type="submit" variant="primary">
-        Submit Booking Request
-      </Button>
+  <fieldset>
+    <legend>Travel Interests</legend>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+      {['Wildlife & Safaris', 'Adventure Activities', 'Cultural Experiences', 'Historical Sites'].map((interest) => (
+        <label key={interest} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" name="interests[]" value={interest.toLowerCase()} />
+          {interest}
+        </label>
+      ))}
     </div>
-  </form>
+  </fieldset>
+
+  <div>
+    <label htmlFor="special-requests">Special Requests</label>
+    <textarea
+      id="special-requests"
+      name="special-requests"
+      rows="4"
+      placeholder="Any additional information or special requests"
+    ></textarea>
+  </div>
+
+  <div>
+    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+      <input type="checkbox" name="terms" required />
+      I agree to the <a href="/terms">Terms & Conditions</a>*
+    </label>
+  </div>
+
+  <input type="hidden" name="_subject" value="New Travel Booking Request" />
+  
+  <button type="submit" style={{ 
+    backgroundColor: 'var(--primary)',
+    color: 'white',
+    padding: '0.75rem 1.5rem',
+    borderRadius: '0.375rem',
+    border: 'none',
+    cursor: 'pointer'
+  }}>
+    Submit Booking Request
+  </button>
+</form>
+
 </Card>
-
-<style>
-{`
-  .booking-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .form-group {
-    margin-bottom: 1rem;
-  }
-
-  .checkbox-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-`}
-</style>
 
 ## Our Community Guidelines
 
