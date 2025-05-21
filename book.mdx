@@ -188,115 +188,104 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 
 ---
 Booking Request Form
+
 <div className="booking-form">
   <form action="https://formspree.io/f/xjkwdbrk" method="POST">
     <div className="form-group">
       <label htmlFor="name">Full Name*</label>
       <input type="text" id="name" name="name" required />
     </div>
-<div className="form-group">
-  <label htmlFor="email">Email Address*</label>
-  <input type="email" id="email" name="email" required />
-</div>
-
-<div className="form-group">
-  <label htmlFor="phone">Phone Number</label>
-  <input type="tel" id="phone" name="phone" />
-</div>
-
-<div className="form-group">
-  <label htmlFor="travel-dates">Preferred Travel Dates*</label>
-  <input type="text" id="travel-dates" name="travel-dates" placeholder="DD/MM/YYYY - DD/MM/YYYY" required />
-</div>
-
-<div className="form-group">
-  <label htmlFor="group-size">Number of Travelers*</label>
-  <input type="number" id="group-size" name="group-size" min="1" required />
-</div>
-
-<div className="form-group">
-  <label htmlFor="budget">Approximate Budget Per Person (USD)</label>
-  <select id="budget" name="budget">
-    <option value="">Please select</option>
-    <option value="budget">$1,000 - $2,000</option>
-    <option value="mid-range">$2,000 - $4,000</option>
-    <option value="luxury">$4,000 - $6,000</option>
-    <option value="ultra-luxury">$6,000+</option>
-  </select>
-</div>
-
-<div className="form-group">
-  <label>Travel Interests (select all that apply)</label>
-  <div className="checkbox-group">
-    <label><input type="checkbox" name="interests[]" value="wildlife" /> Wildlife & Safaris</label>
-    <label><input type="checkbox" name="interests[]" value="adventure" /> Adventure Activities</label>
-    <label><input type="checkbox" name="interests[]" value="culture" /> Cultural Experiences</label>
-    <label><input type="checkbox" name="interests[]" value="history" /> Historical Sites</label>
-    <label><input type="checkbox" name="interests[]" value="nature" /> Nature & Landscapes</label>
-    <label><input type="checkbox" name="interests[]" value="relaxation" /> Relaxation</label>
-    <label><input type="checkbox" name="interests[]" value="photography" /> Photography</label>
-    <label><input type="checkbox" name="interests[]" value="food" /> Food & Culinary</label>
-  </div>
-</div>
-
-<div className="form-group">
-  <label htmlFor="accommodation">Preferred Accommodation Style</label>
-  <select id="accommodation" name="accommodation">
-    <option value="">Please select</option>
-    <option value="budget">Budget-friendly</option>
-    <option value="mid-range">Mid-range</option>
-    <option value="luxury">Luxury</option>
-    <option value="mixed">Mix of styles</option>
-  </select>
-</div>
-
-<div className="form-group">
-  <label>Services Required (select all that apply)</label>
-  <div className="checkbox-group">
-    <label><input type="checkbox" name="services[]" value="itinerary" /> Custom Itinerary Creation</label>
-    <label><input type="checkbox" name="services[]" value="accommodation" /> Accommodation Bookings</label>
-    <label><input type="checkbox" name="services[]" value="activities" /> Activity Reservations</label>
-    <label><input type="checkbox" name="services[]" value="transportation" /> Transportation Arrangements</label>
-    <label><input type="checkbox" name="services[]" value="guide" /> Guide Services</label>
-    <label><input type="checkbox" name="services[]" value="consultation" /> Virtual Consultation</label>
-  </div>
-</div>
-
-<div className="form-group">
-  <label htmlFor="special-requests">Special Requests or Additional Information</label>
-  <textarea id="special-requests" name="special-requests" rows="5"></textarea>
-</div>
-
-<div className="form-group">
-  <label htmlFor="hear-about">How did you hear about Zimbabwe Travel Information?</label>
-  <select id="hear-about" name="hear-about">
-    <option value="">Please select</option>
-    <option value="search">Search Engine</option>
-    <option value="social">Social Media</option>
-    <option value="friend">Friend/Family Recommendation</option>
-    <option value="travel-agent">Travel Agent</option>
-    <option value="blog">Blog or Article</option>
-    <option value="previous">Previous Customer</option>
-    <option value="other">Other</option>
-  </select>
-</div>
-
-<div className="form-group">
-  <label><input type="checkbox" name="terms-agreement" required /> I agree to the <a href="/terms-conditions">Terms & Conditions</a>*</label>
-</div>
-
-<div className="form-group">
-  <label><input type="checkbox" name="newsletter-subscribe" /> Subscribe to our newsletter for Zimbabwe travel inspiration and exclusive offers</label>
-</div>
-
-{/* Anti-spam honeypot field */}
-<div style={{display: 'none'}}>
-  <label htmlFor="honeypot">Leave this field empty if you're human:</label>
-  <input type="text" id="honeypot" name="_gotcha" />
-</div>
-
-<button type="submit" className="submit-button">Submit Booking Request</button>
+    <div className="form-group">
+      <label htmlFor="email">Email Address*</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div className="form-group">
+      <label htmlFor="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" />
+    </div>
+    <div className="form-group">
+      <label htmlFor="travel-dates">Preferred Travel Dates*</label>
+      <input type="text" id="travel-dates" name="travel-dates" placeholder="DD/MM/YYYY - DD/MM/YYYY" required />
+    </div>
+    <div className="form-group">
+      <label htmlFor="group-size">Number of Travelers*</label>
+      <input type="number" id="group-size" name="group-size" min="1" required />
+    </div>
+    <div className="form-group">
+      <label htmlFor="budget">Approximate Budget Per Person (USD)</label>
+      <select id="budget" name="budget">
+        <option value="">Please select</option>
+        <option value="budget">$1,000 - $2,000</option>
+        <option value="mid-range">$2,000 - $4,000</option>
+        <option value="luxury">$4,000 - $6,000</option>
+        <option value="ultra-luxury">$6,000+</option>
+      </select>
+    </div>
+    <div className="form-group">
+      <label>Travel Interests (select all that apply)</label>
+      <div className="checkbox-group">
+        <label><input type="checkbox" name="interests[]" value="wildlife" /> Wildlife & Safaris</label>
+        <label><input type="checkbox" name="interests[]" value="adventure" /> Adventure Activities</label>
+        <label><input type="checkbox" name="interests[]" value="culture" /> Cultural Experiences</label>
+        <label><input type="checkbox" name="interests[]" value="history" /> Historical Sites</label>
+        <label><input type="checkbox" name="interests[]" value="nature" /> Nature & Landscapes</label>
+        <label><input type="checkbox" name="interests[]" value="relaxation" /> Relaxation</label>
+        <label><input type="checkbox" name="interests[]" value="photography" /> Photography</label>
+        <label><input type="checkbox" name="interests[]" value="food" /> Food & Culinary</label>
+      </div>
+    </div>
+    <div className="form-group">
+      <label htmlFor="accommodation">Preferred Accommodation Style</label>
+      <select id="accommodation" name="accommodation">
+        <option value="">Please select</option>
+        <option value="budget">Budget-friendly</option>
+        <option value="mid-range">Mid-range</option>
+        <option value="luxury">Luxury</option>
+        <option value="mixed">Mix of styles</option>
+      </select>
+    </div>
+    <div className="form-group">
+      <label>Services Required (select all that apply)</label>
+      <div className="checkbox-group">
+        <label><input type="checkbox" name="services[]" value="itinerary" /> Custom Itinerary Creation</label>
+        <label><input type="checkbox" name="services[]" value="accommodation" /> Accommodation Bookings</label>
+        <label><input type="checkbox" name="services[]" value="activities" /> Activity Reservations</label>
+        <label><input type="checkbox" name="services[]" value="transportation" /> Transportation Arrangements</label>
+        <label><input type="checkbox" name="services[]" value="guide" /> Guide Services</label>
+        <label><input type="checkbox" name="services[]" value="consultation" /> Virtual Consultation</label>
+      </div>
+    </div>
+    <div className="form-group">
+      <label htmlFor="special-requests">Special Requests or Additional Information</label>
+      <textarea id="special-requests" name="special-requests" rows="5"></textarea>
+    </div>
+    <div className="form-group">
+      <label htmlFor="hear-about">How did you hear about Zimbabwe Travel Information?</label>
+      <select id="hear-about" name="hear-about">
+        <option value="">Please select</option>
+        <option value="search">Search Engine</option>
+        <option value="social">Social Media</option>
+        <option value="friend">Friend/Family Recommendation</option>
+        <option value="travel-agent">Travel Agent</option>
+        <option value="blog">Blog or Article</option>
+        <option value="previous">Previous Customer</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div className="form-group">
+      <label><input type="checkbox" name="terms-agreement" required /> I agree to the <a href="/terms-conditions">Terms & Conditions</a>*</label>
+    </div>
+    <div className="form-group">
+      <label><input type="checkbox" name="newsletter-subscribe" /> Subscribe to our newsletter for Zimbabwe travel inspiration and exclusive offers</label>
+    </div>
+    {/* Anti-spam honeypot field */}
+    <div style={{display: 'none'}}>
+      <label htmlFor="honeypot">Leave this field empty if you're human:</label>
+      <input type="text" id="honeypot" name="_gotcha" />
+    </div>
+    <button type="submit" className="submit-button">Submit Booking Request</button>
   </form>
+</div>
 
 ---
 
