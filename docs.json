@@ -168,8 +168,9 @@
     "primary": {
       "type": "button",
       "label": "Book a Trip",
-      "href": "https://form.typeform.com/to/xgE1uuXn?utm_source=travel-info&utm_campaign=book-a-trip"
+      "href": "https://travel-info.co.zw/book"
     }
+    
   },
   "integrations": {
     "ga4": {
