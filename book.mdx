@@ -191,6 +191,7 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 
 <Card title="Booking Request Form" icon="file-pen">
   <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="grid gap-6">
+    {/* Service Type */}
     <div>
       <label className="block mb-2 text-sm font-medium">
         Service Type*
@@ -207,6 +208,37 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
           <option value="full-service">Full Service Booking Assistance</option>
         </select>
       </label>
+    </div>
+
+    {/* Travel Interests */}
+    <div>
+      <span className="block mb-2 text-sm font-medium">Travel Interests</span>
+      <div className="grid grid-cols-2 gap-2">
+        <label className="inline-flex items-center">
+          <input type="checkbox" name="interests[]" value="wildlife" className="mr-2" />
+          <span className="text-sm">Wildlife & Safaris</span>
+        </label>
+        <label className="inline-flex items-center">
+          <input type="checkbox" name="interests[]" value="adventure" className="mr-2" />
+          <span className="text-sm">Adventure Activities</span>
+        </label>
+        <label className="inline-flex items-center">
+          <input type="checkbox" name="interests[]" value="cultural" className="mr-2" />
+          <span className="text-sm">Cultural Experiences</span>
+        </label>
+        <label className="inline-flex items-center">
+          <input type="checkbox" name="interests[]" value="historical" className="mr-2" />
+          <span className="text-sm">Historical Sites</span>
+        </label>
+        <label className="inline-flex items-center">
+          <input type="checkbox" name="interests[]" value="nature" className="mr-2" />
+          <span className="text-sm">Nature & Landscapes</span>
+        </label>
+        <label className="inline-flex items-center">
+          <input type="checkbox" name="interests[]" value="food" className="mr-2" />
+          <span className="text-sm">Food & Culinary</span>
+        </label>
+      </div>
     </div>
 
     <div>
@@ -261,30 +293,6 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
           <option value="ultra-luxury">$6,000+</option>
         </select>
       </label>
-    </div>
-
-    <div>
-      <span className="block mb-2 text-sm font-medium">Travel Interests</span>
-      <div className="grid grid-cols-2 gap-2">
-        {{
-          'Wildlife & Safaris',
-          'Adventure Activities',
-          'Cultural Experiences',
-          'Historical Sites',
-          'Nature & Landscapes',
-          'Food & Culinary'
-        }.map((interest) => (
-          <label key={interest} className="inline-flex items-center">
-            <input
-              type="checkbox"
-              name="interests[]"
-              value={interest.toLowerCase()}
-              className="mr-2"
-            />
-            <span className="text-sm">{interest}</span>
-          </label>
-        ))}
-      </div>
     </div>
 
     <div>
