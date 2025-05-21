@@ -255,8 +255,8 @@ footer {
 }
 /* Booking Form Styling */
 .styled-form {
-  max-width: 600px;
-  margin: 2rem auto;
+  max-width: 800px;
+  margin: 1rem auto;
   padding: 2rem;
   background: #ffffff;
   border-radius: 8px;
@@ -291,7 +291,7 @@ footer {
 .styled-form select,
 .styled-form textarea {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.7rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
