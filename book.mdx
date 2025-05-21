@@ -188,344 +188,195 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 
 ---
 ## Book Your Adventure
-### Fill out the form below to get started on your Zimbabwe journey!
-### We will respond within 24 hours to discuss your travel plans and provide a personalized quote.
 
-import React from "react";
-import { useForm, ValidationError } from "@formspree/react";
+<Card title="Booking Request Form" icon="file-pen">
+  <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="grid gap-6">
+    <div>
+      <label className="block mb-2 text-sm font-medium">
+        Service Type*
+        <select 
+          name="service-type" 
+          required 
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        >
+          <option value="">Select Service Type</option>
+          <option value="self-planned">Self-Planned Travel Review ($25)</option>
+          <option value="custom-7">Custom Itinerary - Up to 7 Days ($75)</option>
+          <option value="custom-14">Custom Itinerary - Up to 14 Days ($125)</option>
+          <option value="custom-15">Custom Itinerary - 15+ Days ($150)</option>
+          <option value="full-service">Full Service Booking Assistance</option>
+        </select>
+      </label>
+    </div>
 
-export function BookingForm() {
-  const [state, handleSubmit] = useForm("xjkwdbrk");
+    <div>
+      <label className="block mb-2 text-sm font-medium">
+        Full Name*
+        <input 
+          type="text" 
+          name="name" 
+          required 
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        />
+      </label>
+    </div>
 
-  if (state.succeeded) {
-    return <p>Thanks for joining!</p>;
-  }
+    <div>
+      <label className="block mb-2 text-sm font-medium">
+        Email*
+        <input 
+          type="email" 
+          name="email" 
+          required 
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        />
+      </label>
+    </div>
 
-  return (
-    <form className="grid gap-y-6" onSubmit={handleSubmit}>
-      <fieldset>
-        <legend className="col-span-full mb-6 font-[family-name:--font-family-display] text-xl font-medium text-[--color-text-default]">
-          Personal Information
-        </legend>
-        
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="name"
-          >
-            Full Name*
+    <div>
+      <label className="block mb-2 text-sm font-medium">
+        Travel Dates*
+        <input 
+          type="text" 
+          name="travel-dates" 
+          placeholder="DD/MM/YYYY - DD/MM/YYYY"
+          required 
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        />
+      </label>
+    </div>
+
+    <div>
+      <label className="block mb-2 text-sm font-medium">
+        Budget Range*
+        <select 
+          name="budget" 
+          required 
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        >
+          <option value="">Please select</option>
+          <option value="budget">$1,000 - $2,000</option>
+          <option value="mid-range">$2,000 - $4,000</option>
+          <option value="luxury">$4,000 - $6,000</option>
+          <option value="ultra-luxury">$6,000+</option>
+        </select>
+      </label>
+    </div>
+
+    <div>
+      <span className="block mb-2 text-sm font-medium">Travel Interests</span>
+      <div className="grid grid-cols-2 gap-2">
+        {{
+          'Wildlife & Safaris',
+          'Adventure Activities',
+          'Cultural Experiences',
+          'Historical Sites',
+          'Nature & Landscapes',
+          'Food & Culinary'
+        }.map((interest) => (
+          <label key={interest} className="inline-flex items-center">
+            <input
+              type="checkbox"
+              name="interests[]"
+              value={interest.toLowerCase()}
+              className="mr-2"
+            />
+            <span className="text-sm">{interest}</span>
           </label>
-          <input
-            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
-            id="name"
-            name="name"
-            placeholder="Enter your full name"
-            required
-          />
-        </div>
+        ))}
+      </div>
+    </div>
 
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="email"
-          >
-            Email Address*
-          </label>
-          <input
-            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
-            id="email"
-            name="email"
-            placeholder="Enter your email address"
-            required
-          />
-        </div>
+    <div>
+      <label className="block mb-2 text-sm font-medium">
+        Special Requests
+        <textarea 
+          name="special-requests" 
+          rows="4"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        ></textarea>
+      </label>
+    </div>
 
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="phone"
-          >
-            Phone Number
-          </label>
-          <input
-            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
-            id="phone"
-            name="phone"
-            placeholder="Enter your phone number"
-          />
-        </div>
-      </fieldset>
+    <div>
+      <label className="inline-flex items-center">
+        <input type="checkbox" name="terms" required className="mr-2" />
+        <span className="text-sm">I agree to the Terms & Conditions*</span>
+      </label>
+    </div>
 
-      <fieldset>
-        <legend className="col-span-full mb-6 font-[family-name:--font-family-display] text-xl font-medium text-[--color-text-default]">
-          Travel Details
-        </legend>
-        
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="travel-dates"
-          >
-            Preferred Travel Dates*
-          </label>
-          <input
-            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
-            type="text"
-            id="travel-dates"
-            name="travel-dates"
-            placeholder="DD/MM/YYYY - DD/MM/YYYY"
-            required
-          />
-        </div>
+    <div>
+      <button 
+        type="submit"
+        className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700"
+      >
+        Submit Booking Request
+      </button>
+    </div>
+  </form>
+</Card>
 
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="group-size"
-          >
-            Number of Travelers*
-          </label>
-          <input
-            className="h-10 appearance-none rounded-md border-0 px-3 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
-            type="number"
-            id="group-size"
-            name="group-size"
-            min="1"
-            placeholder="Enter number of travelers"
-            required
-          />
-        </div>
+## Why Book With Us?
 
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="budget"
-          >
-            Budget Range (USD)*
-          </label>
-          <select
-            className="bg-caret-down h-10 appearance-none rounded-md border-0 bg-white bg-[size:1.5em_1.5em] bg-[position:right_0.5rem_center] bg-no-repeat px-3 pe-10 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
-            id="budget"
-            name="budget"
-            required
-          >
-            <option value="">Please select</option>
-            <option value="budget">$1,000 - $2,000</option>
-            <option value="mid-range">$2,000 - $4,000</option>
-            <option value="luxury">$4,000 - $6,000</option>
-            <option value="ultra-luxury">$6,000+</option>
-          </select>
-        </div>
+<CardGroup cols={2}>
+  <Card title="Local Expertise" icon="map-location-dot">
+    Our team includes Zimbabweans who know their country intimately
+  </Card>
+  <Card title="Authentic Experiences" icon="face-smile">
+    We focus on genuine connections with places and people
+  </Card>
+  <Card title="Responsible Travel" icon="leaf">
+    We prioritize partners committed to sustainability and community support
+  </Card>
+  <Card title="24/7 Support" icon="headset">
+    Assistance available throughout your journey
+  </Card>
+  <Card title="Value" icon="sack-dollar">
+    Competitive rates through our established relationships
+  </Card>
+  <Card title="Personalization" icon="wand-magic-sparkles">
+    Every journey is tailored to your specific interests
+  </Card>
+</CardGroup>
 
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="interests"
-          >
-            Travel Interests (select all that apply)
-          </label>
-          <div className="checkbox-group">
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="wildlife"
-                checked={form.interests.includes('wildlife')}
-                onChange={handleChange}
-              />{' '}
-              Wildlife & Safaris
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="adventure"
-                checked={form.interests.includes('adventure')}
-                onChange={handleChange}
-              />{' '}
-              Adventure Activities
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="culture"
-                checked={form.interests.includes('culture')}
-                onChange={handleChange}
-              />{' '}
-              Cultural Experiences
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="history"
-                checked={form.interests.includes('history')}
-                onChange={handleChange}
-              />{' '}
-              Historical Sites
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="nature"
-                checked={form.interests.includes('nature')}
-                onChange={handleChange}
-              />{' '}
-              Nature & Landscapes
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="relaxation"
-                checked={form.interests.includes('relaxation')}
-                onChange={handleChange}
-              />{' '}
-              Relaxation
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="photography"
-                checked={form.interests.includes('photography')}
-                onChange={handleChange}
-              />{' '}
-              Photography
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="interests"
-                value="food"
-                checked={form.interests.includes('food')}
-                onChange={handleChange}
-              />{' '}
-              Food & Culinary
-            </label>
-          </div>
-        </div>
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="accommodation"
-          >
-            Preferred Accommodation Style
-          </label>
-          <select
-            className="bg-caret-down h-10 appearance-none rounded-md border-0 bg-white bg-[size:1.5em_1.5em] bg-[position:right_0.5rem_center] bg-no-repeat px-3 pe-10 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
-            id="accommodation"
-            name="accommodation"
-            value={form.accommodation}
-            onChange={handleChange}
-          >
-            <option value="">Please select</option>
-            <option value="budget">Budget-friendly</option>
-            <option value="mid-range">Mid-range</option>
-            <option value="luxury">Luxury</option>
-            <option value="mixed">Mix of styles</option>
-          </select>
-        </div>
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="services"
-          >
-            Services Required (select all that apply)
-          </label>
-          <div className="checkbox-group">
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="itinerary"
-                checked={form.services.includes('itinerary')}
-                onChange={handleChange}
-              />{' '}
-              Custom Itinerary Creation
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="accommodation"
-                checked={form.services.includes('accommodation')}
-                onChange={handleChange}
-              />{' '}
-              Accommodation Bookings
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="activities"
-                checked={form.services.includes('activities')}
-                onChange={handleChange}
-              />{' '}
-              Activity Reservations
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="transportation"
-                checked={form.services.includes('transportation')}
-                onChange={handleChange}
-              />{' '}
-              Transportation Arrangements
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="guide"
-                checked={form.services.includes('guide')}
-                onChange={handleChange}
-              />{' '}
-              Guide Services
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="services"
-                value="consultation"
-                checked={form.services.includes('consultation')}
-                onChange={handleChange}
-              />{' '}
-              Virtual Consultation
-            </label>
-          </div>
-        </div>
-        <div className="flex flex-col gap-y-1.5">
-          <label
-            className="block font-[family-name:--font-family-display] text-sm font-medium text-[--color-text-default]"
-            htmlFor="special-requests"
-          >
-            Special Requests or Additional Information
-          </label>
-          <textarea
-            className="resize-y appearance-none rounded-md border-0 px-3 py-2 text-[--color-text-default] outline-none ring-1 ring-inset ring-[--color-border-default] placeholder:text-[--color-text-muted] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-0 focus-visible:outline-[--color-highlight] focus-visible:ring-[1.5px] focus-visible:ring-inset focus-visible:ring-[--color-border-active]"
-            id="special-requests"
-            name="special-requests"
-            rows={5}
-            placeholder="Any additional information or special requests"
-          />
-        </div>
+## Booking Process
 
-        <div className="flex flex-row-reverse gap-x-6">
-          <button
-            className="cursor-pointer rounded-md bg-[--color-primary] px-8 py-4 text-sm font-medium leading-4 text-white transition-colors duration-200 hover:bg-[--color-primary-active] focus-visible:bg-[--color-primary-active] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-[--color-highlight]"
-            type="submit"
-          >
-            Submit Booking Request
-          </button>
-        </div>
-      </fieldset>
-    </form>
-  );
-}
+<Steps>
+  <Step title="Inquire">
+    Fill out the form below or email bookings@travel-info.co.zw
+  </Step>
+  <Step title="Consult">
+    Speak with our travel specialist about your dream Zimbabwe experience
+  </Step>
+  <Step title="Review">
+    Receive your custom proposal and itinerary
+  </Step>
+  <Step title="Confirm">
+    Secure your booking with a deposit
+  </Step>
+  <Step title="Prepare">
+    Get exclusive pre-departure information and tips
+  </Step>
+  <Step title="Travel">
+    Enjoy your Zimbabwe adventure with our ongoing support
+  </Step>
+</Steps>
+
+## Contact Us
+
+Ready to start planning your Zimbabwe adventure? Reach out through any of these channels:
+
+<CardGroup cols={3}>
+  <Card title="Email" icon="envelope">
+    bookings@travel-info.co.zw
+  </Card>
+  <Card title="WhatsApp" icon="whatsapp">
+    +263 774 111061
+  </Card>
+  <Card title="Online" icon="globe">
+    Form below
+  </Card>
+</CardGroup>
 
 ---
 
