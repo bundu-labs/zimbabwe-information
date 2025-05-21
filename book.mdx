@@ -191,85 +191,134 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 ### Fill out the form below to get started on your Zimbabwe journey!
 ### We will respond within 24 hours to discuss your travel plans and provide a personalized quote.
 
+import { useState } from 'react';
 
-<form action="https://formspree.io/f/xjkwdbrk" method="POST" class="styled-form">
-  <fieldset>
-    <legend>Booking Details</legend>
+export default function BookingForm() {
+  const [form, setForm] = useState({
+    'service-type': '',
+    name: '',
+    email: '',
+    phone: '',
+    'travel-start': '',
+    'travel-end': '',
+    travelers: '',
+    budget: '',
+    destination: '',
+    interests: [],
+    'other-interests': '',
+    'accommodation-preference': '',
+    dietary: '',
+    'special-requests': '',
+    terms: false,
+  });
 
-    <label for="service-type">Service Type<span aria-hidden="true">*</span></label>
-    <select name="service-type" id="service-type" required>
-      <option value="">Select Service Type</option>
-      <option value="self-planned">Self-Planned Travel Review ($25)</option>
-      <option value="custom-7">Custom Itinerary - Up to 7 Days ($75)</option>
-      <option value="custom-14">Custom Itinerary - Up to 14 Days ($125)</option>
-      <option value="custom-15">Custom Itinerary - 15+ Days ($150)</option>
-      <option value="full-service">Full Service Booking Assistance</option>
-      <option value="consultation-30">30-Min Virtual Consultation ($40)</option>
-      <option value="consultation-60">60-Min Virtual Consultation ($75)</option>
-    </select>
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === 'checkbox' && name === 'terms') {
+      setForm({ ...form, [name]: checked });
+    } else if (type === 'checkbox' && name === 'interests[]') {
+      setForm((prev) => {
+        const interests = prev.interests.includes(value)
+          ? prev.interests.filter((i) => i !== value)
+          : [...prev.interests, value];
+        return { ...prev, interests };
+      });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
+  };
 
-    <label for="name">Full Name<span aria-hidden="true">*</span></label>
-    <input type="text" id="name" name="name" required />
+  return (
+    <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="styled-form">
+      <fieldset>
+        <legend>Booking Details</legend>
 
-    <label for="email">Email Address<span aria-hidden="true">*</span></label>
-    <input type="email" id="email" name="email" required />
+        <label htmlFor="service-type">Service Type<span aria-hidden="true">*</span></label>
+        <select name="service-type" id="service-type" required value={form['service-type']} onChange={handleChange}>
+          <option value="">Select Service Type</option>
+          <option value="self-planned">Self-Planned Travel Review ($25)</option>
+          <option value="custom-7">Custom Itinerary - Up to 7 Days ($75)</option>
+          <option value="custom-14">Custom Itinerary - Up to 14 Days ($125)</option>
+          <option value="custom-15">Custom Itinerary - 15+ Days ($150)</option>
+          <option value="full-service">Full Service Booking Assistance</option>
+          <option value="consultation-30">30-Min Virtual Consultation ($40)</option>
+          <option value="consultation-60">60-Min Virtual Consultation ($75)</option>
+        </select>
 
-    <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" name="phone" />
+        <label htmlFor="name">Full Name<span aria-hidden="true">*</span></label>
+        <input type="text" id="name" name="name" required value={form.name} onChange={handleChange} />
 
-    <label for="travel-start">Preferred Travel Dates<span aria-hidden="true">*</span></label>
-    <div class="date-range">
-      <input type="date" id="travel-start" name="travel-start" required />
-      <span>to</span>
-      <input type="date" id="travel-end" name="travel-end" required />
-    </div>
+        <label htmlFor="email">Email Address<span aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" required value={form.email} onChange={handleChange} />
 
-    <label for="travelers">Number of Travelers<span aria-hidden="true">*</span></label>
-    <input type="number" id="travelers" name="travelers" min="1" required />
+        <label htmlFor="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} />
 
-    <label for="budget">Budget Range (USD)<span aria-hidden="true">*</span></label>
-    <select name="budget" id="budget" required>
-      <option value="">Select Budget Range</option>
-      <option value="budget">$1,000 - $2,000</option>
-      <option value="mid-range">$2,000 - $4,000</option>
-      <option value="luxury">$4,000 - $6,000</option>
-      <option value="ultra-luxury">$6,000+</option>
-    </select>
+        <label htmlFor="travel-start">Preferred Travel Dates<span aria-hidden="true">*</span></label>
+        <div className="date-range">
+          <input type="date" id="travel-start" name="travel-start" required value={form['travel-start']} onChange={handleChange} />
+          <span>to</span>
+          <input type="date" id="travel-end" name="travel-end" required value={form['travel-end']} onChange={handleChange} />
+        </div>
 
-    <label for="destination">Preferred Destinations</label>
-    <input type="text" id="destination" name="destination" placeholder="e.g., Victoria Falls, Hwange, Great Zimbabwe" />
+        <label htmlFor="travelers">Number of Travelers<span aria-hidden="true">*</span></label>
+        <input type="number" id="travelers" name="travelers" min="1" required value={form.travelers} onChange={handleChange} />
 
-    <fieldset class="interests">
-      <legend>Travel Interests</legend>
-      <label><input type="checkbox" name="interests[]" value="wildlife" /> Wildlife & Safaris</label>
-      <label><input type="checkbox" name="interests[]" value="adventure" /> Adventure Activities</label>
-      <label><input type="checkbox" name="interests[]" value="culture" /> Cultural Experiences</label>
-      <label><input type="checkbox" name="interests[]" value="history" /> Historical Sites</label>
-      <label><input type="checkbox" name="interests[]" value="other" /> Other</label>
-    </fieldset>
+        <label htmlFor="budget">Budget Range (USD)<span aria-hidden="true">*</span></label>
+        <select name="budget" id="budget" required value={form.budget} onChange={handleChange}>
+          <option value="">Select Budget Range</option>
+          <option value="budget">$1,000 - $2,000</option>
+          <option value="mid-range">$2,000 - $4,000</option>
+          <option value="luxury">$4,000 - $6,000</option>
+          <option value="ultra-luxury">$6,000+</option>
+        </select>
 
-    <label for="other-interests">Other Interests</label>
-    <input type="text" id="other-interests" name="other-interests" />
+        <label htmlFor="destination">Preferred Destinations</label>
+        <input type="text" id="destination" name="destination" placeholder="e.g., Victoria Falls, Hwange, Great Zimbabwe" value={form.destination} onChange={handleChange} />
 
-    <label for="accommodation-preference">Accommodation Preference</label>
-    <input type="text" id="accommodation-preference" name="accommodation-preference" />
+        <fieldset className="interests">
+          <legend>Travel Interests</legend>
+          <label>
+            <input type="checkbox" name="interests[]" value="wildlife" checked={form.interests.includes('wildlife')} onChange={handleChange} /> Wildlife & Safaris
+          </label>
+          <label>
+            <input type="checkbox" name="interests[]" value="adventure" checked={form.interests.includes('adventure')} onChange={handleChange} /> Adventure Activities
+          </label>
+          <label>
+            <input type="checkbox" name="interests[]" value="culture" checked={form.interests.includes('culture')} onChange={handleChange} /> Cultural Experiences
+          </label>
+          <label>
+            <input type="checkbox" name="interests[]" value="history" checked={form.interests.includes('history')} onChange={handleChange} /> Historical Sites
+          </label>
+          <label>
+            <input type="checkbox" name="interests[]" value="other" checked={form.interests.includes('other')} onChange={handleChange} /> Other
+          </label>
+        </fieldset>
 
-    <label for="dietary">Dietary Requirements</label>
-    <input type="text" id="dietary" name="dietary" />
+        <label htmlFor="other-interests">Other Interests</label>
+        <input type="text" id="other-interests" name="other-interests" value={form['other-interests']} onChange={handleChange} />
 
-    <label for="special-requests">Special Requests</label>
-    <textarea id="special-requests" name="special-requests" rows="4"></textarea>
+        <label htmlFor="accommodation-preference">Accommodation Preference</label>
+        <input type="text" id="accommodation-preference" name="accommodation-preference" value={form['accommodation-preference']} onChange={handleChange} />
 
-    <label class="checkbox-label">
-      <input type="checkbox" name="terms" required />
-      I agree to the <a href="/terms" target="_blank">Terms & Conditions</a>
-    </label>
+        <label htmlFor="dietary">Dietary Requirements</label>
+        <input type="text" id="dietary" name="dietary" value={form.dietary} onChange={handleChange} />
 
-    <input type="hidden" name="_subject" value="New Travel Booking Request" />
+        <label htmlFor="special-requests">Special Requests</label>
+        <textarea id="special-requests" name="special-requests" rows={4} value={form['special-requests']} onChange={handleChange}></textarea>
 
-    <button type="submit" class="submit-button">Submit Booking Request</button>
-  </fieldset>
-</form>
+        <label className="checkbox-label">
+          <input type="checkbox" name="terms" required checked={form.terms} onChange={handleChange} />
+          I agree to the <a href="/terms" target="_blank">Terms & Conditions</a>
+        </label>
+
+        <input type="hidden" name="_subject" value="New Travel Booking Request" />
+
+        <button type="submit" className="submit-button">Submit Booking Request</button>
+      </fieldset>
+    </form>
+  );
+}
 
 
 ---
