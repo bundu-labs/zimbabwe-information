@@ -190,144 +190,133 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 <Card title="Booking Request Form" icon="file-pen">
   Please fill out the form below to help us understand your travel needs. We will get back to you within 24 hours with a personalized proposal.
 
-  <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="mt-4">
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+  <form action="https://formspree.io/f/xjkwdbrk" method="POST">
+    <div className="booking-form">
       {/* Basic Information */}
-      <Input
-        type="text"
-        label="Full Name*"
-        name="name"
-        required
-        className="col-span-1"
-      />
-      
-      <Input
-        type="email"
-        label="Email Address*"
-        name="email"
-        required
-        className="col-span-1"
-      />
-
-      <Input
-        type="tel"
-        label="Phone Number"
-        name="phone"
-        className="col-span-1"
-      />
-
-      <Input
-        type="text"
-        label="Preferred Travel Dates*"
-        name="travel-dates"
-        placeholder="DD/MM/YYYY - DD/MM/YYYY"
-        required
-        className="col-span-1"
-      />
-
-      <Input
-        type="number"
-        label="Number of Travelers*"
-        name="group-size"
-        min="1"
-        required
-        className="col-span-1"
-      />
-
-      <select name="budget" className="col-span-1" required>
-        <option value="">Select Budget Range (USD)</option>
-        <option value="budget">$1,000 - $2,000</option>
-        <option value="mid-range">$2,000 - $4,000</option>
-        <option value="luxury">$4,000 - $6,000</option>
-        <option value="ultra-luxury">$6,000+</option>
-      </select>
-
-      {/* Travel Interests */}
-      <div className="col-span-2">
-        <label className="block mb-2">Travel Interests (select all that apply)</label>
-        <div className="grid grid-cols-2 gap-4">
-          <Checkbox name="interests" value="wildlife" label="Wildlife & Safaris" />
-          <Checkbox name="interests" value="adventure" label="Adventure Activities" />
-          <Checkbox name="interests" value="culture" label="Cultural Experiences" />
-          <Checkbox name="interests" value="history" label="Historical Sites" />
-          <Checkbox name="interests" value="nature" label="Nature & Landscapes" />
-          <Checkbox name="interests" value="relaxation" label="Relaxation" />
-          <Checkbox name="interests" value="photography" label="Photography" />
-          <Checkbox name="interests" value="food" label="Food & Culinary" />
-        </div>
-      </div>
-
-      {/* Accommodation Style */}
-      <select name="accommodation" className="col-span-2" required>
-        <option value="">Select Accommodation Style</option>
-        <option value="budget">Budget-friendly</option>
-        <option value="mid-range">Mid-range</option>
-        <option value="luxury">Luxury</option>
-        <option value="mixed">Mix of styles</option>
-      </select>
-
-      {/* Services Required */}
-      <div className="col-span-2">
-        <label className="block mb-2">Services Required (select all that apply)</label>
-        <div className="grid grid-cols-2 gap-4">
-          <Checkbox name="services" value="itinerary" label="Custom Itinerary Creation" />
-          <Checkbox name="services" value="accommodation" label="Accommodation Bookings" />
-          <Checkbox name="services" value="activities" label="Activity Reservations" />
-          <Checkbox name="services" value="transportation" label="Transportation Arrangements" />
-          <Checkbox name="services" value="guide" label="Guide Services" />
-          <Checkbox name="services" value="consultation" label="Virtual Consultation" />
-        </div>
-      </div>
-
-      {/* Additional Information */}
-      <textarea
-        name="special-requests"
-        rows="5"
-        placeholder="Special Requests or Additional Information"
-        className="col-span-2"
-      />
-
-      {/* How did you hear about us */}
-      <select name="hear-about" className="col-span-2">
-        <option value="">How did you hear about Zimbabwe Travel Information?</option>
-        <option value="search">Search Engine</option>
-        <option value="social">Social Media</option>
-        <option value="friend">Friend/Family Recommendation</option>
-        <option value="travel-agent">Travel Agent</option>
-        <option value="blog">Blog or Article</option>
-        <option value="previous">Previous Customer</option>
-        <option value="other">Other</option>
-      </select>
-
-      {/* Terms and Newsletter */}
-      <div className="col-span-2">
-        <Checkbox
-          name="terms-agreement"
+      <div className="form-group">
+        <Select 
+          label="Service Type*"
+          name="service-type"
           required
-          label={<>I agree to the <a href="/terms-conditions">Terms & Conditions</a>*</>}
+        >
+          <option value="">Select Service Type</option>
+          <option value="self-planned">Self-Planned Travel Review ($25)</option>
+          <option value="custom-7">Custom Itinerary - Up to 7 Days ($75)</option>
+          <option value="custom-14">Custom Itinerary - Up to 14 Days ($125)</option>
+          <option value="custom-15">Custom Itinerary - 15+ Days ($150)</option>
+          <option value="full-service">Full Service Booking Assistance</option>
+          <option value="consultation-30">30-Min Virtual Consultation ($40)</option>
+          <option value="consultation-60">60-Min Virtual Consultation ($75)</option>
+        </Select>
+      </div>
+
+      <div className="form-group">
+        <Input
+          type="text"
+          label="Full Name*"
+          name="name"
+          required
         />
+      </div>
+
+      <div className="form-group">
+        <Input
+          type="email"
+          label="Email Address*"
+          name="email"
+          required
+        />
+      </div>
+
+      <div className="form-group">
+        <Input
+          type="tel"
+          label="Phone Number"
+          name="phone"
+        />
+      </div>
+
+      <div className="form-group">
+        <Input
+          type="text"
+          label="Preferred Travel Dates*"
+          name="travel-dates"
+          placeholder="DD/MM/YYYY - DD/MM/YYYY"
+          required
+        />
+      </div>
+
+      <div className="form-group">
+        <Select
+          label="Budget Range (USD)*"
+          name="budget"
+          required
+        >
+          <option value="">Select Budget Range</option>
+          <option value="budget">$1,000 - $2,000</option>
+          <option value="mid-range">$2,000 - $4,000</option>
+          <option value="luxury">$4,000 - $6,000</option>
+          <option value="ultra-luxury">$6,000+</option>
+        </Select>
+      </div>
+
+      <div className="form-group">
+        <fieldset>
+          <legend>Travel Interests</legend>
+          <div className="checkbox-grid">
+            <Checkbox name="interests[]" value="wildlife" label="Wildlife & Safaris" />
+            <Checkbox name="interests[]" value="adventure" label="Adventure Activities" />
+            <Checkbox name="interests[]" value="culture" label="Cultural Experiences" />
+            <Checkbox name="interests[]" value="history" label="Historical Sites" />
+          </div>
+        </fieldset>
+      </div>
+
+      <div className="form-group">
+        <TextArea
+          label="Special Requests"
+          name="special-requests"
+          rows="4"
+          placeholder="Any additional information or special requests"
+        />
+      </div>
+
+      <div className="form-group">
         <Checkbox
-          name="newsletter-subscribe"
-          label="Subscribe to our newsletter for Zimbabwe travel inspiration and exclusive offers"
+          name="terms"
+          required
+          label={<>I agree to the <a href="/terms">Terms & Conditions</a>*</>}
         />
       </div>
 
-      {/* Hidden Fields */}
-      <input type="hidden" name="_subject" value="New Zimbabwe Travel Booking Request" />
-      <div style={{display: 'none'}}>
-        <label>Leave this field empty if you're human:
-          <input name="_gotcha" />
-        </label>
-      </div>
-
-      {/* Submit Button */}
-      <Button type="submit" className="col-span-2">
+      <input type="hidden" name="_subject" value="New Travel Booking Request" />
+      
+      <Button type="submit" variant="primary">
         Submit Booking Request
       </Button>
     </div>
   </form>
 </Card>
----
+
+<style>
+{`
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+`}
+</style>
 
 ## Our Community Guidelines
 
