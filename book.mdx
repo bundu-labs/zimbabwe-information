@@ -195,33 +195,41 @@ import { useState } from 'react';
 
 export default function BookingForm() {
   const [form, setForm] = useState({
-    'service-type': '',
     name: '',
     email: '',
     phone: '',
-    'travel-start': '',
-    'travel-end': '',
-    travelers: '',
+    'travel-dates': '',
+    'group-size': '',
     budget: '',
-    destination: '',
     interests: [],
-    'other-interests': '',
-    'accommodation-preference': '',
-    dietary: '',
+    accommodation: '',
+    services: [],
     'special-requests': '',
-    terms: false,
+    'hear-about': '',
+    'terms-agreement': false,
+    'newsletter-subscribe': false,
+    _gotcha: '',
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    if (type === 'checkbox' && name === 'terms') {
+    if (type === 'checkbox' && name === 'terms-agreement') {
       setForm({ ...form, [name]: checked });
-    } else if (type === 'checkbox' && name === 'interests[]') {
+    } else if (type === 'checkbox' && name === 'newsletter-subscribe') {
+      setForm({ ...form, [name]: checked });
+    } else if (type === 'checkbox' && name === 'interests') {
       setForm((prev) => {
         const interests = prev.interests.includes(value)
           ? prev.interests.filter((i) => i !== value)
           : [...prev.interests, value];
         return { ...prev, interests };
+      });
+    } else if (type === 'checkbox' && name === 'services') {
+      setForm((prev) => {
+        const services = prev.services.includes(value)
+          ? prev.services.filter((i) => i !== value)
+          : [...prev.services, value];
+        return { ...prev, services };
       });
     } else {
       setForm({ ...form, [name]: value });
@@ -229,97 +237,268 @@ export default function BookingForm() {
   };
 
   return (
-    <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="styled-form">
-      <fieldset>
-        <legend>Booking Details</legend>
-
-        <label htmlFor="service-type">Service Type<span aria-hidden="true">*</span></label>
-        <select name="service-type" id="service-type" required value={form['service-type']} onChange={handleChange}>
-          <option value="">Select Service Type</option>
-          <option value="self-planned">Self-Planned Travel Review ($25)</option>
-          <option value="custom-7">Custom Itinerary - Up to 7 Days ($75)</option>
-          <option value="custom-14">Custom Itinerary - Up to 14 Days ($125)</option>
-          <option value="custom-15">Custom Itinerary - 15+ Days ($150)</option>
-          <option value="full-service">Full Service Booking Assistance</option>
-          <option value="consultation-30">30-Min Virtual Consultation ($40)</option>
-          <option value="consultation-60">60-Min Virtual Consultation ($75)</option>
-        </select>
-
-        <label htmlFor="name">Full Name<span aria-hidden="true">*</span></label>
-        <input type="text" id="name" name="name" required value={form.name} onChange={handleChange} />
-
-        <label htmlFor="email">Email Address<span aria-hidden="true">*</span></label>
-        <input type="email" id="email" name="email" required value={form.email} onChange={handleChange} />
-
-        <label htmlFor="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} />
-
-        <label htmlFor="travel-start">Preferred Travel Dates<span aria-hidden="true">*</span></label>
-        <div className="date-range">
-          <input type="date" id="travel-start" name="travel-start" required value={form['travel-start']} onChange={handleChange} />
-          <span>to</span>
-          <input type="date" id="travel-end" name="travel-end" required value={form['travel-end']} onChange={handleChange} />
+    <div className="booking-form">
+      <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="styled-form">
+        <div className="form-group">
+          <label htmlFor="name">Full Name<span aria-hidden="true">*</span></label>
+          <input type="text" id="name" name="name" required value={form.name} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email Address<span aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required value={form.email} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="travel-dates">Preferred Travel Dates<span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="travel-dates"
+            name="travel-dates"
+            placeholder="DD/MM/YYYY - DD/MM/YYYY"
+            required
+            value={form['travel-dates']}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="group-size">Number of Travelers<span aria-hidden="true">*</span></label>
+          <input
+            type="number"
+            id="group-size"
+            name="group-size"
+            min="1"
+            required
+            value={form['group-size']}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="budget">Approximate Budget Per Person (USD)</label>
+          <select id="budget" name="budget" value={form.budget} onChange={handleChange}>
+            <option value="">Please select</option>
+            <option value="budget">$1,000 - $2,000</option>
+            <option value="mid-range">$2,000 - $4,000</option>
+            <option value="luxury">$4,000 - $6,000</option>
+            <option value="ultra-luxury">$6,000+</option>
+          </select>
         </div>
 
-        <label htmlFor="travelers">Number of Travelers<span aria-hidden="true">*</span></label>
-        <input type="number" id="travelers" name="travelers" min="1" required value={form.travelers} onChange={handleChange} />
-
-        <label htmlFor="budget">Budget Range (USD)<span aria-hidden="true">*</span></label>
-        <select name="budget" id="budget" required value={form.budget} onChange={handleChange}>
-          <option value="">Select Budget Range</option>
-          <option value="budget">$1,000 - $2,000</option>
-          <option value="mid-range">$2,000 - $4,000</option>
-          <option value="luxury">$4,000 - $6,000</option>
-          <option value="ultra-luxury">$6,000+</option>
-        </select>
-
-        <label htmlFor="destination">Preferred Destinations</label>
-        <input type="text" id="destination" name="destination" placeholder="e.g., Victoria Falls, Hwange, Great Zimbabwe" value={form.destination} onChange={handleChange} />
-
-        <fieldset className="interests">
-          <legend>Travel Interests</legend>
+        <div className="form-group">
+          <label htmlFor="interests">Travel Interests (select all that apply)</label>
+          <div className="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="wildlife"
+                checked={form.interests.includes('wildlife')}
+                onChange={handleChange}
+              />{' '}
+              Wildlife & Safaris
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="adventure"
+                checked={form.interests.includes('adventure')}
+                onChange={handleChange}
+              />{' '}
+              Adventure Activities
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="culture"
+                checked={form.interests.includes('culture')}
+                onChange={handleChange}
+              />{' '}
+              Cultural Experiences
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="history"
+                checked={form.interests.includes('history')}
+                onChange={handleChange}
+              />{' '}
+              Historical Sites
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="nature"
+                checked={form.interests.includes('nature')}
+                onChange={handleChange}
+              />{' '}
+              Nature & Landscapes
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="relaxation"
+                checked={form.interests.includes('relaxation')}
+                onChange={handleChange}
+              />{' '}
+              Relaxation
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="photography"
+                checked={form.interests.includes('photography')}
+                onChange={handleChange}
+              />{' '}
+              Photography
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="food"
+                checked={form.interests.includes('food')}
+                onChange={handleChange}
+              />{' '}
+              Food & Culinary
+            </label>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="accommodation">Preferred Accommodation Style</label>
+          <select id="accommodation" name="accommodation" value={form.accommodation} onChange={handleChange}>
+            <option value="">Please select</option>
+            <option value="budget">Budget-friendly</option>
+            <option value="mid-range">Mid-range</option>
+            <option value="luxury">Luxury</option>
+            <option value="mixed">Mix of styles</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="services">Services Required (select all that apply)</label>
+          <div className="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="itinerary"
+                checked={form.services.includes('itinerary')}
+                onChange={handleChange}
+              />{' '}
+              Custom Itinerary Creation
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="accommodation"
+                checked={form.services.includes('accommodation')}
+                onChange={handleChange}
+              />{' '}
+              Accommodation Bookings
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="activities"
+                checked={form.services.includes('activities')}
+                onChange={handleChange}
+              />{' '}
+              Activity Reservations
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="transportation"
+                checked={form.services.includes('transportation')}
+                onChange={handleChange}
+              />{' '}
+              Transportation Arrangements
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="guide"
+                checked={form.services.includes('guide')}
+                onChange={handleChange}
+              />{' '}
+              Guide Services
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="consultation"
+                checked={form.services.includes('consultation')}
+                onChange={handleChange}
+              />{' '}
+              Virtual Consultation
+            </label>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="special-requests">Special Requests or Additional Information</label>
+          <textarea
+            id="special-requests"
+            name="special-requests"
+            rows={5}
+            value={form['special-requests']}
+            onChange={handleChange}
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="hear-about">How did you hear about Zimbabwe Travel Information?</label>
+          <select id="hear-about" name="hear-about" value={form['hear-about']} onChange={handleChange}>
+            <option value="">Please select</option>
+            <option value="search">Search Engine</option>
+            <option value="social">Social Media</option>
+            <option value="friend">Friend/Family Recommendation</option>
+            <option value="travel-agent">Travel Agent</option>
+            <option value="blog">Blog or Article</option>
+            <option value="previous">Previous Customer</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div className="form-group">
           <label>
-            <input type="checkbox" name="interests[]" value="wildlife" checked={form.interests.includes('wildlife')} onChange={handleChange} /> Wildlife & Safaris
+            <input
+              type="checkbox"
+              name="terms-agreement"
+              required
+              checked={form['terms-agreement']}
+              onChange={handleChange}
+            />{' '}
+            I agree to the <a href="/terms-conditions" target="_blank" rel="noopener noreferrer">Terms & Conditions</a><span aria-hidden="true">*</span>
           </label>
+        </div>
+        <div className="form-group">
           <label>
-            <input type="checkbox" name="interests[]" value="adventure" checked={form.interests.includes('adventure')} onChange={handleChange} /> Adventure Activities
+            <input
+              type="checkbox"
+              name="newsletter-subscribe"
+              checked={form['newsletter-subscribe']}
+              onChange={handleChange}
+            />{' '}
+            Subscribe to our newsletter for Zimbabwe travel inspiration and exclusive offers
           </label>
-          <label>
-            <input type="checkbox" name="interests[]" value="culture" checked={form.interests.includes('culture')} onChange={handleChange} /> Cultural Experiences
-          </label>
-          <label>
-            <input type="checkbox" name="interests[]" value="history" checked={form.interests.includes('history')} onChange={handleChange} /> Historical Sites
-          </label>
-          <label>
-            <input type="checkbox" name="interests[]" value="other" checked={form.interests.includes('other')} onChange={handleChange} /> Other
-          </label>
-        </fieldset>
-
-        <label htmlFor="other-interests">Other Interests</label>
-        <input type="text" id="other-interests" name="other-interests" value={form['other-interests']} onChange={handleChange} />
-
-        <label htmlFor="accommodation-preference">Accommodation Preference</label>
-        <input type="text" id="accommodation-preference" name="accommodation-preference" value={form['accommodation-preference']} onChange={handleChange} />
-
-        <label htmlFor="dietary">Dietary Requirements</label>
-        <input type="text" id="dietary" name="dietary" value={form.dietary} onChange={handleChange} />
-
-        <label htmlFor="special-requests">Special Requests</label>
-        <textarea id="special-requests" name="special-requests" rows={4} value={form['special-requests']} onChange={handleChange}></textarea>
-
-        <label className="checkbox-label">
-          <input type="checkbox" name="terms" required checked={form.terms} onChange={handleChange} />
-          I agree to the <a href="/terms" target="_blank">Terms & Conditions</a>
-        </label>
-
-        <input type="hidden" name="_subject" value="New Travel Booking Request" />
-
-        <button type="submit" className="submit-button">Submit Booking Request</button>
-      </fieldset>
-    </form>
+        </div>
+        <button type="submit" className="submit-button">
+          Submit Booking Request
+        </button>
+      </form>
+    </div>
   );
 }
-
 
 ---
 
