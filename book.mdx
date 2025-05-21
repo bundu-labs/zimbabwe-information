@@ -191,18 +191,9 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 
 Please fill out the form below to help us understand your travel needs. We will get back to you within 24 hours with a personalized proposal.
 
-<form
-  action="https://formspree.io/f/xjkwdbrk"
-  method="POST"
-  style={{
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1.5rem',
-    marginTop: '1rem'
-  }}
->
-  <div>
-    <label htmlFor="service-type">Service Type*</label>
+<form action="https://formspree.io/f/xjkwdbrk" method="POST">
+  <div class="form-group">
+    <label for="service-type">Service Type*</label>
     <select name="service-type" id="service-type" required>
       <option value="">Select Service Type</option>
       <option value="self-planned">Self-Planned Travel Review ($25)</option>
@@ -215,34 +206,34 @@ Please fill out the form below to help us understand your travel needs. We will 
     </select>
   </div>
 
-  <div>
-    <label htmlFor="name">Full Name*</label>
+  <div class="form-group">
+    <label for="name">Full Name*</label>
     <input type="text" id="name" name="name" required />
   </div>
 
-  <div>
-    <label htmlFor="email">Email Address*</label>
+  <div class="form-group">
+    <label for="email">Email Address*</label>
     <input type="email" id="email" name="email" required />
   </div>
 
-  <div>
-    <label htmlFor="phone">Phone Number</label>
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
     <input type="tel" id="phone" name="phone" />
   </div>
 
-  <div>
-    <label htmlFor="travel-dates">Preferred Travel Dates*</label>
-    <input 
-      type="text" 
-      id="travel-dates" 
-      name="travel-dates" 
-      placeholder="DD/MM/YYYY - DD/MM/YYYY" 
-      required 
-    />
+  <div class="form-group">
+    <label for="travel-dates">Preferred Travel Dates*</label>
+    <input type="date" id="travel-start" name="travel-start" required />
+    <input type="date" id="travel-end" name="travel-end" required />
   </div>
 
-  <div>
-    <label htmlFor="budget">Budget Range (USD)*</label>
+  <div class="form-group">
+    <label for="travelers">Number of Travelers*</label>
+    <input type="number" id="travelers" name="travelers" min="1" required />
+  </div>
+
+  <div class="form-group">
+    <label for="budget">Budget Range (USD)*</label>
     <select name="budget" id="budget" required>
       <option value="">Select Budget Range</option>
       <option value="budget">$1,000 - $2,000</option>
@@ -252,30 +243,59 @@ Please fill out the form below to help us understand your travel needs. We will 
     </select>
   </div>
 
+  <div class="form-group">
+    <label for="destination">Preferred Destinations</label>
+    <input type="text" id="destination" name="destination" placeholder="e.g., Victoria Falls, Hwange, Great Zimbabwe" />
+  </div>
+
   <fieldset>
     <legend>Travel Interests</legend>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-      {['Wildlife & Safaris', 'Adventure Activities', 'Cultural Experiences', 'Historical Sites'].map((interest) => (
-        <label key={interest} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <input type="checkbox" name="interests[]" value={interest.toLowerCase()} />
-          {interest}
-        </label>
-      ))}
+    <div class="checkbox-grid">
+      <label>
+        <input type="checkbox" name="interests[]" value="wildlife" />
+        Wildlife & Safaris
+      </label>
+      <label>
+        <input type="checkbox" name="interests[]" value="adventure" />
+        Adventure Activities
+      </label>
+      <label>
+        <input type="checkbox" name="interests[]" value="culture" />
+        Cultural Experiences
+      </label>
+      <label>
+        <input type="checkbox" name="interests[]" value="history" />
+        Historical Sites
+      </label>
+      <label>
+        <input type="checkbox" name="interests[]" value="other" />
+        Other (please specify below)
+      </label>
     </div>
   </fieldset>
 
-  <div>
-    <label htmlFor="special-requests">Special Requests</label>
-    <textarea
-      id="special-requests"
-      name="special-requests"
-      rows="4"
-      placeholder="Any additional information or special requests"
-    ></textarea>
+  <div class="form-group">
+    <label for="other-interests">Other Interests</label>
+    <input type="text" id="other-interests" name="other-interests" placeholder="Please specify any other interests" />
   </div>
 
-  <div>
-    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+  <div class="form-group">
+    <label for="accommodation-preference">Accommodation Preference</label>
+    <input type="text" id="accommodation-preference" name="accommodation-preference" placeholder="e.g., Luxury Lodge, Tented Camp, Mix of Both" />
+  </div>
+
+  <div class="form-group">
+    <label for="dietary">Dietary Requirements</label>
+    <input type="text" id="dietary" name="dietary" placeholder="Any special dietary needs?" />
+  </div>
+
+  <div class="form-group">
+    <label for="special-requests">Special Requests</label>
+    <textarea id="special-requests" name="special-requests" rows="4" placeholder="Any additional information or special requests"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label class="checkbox-label">
       <input type="checkbox" name="terms" required />
       I agree to the <a href="/terms">Terms & Conditions</a>*
     </label>
@@ -283,17 +303,53 @@ Please fill out the form below to help us understand your travel needs. We will 
 
   <input type="hidden" name="_subject" value="New Travel Booking Request" />
   
-  <button type="submit" style={{ 
-    backgroundColor: 'var(--primary)',
-    color: 'white',
-    padding: '0.75rem 1.5rem',
-    borderRadius: '0.375rem',
-    border: 'none',
-    cursor: 'pointer'
-  }}>
-    Submit Booking Request
-  </button>
+  <button type="submit" class="submit-button">Submit Booking Request</button>
 </form>
+
+<style>
+{`
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .submit-button {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+`}
+</style>
 
 </Card>
 
@@ -314,12 +370,6 @@ At Zimbabwe Travel Information, we believe in authentic, respectful, and sustain
 </Card>
 
 [Learn more about our Community Guidelines](/community-guidelines)
-
----
-
-<Note>
-  Images on this page courtesy of Zimbabwe Tourism Authority and our verified local partners
-</Note>
 
 ---
 
