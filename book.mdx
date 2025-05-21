@@ -188,203 +188,294 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 
 ---
 ## Book Your Adventure
+### Fill out the form below to get started on your Zimbabwe journey!
+### We will respond within 24 hours to discuss your travel plans and provide a personalized quote.
 
-<Card title="Booking Request Form" icon="file-pen">
-  <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="grid gap-6">
-    {/* Service Type */}
-    <div>
-      <label className="block mb-2 text-sm font-medium">
-        Service Type*
-        <select 
-          name="service-type" 
-          required 
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        >
-          <option value="">Select Service Type</option>
-          <option value="self-planned">Self-Planned Travel Review ($25)</option>
-          <option value="custom-7">Custom Itinerary - Up to 7 Days ($75)</option>
-          <option value="custom-14">Custom Itinerary - Up to 14 Days ($125)</option>
-          <option value="custom-15">Custom Itinerary - 15+ Days ($150)</option>
-          <option value="full-service">Full Service Booking Assistance</option>
-        </select>
-      </label>
+import { useState } from 'react';
+
+export default function BookingForm() {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    'travel-dates': '',
+    'group-size': '',
+    budget: '',
+    interests: [],
+    accommodation: '',
+    services: [],
+    'special-requests': '',
+    'hear-about': '',
+    'terms-agreement': false,
+    'newsletter-subscribe': false,
+    _gotcha: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === 'checkbox' && name === 'terms-agreement') {
+      setForm({ ...form, [name]: checked });
+    } else if (type === 'checkbox' && name === 'newsletter-subscribe') {
+      setForm({ ...form, [name]: checked });
+    } else if (type === 'checkbox' && name === 'interests') {
+      setForm((prev) => {
+        const interests = prev.interests.includes(value)
+          ? prev.interests.filter((i) => i !== value)
+          : [...prev.interests, value];
+        return { ...prev, interests };
+      });
+    } else if (type === 'checkbox' && name === 'services') {
+      setForm((prev) => {
+        const services = prev.services.includes(value)
+          ? prev.services.filter((i) => i !== value)
+          : [...prev.services, value];
+        return { ...prev, services };
+      });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
+  };
+
+  return (
+    <div className="booking-form">
+      <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="styled-form">
+        <div className="form-group">
+          <label htmlFor="name">Full Name<span aria-hidden="true">*</span></label>
+          <input type="text" id="name" name="name" required value={form.name} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email Address<span aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required value={form.email} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" value={form.phone} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="travel-dates">Preferred Travel Dates<span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="travel-dates"
+            name="travel-dates"
+            placeholder="DD/MM/YYYY - DD/MM/YYYY"
+            required
+            value={form['travel-dates']}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="group-size">Number of Travelers<span aria-hidden="true">*</span></label>
+          <input
+            type="number"
+            id="group-size"
+            name="group-size"
+            min="1"
+            required
+            value={form['group-size']}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="budget">Approximate Budget Per Person (USD)</label>
+          <select id="budget" name="budget" value={form.budget} onChange={handleChange}>
+            <option value="">Please select</option>
+            <option value="budget">$1,000 - $2,000</option>
+            <option value="mid-range">$2,000 - $4,000</option>
+            <option value="luxury">$4,000 - $6,000</option>
+            <option value="ultra-luxury">$6,000+</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="interests">Travel Interests (select all that apply)</label>
+          <div className="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="wildlife"
+                checked={form.interests.includes('wildlife')}
+                onChange={handleChange}
+              />{' '}
+              Wildlife & Safaris
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="adventure"
+                checked={form.interests.includes('adventure')}
+                onChange={handleChange}
+              />{' '}
+              Adventure Activities
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="culture"
+                checked={form.interests.includes('culture')}
+                onChange={handleChange}
+              />{' '}
+              Cultural Experiences
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="history"
+                checked={form.interests.includes('history')}
+                onChange={handleChange}
+              />{' '}
+              Historical Sites
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="nature"
+                checked={form.interests.includes('nature')}
+                onChange={handleChange}
+              />{' '}
+              Nature & Landscapes
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="relaxation"
+                checked={form.interests.includes('relaxation')}
+                onChange={handleChange}
+              />{' '}
+              Relaxation
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="photography"
+                checked={form.interests.includes('photography')}
+                onChange={handleChange}
+              />{' '}
+              Photography
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="interests"
+                value="food"
+                checked={form.interests.includes('food')}
+                onChange={handleChange}
+              />{' '}
+              Food & Culinary
+            </label>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="accommodation">Preferred Accommodation Style</label>
+          <select id="accommodation" name="accommodation" value={form.accommodation} onChange={handleChange}>
+            <option value="">Please select</option>
+            <option value="budget">Budget-friendly</option>
+            <option value="mid-range">Mid-range</option>
+            <option value="luxury">Luxury</option>
+            <option value="mixed">Mix of styles</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="services">Services Required (select all that apply)</label>
+          <div className="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="itinerary"
+                checked={form.services.includes('itinerary')}
+                onChange={handleChange}
+              />{' '}
+              Custom Itinerary Creation
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="accommodation"
+                checked={form.services.includes('accommodation')}
+                onChange={handleChange}
+              />{' '}
+              Accommodation Bookings
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="activities"
+                checked={form.services.includes('activities')}
+                onChange={handleChange}
+              />{' '}
+              Activity Reservations
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="transportation"
+                checked={form.services.includes('transportation')}
+                onChange={handleChange}
+              />{' '}
+              Transportation Arrangements
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="guide"
+                checked={form.services.includes('guide')}
+                onChange={handleChange}
+              />{' '}
+              Guide Services
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="services"
+                value="consultation"
+                checked={form.services.includes('consultation')}
+                onChange={handleChange}
+              />{' '}
+              Virtual Consultation
+            </label>
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="special-requests">Special Requests or Additional Information</label>
+          <textarea
+            id="special-requests"
+            name="special-requests"
+            rows={5}
+            value={form['special-requests']}
+            onChange={handleChange}
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="hear-about">How did you hear about Zimbabwe Travel Information?</label>
+          <select id="hear-about" name="hear-about" value={form['hear-about']} onChange={handleChange}>
+            <option value="">Please select</option>
+            <option value="search">Search Engine</option>
+            <option value="social">Social Media</option>
+            <option value="friend">Friend/Family Recommendation</option>
+            <option value="travel-agent">Travel Agent</option>
+            <option value="blog">Blog or Article</option>
+            <option value="previous">Previous Customer</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <button type="submit" className="submit-button">
+          Submit Booking Request
+        </button>
+      </form>
     </div>
-
-    {/* Travel Interests */}
-    <div>
-      <span className="block mb-2 text-sm font-medium">Travel Interests</span>
-      <div className="grid grid-cols-2 gap-2">
-        <label className="inline-flex items-center">
-          <input type="checkbox" name="interests[]" value="wildlife" className="mr-2" />
-          <span className="text-sm">Wildlife & Safaris</span>
-        </label>
-        <label className="inline-flex items-center">
-          <input type="checkbox" name="interests[]" value="adventure" className="mr-2" />
-          <span className="text-sm">Adventure Activities</span>
-        </label>
-        <label className="inline-flex items-center">
-          <input type="checkbox" name="interests[]" value="cultural" className="mr-2" />
-          <span className="text-sm">Cultural Experiences</span>
-        </label>
-        <label className="inline-flex items-center">
-          <input type="checkbox" name="interests[]" value="historical" className="mr-2" />
-          <span className="text-sm">Historical Sites</span>
-        </label>
-        <label className="inline-flex items-center">
-          <input type="checkbox" name="interests[]" value="nature" className="mr-2" />
-          <span className="text-sm">Nature & Landscapes</span>
-        </label>
-        <label className="inline-flex items-center">
-          <input type="checkbox" name="interests[]" value="food" className="mr-2" />
-          <span className="text-sm">Food & Culinary</span>
-        </label>
-      </div>
-    </div>
-
-    <div>
-      <label className="block mb-2 text-sm font-medium">
-        Full Name*
-        <input 
-          type="text" 
-          name="name" 
-          required 
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        />
-      </label>
-    </div>
-
-    <div>
-      <label className="block mb-2 text-sm font-medium">
-        Email*
-        <input 
-          type="email" 
-          name="email" 
-          required 
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        />
-      </label>
-    </div>
-
-    <div>
-      <label className="block mb-2 text-sm font-medium">
-        Travel Dates*
-        <input 
-          type="text" 
-          name="travel-dates" 
-          placeholder="DD/MM/YYYY - DD/MM/YYYY"
-          required 
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        />
-      </label>
-    </div>
-
-    <div>
-      <label className="block mb-2 text-sm font-medium">
-        Budget Range*
-        <select 
-          name="budget" 
-          required 
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        >
-          <option value="">Please select</option>
-          <option value="budget">$1,000 - $2,000</option>
-          <option value="mid-range">$2,000 - $4,000</option>
-          <option value="luxury">$4,000 - $6,000</option>
-          <option value="ultra-luxury">$6,000+</option>
-        </select>
-      </label>
-    </div>
-
-    <div>
-      <label className="block mb-2 text-sm font-medium">
-        Special Requests
-        <textarea 
-          name="special-requests" 
-          rows="4"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-        ></textarea>
-      </label>
-    </div>
-
-    <div>
-      <label className="inline-flex items-center">
-        <input type="checkbox" name="terms" required className="mr-2" />
-        <span className="text-sm">I agree to the Terms & Conditions*</span>
-      </label>
-    </div>
-
-    <div>
-      <button 
-        type="submit"
-        className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700"
-      >
-        Submit Booking Request
-      </button>
-    </div>
-  </form>
-</Card>
-
-## Why Book With Us?
-
-<CardGroup cols={2}>
-  <Card title="Local Expertise" icon="map-location-dot">
-    Our team includes Zimbabweans who know their country intimately
-  </Card>
-  <Card title="Authentic Experiences" icon="face-smile">
-    We focus on genuine connections with places and people
-  </Card>
-  <Card title="Responsible Travel" icon="leaf">
-    We prioritize partners committed to sustainability and community support
-  </Card>
-  <Card title="24/7 Support" icon="headset">
-    Assistance available throughout your journey
-  </Card>
-  <Card title="Value" icon="sack-dollar">
-    Competitive rates through our established relationships
-  </Card>
-  <Card title="Personalization" icon="wand-magic-sparkles">
-    Every journey is tailored to your specific interests
-  </Card>
-</CardGroup>
-
-## Booking Process
-
-<Steps>
-  <Step title="Inquire">
-    Fill out the form below or email bookings@travel-info.co.zw
-  </Step>
-  <Step title="Consult">
-    Speak with our travel specialist about your dream Zimbabwe experience
-  </Step>
-  <Step title="Review">
-    Receive your custom proposal and itinerary
-  </Step>
-  <Step title="Confirm">
-    Secure your booking with a deposit
-  </Step>
-  <Step title="Prepare">
-    Get exclusive pre-departure information and tips
-  </Step>
-  <Step title="Travel">
-    Enjoy your Zimbabwe adventure with our ongoing support
-  </Step>
-</Steps>
-
-## Contact Us
-
-Ready to start planning your Zimbabwe adventure? Reach out through any of these channels:
-
-<CardGroup cols={3}>
-  <Card title="Email" icon="envelope">
-    bookings@travel-info.co.zw
-  </Card>
-  <Card title="WhatsApp" icon="whatsapp">
-    +263 774 111061
-  </Card>
-  <Card title="Online" icon="globe">
-    Form below
-  </Card>
-</CardGroup>
+  );
+}
 
 ---
 
