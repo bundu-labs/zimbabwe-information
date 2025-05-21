@@ -189,181 +189,143 @@ Ready to start planning your Zimbabwe adventure? Reach out through any of these 
 ---
 <Card title="Booking Request Form" icon="file-pen">
   Please fill out the form below to help us understand your travel needs. We will get back to you within 24 hours with a personalized proposal.
-  <div className="mt-4">
-    <form action="https://formspree.io/f/xjkwdbrk" method="POST">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Full Name*
-            <input type="text" id="name" name="name" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Email Address*
-            <input type="email" id="email" name="email" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Phone Number
-            <input type="tel" id="phone" name="phone" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Preferred Travel Dates*
-            <input type="text" id="travel-dates" name="travel-dates" placeholder="DD/MM/YYYY - DD/MM/YYYY" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Number of Travelers*
-            <input type="number" id="group-size" name="group-size" min="1" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="budget" className="block text-sm font-medium text-gray-700">
-            Approximate Budget Per Person (USD)
-            <select id="budget" name="budget" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              <option value="">Please select</option>
-              <option value="budget">$1,000 - $2,000</option>
-              <option value="mid-range">$2,000 - $4,000</option>
-              <option value="luxury">$4,000 - $6,000</option>
-              <option value="ultra-luxury">$6,000+</option>
-            </select>
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Travel Interests (select all that apply)
-          </label>
-          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="interests" value="wildlife" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Wildlife & Safaris</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="interests" value="adventure" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Adventure Activities</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="interests" value="culture" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Cultural Experiences</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="interests" value="history" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Historical Sites</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="interests" value="nature" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Nature & Landscapes</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="interests" value="relaxation" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Relaxation</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="interests" value="photography" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Photography</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="interests" value="food" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Food & Culinary</span>
-            </label>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="accommodation" className="block text-sm font-medium text-gray-700">
-            Preferred Accommodation Style
-            <select id="accommodation" name="accommodation" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              <option value="">Please select</option>
-              <option value="budget">Budget-friendly</option>
-              <option value="mid-range">Mid-range</option>
-              <option value="luxury">Luxury</option>
-              <option value="mixed">Mix of styles</option>
-            </select>
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Services Required (select all that apply)
-          </label>
-          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="services" value="itinerary" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Custom Itinerary Creation</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="services" value="accommodation" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Accommodation Bookings</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="services" value="activities" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Activity Reservations</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="services" value="transportation" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Transportation Arrangements</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="services" value="guide" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Guide Services</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input type="checkbox" name="services" value="consultation" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2">Virtual Consultation</span>
-            </label>
-          </div>
-        </div>
-        <div class="sm:col-span-2">
-          <label class="block text-sm font-medium text-gray-700">
-            Special Requests or Additional Information
-            <textarea id="special-requests" name="special-requests" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label htmlFor="hear-about" className="block text-sm font-medium text-gray-700">
-            How did you hear about Zimbabwe Travel Information?
-            <select id="hear-about" name="hear-about" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              <option value="">Please select</option>
-              <option value="search">Search Engine</option>
-              <option value="social">Social Media</option>
-              <option value="friend">Friend/Family Recommendation</option>
-              <option value="travel-agent">Travel Agent</option>
-              <option value="blog">Blog or Article</option>
-              <option value="previous">Previous Customer</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="inline-flex items-center">
-            <input type="checkbox" name="terms-agreement" required className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-            <span className="ml-2">I agree to the <a href="/terms-conditions" className="text-indigo-600 hover:text-indigo-800">Terms &amp; Conditions</a>*</span>
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="inline-flex items-center">
-            <input type="checkbox" name="newsletter-subscribe" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-            <span className="ml-2">Subscribe to our newsletter for Zimbabwe travel inspiration and exclusive offers</span>
-          </label>
+
+  <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="mt-4">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {/* Basic Information */}
+      <Input
+        type="text"
+        label="Full Name*"
+        name="name"
+        required
+        className="col-span-1"
+      />
+      
+      <Input
+        type="email"
+        label="Email Address*"
+        name="email"
+        required
+        className="col-span-1"
+      />
+
+      <Input
+        type="tel"
+        label="Phone Number"
+        name="phone"
+        className="col-span-1"
+      />
+
+      <Input
+        type="text"
+        label="Preferred Travel Dates*"
+        name="travel-dates"
+        placeholder="DD/MM/YYYY - DD/MM/YYYY"
+        required
+        className="col-span-1"
+      />
+
+      <Input
+        type="number"
+        label="Number of Travelers*"
+        name="group-size"
+        min="1"
+        required
+        className="col-span-1"
+      />
+
+      <select name="budget" className="col-span-1" required>
+        <option value="">Select Budget Range (USD)</option>
+        <option value="budget">$1,000 - $2,000</option>
+        <option value="mid-range">$2,000 - $4,000</option>
+        <option value="luxury">$4,000 - $6,000</option>
+        <option value="ultra-luxury">$6,000+</option>
+      </select>
+
+      {/* Travel Interests */}
+      <div className="col-span-2">
+        <label className="block mb-2">Travel Interests (select all that apply)</label>
+        <div className="grid grid-cols-2 gap-4">
+          <Checkbox name="interests" value="wildlife" label="Wildlife & Safaris" />
+          <Checkbox name="interests" value="adventure" label="Adventure Activities" />
+          <Checkbox name="interests" value="culture" label="Cultural Experiences" />
+          <Checkbox name="interests" value="history" label="Historical Sites" />
+          <Checkbox name="interests" value="nature" label="Nature & Landscapes" />
+          <Checkbox name="interests" value="relaxation" label="Relaxation" />
+          <Checkbox name="interests" value="photography" label="Photography" />
+          <Checkbox name="interests" value="food" label="Food & Culinary" />
         </div>
       </div>
-      {/* Add email subject line */}
+
+      {/* Accommodation Style */}
+      <select name="accommodation" className="col-span-2" required>
+        <option value="">Select Accommodation Style</option>
+        <option value="budget">Budget-friendly</option>
+        <option value="mid-range">Mid-range</option>
+        <option value="luxury">Luxury</option>
+        <option value="mixed">Mix of styles</option>
+      </select>
+
+      {/* Services Required */}
+      <div className="col-span-2">
+        <label className="block mb-2">Services Required (select all that apply)</label>
+        <div className="grid grid-cols-2 gap-4">
+          <Checkbox name="services" value="itinerary" label="Custom Itinerary Creation" />
+          <Checkbox name="services" value="accommodation" label="Accommodation Bookings" />
+          <Checkbox name="services" value="activities" label="Activity Reservations" />
+          <Checkbox name="services" value="transportation" label="Transportation Arrangements" />
+          <Checkbox name="services" value="guide" label="Guide Services" />
+          <Checkbox name="services" value="consultation" label="Virtual Consultation" />
+        </div>
+      </div>
+
+      {/* Additional Information */}
+      <textarea
+        name="special-requests"
+        rows="5"
+        placeholder="Special Requests or Additional Information"
+        className="col-span-2"
+      />
+
+      {/* How did you hear about us */}
+      <select name="hear-about" className="col-span-2">
+        <option value="">How did you hear about Zimbabwe Travel Information?</option>
+        <option value="search">Search Engine</option>
+        <option value="social">Social Media</option>
+        <option value="friend">Friend/Family Recommendation</option>
+        <option value="travel-agent">Travel Agent</option>
+        <option value="blog">Blog or Article</option>
+        <option value="previous">Previous Customer</option>
+        <option value="other">Other</option>
+      </select>
+
+      {/* Terms and Newsletter */}
+      <div className="col-span-2">
+        <Checkbox
+          name="terms-agreement"
+          required
+          label={<>I agree to the <a href="/terms-conditions">Terms & Conditions</a>*</>}
+        />
+        <Checkbox
+          name="newsletter-subscribe"
+          label="Subscribe to our newsletter for Zimbabwe travel inspiration and exclusive offers"
+        />
+      </div>
+
+      {/* Hidden Fields */}
       <input type="hidden" name="_subject" value="New Zimbabwe Travel Booking Request" />
-      {/* Anti-spam honeypot field */}
       <div style={{display: 'none'}}>
-        <label htmlFor="honeypot">Leave this field empty if you're human:</label>
-        <input type="text" id="honeypot" name="_gotcha" />
+        <label>Leave this field empty if you're human:
+          <input name="_gotcha" />
+        </label>
       </div>
-      <div className="mt-6">
-        <button type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-          Submit Booking Request
-        </button>
-      </div>
-    </form>
-  </div>
+
+      {/* Submit Button */}
+      <Button type="submit" className="col-span-2">
+        Submit Booking Request
+      </Button>
+    </div>
+  </form>
 </Card>
 ---
 
