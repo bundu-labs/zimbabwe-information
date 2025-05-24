@@ -153,25 +153,25 @@
   "navbar": {
     "links": [
       {
-        "label": "FAQs",
-        "href": "https://travel-info.co.zw/faq"
+        "name": "FAQs",
+        "url": "https://travel-info.co.zw/faq"
       },
       {
-        "label": "Contact",
-        "href": "https://travel-info.co.zw/contact"
+        "name": "Contact",
+        "url": "https://travel-info.co.zw/contact"
       },
       {
-        "label": "Privacy",
-        "href": "https://travel-info.co.zw/privacy-policy"
+        "name": "Privacy",
+        "url": "https://travel-info.co.zw/privacy-policy"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Book a Trip",
-      "href": "https://travel-info.co.zw/book"
+      "name": "Book a Trip",
+      "url": "https://travel-info.co.zw/book"
     }
   },
-  "integrations": {
+  "analytics": {
     "ga4": {
       "measurementId": "G-RGN0G4LG3Z"
     },
@@ -180,110 +180,90 @@
     }
   },
   "footer": {
-    "sections": [
+    "text": "© 2025 Zimbabwe Travel Information. All rights reserved.",
+    "links": [
       {
-        "title": "Destinations",
-        "links": [
+        "group": "Destinations",
+        "items": [
           {
-            "label": "Victoria Falls",
-            "href": "/destinations/victoria-falls"
+            "name": "Victoria Falls",
+            "url": "/destinations/victoria-falls"
           },
           {
-            "label": "Hwange National Park",
-            "href": "/destinations/hwange-national-park"
+            "name": "Hwange National Park",
+            "url": "/destinations/hwange-national-park"
           },
           {
-            "label": "Great Zimbabwe",
-            "href": "/destinations/great-zimbabwe"
+            "name": "Great Zimbabwe",
+            "url": "/destinations/great-zimbabwe"
           },
           {
-            "label": "Eastern Highlands",
-            "href": "/destinations/eastern-highlands"
+            "name": "Eastern Highlands",
+            "url": "/destinations/eastern-highlands"
           }
         ]
       },
       {
-        "title": "Travel Planning",
-        "links": [
+        "group": "Travel Planning",
+        "items": [
           {
-            "label": "When to Visit",
-            "href": "/when-to-visit"
+            "name": "When to Visit",
+            "url": "/when-to-visit"
           },
           {
-            "label": "Safari Planning",
-            "href": "/planning/safari-planning"
+            "name": "Safari Planning",
+            "url": "/planning/safari-planning"
           },
           {
-            "label": "Budget Travel",
-            "href": "/planning/budget-travel"
+            "name": "Budget Travel",
+            "url": "/planning/budget-travel"
           },
           {
-            "label": "Sample Itineraries",
-            "href": "/planning/sample-itineraries"
+            "name": "Sample Itineraries",
+            "url": "/planning/sample-itineraries"
           }
         ]
       },
       {
-        "title": "Resources",
-        "links": [
+        "group": "Resources",
+        "items": [
           {
-            "label": "Travel Essentials",
-            "href": "/essentials/visas-and-entry"
+            "name": "Travel Essentials",
+            "url": "/essentials/visas-and-entry"
           },
           {
-            "label": "Book a Trip",
-            "href": "/book"
+            "name": "Book a Trip",
+            "url": "/book"
           },
           {
-            "label": "FAQs",
-            "href": "/faq"
+            "name": "FAQs",
+            "url": "/faq"
           },
           {
-            "label": "Contact Us",
-            "href": "/contact"
+            "name": "Contact Us",
+            "url": "/contact"
           }
         ]
       },
       {
-        "title": "Company",
-        "links": [
+        "group": "Legal",
+        "items": [
           {
-            "label": "About Zimbabwe",
-            "href": "/about-zimbabwe"
+            "name": "Privacy Policy",
+            "url": "/privacy-policy"
           },
           {
-            "label": "Community Guidelines",
-            "href": "/community-guidelines"
+            "name": "Terms of Service",
+            "url": "/terms-of-service"
           },
           {
-            "label": "Student Contributors",
-            "href": "/get-involved/student-contributors-program"
-          },
-          {
-            "label": "Zimbabwe's Tuckshop",
-            "href": "https://shop.travel-info.co.zw"
+            "name": "Cookie Policy",
+            "url": "/cookie-policy"
           }
         ]
       }
     ],
-    "bottomSection": {
-      "copyright": "© 2025 Zimbabwe Travel Information. All rights reserved.",
-      "links": [
-        {
-          "label": "Privacy Policy",
-          "href": "/privacy-policy"
-        },
-        {
-          "label": "Terms of Service",
-          "href": "/terms-of-service"
-        },
-        {
-          "label": "Cookie Policy",
-          "href": "/cookie-policy"
-        }
-      ]
-    },
-    "socials": {
+    "social": {
       "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo",
       "discord": "https://discord.gg/dzHWFB44yw"
     }
