@@ -12,134 +12,82 @@
     "light": "#07C983",
     "dark": "#0D9373"
   },
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Discover",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "introduction",
-              "about-zimbabwe",
-              "when-to-visit"
-            ]
-          },
-          {
-            "group": "Culture & Experiences",
-            "pages": [
-              "culture/people-and-tribes",
-              "culture/art-and-music",
-              "culture/cuisine",
-              "culture/festivals-and-events"
-            ]
-          },
-          {
-            "group": "Wildlife & Nature",
-            "pages": [
-              "wildlife/animals-and-birds",
-              "wildlife/national-parks-and-reserves",
-              "wildlife/conservation-efforts"
-            ]
-          },
-          {
-            "group": "Adventure Activities",
-            "pages": [
-              "adventure/activities-and-experiences",
-              "adventure/water-sports",
-              "adventure/hiking-and-trekking"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Travel Essentials",
-        "groups": [
-          {
-            "group": "Travel Essentials",
-            "pages": [
-              "essentials/visas-and-entry",
-              "essentials/health-and-safety",
-              "essentials/safari-etiquette",
-              "essentials/currency-and-money",
-              "essentials/transportation",
-              "essentials/accommodation",
-              "essentials/communication"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Destinations",
-        "groups": [
-          {
-            "group": "Top Destinations",
-            "pages": [
-              "destinations/victoria-falls",
-              "destinations/hwange-national-park",
-              "destinations/great-zimbabwe",
-              "destinations/mana-pools",
-              "destinations/matobo-hills",
-              "destinations/eastern-highlands",
-              "destinations/kariba",
-              "destinations/harare",
-              "destinations/bulawayo",
-              "destinations/gonarezhou"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Trip Planning",
-        "groups": [
-          {
-            "group": "Trip Planning",
-            "pages": [
-              "planning/sample-itineraries",
-              "planning/budget-travel",
-              "planning/luxury-travel",
-              "planning/family-travel",
-              "planning/safari-planning"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Community Engagement",
-        "groups": [
-          {
-            "group": "Get Involved",
-            "pages": [
-              "get-involved/student-contributors-program",
-              "get-involved/travel-enthusiast-community",
-              "get-involved/business-partner-network",
-              "get-involved/local-expert-connections"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Support",
-        "groups": [
-          {
-            "group": "Help & Resources",
-            "pages": [
-              "contact",
-              "faq"
-            ]
-          },
-          {
-            "group": "Legal",
-            "pages": [
-              "privacy-policy",
-              "cookie-policy",
-              "terms-of-service"
-            ]
-          }
-        ]
-      }
-    ]
-  },
+  "navigation": [
+    {
+      "group": "Community Engagement",
+      "pages": [
+        "get-involved/student-contributors-program",
+        "get-involved/travel-enthusiast-community",
+        "get-involved/business-partner-network",
+        "get-involved/local-expert-connections"
+      ]
+    },
+    {
+      "group": "Destinations",
+      "pages": [
+        "destinations/victoria-falls",
+        "destinations/hwange-national-park",
+        "destinations/great-zimbabwe",
+        "destinations/mana-pools",
+        "destinations/matobo-hills",
+        "destinations/eastern-highlands",
+        "destinations/kariba",
+        "destinations/harare",
+        "destinations/bulawayo",
+        "destinations/gonarezhou"
+      ]
+    },
+    {
+      "group": "Discover",
+      "pages": [
+        "introduction",
+        "about-zimbabwe",
+        "when-to-visit",
+        "culture/people-and-tribes",
+        "culture/art-and-music",
+        "culture/cuisine",
+        "culture/festivals-and-events",
+        "wildlife/animals-and-birds",
+        "wildlife/national-parks-and-reserves",
+        "wildlife/conservation-efforts",
+        "adventure/activities-and-experiences",
+        "adventure/water-sports",
+        "adventure/hiking-and-trekking"
+      ]
+    },
+    {
+      "group": "Travel Essentials",
+      "pages": [
+        "essentials/visas-and-entry",
+        "essentials/health-and-safety",
+        "essentials/safari-etiquette",
+        "essentials/currency-and-money",
+        "essentials/transportation",
+        "essentials/accommodation",
+        "essentials/communication"
+      ]
+    },
+    {
+      "group": "Trip Planning",
+      "pages": [
+        "planning/sample-itineraries",
+        "planning/budget-travel",
+        "planning/luxury-travel",
+        "planning/family-travel",
+        "planning/safari-planning"
+      ]
+    },
+    {
+      "group": "Help & Legal",
+      "pages": [
+        "contact",
+        "faq",
+        "privacy-policy", 
+        "cookie-policy",
+        "terms-of-service"
+      ]
+    }
+  ],
   "navbar": {
     "links": [
       {
@@ -177,19 +125,6 @@
     }
   },
   "footer": {
-    "logo": {
-      "dark": "/logo/noBgWhite.svg",
-      "light": "/logo/noBgColor.svg"
-    },
-    "contact": {
-      "email": "hi@travel-info.co.zw",
-      "phone": "+263 123 456 789"
-    },
-    "legal": {
-      "privacyPolicy": "https://travel-info.co.zw/privacy-policy",
-      "cookiePolicy": "https://travel-info.co.zw/cookie-policy",
-      "termsOfService": "https://travel-info.co.zw/terms-of-service"
-    },
     "links": [
       {
         "title": "Destinations",
