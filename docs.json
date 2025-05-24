@@ -153,22 +153,22 @@
   "navbar": {
     "links": [
       {
-        "name": "FAQs",
-        "url": "https://travel-info.co.zw/faq"
+        "label": "FAQs",
+        "href": "https://travel-info.co.zw/faq"
       },
       {
-        "name": "Contact",
-        "url": "https://travel-info.co.zw/contact"
+        "label": "Contact",
+        "href": "https://travel-info.co.zw/contact"
       },
       {
-        "name": "Privacy",
-        "url": "https://travel-info.co.zw/privacy-policy"
+        "label": "Privacy",
+        "href": "https://travel-info.co.zw/privacy-policy"
       }
     ],
     "primary": {
       "type": "button",
-      "name": "Book a Trip",
-      "url": "https://travel-info.co.zw/book"
+      "label": "Book a Trip",
+      "href": "https://travel-info.co.zw/book"
     }
   },
   "analytics": {
@@ -186,20 +186,20 @@
         "group": "Destinations",
         "items": [
           {
-            "name": "Victoria Falls",
-            "url": "/destinations/victoria-falls"
+            "label": "Victoria Falls",
+            "href": "/destinations/victoria-falls"
           },
           {
-            "name": "Hwange National Park",
-            "url": "/destinations/hwange-national-park"
+            "label": "Hwange National Park",
+            "href": "/destinations/hwange-national-park"
           },
           {
-            "name": "Great Zimbabwe",
-            "url": "/destinations/great-zimbabwe"
+            "label": "Great Zimbabwe",
+            "href": "/destinations/great-zimbabwe"
           },
           {
-            "name": "Eastern Highlands",
-            "url": "/destinations/eastern-highlands"
+            "label": "Eastern Highlands",
+            "href": "/destinations/eastern-highlands"
           }
         ]
       },
@@ -207,58 +207,20 @@
         "group": "Travel Planning",
         "items": [
           {
-            "name": "When to Visit",
-            "url": "/when-to-visit"
+            "label": "When to Visit",
+            "href": "/when-to-visit"
           },
           {
-            "name": "Safari Planning",
-            "url": "/planning/safari-planning"
+            "label": "Safari Planning",
+            "href": "/planning/safari-planning"
           },
           {
-            "name": "Budget Travel",
-            "url": "/planning/budget-travel"
+            "label": "Budget Travel",
+            "href": "/planning/budget-travel"
           },
           {
-            "name": "Sample Itineraries",
-            "url": "/planning/sample-itineraries"
-          }
-        ]
-      },
-      {
-        "group": "Resources",
-        "items": [
-          {
-            "name": "Travel Essentials",
-            "url": "/essentials/visas-and-entry"
-          },
-          {
-            "name": "Book a Trip",
-            "url": "/book"
-          },
-          {
-            "name": "FAQs",
-            "url": "/faq"
-          },
-          {
-            "name": "Contact Us",
-            "url": "/contact"
-          }
-        ]
-      },
-      {
-        "group": "Legal",
-        "items": [
-          {
-            "name": "Privacy Policy",
-            "url": "/privacy-policy"
-          },
-          {
-            "name": "Terms of Service",
-            "url": "/terms-of-service"
-          },
-          {
-            "name": "Cookie Policy",
-            "url": "/cookie-policy"
+            "label": "Sample Itineraries",
+            "href": "/planning/sample-itineraries"
           }
         ]
       }
