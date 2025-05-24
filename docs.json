@@ -176,19 +176,19 @@
         "items": [
           {
             "label": "Victoria Falls",
-            "href": "/destinations/victoria-falls"
+            "href": "https://travel-info.co.zw/destinations/victoria-falls"
           },
           {
             "label": "Hwange National Park",
-            "href": "/destinations/hwange-national-park"
+            "href": "https://travel-info.co.zw/destinations/hwange-national-park"
           },
           {
             "label": "Great Zimbabwe",
-            "href": "/destinations/great-zimbabwe"
+            "href": "https://travel-info.co.zw/destinations/great-zimbabwe"
           },
           {
             "label": "Eastern Highlands",
-            "href": "/destinations/eastern-highlands"
+            "href": "https://travel-info.co.zw/destinations/eastern-highlands"
           }
         ]
       },
@@ -197,19 +197,19 @@
         "items": [
           {
             "label": "When to Visit",
-            "href": "/when-to-visit"
+            "href": "https://travel-info.co.zw/when-to-visit"
           },
           {
             "label": "Safari Planning",
-            "href": "/planning/safari-planning"
+            "href": "https://travel-info.co.zw/planning/safari-planning"
           },
           {
             "label": "Budget Travel",
-            "href": "/planning/budget-travel"
+            "href": "https://travel-info.co.zw/planning/budget-travel"
           },
           {
             "label": "Sample Itineraries",
-            "href": "/planning/sample-itineraries"
+            "href": "https://travel-info.co.zw/planning/sample-itineraries"
           }
         ]
       },
@@ -218,19 +218,19 @@
         "items": [
           {
             "label": "Travel Essentials",
-            "href": "/essentials/visas-and-entry"
+            "href": "https://travel-info.co.zw/essentials/visas-and-entry"
           },
           {
             "label": "Book a Trip",
-            "href": "/book"
+            "href": "https://travel-info.co.zw/book"
           },
           {
             "label": "FAQs",
-            "href": "/faq"
+            "href": "https://travel-info.co.zw/faq"
           },
           {
             "label": "Contact Us",
-            "href": "/contact"
+            "href": "https://travel-info.co.zw/contact"
           }
         ]
       },
@@ -239,11 +239,11 @@
         "items": [
           {
             "label": "About Zimbabwe",
-            "href": "/about-zimbabwe"
+            "href": "https://travel-info.co.zw/about-zimbabwe"
           },
           {
             "label": "Student Contributors",
-            "href": "/get-involved/student-contributors-program"
+            "href": "https://travel-info.co.zw/get-involved/student-contributors-program"
           },
           {
             "label": "Zimbabwe's Tuckshop",
