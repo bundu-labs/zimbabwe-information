@@ -20,16 +20,16 @@ on:
         type: boolean
   
   # Uncomment to run on schedule (every Sunday at 2 AM UTC)
-   schedule:
-     - cron: '0 2 * * 0'
+  # schedule:
+  #   - cron: '0 2 * * 0'
   
   # Uncomment to run on push to main branch
-   push:
-     branches: [ main ]
-     paths:
-       - '**/*.mdx'
-       - '**/*.md'
-       - 'docs.json'
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - '**/*.mdx'
+  #     - '**/*.md'
+  #     - 'docs.json'
 
 env:
   NODE_VERSION: '19'
