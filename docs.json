@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Zimbabwe Travel Platform",
+  "name": "Zimbabwe Travel Information",
   "theme": "palm",
   "logo": {
     "dark": "/logo/noBgWhite.svg",
@@ -171,15 +171,12 @@
     "amplitude": {
       "apiKey": "6f58b6dab72ea3cc929c1e9d647aed96"
     },
-    "osano": "https://cmp.osano.com/kG3iFPFifL/af9189f5-e91d-4904-8164-7f059f2037bb/osano.js"
-  },
-  "header": {
-    "title": "Zimbabwe Travel Information",
-    "description": "Your ultimate guide to exploring the beauty and culture of Zimbabwe.",
-    "image": "/images/hero.jpg",
-    "cta": {
-      "label": "Start Exploring",
-      "href": "#"
+    "cookies": {
+      "key": "LOCAL STORAGE KEY",
+      "value": "LOCAL STORAGE VALUE"
+    },
+    "telemetry": {
+      "enabled": "boolean"
     }
   },
   "footer": {
