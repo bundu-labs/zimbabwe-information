@@ -1,6 +1,11 @@
 name: Bulk SEO Update for Zimbabwe Travel Platform
 
 on:
+  # Run automatically every Sunday at 6 AM UTC
+  schedule:
+    - cron: '0 6 * * 0'
+  
+  # Also allow manual triggering
   workflow_dispatch:
     inputs:
       directories:
@@ -18,6 +23,14 @@ on:
         required: false
         default: false
         type: boolean
+  
+  # Optional: Also run on push to main branch for MDX/MD files
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.mdx'
+      - '**/*.md'
+      - 'docs.json'
 
 env:
   NODE_VERSION: '19'
@@ -287,9 +300,9 @@ jobs:
       - name: 🚀 Run SEO Update
         id: seo_update
         env:
-          DRY_RUN: ${{ github.event.inputs.dry_run }}
-          FORCE_UPDATE: ${{ github.event.inputs.force_update }}
-          DIRECTORIES: ${{ github.event.inputs.directories }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+          FORCE_UPDATE: ${{ github.event.inputs.force_update || 'false' }}
+          DIRECTORIES: ${{ github.event.inputs.directories || './destinations,./planning,./essentials,./culture,./wildlife,./adventure,./get-involved,./' }}
         run: node update-seo.js
 
       - name: 🔍 Validate with Mintlify CLI
@@ -312,6 +325,7 @@ jobs:
           echo "- **Files Processed:** ${{ steps.seo_update.outputs.files_processed }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Files Updated:** ${{ steps.seo_update.outputs.files_updated }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Mode:** ${{ github.event.inputs.dry_run == 'true' && 'Dry Run' || 'Live Update' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Trigger:** ${{ github.event_name == 'schedule' && 'Scheduled (Weekly)' || 'Manual' }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🔧 SEO Fields Added/Updated:" >> $GITHUB_STEP_SUMMARY
           echo "- Open Graph image and metadata" >> $GITHUB_STEP_SUMMARY
@@ -345,6 +359,7 @@ jobs:
           - Added Zimbabwe tourism-specific keywords
           - Included canonical URLs for travel-info.co.zw
           - Updated article modification timestamps
+          - Trigger: ${{ github.event_name == 'schedule' && 'Scheduled weekly update' || 'Manual update' }}
           
           Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           
@@ -357,6 +372,10 @@ jobs:
           echo "✅ SEO update completed successfully for Zimbabwe Travel Information!"
           echo "📈 ${{ steps.seo_update.outputs.files_updated }} files were updated with SEO improvements"
           echo "🌿 Changes have been pushed to the main branch"
+          
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "⏰ This was a scheduled weekly SEO update"
+          fi
           
           if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
             echo "🔍 This was a dry run - no files were actually modified"
@@ -373,3 +392,9 @@ jobs:
           echo "📊 Processed ${{ steps.seo_update.outputs.files_processed }} files"
           echo "💡 Use 'force_update: true' to refresh all SEO metadata"
           echo "🇿🇼 Zimbabwe Travel Information is already SEO-optimized!"
+          
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+          echo "⏰ This was a scheduled weekly check - no updates needed"
+          echo "📝 No changes were made, so nothing was committed or pushed."
+          echo "🔍 If you expected changes, try running with 'force_update: true' or check your directory inputs."
+          fi
