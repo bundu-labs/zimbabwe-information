@@ -137,7 +137,7 @@
         "tab": "Travel Essentials",
         "groups": [
           {
-            "group": "Travel Essentials",
+            "group": "Essential Information",
             "pages": [
               "essentials/visas-and-entry",
               "essentials/health-and-safety",
@@ -200,7 +200,7 @@
         ]
       },
       {
-        "tab": "Support",
+        "tab": "Help & Legal",
         "groups": [
           {
             "group": "Help & Resources",
@@ -237,7 +237,7 @@
       }
     ],
     "primary": {
-      "type": "button",
+      "actionType": "button",
       "label": "Book a Trip",
       "href": "https://travel-info.co.zw/book"
     }
