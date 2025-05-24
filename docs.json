@@ -237,7 +237,7 @@
       }
     ],
     "primary": {
-      "actionType": "button",
+      "type": "button",
       "label": "Book a Trip",
       "href": "https://travel-info.co.zw/book"
     }
