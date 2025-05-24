@@ -1,6 +1,7 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Zimbabwe Travel Platform",
+  "theme": "palm",
   "logo": {
     "dark": "/logo/noBgWhite.svg",
     "light": "/logo/noBgColor.svg"
@@ -9,184 +10,168 @@
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
-    "dark": "#0D9373",
-    "background": {
-      "dark": "#090014",
-      "light": "#ffffff"
+    "dark": "#0D9373"
+  },
+  "typography": {
+    "font": {
+      "custom": {
+        "title": "Bebas Neue",
+        "heading": "Playfair Display",
+        "body": "Poppins",
+        "code": "ui-monospace"
+      }
     }
   },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:hi@travel-info.co.zw"
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Discover",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "about-zimbabwe",
+              "when-to-visit"
+            ]
+          },
+          {
+            "group": "Culture & Experiences",
+            "pages": [
+              "culture/people-and-tribes",
+              "culture/art-and-music",
+              "culture/cuisine",
+              "culture/festivals-and-events"
+            ]
+          },
+          {
+            "group": "Wildlife & Nature",
+            "pages": [
+              "wildlife/animals-and-birds",
+              "wildlife/national-parks-and-reserves",
+              "wildlife/conservation-efforts"
+            ]
+          },
+          {
+            "group": "Adventure Activities",
+            "pages": [
+              "adventure/activities-and-experiences",
+              "adventure/water-sports",
+              "adventure/hiking-and-trekking"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Travel Essentials",
+        "groups": [
+          {
+            "group": "Travel Essentials",
+            "pages": [
+              "essentials/visas-and-entry",
+              "essentials/health-and-safety",
+              "essentials/safari-etiquette",
+              "essentials/currency-and-money",
+              "essentials/transportation",
+              "essentials/accommodation",
+              "essentials/communication"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Destinations",
+        "groups": [
+          {
+            "group": "Top Destinations",
+            "pages": [
+              "destinations/victoria-falls",
+              "destinations/hwange-national-park",
+              "destinations/great-zimbabwe",
+              "destinations/mana-pools",
+              "destinations/matobo-hills",
+              "destinations/eastern-highlands",
+              "destinations/kariba",
+              "destinations/harare",
+              "destinations/bulawayo",
+              "destinations/gonarezhou"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Trip Planning",
+        "groups": [
+          {
+            "group": "Trip Planning",
+            "pages": [
+              "planning/sample-itineraries",
+              "planning/budget-travel",
+              "planning/luxury-travel",
+              "planning/family-travel",
+              "planning/safari-planning"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Community Engagement",
+        "groups": [
+          {
+            "group": "Get Involved",
+            "pages": [
+              "get-involved/student-contributors-program",
+              "get-involved/travel-enthusiast-community",
+              "get-involved/business-partner-network",
+              "get-involved/local-expert-connections"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Support",
+        "groups": [
+          {
+            "group": "Help & Resources",
+            "pages": [
+              "contact",
+              "faq"
+            ]
+          },
+          {
+            "group": "Legal",
+            "pages": [
+              "privacy-policy",
+              "cookie-policy",
+              "terms-of-service"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "FAQs",
+        "href": "https://travel-info.co.zw/faq"
+      },
+      {
+        "label": "Contact",
+        "href": "https://travel-info.co.zw/contact"
+      },
+      {
+        "label": "Privacy",
+        "href": "https://travel-info.co.zw/privacy-policy"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Book a Trip",
+      "href": "https://travel-info.co.zw/book"
     }
-  ],
-  "topbarCtaButton": {
-    "name": "Book a Trip",
-    "url": "https://travel-info.co.zw/book"
   },
-  "tabs": [
-    {
-      "name": "Discover",
-      "url": "/"
-    },
-    {
-      "name": "Travel Essentials",
-      "url": "/essentials"
-    },
-    {
-      "name": "Destinations",
-      "url": "/destinations"
-    },
-    {
-      "name": "Trip Planning",
-      "url": "/planning"
-    },
-    {
-      "name": "Community",
-      "url": "/get-involved"
-    },
-    {
-      "name": "Support",
-      "url": "/support"
-    }
-  ],
-  "primaryTab": {
-    "name": "Discover"
-  },
-  "anchors": [
-    {
-      "name": "Book a Trip",
-      "icon": "calendar-check",
-      "url": "/book"
-    },
-    {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://discord.gg/dzHWFB44yw"
-    },
-    {
-      "name": "Contact",
-      "icon": "envelope",
-      "url": "/contact"
-    }
-  ],
-  "navigation": [
-    {
-      "group": "Get Started",
-      "pages": [
-        "introduction",
-        "about-zimbabwe",
-        "when-to-visit"
-      ]
-    },
-    {
-      "group": "Culture & Experiences",
-      "pages": [
-        "culture/people-and-tribes",
-        "culture/art-and-music",
-        "culture/cuisine",
-        "culture/festivals-and-events"
-      ]
-    },
-    {
-      "group": "Wildlife & Nature",
-      "pages": [
-        "wildlife/animals-and-birds",
-        "wildlife/national-parks-and-reserves",
-        "wildlife/conservation-efforts"
-      ]
-    },
-    {
-      "group": "Adventure Activities",
-      "pages": [
-        "adventure/activities-and-experiences",
-        "adventure/water-sports",
-        "adventure/hiking-and-trekking"
-      ]
-    },
-    {
-      "group": "Travel Essentials",
-      "pages": [
-        "essentials/visas-and-entry",
-        "essentials/health-and-safety",
-        "essentials/safari-etiquette",
-        "essentials/currency-and-money",
-        "essentials/transportation",
-        "essentials/accommodation",
-        "essentials/communication"
-      ]
-    },
-    {
-      "group": "Top Destinations",
-      "pages": [
-        "destinations/victoria-falls",
-        "destinations/hwange-national-park",
-        "destinations/great-zimbabwe",
-        "destinations/mana-pools",
-        "destinations/matobo-hills",
-        "destinations/eastern-highlands",
-        "destinations/kariba",
-        "destinations/harare",
-        "destinations/bulawayo",
-        "destinations/gonarezhou"
-      ]
-    },
-    {
-      "group": "Trip Planning",
-      "pages": [
-        "planning/sample-itineraries",
-        "planning/budget-travel",
-        "planning/luxury-travel",
-        "planning/family-travel",
-        "planning/safari-planning"
-      ]
-    },
-    {
-      "group": "Get Involved",
-      "pages": [
-        "get-involved/student-contributors-program",
-        "get-involved/travel-enthusiast-community",
-        "get-involved/business-partner-network",
-        "get-involved/local-expert-connections"
-      ]
-    },
-    {
-      "group": "Help & Resources",
-      "pages": [
-        "contact",
-        "faq"
-      ]
-    },
-    {
-      "group": "Legal",
-      "pages": [
-        "privacy-policy",
-        "cookie-policy",
-        "terms-of-service"
-      ]
-    }
-  ],
-  "footerSocials": {
-    "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo",
-    "discord": "https://discord.gg/dzHWFB44yw",
-    "email": "mailto:hi@travel-info.co.zw"
-  },
-  "feedback": {
-    "thumbsRating": true,
-    "suggestEdit": true,
-    "raiseIssue": true
-  },
-  "search": {
-    "prompt": "Search Zimbabwe travel information..."
-  },
-  "metadata": {
-    "og:title": "Zimbabwe Travel Information",
-    "og:description": "Your comprehensive guide to exploring the wonders of Zimbabwe",
-    "og:image": "/images/hero-light.svg",
-    "twitter:card": "summary_large_image"
-  },
-  "analytics": {
+  "integrations": {
     "ga4": {
       "measurementId": "G-RGN0G4LG3Z"
     },
@@ -194,7 +179,113 @@
       "tagId": "GTM-KKBVH8FV"
     }
   },
-  "modeToggle": {
-    "default": "light"
+  "footer": {
+    "sections": [
+      {
+        "title": "Destinations",
+        "links": [
+          {
+            "label": "Victoria Falls",
+            "href": "/destinations/victoria-falls"
+          },
+          {
+            "label": "Hwange National Park",
+            "href": "/destinations/hwange-national-park"
+          },
+          {
+            "label": "Great Zimbabwe",
+            "href": "/destinations/great-zimbabwe"
+          },
+          {
+            "label": "Eastern Highlands",
+            "href": "/destinations/eastern-highlands"
+          }
+        ]
+      },
+      {
+        "title": "Travel Planning",
+        "links": [
+          {
+            "label": "When to Visit",
+            "href": "/when-to-visit"
+          },
+          {
+            "label": "Safari Planning",
+            "href": "/planning/safari-planning"
+          },
+          {
+            "label": "Budget Travel",
+            "href": "/planning/budget-travel"
+          },
+          {
+            "label": "Sample Itineraries",
+            "href": "/planning/sample-itineraries"
+          }
+        ]
+      },
+      {
+        "title": "Resources",
+        "links": [
+          {
+            "label": "Travel Essentials",
+            "href": "/essentials/visas-and-entry"
+          },
+          {
+            "label": "Book a Trip",
+            "href": "/book"
+          },
+          {
+            "label": "FAQs",
+            "href": "/faq"
+          },
+          {
+            "label": "Contact Us",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "label": "About Zimbabwe",
+            "href": "/about-zimbabwe"
+          },
+          {
+            "label": "Community Guidelines",
+            "href": "/community-guidelines"
+          },
+          {
+            "label": "Student Contributors",
+            "href": "/get-involved/student-contributors-program"
+          },
+          {
+            "label": "Zimbabwe's Tuckshop",
+            "href": "https://shop.travel-info.co.zw"
+          }
+        ]
+      }
+    ],
+    "bottomSection": {
+      "copyright": "© 2025 Zimbabwe Travel Information. All rights reserved.",
+      "links": [
+        {
+          "label": "Privacy Policy",
+          "href": "/privacy-policy"
+        },
+        {
+          "label": "Terms of Service",
+          "href": "/terms-of-service"
+        },
+        {
+          "label": "Cookie Policy",
+          "href": "/cookie-policy"
+        }
+      ]
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo",
+      "discord": "https://discord.gg/dzHWFB44yw"
+    }
   }
 }
