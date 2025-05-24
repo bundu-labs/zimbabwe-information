@@ -174,9 +174,6 @@
     "cookies": {
       "key": "LOCAL STORAGE KEY",
       "value": "LOCAL STORAGE VALUE"
-    },
-    "telemetry": {
-      "enabled": "boolean"
     }
   },
   "footer": {
