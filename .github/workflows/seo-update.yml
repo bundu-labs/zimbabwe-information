@@ -346,51 +346,82 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-      - name: Commit and push changes
+      - name: 📤 Commit and Push Changes
         if: steps.seo_update.outputs.has_changes == 'true' && github.event.inputs.dry_run != 'true'
         run: |
-          # Configure git
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          # Show current git status
+          echo "📋 Current git status:"
+          git status
           
-          # Stage changes
+          # Stage all changes first
+          echo "📝 Staging all changes..."
           git add -A
           
-          # Check for changes
-          if ! git diff --staged --quiet; then
-            # Create commit message
-            git commit -m "🇿🇼 Bulk update SEO metadata
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "✅ No changes to commit - all files are already up to date"
+            exit 0
+          fi
+          
+          # Show what files will be committed
+          echo "📄 Files to be committed:"
+          git diff --staged --name-status
+          
+          # Create commit message
+          cat > commit_msg.txt << EOF
+          🇿🇼 Bulk update SEO metadata for Zimbabwe Travel Information
 
-            - Updated ${{ steps.seo_update.outputs.files_updated }} files
-            - Added Open Graph and Twitter Card metadata
-            - Generated descriptions for pages missing them
-            - Added Zimbabwe tourism-specific keywords
-            - Included canonical URLs
-            - Updated article timestamps
-            - Trigger: ${{ github.event_name == 'schedule' && 'Scheduled weekly update' || 'Manual update' }}
+          - Updated ${{ steps.seo_update.outputs.files_updated }} files
+          - Added Open Graph and Twitter Card metadata  
+          - Generated descriptions for pages missing them
+          - Added Zimbabwe tourism-specific keywords
+          - Included canonical URLs for travel-info.co.zw
+          - Updated article modification timestamps
+          - Trigger: ${{ github.event_name == 'schedule' && 'Scheduled weekly update' || 'Manual update' }}
 
-            Co-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
-            
-            # Push changes with retry logic
-            MAX_RETRIES=3
-            RETRY_COUNT=0
-            
-            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-              if git push origin main; then
-                echo "✅ Successfully pushed changes"
-                break
-              else
-                RETRY_COUNT=$((RETRY_COUNT + 1))
-                if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
-                  git pull --rebase origin main
-                else
-                  echo "❌ Failed to push after $MAX_RETRIES attempts"
-                  exit 1
-                fi
-              fi
-            done
+          Co-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          EOF
+          
+          # Commit the staged changes
+          echo "💾 Creating commit..."
+          git commit -F commit_msg.txt
+          
+          # Clean up
+          rm -f commit_msg.txt
+          
+          # Fetch the latest state of origin/main without merging
+          echo "🔄 Fetching latest changes from origin..."
+          git fetch origin main
+          
+          # Check if we need to integrate remote changes
+          LOCAL=$(git rev-parse HEAD)
+          REMOTE=$(git rev-parse origin/main)
+          BASE=$(git merge-base HEAD origin/main)
+          
+          if [ "$LOCAL" = "$REMOTE" ]; then
+            echo "✅ Branch is up to date with origin/main"
+          elif [ "$LOCAL" = "$BASE" ]; then
+            echo "⚠️ Need to pull changes from origin/main"
+            # We're behind origin/main, need to pull
+            git pull --rebase=false origin main
+          elif [ "$REMOTE" = "$BASE" ]; then
+            echo "✅ Local branch is ahead of origin/main"
+            # We're ahead, can push directly
           else
-            echo "No changes to commit"
+            echo "⚠️ Branches have diverged, attempting to merge..."
+            # Branches have diverged, try to merge
+            git pull --rebase=false origin main
+          fi
+          
+          # Push to main branch
+          echo "🚀 Pushing changes to origin/main..."
+          if git push origin main; then
+            echo "✅ Successfully pushed SEO updates to main branch!"
+            echo "📊 Summary: Updated ${{ steps.seo_update.outputs.files_updated }} files with SEO metadata"
+          else
+            echo "❌ Push failed. This might be due to protected branch settings or conflicts."
+            echo "💡 You may need to create a pull request instead."
+            exit 1
           fi
 
       - name: 🎉 Success Notification
