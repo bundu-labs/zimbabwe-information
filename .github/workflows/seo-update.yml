@@ -288,10 +288,13 @@ jobs:
             console.log(`Files updated: ${totalResults.updated}`);
             console.log(`Errors: ${totalResults.errors}`);
             
-            // Set GitHub Actions outputs
-            console.log(`::set-output name=files_processed::${totalResults.processed}`);
-            console.log(`::set-output name=files_updated::${totalResults.updated}`);
-            console.log(`::set-output name=has_changes::${totalResults.updated > 0}`);
+            // Write outputs to GitHub environment file (new method)
+            const outputFile = process.env.GITHUB_OUTPUT;
+            if (outputFile) {
+              fs.appendFileSync(outputFile, `files_processed=${totalResults.processed}\n`);
+              fs.appendFileSync(outputFile, `files_updated=${totalResults.updated}\n`);
+              fs.appendFileSync(outputFile, `has_changes=${totalResults.updated > 0}\n`);
+            }
           }
 
           main();
@@ -337,21 +340,26 @@ jobs:
           echo "- Schema.org type hints (TouristDestination, TravelGuide)" >> $GITHUB_STEP_SUMMARY
           echo "- Modified timestamps" >> $GITHUB_STEP_SUMMARY
 
+      - name: 🔐 Configure Git User
+        if: steps.seo_update.outputs.has_changes == 'true' && github.event.inputs.dry_run != 'true'
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
       - name: 📤 Commit and Push Changes
         if: steps.seo_update.outputs.has_changes == 'true' && github.event.inputs.dry_run != 'true'
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "Zimbabwe Travel SEO Bot"
-          
           # Ensure we're on main branch
-          git checkout main
+          git checkout main || (git fetch origin main && git checkout -b main origin/main)
           
           # Pull latest changes to avoid conflicts
-          git pull origin main
+          git pull origin main --rebase
           
           # Add and commit changes
           git add .
-          git commit -m "🇿🇼 Bulk update SEO metadata for Zimbabwe Travel Information
+          
+          # Create commit message
+          COMMIT_MSG="🇿🇼 Bulk update SEO metadata for Zimbabwe Travel Information
 
           - Updated ${{ steps.seo_update.outputs.files_updated }} files
           - Added Open Graph and Twitter Card metadata  
@@ -361,10 +369,21 @@ jobs:
           - Updated article modification timestamps
           - Trigger: ${{ github.event_name == 'schedule' && 'Scheduled weekly update' || 'Manual update' }}
           
-          Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          Co-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
           
-          # Push to main branch
-          git push origin main
+          # Commit if there are changes
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "$COMMIT_MSG"
+            
+            # Push to main branch
+            git push origin main || {
+              echo "Push failed, attempting to pull and retry..."
+              git pull origin main --rebase
+              git push origin main
+            }
+          fi
 
       - name: 🎉 Success Notification
         if: steps.seo_update.outputs.has_changes == 'true'
@@ -394,7 +413,7 @@ jobs:
           echo "🇿🇼 Zimbabwe Travel Information is already SEO-optimized!"
           
           if [ "${{ github.event_name }}" == "schedule" ]; then
-          echo "⏰ This was a scheduled weekly check - no updates needed"
-          echo "📝 No changes were made, so nothing was committed or pushed."
-          echo "🔍 If you expected changes, try running with 'force_update: true' or check your directory inputs."
+            echo "⏰ This was a scheduled weekly check - no updates needed"
+            echo "📝 No changes were made, so nothing was committed or pushed."
+            echo "🔍 If you expected changes, try running with 'force_update: true' or check your directory inputs."
           fi
