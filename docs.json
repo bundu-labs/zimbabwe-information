@@ -13,6 +13,86 @@
     "light": "#07C983",
     "dark": "#0D9373"
   },
+  "seo": {
+    "metatags": {
+      "description": "Discover Zimbabwe's breathtaking landscapes, rich wildlife, vibrant culture, and warm hospitality. Your definitive guide to experiencing the authentic beauty and adventure of Zimbabwe.",
+      "keywords": "Zimbabwe travel, Victoria Falls, Hwange National Park, Great Zimbabwe, safari Zimbabwe, African tourism, Zimbabwe destinations, travel guide Zimbabwe, Zimbabwe wildlife, Lake Kariba, Eastern Highlands, Mana Pools, Matobo Hills, Zimbabwe culture, budget travel Zimbabwe, luxury safari Zimbabwe, Zimbabwe tourism",
+      "author": "Zimbabwe Travel Information",
+      "robots": "index, follow",
+      "og:image:alt": "Zimbabwe Travel Information - Your Ultimate Guide to Zimbabwe",
+      "og:image": "https://travel-info.co.zw/images/hero-light.svg",
+      "og:title": "Zimbabwe Travel Information - Your Definitive Guide to Zimbabwe",
+      "og:description": "Experience Zimbabwe's thundering Victoria Falls, spectacular wildlife safaris, ancient ruins, and vibrant culture. Plan your authentic Zimbabwe adventure with expert local guidance.",
+      "og:site_name": "Zimbabwe Travel Information",
+      "og:type": "website",
+      "og:url": "https://travel-info.co.zw",
+      "og:locale": "en_US",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@zimbabwetravel",
+      "twitter:creator": "@zimbabwetravel",
+      "twitter:title": "Zimbabwe Travel Information - Discover the Heart of Africa",
+      "twitter:description": "Plan your Zimbabwe adventure with comprehensive guides to Victoria Falls, safari destinations, cultural experiences, and practical travel information.",
+      "twitter:image": "https://travel-info.co.zw/images/hero-light.svg",
+      "canonical": "https://travel-info.co.zw",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "language": "en",
+      "geo.region": "ZW",
+      "geo.placename": "Zimbabwe",
+      "geo.position": "-19.015438;29.154857",
+      "ICBM": "-19.015438, 29.154857",
+      "apple-mobile-web-app-title": "Zimbabwe Travel",
+      "application-name": "Zimbabwe Travel Information",
+      "theme-color": "#0D9373",
+      "msapplication-TileColor": "#0D9373",
+      "msapplication-TileImage": "https://travel-info.co.zw/favicon.svg",
+      "fb:app_id": "your_facebook_app_id_here",
+      "article:publisher": "https://www.facebook.com/zimbabwetravelinfo",
+      "article:author": "Zimbabwe Travel Information",
+      "article:section": "Travel",
+      "article:tag": "Zimbabwe,Africa,Travel,Tourism,Safari,Victoria Falls",
+      "generator": "Mintlify",
+      "revisit-after": "7 days",
+      "distribution": "global",
+      "rating": "general",
+      "referrer": "no-referrer-when-downgrade",
+      "format-detection": "telephone=no",
+      "x-ua-compatible": "IE=edge,chrome=1"
+    },
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Zimbabwe Travel Information",
+      "description": "Zimbabwe's definitive digital guide to experiencing the authentic beauty and adventure of Zimbabwe",
+      "url": "https://travel-info.co.zw",
+      "logo": "https://travel-info.co.zw/logo/noBgColor.svg",
+      "sameAs": [
+        "https://www.facebook.com/groups/zimbabwetravelinfo",
+        "https://discord.gg/dzHWFB44yw"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+263-774-111061",
+        "contactType": "customer service",
+        "email": "hi@travel-info.co.zw",
+        "areaServed": "ZW",
+        "availableLanguage": ["English"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3 Straven Court, 4 Browning Drive",
+        "addressLocality": "Strathaven",
+        "addressRegion": "Harare",
+        "addressCountry": "ZW"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00",
+        "timeZone": "Africa/Harare"
+      }
+    }
+  },
   "navigation": {
     "tabs": [
       {
