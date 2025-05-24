@@ -177,80 +177,80 @@
     }
   },
   "footer": {
-    "links": [
+    "sections": [
       {
         "title": "Destinations",
-        "items": [
+        "links": [
           {
             "label": "Victoria Falls",
-            "href": "https://travel-info.co.zw/destinations/victoria-falls"
+            "href": "/destinations/victoria-falls"
           },
           {
             "label": "Hwange National Park",
-            "href": "https://travel-info.co.zw/destinations/hwange-national-park"
+            "href": "/destinations/hwange-national-park"
           },
           {
             "label": "Great Zimbabwe",
-            "href": "https://travel-info.co.zw/destinations/great-zimbabwe"
+            "href": "/destinations/great-zimbabwe"
           },
           {
             "label": "Eastern Highlands",
-            "href": "https://travel-info.co.zw/destinations/eastern-highlands"
+            "href": "/destinations/eastern-highlands"
           }
         ]
       },
       {
         "title": "Travel Planning",
-        "items": [
+        "links": [
           {
             "label": "When to Visit",
-            "href": "https://travel-info.co.zw/when-to-visit"
+            "href": "/when-to-visit"
           },
           {
             "label": "Safari Planning",
-            "href": "https://travel-info.co.zw/planning/safari-planning"
+            "href": "/planning/safari-planning"
           },
           {
             "label": "Budget Travel",
-            "href": "https://travel-info.co.zw/planning/budget-travel"
+            "href": "/planning/budget-travel"
           },
           {
             "label": "Sample Itineraries",
-            "href": "https://travel-info.co.zw/planning/sample-itineraries"
+            "href": "/planning/sample-itineraries"
           }
         ]
       },
       {
         "title": "Resources",
-        "items": [
+        "links": [
           {
             "label": "Travel Essentials",
-            "href": "https://travel-info.co.zw/essentials/visas-and-entry"
+            "href": "/essentials/visas-and-entry"
           },
           {
             "label": "Book a Trip",
-            "href": "https://travel-info.co.zw/book"
+            "href": "/book"
           },
           {
             "label": "FAQs",
-            "href": "https://travel-info.co.zw/faq"
+            "href": "/faq"
           },
           {
             "label": "Contact Us",
-            "href": "https://travel-info.co.zw/contact"
+            "href": "/contact"
           }
         ]
       },
       {
         "title": "Company",
-        "items": [
+        "links": [
           {
             "label": "About Zimbabwe",
-            "href": "https://travel-info.co.zw/about-zimbabwe"
+            "href": "/about-zimbabwe"
           },
           {
             "label": "Student Contributors",
-            "href": "https://travel-info.co.zw/get-involved/student-contributors-program"
+            "href": "/get-involved/student-contributors-program"
           },
           {
             "label": "Zimbabwe's Tuckshop",
