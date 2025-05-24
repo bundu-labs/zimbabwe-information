@@ -1,0 +1,375 @@
+name: Bulk SEO Update for Zimbabwe Travel Platform
+
+# Trigger options
+on:
+  workflow_dispatch:
+    inputs:
+      directories:
+        description: 'Directories to process (comma-separated)'
+        required: false
+        default: './destinations,./planning,./essentials,./culture,./wildlife,./adventure,./get-involved,./'
+      dry_run:
+        description: 'Perform dry run (no file changes)'
+        required: false
+        default: 'false'
+        type: boolean
+      force_update:
+        description: 'Force update all files (even if SEO exists)'
+        required: false
+        default: 'false'
+        type: boolean
+  
+  # Uncomment to run on schedule (every Sunday at 2 AM UTC)
+   schedule:
+     - cron: '0 2 * * 0'
+  
+  # Uncomment to run on push to main branch
+   push:
+     branches: [ main ]
+     paths:
+       - '**/*.mdx'
+       - '**/*.md'
+       - 'docs.json'
+
+env:
+  NODE_VERSION: '19'
+
+jobs:
+  update-seo:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm install --save-dev gray-matter
+          npm install -g mintlify@latest
+
+      - name: 📝 Create SEO Update Script
+        run: |
+          cat > update-seo.js << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const matter = require('gray-matter');
+
+          // Get environment variables
+          const DRY_RUN = process.env.DRY_RUN === 'true';
+          const FORCE_UPDATE = process.env.FORCE_UPDATE === 'true';
+          const DIRECTORIES = process.env.DIRECTORIES ? process.env.DIRECTORIES.split(',').map(d => d.trim()) : ['./destinations', './planning', './essentials', './culture', './wildlife', './adventure', './get-involved', './'];
+
+          // SEO Configuration for Zimbabwe Travel Information
+          const SEO_DEFAULTS = {
+            'og:image': 'https://travel-info.co.zw/images/hero-light.svg',
+            'og:site_name': 'Zimbabwe Travel Information',
+            'twitter:card': 'summary_large_image',
+            'twitter:site': '@zimbabwetravel',
+            'twitter:creator': '@zimbabwetravel',
+            'robots': 'index, follow',
+            'author': 'Zimbabwe Travel Information',
+            'keywords': 'Zimbabwe travel, Victoria Falls, Hwange National Park, Great Zimbabwe, safari, African tourism, Zimbabwe destinations, travel guide'
+          };
+
+          const SUPPORTED_EXTENSIONS = ['.mdx', '.md'];
+
+          // Zimbabwe-specific keywords to prioritize
+          const ZIMBABWE_KEYWORDS = [
+            'zimbabwe', 'victoria falls', 'hwange', 'harare', 'bulawayo', 'safari',
+            'great zimbabwe', 'mana pools', 'matobo hills', 'eastern highlands',
+            'kariba', 'gonarezhou', 'wildlife', 'africa', 'travel', 'tourism',
+            'accommodation', 'budget travel', 'luxury travel', 'family travel'
+          ];
+
+          function extractTextContent(content) {
+            return content
+              .replace(/^---[\s\S]*?---/, '')
+              .replace(/#{1,6}\s/g, '')
+              .replace(/\*\*(.*?)\*\*/g, '$1')
+              .replace(/\*(.*?)\*/g, '$1')
+              .replace(/`(.*?)`/g, '$1')
+              .replace(/```[\s\S]*?```/g, '')
+              .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+              .replace(/<[^>]+>/g, '')
+              .replace(/\n+/g, ' ')
+              .trim();
+          }
+
+          function generateDescription(content, maxLength = 160) {
+            const text = extractTextContent(content);
+            if (text.length <= maxLength) return text;
+            
+            const truncated = text.substring(0, maxLength);
+            const lastSentence = truncated.lastIndexOf('.');
+            
+            if (lastSentence > maxLength * 0.7) {
+              return truncated.substring(0, lastSentence + 1);
+            }
+            
+            return truncated.substring(0, truncated.lastIndexOf(' ')) + '...';
+          }
+
+          function generateKeywords(content, title = '') {
+            const headings = content.match(/#{1,6}\s(.+)/g) || [];
+            const headingText = headings.map(h => h.replace(/#{1,6}\s/, '')).join(' ');
+            const allText = `${title} ${headingText}`.toLowerCase();
+            
+            const words = allText
+              .replace(/[^\w\s]/g, '')
+              .split(/\s+/)
+              .filter(word => word.length > 3)
+              .filter(word => !['this', 'that', 'with', 'from', 'they', 'been', 'have', 'will', 'your', 'what', 'when', 'where', 'how', 'the', 'and', 'for', 'are'].includes(word));
+            
+            // Prioritize Zimbabwe-specific keywords
+            const priorityKeywords = words.filter(word => 
+              ZIMBABWE_KEYWORDS.some(kw => kw.includes(word) || word.includes(kw))
+            );
+            
+            const uniquePriority = [...new Set(priorityKeywords)];
+            const uniqueOthers = [...new Set(words.filter(w => !priorityKeywords.includes(w)))];
+            
+            return [...uniquePriority, ...uniqueOthers].slice(0, 15).join(', ');
+          }
+
+          function generateCanonicalUrl(filePath) {
+            const relativePath = filePath
+              .replace(/\\/g, '/')
+              .replace(/\.mdx?$/, '')
+              .replace(/\/index$/, '')
+              .replace(/^\.\//, '');
+            
+            return `https://travel-info.co.zw/${relativePath}`;
+          }
+
+          function processFile(filePath) {
+            try {
+              const content = fs.readFileSync(filePath, 'utf8');
+              const parsed = matter(content);
+              let updated = false;
+              
+              // Add default SEO fields if missing or force update
+              Object.keys(SEO_DEFAULTS).forEach(key => {
+                if (!parsed.data[key] || FORCE_UPDATE) {
+                  parsed.data[key] = SEO_DEFAULTS[key];
+                  updated = true;
+                }
+              });
+              
+              // Generate description if missing
+              if (!parsed.data.description || FORCE_UPDATE) {
+                const description = generateDescription(parsed.content);
+                if (description) {
+                  parsed.data.description = description;
+                  parsed.data['og:description'] = description;
+                  parsed.data['twitter:description'] = description;
+                  updated = true;
+                }
+              }
+              
+              // Generate keywords if missing
+              if (!parsed.data.keywords || FORCE_UPDATE) {
+                const keywords = generateKeywords(parsed.content, parsed.data.title);
+                if (keywords) {
+                  parsed.data.keywords = keywords;
+                  updated = true;
+                }
+              }
+              
+              // Add canonical URL
+              if (!parsed.data['canonical'] || FORCE_UPDATE) {
+                parsed.data['canonical'] = generateCanonicalUrl(filePath);
+                updated = true;
+              }
+              
+              // Update modified time
+              parsed.data['article:modified_time'] = new Date().toISOString();
+              
+              // Ensure og:title matches title
+              if (parsed.data.title && (!parsed.data['og:title'] || FORCE_UPDATE)) {
+                parsed.data['og:title'] = `${parsed.data.title} | Zimbabwe Travel Information`;
+                updated = true;
+              }
+              
+              // Add og:type for article pages
+              if (!parsed.data['og:type'] || FORCE_UPDATE) {
+                parsed.data['og:type'] = 'article';
+                updated = true;
+              }
+              
+              // Add schema type hint
+              if (!parsed.data['schema:type'] || FORCE_UPDATE) {
+                if (filePath.includes('destinations')) {
+                  parsed.data['schema:type'] = 'TouristDestination';
+                } else if (filePath.includes('planning') || filePath.includes('itineraries')) {
+                  parsed.data['schema:type'] = 'TravelGuide';
+                } else {
+                  parsed.data['schema:type'] = 'Article';
+                }
+                updated = true;
+              }
+              
+              if (updated && !DRY_RUN) {
+                const updatedContent = matter.stringify(parsed.content, parsed.data);
+                fs.writeFileSync(filePath, updatedContent);
+                console.log(`✅ Updated: ${filePath}`);
+              } else if (updated && DRY_RUN) {
+                console.log(`🔍 Would update: ${filePath}`);
+              } else {
+                console.log(`⏭️  No changes: ${filePath}`);
+              }
+              
+              return updated;
+            } catch (error) {
+              console.error(`❌ Error processing ${filePath}:`, error.message);
+              return false;
+            }
+          }
+
+          function processDirectory(dirPath) {
+            const results = { processed: 0, updated: 0, errors: 0 };
+            
+            if (!fs.existsSync(dirPath)) {
+              console.log(`📁 Directory not found: ${dirPath}`);
+              return results;
+            }
+            
+            const files = fs.readdirSync(dirPath);
+            
+            files.forEach(file => {
+              const filePath = path.join(dirPath, file);
+              const stat = fs.statSync(filePath);
+              
+              if (stat.isDirectory() && !file.startsWith('.') && file !== 'node_modules' && file !== 'components' && file !== 'images' && file !== 'logo') {
+                const subResults = processDirectory(filePath);
+                results.processed += subResults.processed;
+                results.updated += subResults.updated;
+                results.errors += subResults.errors;
+              } else if (SUPPORTED_EXTENSIONS.some(ext => file.endsWith(ext))) {
+                results.processed++;
+                if (processFile(filePath)) {
+                  results.updated++;
+                }
+              }
+            });
+            
+            return results;
+          }
+
+          function main() {
+            console.log('🇿🇼 Starting bulk SEO update for Zimbabwe Travel Information...');
+            console.log(`Mode: ${DRY_RUN ? 'DRY RUN' : 'LIVE UPDATE'}`);
+            console.log(`Force Update: ${FORCE_UPDATE}`);
+            console.log(`Directories: ${DIRECTORIES.join(', ')}`);
+            console.log('');
+            
+            let totalResults = { processed: 0, updated: 0, errors: 0 };
+            
+            DIRECTORIES.forEach(dir => {
+              console.log(`📂 Processing: ${dir}`);
+              const results = processDirectory(dir);
+              totalResults.processed += results.processed;
+              totalResults.updated += results.updated;
+              totalResults.errors += results.errors;
+            });
+            
+            console.log('\n📊 Summary:');
+            console.log(`Files processed: ${totalResults.processed}`);
+            console.log(`Files updated: ${totalResults.updated}`);
+            console.log(`Errors: ${totalResults.errors}`);
+            
+            // Set GitHub Actions outputs
+            console.log(`::set-output name=files_processed::${totalResults.processed}`);
+            console.log(`::set-output name=files_updated::${totalResults.updated}`);
+            console.log(`::set-output name=has_changes::${totalResults.updated > 0}`);
+          }
+
+          main();
+          EOF
+
+      - name: 🚀 Run SEO Update
+        id: seo_update
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+          FORCE_UPDATE: ${{ github.event.inputs.force_update }}
+          DIRECTORIES: ${{ github.event.inputs.directories }}
+        run: node update-seo.js
+
+      - name: 🔍 Validate with Mintlify CLI
+        if: steps.seo_update.outputs.has_changes == 'true'
+        run: |
+          echo "🔍 Running Mintlify validation..."
+          
+          # Check for broken links
+          if command -v mintlify &> /dev/null; then
+            mintlify broken-links || echo "⚠️ Some broken links found - please review"
+          else
+            echo "⚠️ Mintlify CLI not available for validation"
+          fi
+
+      - name: 📋 Generate Change Summary
+        if: steps.seo_update.outputs.has_changes == 'true'
+        run: |
+          echo "## 🇿🇼 Zimbabwe Travel Information SEO Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Files Processed:** ${{ steps.seo_update.outputs.files_processed }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Files Updated:** ${{ steps.seo_update.outputs.files_updated }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Mode:** ${{ github.event.inputs.dry_run == 'true' && 'Dry Run' || 'Live Update' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔧 SEO Fields Added/Updated:" >> $GITHUB_STEP_SUMMARY
+          echo "- Open Graph image and metadata" >> $GITHUB_STEP_SUMMARY
+          echo "- Twitter Card settings" >> $GITHUB_STEP_SUMMARY
+          echo "- Robots directives" >> $GITHUB_STEP_SUMMARY
+          echo "- Auto-generated descriptions" >> $GITHUB_STEP_SUMMARY
+          echo "- Zimbabwe tourism-specific keywords" >> $GITHUB_STEP_SUMMARY
+          echo "- Canonical URLs for travel-info.co.zw" >> $GITHUB_STEP_SUMMARY
+          echo "- Schema.org type hints (TouristDestination, TravelGuide)" >> $GITHUB_STEP_SUMMARY
+          echo "- Modified timestamps" >> $GITHUB_STEP_SUMMARY
+
+      - name: 📤 Commit and Push Changes
+        if: steps.seo_update.outputs.has_changes == 'true' && github.event.inputs.dry_run != 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Zimbabwe Travel SEO Bot"
+          git add .
+          git commit -m "🇿🇼 Bulk update SEO metadata for Zimbabwe Travel Information
+
+          - Updated ${{ steps.seo_update.outputs.files_updated }} files
+          - Added Open Graph and Twitter Card metadata  
+          - Generated descriptions for pages missing them
+          - Added Zimbabwe tourism-specific keywords
+          - Included canonical URLs for travel-info.co.zw
+          - Updated article modification timestamps
+          
+          Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          git push
+
+      - name: 🎉 Success Notification
+        if: steps.seo_update.outputs.has_changes == 'true'
+        run: |
+          echo "✅ SEO update completed successfully for Zimbabwe Travel Information!"
+          echo "📈 ${{ steps.seo_update.outputs.files_updated }} files were updated with SEO improvements"
+          
+          if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
+            echo "🔍 This was a dry run - no files were actually modified"
+            echo "💡 Run again with 'dry_run: false' to apply changes"
+          else
+            echo "🚀 Changes have been committed and will trigger Mintlify deployment"
+            echo "🌍 Your Zimbabwe travel content is now better optimized for search engines!"
+          fi
+
+      - name: ⚠️ No Changes Notification  
+        if: steps.seo_update.outputs.has_changes != 'true'
+        run: |
+          echo "✅ All files already have optimal SEO configuration!"
+          echo "📊 Processed ${{ steps.seo_update.outputs.files_processed }} files"
+          echo "💡 Use 'force_update: true' to refresh all SEO metadata"
+          echo "🇿🇼 Zimbabwe Travel Information is already SEO-optimized!"
