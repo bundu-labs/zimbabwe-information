@@ -177,10 +177,10 @@
     }
   },
   "footer": {
-    "sections": [
+    "links": [
       {
-        "title": "Destinations",
-        "links": [
+        "label": "Destinations",
+        "items": [
           {
             "label": "Victoria Falls",
             "href": "/destinations/victoria-falls"
@@ -200,8 +200,8 @@
         ]
       },
       {
-        "title": "Travel Planning",
-        "links": [
+        "label": "Travel Planning",
+        "items": [
           {
             "label": "When to Visit",
             "href": "/when-to-visit"
@@ -221,8 +221,8 @@
         ]
       },
       {
-        "title": "Resources",
-        "links": [
+        "label": "Resources",
+        "items": [
           {
             "label": "Travel Essentials",
             "href": "/essentials/visas-and-entry"
@@ -242,8 +242,8 @@
         ]
       },
       {
-        "title": "Company",
-        "links": [
+        "label": "Company",
+        "items": [
           {
             "label": "About Zimbabwe",
             "href": "/about-zimbabwe"
