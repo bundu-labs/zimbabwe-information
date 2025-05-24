@@ -179,57 +179,43 @@
       "tagId": "GTM-KKBVH8FV"
     }
   },
-  "footer": {
-    "sections": [
-      {
-        "title": "Destinations",
-        "pages": [
-          "destinations/victoria-falls",
-          "destinations/hwange-national-park",
-          "destinations/great-zimbabwe",
-          "destinations/eastern-highlands"
-        ]
-      },
-      {
-        "title": "Travel Planning",
-        "pages": [
-          "when-to-visit",
-          "planning/safari-planning",
-          "planning/budget-travel",
-          "planning/sample-itineraries"
-        ]
-      },
-      {
-        "title": "Resources",
-        "pages": [
-          "essentials/visas-and-entry",
-          "book",
-          "faq",
-          "contact"
-        ]
-      },
-      {
-        "title": "Company",
-        "pages": [
-          "about-zimbabwe",
-          "get-involved/student-contributors-program"
-        ],
-        "links": [
-          {
-            "label": "Zimbabwe's Tuckshop",
-            "href": "https://shop.travel-info.co.zw"
-          }
-        ]
-      }
-    ],
-    "bottomSection": {
-      "copyright": "© 2025 Zimbabwe Travel Information. All rights reserved.",
+  "footerLinks": [
+    {
+      "title": "Destinations",
       "pages": [
-        "privacy-policy",
-        "terms-of-service",
-        "cookie-policy"
+        "destinations/victoria-falls",
+        "destinations/hwange-national-park",
+        "destinations/great-zimbabwe",
+        "destinations/eastern-highlands"
       ]
     },
+    {
+      "title": "Travel Planning",
+      "pages": [
+        "when-to-visit",
+        "planning/safari-planning",
+        "planning/budget-travel",
+        "planning/sample-itineraries"
+      ]
+    },
+    {
+      "title": "Resources",
+      "pages": [
+        "essentials/visas-and-entry",
+        "book",
+        "faq",
+        "contact"
+      ]
+    },
+    {
+      "title": "Company",
+      "pages": [
+        "about-zimbabwe",
+        "get-involved/student-contributors-program"
+      ]
+    }
+  ],
+  "footer": {
     "socials": {
       "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo",
       "discord": "https://discord.gg/dzHWFB44yw"
