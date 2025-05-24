@@ -1,3 +1,29 @@
+---
+'og:image': 'https://travel-info.co.zw/images/hero-light.svg'
+'og:site_name': Zimbabwe Travel Information
+'twitter:card': summary_large_image
+'twitter:site': '@zimbabwetravel'
+'twitter:creator': '@zimbabwetravel'
+robots: 'index, follow'
+author: Zimbabwe Travel Information
+keywords: 'mintlify, starter, development, publishing, changes, troubleshooting'
+description: >-
+  Mintlify Starter Kit Click on Use this template to copy the Mintlify starter
+  kit. The starter kit contains examples including - Guide pages - Navigation
+  -...
+'og:description': >-
+  Mintlify Starter Kit Click on Use this template to copy the Mintlify starter
+  kit. The starter kit contains examples including - Guide pages - Navigation
+  -...
+'twitter:description': >-
+  Mintlify Starter Kit Click on Use this template to copy the Mintlify starter
+  kit. The starter kit contains examples including - Guide pages - Navigation
+  -...
+canonical: 'https://travel-info.co.zw/README'
+'article:modified_time': '2025-05-24T08:46:47.314Z'
+'og:type': article
+'schema:type': Article
+---
 # Mintlify Starter Kit
 
 Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
