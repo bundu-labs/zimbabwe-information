@@ -210,12 +210,12 @@ blockquote {
   gap: 1.5rem;
 }
 
-/* Footer text */
+/* Footer text
 footer {
   font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 400;
   font-size: 0.875rem;
-}
+} */
 
 /* Additional styling for page title sections */
 .page-title {

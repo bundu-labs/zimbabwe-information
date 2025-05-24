@@ -12,16 +12,6 @@
     "light": "#07C983",
     "dark": "#0D9373"
   },
-  "typography": {
-    "font": {
-      "custom": {
-        "title": "Bebas Neue",
-        "heading": "Playfair Display",
-        "body": "Poppins",
-        "code": "ui-monospace"
-      }
-    }
-  },
   "navigation": {
     "tabs": [
       {
