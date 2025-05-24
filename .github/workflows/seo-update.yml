@@ -346,43 +346,51 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-      - name: 📤 Commit and Push Changes
+      - name: Commit and push changes
         if: steps.seo_update.outputs.has_changes == 'true' && github.event.inputs.dry_run != 'true'
         run: |
-          # Ensure we're on main branch
-          git checkout main || (git fetch origin main && git checkout -b main origin/main)
+          # Configure git
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           
-          # Pull latest changes to avoid conflicts
-          git pull origin main --rebase
+          # Stage changes
+          git add -A
           
-          # Add and commit changes
-          git add .
-          
-          # Create commit message
-          COMMIT_MSG="🇿🇼 Bulk update SEO metadata for Zimbabwe Travel Information
+          # Check for changes
+          if ! git diff --staged --quiet; then
+            # Create commit message
+            git commit -m "🇿🇼 Bulk update SEO metadata
 
-          - Updated ${{ steps.seo_update.outputs.files_updated }} files
-          - Added Open Graph and Twitter Card metadata  
-          - Generated descriptions for pages missing them
-          - Added Zimbabwe tourism-specific keywords
-          - Included canonical URLs for travel-info.co.zw
-          - Updated article modification timestamps
-          - Trigger: ${{ github.event_name == 'schedule' && 'Scheduled weekly update' || 'Manual update' }}
-          
-          Co-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
-          
-          # Commit if there are changes
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "$COMMIT_MSG"
+            - Updated ${{ steps.seo_update.outputs.files_updated }} files
+            - Added Open Graph and Twitter Card metadata
+            - Generated descriptions for pages missing them
+            - Added Zimbabwe tourism-specific keywords
+            - Included canonical URLs
+            - Updated article timestamps
+            - Trigger: ${{ github.event_name == 'schedule' && 'Scheduled weekly update' || 'Manual update' }}
+
+            Co-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
             
-            # Push to main branch
-            git push origin main || {
-              echo "Push failed, attempting to pull and retry..."
-              git pull origin main --rebase
-              git push origin main
-            }
+            # Push changes with retry logic
+            MAX_RETRIES=3
+            RETRY_COUNT=0
+            
+            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+              if git push origin main; then
+                echo "✅ Successfully pushed changes"
+                break
+              else
+                RETRY_COUNT=$((RETRY_COUNT + 1))
+                if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                  git pull --rebase origin main
+                else
+                  echo "❌ Failed to push after $MAX_RETRIES attempts"
+                  exit 1
+                fi
+              fi
+            done
+          else
+            echo "No changes to commit"
           fi
 
       - name: 🎉 Success Notification
