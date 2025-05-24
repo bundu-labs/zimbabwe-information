@@ -30,7 +30,19 @@ body {
   font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  letter-spacing: 0.01em;
+}
+
+
+/*
+ * Footer Styling
+ * Base Typography
+ */
+
+footer {
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: 0.875rem;
 }
 
 /* 
