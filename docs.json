@@ -181,15 +181,9 @@
       "dark": "/logo/noBgWhite.svg",
       "light": "/logo/noBgColor.svg"
     },
-    "description": "Your ultimate guide to exploring Zimbabwe's rich culture, stunning landscapes, and unforgettable adventures. Discover travel tips, destination highlights, and local insights to plan your perfect trip.", 
     "contact": {
       "email": "hi@travel-info.co.zw",
       "phone": "+263 123 456 789",
-    },
-    "address": {
-      "street": "123 Travel St",
-      "city": "Harare",
-      "country": "Zimbabwe"
     },
     "legal": {
       "privacyPolicy": "https://travel-info.co.zw/privacy-policy",
