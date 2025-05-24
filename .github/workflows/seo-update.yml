@@ -11,12 +11,12 @@ on:
       dry_run:
         description: 'Perform dry run (no file changes)'
         required: false
-        default: 'false'
+        default: false
         type: boolean
       force_update:
         description: 'Force update all files (even if SEO exists)'
         required: false
-        default: 'false'
+        default: false
         type: boolean
 
 env:
