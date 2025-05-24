@@ -44,6 +44,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+          ref: main  # Explicitly checkout main branch
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v4
@@ -339,6 +340,14 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Zimbabwe Travel SEO Bot"
+          
+          # Ensure we're on main branch
+          git checkout main
+          
+          # Pull latest changes to avoid conflicts
+          git pull origin main
+          
+          # Add and commit changes
           git add .
           git commit -m "🇿🇼 Bulk update SEO metadata for Zimbabwe Travel Information
 
@@ -350,19 +359,22 @@ jobs:
           - Updated article modification timestamps
           
           Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
-          git push
+          
+          # Push to main branch
+          git push origin main
 
       - name: 🎉 Success Notification
         if: steps.seo_update.outputs.has_changes == 'true'
         run: |
           echo "✅ SEO update completed successfully for Zimbabwe Travel Information!"
           echo "📈 ${{ steps.seo_update.outputs.files_updated }} files were updated with SEO improvements"
+          echo "🌿 Changes have been pushed to the main branch"
           
           if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
             echo "🔍 This was a dry run - no files were actually modified"
             echo "💡 Run again with 'dry_run: false' to apply changes"
           else
-            echo "🚀 Changes have been committed and will trigger Mintlify deployment"
+            echo "🚀 Changes have been committed to main branch and will trigger Mintlify deployment"
             echo "🌍 Your Zimbabwe travel content is now better optimized for search engines!"
           fi
 
