@@ -397,7 +397,7 @@
             "href": "https://travel-info.co.zw/get-involved/student-contributors-program"
           },
           {
-            "label": "Zimbabwe's Tuckshop",
+            "label": "Zimbabwe's Tukshop",
             "href": "https://shop.travel-info.co.zw"
           }
         ]
@@ -406,6 +406,92 @@
     "socials": {
       "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo",
       "discord": "https://discord.gg/dzHWFB44yw"
+    },
+    "copyright": "© 2025 Zimbabwe Travel Platform. All rights reserved."
+  },
+  "analytics": {
+    "googleAnalytics": {
+      "enabled": true,
+      "trackingId": "G-RGN0G4LG3Z"
+    },
+    "googleTagManager": {
+      "enabled": true,
+      "tagId": "GTM-KKBVH8FV"
+    },
+    "amplitude": {
+      "enabled": true,
+      "apiKey": "6f58b6dab72ea3cc929c1e9d647aed96"
     }
+  },
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-01T00:00:00Z",
+  "contributors": [
+    {
+      "name": "Zimbabwe Travel Team",
+      "email": "hi@travel-info.co.zw",
+      "role": "Content Creator",
+      "website": "https://travel-info.co.zw"
+    }
+  ],
+  "license": "CC BY-NC-SA 4.0",
+  "repository": "",
+  "support": {
+    "email": "support@travel-info.co.zw",
+    "phone": "+263-774-111061",
+    "address": {
+      "street": "3 Straven Court, 4 Browning Drive",
+      "locality": "Strathaven",
+      "region": "Harare",
+      "country": "Zimbabwe"
+    }
+  },
+  "contributionGuidelines": "We welcome contributions from travel enthusiasts, local experts, and students. Please refer to our [Contributors Program](https://travel-info.co.zw/get-involved/student-contributors-program) for more details.",
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-01-01",
+      "changes": [
+        "Initial release of the Zimbabwe Travel Information guide.",
+        "Added comprehensive travel tips, destination guides, and cultural insights.",
+        "Integrated analytics and SEO features for better visibility."
+      ]
+    }
+  ],
+  "feedback": {
+    "enabled": true,
+    "formUrl": "https://travel-info.co.zw/feedback",
+    "email": "feedback@travel-info.co.zw",
+    "description": "We value your feedback! Please share your thoughts to help us improve the Zimbabwe Travel Information guide."
+  },
+  "sitemap": {
+    "enabled": true,
+    "url": "https://travel-info.co.zw/sitemap.xml",
+    "lastModified": "2025-01-01T00:00:00Z"
+  },
+  "robots": {
+    "enabled": true,
+    "content": "User-agent: *\nDisallow: /private/\nAllow: /"
+  },
+  "csp": {
+    "enabled": true,
+    "policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://travel-info.co.zw; connect-src 'self' https://api.travel-info.co.zw; font-src 'self' data:; frame-src 'none';"
+  },
+  "sentry": {
+    "enabled": true,
+    "dsn": "https://your_sentry_dsn_here",
+    "environment": "production",
+    "release": "1.0.0"
+  },
+  "performance": {
+    "enabled": true,
+    "metrics": {
+      "lcp": true,
+      "fid": true,
+      "cls": true
+    }
+  },
+  "accessibility": {
+    "enabled": true,
+    "standards": ["WCAG 2.1 AA", "Section 508"]
   }
 }
