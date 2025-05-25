@@ -141,9 +141,11 @@
             "pages": [
               "essentials/visas-and-entry",
               "essentials/health-and-safety",
+              "essentails/images",
               "essentials/safari-etiquette",
               "essentials/currency-and-money",
               "essentials/transportation",
+              "essentials/distances",
               "essentials/accommodation",
               "essentials/communication"
             ]
@@ -160,9 +162,12 @@
               "destinations/hwange-national-park",
               "destinations/great-zimbabwe",
               "destinations/mana-pools",
+              "destinations/matusadona-national-park",
               "destinations/matobo-hills",
               "destinations/eastern-highlands",
-              "destinations/kariba",
+              "destinations/nyanga",
+              "destinations/bvumba-mountains",
+              "destinations/lake-kariba",
               "destinations/harare",
               "destinations/bulawayo",
               "destinations/gonarezhou"
