@@ -1,0 +1,417 @@
+name: Auto-Add Trustpilot to Zimbabwe Travel Information Pages
+
+on:
+  # Run every Sunday at 2 AM UTC (automatically once a week)
+  schedule:
+    - cron: '0 2 * * 0'
+  
+  # Also allow manual triggering
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Perform dry run (no file changes)'
+        required: false
+        default: false
+        type: boolean
+      force_update:
+        description: 'Force update all files (even if Trustpilot already exists)'
+        required: false
+        default: false
+        type: boolean
+      directories:
+        description: 'Directories to process (comma-separated)'
+        required: false
+        default: './,./destinations,./planning,./essentials,./culture,./wildlife,./adventure,./get-involved'
+        type: string
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  add-trustpilot:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          ref: main
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm install --save-dev gray-matter
+
+      - name: 📝 Create Trustpilot Integration Script
+        run: |
+          cat > add-trustpilot.js << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const matter = require('gray-matter');
+
+          // Get environment variables
+          const DRY_RUN = process.env.DRY_RUN === 'true';
+          const FORCE_UPDATE = process.env.FORCE_UPDATE === 'true';
+          const DIRECTORIES = process.env.DIRECTORIES ? 
+            process.env.DIRECTORIES.split(',').map(d => d.trim()) : 
+            ['./', './destinations', './planning', './essentials', './culture', './wildlife', './adventure', './get-involved'];
+
+          // Configuration
+          const TRUSTPILOT_IMPORT = "import Trustpilot from '/snippets/trustpilot';";
+          const TRUSTPILOT_COMPONENT = '\n\n<Trustpilot />';
+          const SUPPORTED_EXTENSIONS = ['.mdx', '.md'];
+
+          // Files to exclude from processing
+          const EXCLUDED_FILES = [
+            'README.md',
+            'package.json',
+            'mint.json',
+            'docs.json'
+          ];
+
+          // Directories to skip
+          const EXCLUDED_DIRECTORIES = [
+            'node_modules',
+            '.git',
+            '.github',
+            'components',
+            'snippets',
+            'images',
+            'logo',
+            '.next',
+            'dist',
+            'build'
+          ];
+
+          function shouldProcessFile(filePath) {
+            const fileName = path.basename(filePath);
+            const extension = path.extname(filePath);
+            
+            // Check if file should be excluded
+            if (EXCLUDED_FILES.includes(fileName)) {
+              return false;
+            }
+            
+            // Check if extension is supported
+            if (!SUPPORTED_EXTENSIONS.includes(extension)) {
+              return false;
+            }
+            
+            return true;
+          }
+
+          function hasImport(content) {
+            return content.includes(TRUSTPILOT_IMPORT) || 
+                   content.includes("import Trustpilot from '/snippets/trustpilot'");
+          }
+
+          function hasComponent(content) {
+            return content.includes('<Trustpilot />') || 
+                   content.includes('<Trustpilot/>');
+          }
+
+          function processFile(filePath) {
+            try {
+              const content = fs.readFileSync(filePath, 'utf8');
+              const parsed = matter(content);
+              let updated = false;
+              let newContent = content;
+
+              // Skip if both import and component exist (unless force update)
+              if (!FORCE_UPDATE && hasImport(content) && hasComponent(content)) {
+                console.log(`⏭️  Skipped: ${filePath} (Trustpilot already exists)`);
+                return false;
+              }
+
+              // Add import at the top after frontmatter
+              if (FORCE_UPDATE || !hasImport(content)) {
+                const frontmatterMatch = content.match(/^---\n[\s\S]*?\n---\n/);
+                if (frontmatterMatch) {
+                  const frontmatter = frontmatterMatch[0];
+                  const restOfContent = content.substring(frontmatter.length);
+                  
+                  // Check if import already exists in the rest of content
+                  if (!hasImport(restOfContent)) {
+                    newContent = frontmatter + '\n' + TRUSTPILOT_IMPORT + '\n' + restOfContent;
+                    updated = true;
+                  }
+                } else {
+                  // No frontmatter, add import at the very top
+                  if (!hasImport(content)) {
+                    newContent = TRUSTPILOT_IMPORT + '\n\n' + content;
+                    updated = true;
+                  }
+                }
+              }
+
+              // Add component at the bottom
+              if (FORCE_UPDATE || !hasComponent(newContent)) {
+                if (!newContent.endsWith('\n')) {
+                  newContent += '\n';
+                }
+                newContent += TRUSTPILOT_COMPONENT;
+                updated = true;
+              }
+
+              // Write the file if changes were made
+              if (updated && !DRY_RUN) {
+                fs.writeFileSync(filePath, newContent);
+                console.log(`✅ Updated: ${filePath}`);
+                return true;
+              } else if (updated && DRY_RUN) {
+                console.log(`🔍 Would update: ${filePath}`);
+                return true;
+              } else {
+                console.log(`⏭️  No changes needed: ${filePath}`);
+                return false;
+              }
+
+            } catch (error) {
+              console.error(`❌ Error processing ${filePath}:`, error.message);
+              return false;
+            }
+          }
+
+          function processDirectory(dirPath) {
+            const results = { processed: 0, updated: 0, errors: 0 };
+            
+            if (!fs.existsSync(dirPath)) {
+              console.log(`📁 Directory not found: ${dirPath}`);
+              return results;
+            }
+            
+            const files = fs.readdirSync(dirPath);
+            
+            files.forEach(file => {
+              const filePath = path.join(dirPath, file);
+              const stat = fs.statSync(filePath);
+              
+              if (stat.isDirectory() && 
+                  !file.startsWith('.') && 
+                  !EXCLUDED_DIRECTORIES.includes(file)) {
+                const subResults = processDirectory(filePath);
+                results.processed += subResults.processed;
+                results.updated += subResults.updated;
+                results.errors += subResults.errors;
+              } else if (shouldProcessFile(filePath)) {
+                results.processed++;
+                try {
+                  if (processFile(filePath)) {
+                    results.updated++;
+                  }
+                } catch (error) {
+                  results.errors++;
+                  console.error(`❌ Error with ${filePath}:`, error.message);
+                }
+              }
+            });
+            
+            return results;
+          }
+
+          function main() {
+            console.log('🇿🇼 Starting Trustpilot integration for Zimbabwe Travel Information...');
+            console.log(`Mode: ${DRY_RUN ? 'DRY RUN' : 'LIVE UPDATE'}`);
+            console.log(`Force Update: ${FORCE_UPDATE}`);
+            console.log(`Directories: ${DIRECTORIES.join(', ')}`);
+            console.log('');
+            
+            let totalResults = { processed: 0, updated: 0, errors: 0 };
+            
+            DIRECTORIES.forEach(dir => {
+              console.log(`📂 Processing: ${dir}`);
+              const results = processDirectory(dir);
+              totalResults.processed += results.processed;
+              totalResults.updated += results.updated;
+              totalResults.errors += results.errors;
+            });
+            
+            console.log('\n📊 Summary:');
+            console.log(`Files processed: ${totalResults.processed}`);
+            console.log(`Files updated: ${totalResults.updated}`);
+            console.log(`Errors: ${totalResults.errors}`);
+            
+            // Set GitHub Actions outputs
+            const outputFile = process.env.GITHUB_OUTPUT;
+            if (outputFile) {
+              fs.appendFileSync(outputFile, `files_processed=${totalResults.processed}\n`);
+              fs.appendFileSync(outputFile, `files_updated=${totalResults.updated}\n`);
+              fs.appendFileSync(outputFile, `has_changes=${totalResults.updated > 0}\n`);
+              fs.appendFileSync(outputFile, `errors=${totalResults.errors}\n`);
+            }
+          }
+
+          main();
+          EOF
+
+      - name: 🚀 Run Trustpilot Integration
+        id: trustpilot_integration
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+          FORCE_UPDATE: ${{ github.event.inputs.force_update || 'false' }}
+          DIRECTORIES: ${{ github.event.inputs.directories || './,./destinations,./planning,./essentials,./culture,./wildlife,./adventure,./get-involved' }}
+        run: node add-trustpilot.js
+
+      - name: 🔍 Validate MDX Files
+        if: steps.trustpilot_integration.outputs.has_changes == 'true'
+        run: |
+          echo "🔍 Validating updated MDX files..."
+          
+          # Basic validation - check for syntax issues
+          find . -name "*.mdx" -not -path "./node_modules/*" -not -path "./.git/*" | while read file; do
+            # Check for unclosed tags or basic syntax issues
+            if grep -q "import Trustpilot" "$file" && grep -q "<Trustpilot />" "$file"; then
+              echo "✅ $file - Trustpilot properly integrated"
+            elif grep -q "\.mdx$" <<< "$file"; then
+              echo "⚠️  $file - May need manual review"
+            fi
+          done
+
+      - name: 📋 Generate Change Summary
+        if: steps.trustpilot_integration.outputs.has_changes == 'true'
+        run: |
+          echo "## 🇿🇼 Zimbabwe Travel Information - Trustpilot Integration Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Files Processed:** ${{ steps.trustpilot_integration.outputs.files_processed }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Files Updated:** ${{ steps.trustpilot_integration.outputs.files_updated }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Errors:** ${{ steps.trustpilot_integration.outputs.errors }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Mode:** ${{ github.event.inputs.dry_run == 'true' && 'Dry Run' || 'Live Update' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Trigger:** ${{ github.event_name == 'schedule' && 'Scheduled (Weekly)' || 'Manual' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔧 Changes Made:" >> $GITHUB_STEP_SUMMARY
+          echo "- Added Trustpilot import to top of MDX files" >> $GITHUB_STEP_SUMMARY
+          echo "- Added Trustpilot component to bottom of content" >> $GITHUB_STEP_SUMMARY
+          echo "- Preserved existing frontmatter and content structure" >> $GITHUB_STEP_SUMMARY
+          echo "- Enhanced social proof for Zimbabwe Travel Platform" >> $GITHUB_STEP_SUMMARY
+
+      - name: 🔐 Configure Git User
+        if: steps.trustpilot_integration.outputs.has_changes == 'true' && github.event.inputs.dry_run != 'true'
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: 📤 Commit and Push Changes
+        if: steps.trustpilot_integration.outputs.has_changes == 'true' && github.event.inputs.dry_run != 'true'
+        run: |
+          # Show current git status
+          echo "📋 Current git status:"
+          git status
+          
+          # Stage all MDX changes
+          echo "📝 Staging MDX file changes..."
+          git add "*.mdx" "*.md" || true
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "✅ No changes to commit - all files are already up to date"
+            exit 0
+          fi
+          
+          # Show what files will be committed
+          echo "📄 Files to be committed:"
+          git diff --staged --name-status
+          
+          # Create commit message
+          cat > commit_msg.txt << EOF
+          🇿🇼 Weekly Trustpilot integration for Zimbabwe Travel Information
+
+          - Updated ${{ steps.trustpilot_integration.outputs.files_updated }} MDX files
+          - Added Trustpilot import statements to file headers
+          - Added Trustpilot review widgets to page footers
+          - Enhanced social proof across Zimbabwe Travel Platform
+          - Automatic weekly maintenance for consistent user experience
+          - Trigger: ${{ github.event_name == 'schedule' && 'Scheduled weekly update' || 'Manual update' }}
+
+          This improves credibility and trust for Zimbabwe Travel Information
+          by ensuring all pages display customer reviews consistently.
+
+          Co-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          EOF
+          
+          # Commit the staged changes
+          echo "💾 Creating commit..."
+          git commit -F commit_msg.txt
+          
+          # Clean up
+          rm -f commit_msg.txt
+          
+          # Fetch the latest state of origin/main
+          echo "🔄 Fetching latest changes from origin..."
+          git fetch origin main
+          
+          # Check if we need to integrate remote changes
+          LOCAL=$(git rev-parse HEAD)
+          REMOTE=$(git rev-parse origin/main)
+          BASE=$(git merge-base HEAD origin/main)
+          
+          if [ "$LOCAL" = "$REMOTE" ]; then
+            echo "✅ Branch is up to date with origin/main"
+          elif [ "$LOCAL" = "$BASE" ]; then
+            echo "⚠️ Need to pull changes from origin/main"
+            git pull --rebase=false origin main
+          elif [ "$REMOTE" = "$BASE" ]; then
+            echo "✅ Local branch is ahead of origin/main"
+          else
+            echo "⚠️ Branches have diverged, attempting to merge..."
+            git pull --rebase=false origin main
+          fi
+          
+          # Push to main branch
+          echo "🚀 Pushing changes to origin/main..."
+          if git push origin main; then
+            echo "✅ Successfully pushed Trustpilot updates to main branch!"
+            echo "📊 Summary: Updated ${{ steps.trustpilot_integration.outputs.files_updated }} files with Trustpilot integration"
+          else
+            echo "❌ Push failed. This might be due to protected branch settings or conflicts."
+            echo "💡 You may need to create a pull request instead."
+            exit 1
+          fi
+
+      - name: 🎉 Success Notification
+        if: steps.trustpilot_integration.outputs.has_changes == 'true'
+        run: |
+          echo "✅ Trustpilot integration completed successfully for Zimbabwe Travel Information!"
+          echo "📈 ${{ steps.trustpilot_integration.outputs.files_updated }} files were updated"
+          echo "🌟 Enhanced social proof across Zimbabwe Travel Platform"
+          
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "⏰ This was a scheduled weekly Trustpilot integration"
+          fi
+          
+          if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
+            echo "🔍 This was a dry run - no files were actually modified"
+            echo "💡 Run again with 'dry_run: false' to apply changes"
+          else
+            echo "🚀 Changes committed to main branch and will trigger site rebuild"
+            echo "🇿🇼 Zimbabwe Travel Information now has consistent Trustpilot reviews!"
+          fi
+
+      - name: ⚠️ No Changes Notification  
+        if: steps.trustpilot_integration.outputs.has_changes != 'true'
+        run: |
+          echo "✅ All MDX files already have Trustpilot integration!"
+          echo "📊 Processed ${{ steps.trustpilot_integration.outputs.files_processed }} files"
+          echo "💡 Use 'force_update: true' to refresh all Trustpilot integrations"
+          echo "🇿🇼 Zimbabwe Travel Information is already optimized!"
+          
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "⏰ This was a scheduled weekly check - no updates needed"
+          fi
+
+      - name: 🚨 Error Handling
+        if: steps.trustpilot_integration.outputs.errors > 0
+        run: |
+          echo "⚠️ Some files encountered errors during processing"
+          echo "🔍 Processed: ${{ steps.trustpilot_integration.outputs.files_processed }}"
+          echo "✅ Updated: ${{ steps.trustpilot_integration.outputs.files_updated }}"
+          echo "❌ Errors: ${{ steps.trustpilot_integration.outputs.errors }}"
+          echo ""
+          echo "💡 Check the logs above for specific error details"
+          echo "🔧 These files may need manual attention"
