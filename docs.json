@@ -265,91 +265,48 @@
       {
         "header": "Destinations",
         "items": [
-          {
-            "label": "Victoria Falls",
-            "href": "https://travel-info.co.zw/destinations/victoria-falls"
-          },
-          {
-            "label": "Hwange National Park",
-            "href": "https://travel-info.co.zw/destinations/hwange-national-park"
-          },
-          {
-            "label": "Great Zimbabwe",
-            "href": "https://travel-info.co.zw/destinations/great-zimbabwe"
-          },
-          {
-            "label": "Eastern Highlands",
-            "href": "https://travel-info.co.zw/destinations/eastern-highlands"
-          }
+          { "label": "Victoria Falls", "href": "https://travel-info.co.zw/destinations/victoria-falls" },
+          { "label": "Hwange National Park", "href": "https://travel-info.co.zw/destinations/hwange-national-park" },
+          { "label": "Great Zimbabwe", "href": "https://travel-info.co.zw/destinations/great-zimbabwe" },
+          { "label": "Eastern Highlands", "href": "https://travel-info.co.zw/destinations/eastern-highlands" }
         ]
       },
       {
-        "header": "Travel Planning",
+        "header": "Planning",
         "items": [
-          {
-            "label": "When to Visit",
-            "href": "https://travel-info.co.zw/when-to-visit"
-          },
-          {
-            "label": "Safari Planning",
-            "href": "https://travel-info.co.zw/planning/safari-planning"
-          },
-          {
-            "label": "Budget Travel",
-            "href": "https://travel-info.co.zw/planning/budget-travel"
-          },
-          {
-            "label": "Sample Itineraries",
-            "href": "https://travel-info.co.zw/planning/sample-itineraries"
-          }
+          { "label": "When to Visit", "href": "https://travel-info.co.zw/when-to-visit" },
+          { "label": "Safari Planning", "href": "https://travel-info.co.zw/planning/safari-planning" },
+          { "label": "Budget Travel", "href": "https://travel-info.co.zw/planning/budget-travel" },
+          { "label": "Sample Itineraries", "href": "https://travel-info.co.zw/planning/sample-itineraries" }
         ]
       },
       {
-        "header": "Resources",
+        "header": "Essentials",
         "items": [
-          {
-            "label": "Travel Essentials",
-            "href": "https://travel-info.co.zw/essentials/visas-and-entry"
-          },
-          {
-            "label": "Book a Trip",
-            "href": "https://travel-info.co.zw/book"
-          },
-          {
-            "label": "FAQs",
-            "href": "https://travel-info.co.zw/faq"
-          },
-          {
-            "label": "Contact Us",
-            "href": "https://travel-info.co.zw/contact"
-          }
+          { "label": "Travel Essentials", "href": "https://travel-info.co.zw/essentials/visas-and-entry" },
+          { "label": "Book a Trip", "href": "https://travel-info.co.zw/book" },
+          { "label": "FAQs", "href": "https://travel-info.co.zw/faq" },
+          { "label": "Contact Us", "href": "https://travel-info.co.zw/contact" }
         ]
       },
       {
-        "header": "Company",
-        "links": [
-          {
-            "label": "About Zimbabwe",
-            "items": [
-          {
-            "label": "About Zimbabwe",
-            "href": "https://travel-info.co.zw/about-zimbabwe"
-          },
-          {
-            "label": "Student Contributors",
-            "href": "https://travel-info.co.zw/get-involved/student-contributors-program"
-          },
-          {
-            "label": "Zimbabwe's Tuckshop",
-            "href": "https://shop.travel-info.co.zw"
-          }
+        "header": "About",
+        "items": [
+          { "label": "About Zimbabwe", "href": "https://travel-info.co.zw/about-zimbabwe" },
+          { "label": "Student Contributors", "href": "https://travel-info.co.zw/get-involved/student-contributors-program" },
+          { "label": "Zimbabwe's Tuckshop", "href": "https://shop.travel-info.co.zw" }
         ]
       }
     ],
-    "socials": {
-      "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo",
-      "discord": "https://discord.gg/dzHWFB44yw"
-    },
-    "copyright": "© 2025 Zimbabwe Travel Information. All rights reserved."
+    "socials": [
+      {
+        "icon": "facebook",
+        "href": "https://www.facebook.com/groups/zimbabwetravelinfo"
+      },
+      {
+        "icon": "discord",
+        "href": "https://discord.gg/dzHWFB44yw"
+      }
+    ]
   }
 }
