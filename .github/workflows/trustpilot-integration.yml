@@ -120,42 +120,83 @@ jobs:
                    content.includes('<Trustpilot/>');
           }
 
+          function removeDuplicates(content) {
+            // Remove duplicate imports
+            const importLines = content.split('\n').filter(line => 
+              line.includes("import Trustpilot from '/snippets/trustpilot'")
+            );
+            
+            if (importLines.length > 1) {
+              // Keep only the first occurrence of the import
+              let firstImportFound = false;
+              content = content.split('\n').map(line => {
+                if (line.includes("import Trustpilot from '/snippets/trustpilot'")) {
+                  if (!firstImportFound) {
+                    firstImportFound = true;
+                    return line;
+                  } else {
+                    return ''; // Remove duplicate
+                  }
+                }
+                return line;
+              }).filter(line => line !== '' || !line.includes('Trustpilot')).join('\n');
+            }
+
+            // Remove duplicate components
+            const componentMatches = content.match(/<Trustpilot\s*\/>/g);
+            if (componentMatches && componentMatches.length > 1) {
+              // Keep only the last occurrence (at the end)
+              let lastIndex = content.lastIndexOf('<Trustpilot />');
+              let tempContent = content.substring(0, lastIndex);
+              // Remove all other occurrences
+              tempContent = tempContent.replace(/<Trustpilot\s*\/>/g, '');
+              content = tempContent + content.substring(lastIndex);
+            }
+
+            return content;
+          }
+
           function processFile(filePath) {
             try {
               const content = fs.readFileSync(filePath, 'utf8');
-              const parsed = matter(content);
-              let updated = false;
               let newContent = content;
+              let updated = false;
 
-              // Skip if both import and component exist (unless force update)
-              if (!FORCE_UPDATE && hasImport(content) && hasComponent(content)) {
+              // First, remove any duplicates
+              const cleanedContent = removeDuplicates(content);
+              if (cleanedContent !== content) {
+                newContent = cleanedContent;
+                updated = true;
+                console.log(`🧹 Cleaned duplicates in: ${filePath}`);
+              }
+
+              // Check current state after cleaning
+              const hasImportAfterClean = hasImport(newContent);
+              const hasComponentAfterClean = hasComponent(newContent);
+
+              // Skip if both import and component exist and no force update
+              if (!FORCE_UPDATE && hasImportAfterClean && hasComponentAfterClean && !updated) {
                 console.log(`⏭️  Skipped: ${filePath} (Trustpilot already exists)`);
                 return false;
               }
 
-              // Add import at the top after frontmatter
-              if (FORCE_UPDATE || !hasImport(content)) {
-                const frontmatterMatch = content.match(/^---\n[\s\S]*?\n---\n/);
+              // Add import at the top after frontmatter if missing
+              if (!hasImportAfterClean) {
+                const frontmatterMatch = newContent.match(/^---\n[\s\S]*?\n---\n/);
                 if (frontmatterMatch) {
                   const frontmatter = frontmatterMatch[0];
-                  const restOfContent = content.substring(frontmatter.length);
-                  
-                  // Check if import already exists in the rest of content
-                  if (!hasImport(restOfContent)) {
-                    newContent = frontmatter + '\n' + TRUSTPILOT_IMPORT + '\n' + restOfContent;
-                    updated = true;
-                  }
+                  const restOfContent = newContent.substring(frontmatter.length);
+                  newContent = frontmatter + '\n' + TRUSTPILOT_IMPORT + '\n' + restOfContent;
+                  updated = true;
                 } else {
                   // No frontmatter, add import at the very top
-                  if (!hasImport(content)) {
-                    newContent = TRUSTPILOT_IMPORT + '\n\n' + content;
-                    updated = true;
-                  }
+                  newContent = TRUSTPILOT_IMPORT + '\n\n' + newContent;
+                  updated = true;
                 }
               }
 
-              // Add component at the bottom
-              if (FORCE_UPDATE || !hasComponent(newContent)) {
+              // Add component at the bottom if missing
+              if (!hasComponentAfterClean) {
                 if (!newContent.endsWith('\n')) {
                   newContent += '\n';
                 }
