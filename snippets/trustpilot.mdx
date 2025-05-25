@@ -1,0 +1,32 @@
+<!-- TrustBox widget - Review Collector for Zimbabwe Travel Information -->
+<div class="trustpilot-widget" 
+     data-locale="en-US" 
+     data-template-id="56278e9abfbbba0bdcd568bc" 
+     data-businessunit-id="67f9200dd68b154e79a25462" 
+     data-style-height="52px" 
+     data-style-width="100%">
+  <a href="https://www.trustpilot.com/review/travel-info.co.zw" target="_blank" rel="noopener">
+    Trustpilot Reviews for Zimbabwe Travel Information
+  </a>
+</div>
+<!-- End TrustBox widget -->
+
+<script>
+// Load Trustpilot script if not already loaded
+if (typeof window !== 'undefined' && !window.trustpilotLoaded) {
+  const script = document.createElement('script');
+  script.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+  script.async = true;
+  script.onload = function() {
+    window.trustpilotLoaded = true;
+    // Initialize all Trustpilot widgets on the page
+    if (window.Trustpilot) {
+      window.Trustpilot.loadFromElement(document.querySelectorAll('.trustpilot-widget'));
+    }
+  };
+  document.head.appendChild(script);
+} else if (typeof window !== 'undefined' && window.Trustpilot) {
+  // If script is already loaded, reinitialize widgets
+  window.Trustpilot.loadFromElement(document.querySelectorAll('.trustpilot-widget'));
+}
+</script>
