@@ -5,7 +5,9 @@
   "theme": "palm",
   "logo": {
     "dark": "/logo/noBgWhite.svg",
-    "light": "/logo/noBgColor.svg"
+    "light": "/logo/noBgColor.svg",
+    "alt": "Zimbabwe Travel Information",
+    "height": 40
   },
   "favicon": "/favicon.svg",
   "colors": {
