@@ -406,21 +406,6 @@
     "socials": {
       "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo",
       "discord": "https://discord.gg/dzHWFB44yw"
-    },
-    "copyright": "© 2025 Zimbabwe Travel Platform. All rights reserved."
-  },
-  "analytics": {
-    "googleAnalytics": {
-      "enabled": true,
-      "trackingId": "G-RGN0G4LG3Z"
-    },
-    "googleTagManager": {
-      "enabled": true,
-      "tagId": "GTM-KKBVH8FV"
-    },
-    "amplitude": {
-      "enabled": true,
-      "apiKey": "6f58b6dab72ea3cc929c1e9d647aed96"
     }
   },
   "version": "1.0.0",
