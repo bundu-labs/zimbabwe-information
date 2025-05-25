@@ -275,11 +275,13 @@ td {
 /* Preload critical fonts */
 @font-face {
   font-family: 'Playfair Display';
+  src: local('Playfair Display'), local('PlayfairDisplay'), url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYh2I.woff2') format('woff2');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Poppins';
+  src: local('Poppins'), local('Poppins-Regular'), url('https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfedw.woff2') format('woff2');
   font-display: swap;
 }
 
