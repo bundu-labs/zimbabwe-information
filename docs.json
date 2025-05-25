@@ -263,7 +263,7 @@
   "footer": {
     "links": [
       {
-        "title": "Destinations",
+        "header": "Destinations",
         "items": [
           {
             "label": "Victoria Falls",
@@ -284,7 +284,7 @@
         ]
       },
       {
-        "title": "Travel Planning",
+        "header": "Travel Planning",
         "items": [
           {
             "label": "When to Visit",
@@ -305,7 +305,7 @@
         ]
       },
       {
-        "title": "Resources",
+        "header": "Resources",
         "items": [
           {
             "label": "Travel Essentials",
@@ -326,7 +326,7 @@
         ]
       },
       {
-        "title": "Company",
+        "header": "Company",
         "items": [
           {
             "label": "About Zimbabwe",
