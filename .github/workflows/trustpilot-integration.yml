@@ -64,7 +64,7 @@ jobs:
             ['./', './destinations', './planning', './essentials', './culture', './wildlife', './adventure', './get-involved'];
 
           // Configuration
-          const TRUSTPILOT_IMPORT = "import Trustpilot from '/snippets/trustpilot';";
+          const TRUSTPILOT_IMPORT = "import Trustpilot from '/components/Trustpilot';";
           const TRUSTPILOT_COMPONENT = '\n\n<Trustpilot />';
           const SUPPORTED_EXTENSIONS = ['.mdx', '.md'];
 
@@ -112,7 +112,7 @@ jobs:
 
           function hasImport(content) {
             return content.includes(TRUSTPILOT_IMPORT) || 
-                   content.includes("import Trustpilot from '/snippets/trustpilot'");
+                   content.includes("import Trustpilot from '/components/Trustpilot'");
           }
 
           function hasComponent(content) {
@@ -123,14 +123,14 @@ jobs:
           function removeDuplicates(content) {
             // Remove duplicate imports
             const importLines = content.split('\n').filter(line => 
-              line.includes("import Trustpilot from '/snippets/trustpilot'")
+              line.includes("import Trustpilot from '/components/Trustpilot'")
             );
             
             if (importLines.length > 1) {
               // Keep only the first occurrence of the import
               let firstImportFound = false;
               content = content.split('\n').map(line => {
-                if (line.includes("import Trustpilot from '/snippets/trustpilot'")) {
+                if (line.includes("import Trustpilot from '/components/Trustpilot'")) {
                   if (!firstImportFound) {
                     firstImportFound = true;
                     return line;

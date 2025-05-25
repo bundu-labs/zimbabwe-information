@@ -1,4 +1,4 @@
-// For snippets folder: snippets/trustpilot.js
+// For components folder: components/Trustpilot.js
 
 import React, { useEffect } from 'react';
 
@@ -19,13 +19,17 @@ export default function Trustpilot({
         window.trustpilotLoaded = true;
         // Initialize Trustpilot widgets after script loads
         if (window.Trustpilot) {
-          window.Trustpilot.loadFromElement(document.querySelector('.trustpilot-widget'));
+          window.Trustpilot.loadFromElement(document.querySelectorAll('.trustpilot-widget'));
         }
       };
       document.head.appendChild(script);
     } else if (typeof window !== 'undefined' && window.Trustpilot) {
       // If script is already loaded, just reinitialize
-      window.Trustpilot.loadFromElement(document.querySelector('.trustpilot-widget'));
+      setTimeout(() => {
+        if (window.Trustpilot) {
+          window.Trustpilot.loadFromElement(document.querySelectorAll('.trustpilot-widget'));
+        }
+      }, 100);
     }
   }, []);
 
