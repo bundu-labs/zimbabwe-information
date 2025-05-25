@@ -330,8 +330,8 @@ jobs:
           echo "- **Trigger:** ${{ github.event_name == 'schedule' && 'Scheduled (Weekly)' || 'Manual' }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🔧 Changes Made:" >> $GITHUB_STEP_SUMMARY
-          echo "- Added Trustpilot import to top of MDX files" >> $GITHUB_STEP_SUMMARY
-          echo "- Added Trustpilot component to bottom of content" >> $GITHUB_STEP_SUMMARY
+          echo "- Added Trustpilot HTML widget to bottom of content" >> $GITHUB_STEP_SUMMARY
+          echo "- Added Trustpilot JavaScript initialization" >> $GITHUB_STEP_SUMMARY
           echo "- Preserved existing frontmatter and content structure" >> $GITHUB_STEP_SUMMARY
           echo "- Enhanced social proof for Zimbabwe Travel Platform" >> $GITHUB_STEP_SUMMARY
 
@@ -367,8 +367,8 @@ jobs:
           🇿🇼 Weekly Trustpilot integration for Zimbabwe Travel Information
 
           - Updated ${{ steps.trustpilot_integration.outputs.files_updated }} MDX files
-          - Added Trustpilot import statements to file headers
-          - Added Trustpilot review widgets to page footers
+          - Added Trustpilot HTML widgets to page footers
+          - Added Trustpilot JavaScript initialization
           - Enhanced social proof across Zimbabwe Travel Platform
           - Automatic weekly maintenance for consistent user experience
           - Trigger: ${{ github.event_name == 'schedule' && 'Scheduled weekly update' || 'Manual update' }}
