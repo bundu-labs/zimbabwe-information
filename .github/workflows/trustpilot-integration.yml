@@ -73,7 +73,10 @@ jobs:
             'README.md',
             'package.json',
             'mint.json',
-            'docs.json'
+            'docs.json',
+            'cookie-policy.mdx',
+            'privacy-policy.mdx',
+            'terms-of-service.mdx'
           ];
 
           // Directories to skip
