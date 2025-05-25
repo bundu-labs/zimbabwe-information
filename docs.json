@@ -280,12 +280,40 @@
           {
             "label": "Eastern Highlands",
             "href": "https://travel-info.co.zw/destinations/eastern-highlands"
+          },
+          {
+            "label": "Mana Pools",
+            "href": "https://travel-info.co.zw/destinations/mana-pools"
+          },
+          {
+            "label": "Matobo Hills",
+            "href": "https://travel-info.co.zw/destinations/matobo-hills"
+          },
+          {
+            "label": "Lake Kariba",
+            "href": "https://travel-info.co.zw/destinations/lake-kariba"
+          },
+          {
+            "label": "Nyanga",
+            "href": "https://travel-info.co.zw/destinations/nyanga"
+          },
+          {
+            "label": "Bvumba Mountains",
+            "href": "https://travel-info.co.zw/destinations/bvumba-mountains"
+          },
+          {
+            "label": "Gonarezhou",
+            "href": "https://travel-info.co.zw/destinations/gonarezhou"
           }
         ]
       },
       {
         "header": "Travel Planning",
         "items": [
+          {
+            "label": "About Zimbabwe",
+            "href": "https://travel-info.co.zw/about-zimbabwe"
+          },
           {
             "label": "When to Visit",
             "href": "https://travel-info.co.zw/when-to-visit"
@@ -299,8 +327,20 @@
             "href": "https://travel-info.co.zw/planning/budget-travel"
           },
           {
+            "label": "Luxury Travel",
+            "href": "https://travel-info.co.zw/planning/luxury-travel"
+          },
+          {
+            "label": "Family Travel",
+            "href": "https://travel-info.co.zw/planning/family-travel"
+          },
+          {
             "label": "Sample Itineraries",
             "href": "https://travel-info.co.zw/planning/sample-itineraries"
+          },
+          {
+            "label": "Travel Essentials",
+            "href": "https://travel-info.co.zw/essentials/visas-and-entry"
           }
         ]
       },
@@ -322,15 +362,35 @@
           {
             "label": "Contact Us",
             "href": "https://travel-info.co.zw/contact"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "https://travel-info.co.zw/privacy-policy"
+          },
+          {
+            "label": "Cookie Policy",
+            "href": "https://travel-info.co.zw/cookie-policy"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "https://travel-info.co.zw/terms-of-service"
           }
         ]
       },
       {
-        "header": "Company",
+        "header": "Community",
         "items": [
           {
-            "label": "About Zimbabwe",
-            "href": "https://travel-info.co.zw/about-zimbabwe"
+            "label": "Join Our Community",
+            "href": "https://travel-info.co.zw/get-involved/travel-enthusiast-community"
+          },
+          {
+            "label": "Business Partner Network",
+            "href": "https://travel-info.co.zw/get-involved/business-partner-network"
+          },
+          {
+            "label": "Local Expert Connections",
+            "href": "https://travel-info.co.zw/get-involved/local-expert-connections"
           },
           {
             "label": "Student Contributors",
