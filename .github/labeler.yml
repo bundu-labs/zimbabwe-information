@@ -1,0 +1,74 @@
+# Automatically label PRs based on changed files
+# Used by .github/workflows/label.yml
+
+# Documentation sections
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: '*.md'
+    - any-glob-to-any-file: '**/*.md'
+
+essentials:
+  - changed-files:
+    - any-glob-to-any-file: 'essentials/**'
+
+planning:
+  - changed-files:
+    - any-glob-to-any-file: 'planning/**'
+
+destinations:
+  - changed-files:
+    - any-glob-to-any-file: 'destinations/**'
+
+culture:
+  - changed-files:
+    - any-glob-to-any-file: 'culture/**'
+
+wildlife:
+  - changed-files:
+    - any-glob-to-any-file: 'wildlife/**'
+
+adventure:
+  - changed-files:
+    - any-glob-to-any-file: 'adventure/**'
+
+get-involved:
+  - changed-files:
+    - any-glob-to-any-file: 'get-involved/**'
+
+# Configuration files
+configuration:
+  - changed-files:
+    - any-glob-to-any-file: 'mint.json'
+    - any-glob-to-any-file: 'docs.json'
+    - any-glob-to-any-file: '.mintlify/**'
+
+# Components and snippets
+components:
+  - changed-files:
+    - any-glob-to-any-file: 'components/**'
+    - any-glob-to-any-file: 'snippets/**'
+
+# Images and assets
+assets:
+  - changed-files:
+    - any-glob-to-any-file: 'images/**'
+    - any-glob-to-any-file: 'public/**'
+    - any-glob-to-any-file: '**/*.png'
+    - any-glob-to-any-file: '**/*.jpg'
+    - any-glob-to-any-file: '**/*.svg'
+
+# GitHub workflows and CI/CD
+workflows:
+  - changed-files:
+    - any-glob-to-any-file: '.github/workflows/**'
+    - any-glob-to-any-file: '.github/**/*.yml'
+
+# Content files (MDX)
+content:
+  - changed-files:
+    - any-glob-to-any-file: '**/*.mdx'
+
+# SEO related
+seo:
+  - changed-files:
+    - any-glob-to-any-file: 'seo/**'
