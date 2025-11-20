@@ -1,10 +1,10 @@
 name: Bulk SEO Update for Zimbabwe Travel Platform
 
 on:
-  # Run automatically every Sunday at 6 AM UTC
-  schedule:
-    - cron: '0 6 * * 0'
-  
+  # DISABLED: Run automatically every Sunday at 6 AM UTC
+  # schedule:
+  #   - cron: '0 6 * * 0'
+
   # Also allow manual triggering
   workflow_dispatch:
     inputs:
@@ -24,13 +24,13 @@ on:
         default: false
         type: boolean
   
-  # Optional: Also run on push to main branch for MDX/MD files
-  push:
-    branches: [ main ]
-    paths:
-      - '**/*.mdx'
-      - '**/*.md'
-      - 'docs.json'
+  # DISABLED: Also run on push to main branch for MDX/MD files
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - '**/*.mdx'
+  #     - '**/*.md'
+  #     - 'docs.json'
 
 env:
   NODE_VERSION: '19'
