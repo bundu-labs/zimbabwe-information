@@ -10,6 +10,8 @@
     "height": 50
   },
   "favicon": "/favicon.svg",
+  "layout": "topnav",
+  "pageWidth": "wide",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
