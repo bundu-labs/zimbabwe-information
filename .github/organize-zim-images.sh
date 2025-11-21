@@ -147,7 +147,6 @@ echo ""
 # Harare
 echo "🏙️  HARARE:"
 convert_and_copy "$SOURCE_DIR/harare.jpg" "images/destinations/harare/city-view.jpg" "City view"
-convert_and_copy "$SOURCE_DIR/harare-city-skyline.jpg" "images/destinations/harare/skyline.jpg" "Skyline"
 echo ""
 
 # Bulawayo
@@ -166,23 +165,16 @@ echo "🌊 ZAMBEZI:"
 convert_and_copy "$SOURCE_DIR/zambezi-np-boabab.jpg" "images/destinations/zambezi/baobab.jpg" "Baobab tree"
 convert_and_copy "$SOURCE_DIR/zambezi-river-sunset-cruise.jpg" "images/destinations/zambezi/sunset-cruise.jpg" "Sunset cruise"
 convert_and_copy "$SOURCE_DIR/zambesi-river-schalows-turaco_.jpg" "images/destinations/zambezi/schalows-turaco.jpg" "Schalow's turaco"
-echo ""
-
-# Khami Ruins
-echo "🏺 KHAMI RUINS:"
-convert_and_copy "$SOURCE_DIR/ZW_Khami_Ruins.JPG" "images/destinations/khami/ruins.jpg" "Khami ruins"
-echo ""
-
-# Domboshawa
-echo "🎨 DOMBOSHAWA:"
-convert_and_copy "$SOURCE_DIR/domboshawa-rock.jpg" "images/destinations/domboshawa/rock.jpg" "Domboshawa rock"
-convert_and_copy "$SOURCE_DIR/domboshawa-cave-painting.jpg" "images/destinations/domboshawa/cave-painting.jpg" "Cave painting"
+convert_and_copy "$SOURCE_DIR/zambezi-river-panaromic.jpg" "images/destinations/zambezi/panoramic.jpg" "Zambezi panoramic"
+convert_and_copy "$SOURCE_DIR/zambezi-river-basin.jpg" "images/destinations/zambezi/basin.jpg" "Zambezi basin"
 echo ""
 
 # Wildlife
 echo "🦒 WILDLIFE:"
 convert_and_copy "$SOURCE_DIR/zim-mammals-porcupine.jpg" "images/wildlife/porcupine.jpg" "Porcupine"
-convert_and_copy "$SOURCE_DIR/kingfisher-2046453_1920.jpg" "images/wildlife/kingfisher.jpg" "Kingfisher"
+convert_and_copy "$SOURCE_DIR/hwange-lovebirds.jpg" "images/wildlife/lovebirds.jpg" "Lovebirds"
+convert_and_copy "$SOURCE_DIR/manapools-elephants-mapani-woodland.jpg" "images/wildlife/elephants-woodland.jpg" "Elephants in woodland"
+convert_and_copy "$SOURCE_DIR/flamelilly.jpg" "images/wildlife/flame-lily.jpg" "Flame lily"
 echo ""
 
 # Culture
@@ -190,6 +182,7 @@ echo "🎨 CULTURE:"
 convert_and_copy "$SOURCE_DIR/zimbabwe-rockpaintings.jpg" "images/culture/rock-paintings.jpg" "Rock paintings"
 convert_and_copy "$SOURCE_DIR/zimbabwe-rockpaintings-people.jpg" "images/culture/rock-paintings-people.jpg" "Rock paintings with people"
 convert_and_copy "$SOURCE_DIR/zimbabwe-bond-note.jpg" "images/culture/bond-note.jpg" "Zimbabwe bond note"
+convert_and_copy "$SOURCE_DIR/a-100-trillion-Zimbabwean-dollar-note-CNN.jpg" "images/culture/trillion-dollar-note.jpg" "100 trillion dollar note"
 echo ""
 
 # Adventure/Activities
@@ -197,17 +190,31 @@ echo "🎯 ADVENTURE & ACTIVITIES:"
 convert_and_copy "$SOURCE_DIR/zimbabwe-safaris.jpg" "images/adventure/safari.jpg" "Safari"
 convert_and_copy "$SOURCE_DIR/zimbabwe-safaris2.jpg" "images/adventure/safari-group.jpg" "Safari group"
 convert_and_copy "$SOURCE_DIR/zimbabwe-safaris3.jpg" "images/adventure/safari-vehicle.jpg" "Safari vehicle"
+convert_and_copy "$SOURCE_DIR/zimbabwe-activities.jpg" "images/adventure/activities-1.jpg" "Activities"
 convert_and_copy "$SOURCE_DIR/zimbabwe-activities2.jpg" "images/adventure/activities-2.jpg" "Activities"
 convert_and_copy "$SOURCE_DIR/zimbabwe-activities3.jpg" "images/adventure/activities-3.jpg" "Activities"
+convert_and_copy "$SOURCE_DIR/zimbabwe-activities6.jpg" "images/adventure/activities-6.jpg" "Activities"
+convert_and_copy "$SOURCE_DIR/zimbabwe-activities7.jpg" "images/adventure/activities-7.jpg" "Activities"
 convert_and_copy "$SOURCE_DIR/zimbabwe-walking-safari.jpg" "images/adventure/walking-safari.jpg" "Walking safari"
 convert_and_copy "$SOURCE_DIR/vicfalls-lion-encounter2.jpg" "images/adventure/lion-encounter.jpg" "Lion encounter"
+convert_and_copy "$SOURCE_DIR/antelopepark-lionwalk.jpg" "images/adventure/lion-walk.jpg" "Lion walk"
 echo ""
 
 # Planning/General
 echo "📋 PLANNING & GENERAL:"
 convert_and_copy "$SOURCE_DIR/zimbabwe-accommodation.jpg" "images/planning/accommodation.jpg" "Accommodation"
+convert_and_copy "$SOURCE_DIR/map-compass.jpg" "images/planning/map-compass.jpg" "Map and compass"
+convert_and_copy "$SOURCE_DIR/matobo-np-lodge.jpg" "images/planning/lodge.jpg" "Safari lodge"
 convert_and_copy "$SOURCE_DIR/zimtrees-jacaranda.jpg" "images/general/jacaranda.jpg" "Jacaranda trees"
 convert_and_copy "$SOURCE_DIR/great-limpopo-transfrontier-park.jpg" "images/general/transfrontier-park.jpg" "Transfrontier park map"
+convert_and_copy "$SOURCE_DIR/zimbabwe-balancing-rocks.jpg" "images/general/balancing-rocks.jpg" "Balancing rocks"
+convert_and_copy "$SOURCE_DIR/zimbabwe-balancing-rocks2.jpg" "images/general/balancing-rocks-2.jpg" "Balancing rocks"
+convert_and_copy "$SOURCE_DIR/zimbabwe-mtnyagani.jpg" "images/general/mt-nyangani.jpg" "Mount Nyangani"
+convert_and_copy "$SOURCE_DIR/zimbabwe-mtnyagani2.jpg" "images/general/mt-nyangani-2.jpg" "Mount Nyangani"
+convert_and_copy "$SOURCE_DIR/zimbabwe-mtnyangani3.jpg" "images/general/mt-nyangani-3.jpg" "Mount Nyangani"
+convert_and_copy "$SOURCE_DIR/zimbabwe-mtnyangani4.jpg" "images/general/mt-nyangani-4.jpg" "Mount Nyangani"
+convert_and_copy "$SOURCE_DIR/zimmaps-pin.jpg" "images/general/map-pin.jpg" "Zimbabwe map pin"
+convert_and_copy "$SOURCE_DIR/Hwange-map.png" "images/general/hwange-map.jpg" "Hwange map"
 echo ""
 
 echo "====================================="
