@@ -1,19 +1,19 @@
-/* 
+/*
  * Custom stylesheet for Zimbabwe Travel Information
- * Optimized with Playfair Display for headings and Poppins for body text
+ * Optimized with Noto Serif for headings and Noto Sans for body text
  * Following web font best practices for performance and accessibility
  */
 
 /* Import fonts - Only load the weights we actually use */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
 
-/* 
- * CSS Variables 
+/*
+ * CSS Variables
  */
 :root {
-  --font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-family: 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-heading: 'Noto Serif', Georgia, 'Times New Roman', serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   
   /* Colors for better accessibility */
@@ -167,8 +167,8 @@ ul, ol {
 }
 
 blockquote {
-  font-family: var(--font-family);
-  font-weight: 300;
+  font-family: 'Noto Sans', var(--font-family);
+  font-weight: 400;
   font-style: italic;
   border-left: 4px solid var(--primary-color);
   padding-left: var(--spacing-md);
@@ -310,14 +310,14 @@ article img[src*="/images/general/"] {
 
 /* Preload critical fonts */
 @font-face {
-  font-family: 'Playfair Display';
-  src: local('Playfair Display'), local('PlayfairDisplay'), url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYh2I.woff2') format('woff2');
+  font-family: 'Noto Serif';
+  src: local('Noto Serif'), local('NotoSerif'), local('Noto Serif Regular');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: local('Poppins'), local('Poppins-Regular'), url('https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfedw.woff2') format('woff2');
+  font-family: 'Noto Sans';
+  src: local('Noto Sans'), local('NotoSans'), local('Noto Sans Regular');
   font-display: swap;
 }
 
