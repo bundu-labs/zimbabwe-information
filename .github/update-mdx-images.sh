@@ -22,8 +22,8 @@ update_mdx_image() {
     return 1
   fi
 
-  # Replace the placeholder image with actual image
-  sed -i '' "s|!\[.*\](/images/hero-light.svg)|<img src=\"$image_path\" style={{width: \"450px\", height: \"auto\"}} alt=\"$alt_text\" />|g" "$mdx_file"
+  # Replace the placeholder image with actual image (using standard markdown syntax)
+  sed -i '' "s|!\[.*\](/images/hero-light.svg)|![$alt_text]($image_path)|g" "$mdx_file"
 
   echo "  ✓ Updated: $(basename "$mdx_file")"
   return 0
@@ -77,5 +77,5 @@ echo "Update Complete!"
 echo "====================================="
 echo ""
 echo "All destination pages have been updated with optimized local images."
-echo "Images use consistent styling: width: 450px, height: auto"
+echo "Images use standard markdown format: ![alt text](/path/to/image.jpg)"
 echo ""
