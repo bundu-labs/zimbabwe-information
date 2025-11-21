@@ -436,18 +436,120 @@ This document provides recommendations for sourcing high-quality, relevant image
 
 ---
 
-## Image Credits Template
+## How to Add Photo Credits
 
-When using images, consider adding credit section at page bottom:
+### Page-Level Credits (Recommended)
+
+Add the photo credits component at the end of each page:
 
 ```mdx
 ---
 
-*Images courtesy of [Photographer Name](unsplash.com/@username) via Unsplash*
+import PhotoCredits from '/snippets/photo-credits.mdx';
+
+<PhotoCredits />
 ```
+
+This displays an accordion with general attribution information for all image sources.
+
+### Inline Image Credits
+
+For specific image attribution, add credits directly under images:
+
+**Method 1: Simple Text Credit**
+```mdx
+![Victoria Falls](/images/destinations/victoria-falls.jpg)
+*Photo: Jane Photographer / Moses Adventures*
+```
+
+**Method 2: With Link**
+```mdx
+![Victoria Falls](/images/destinations/victoria-falls.jpg)
+*Photo: [Jane Photographer](https://unsplash.com/@janephoto) via Unsplash*
+```
+
+**Method 3: Moses Adventures Credit**
+```mdx
+![Safari experience](/images/wildlife/safari.jpg)
+*Photo courtesy of [Moses Adventures](https://www.moses-adventures.com/)*
+```
+
+### Credit Format Examples
+
+**Unsplash:**
+```
+*Photo: [Photographer Name](https://unsplash.com/@username) via Unsplash*
+```
+
+**Pixabay:**
+```
+*Photo: [Photographer Name](link-to-image) via Pixabay*
+```
+
+**Moses Adventures:**
+```
+*Photo courtesy of Moses Adventures*
+```
+or
+```
+*Photo: Moses Adventures - Zimbabwe Safari Experience*
+```
+
+### Where Credits Are Already Added
+
+The photo credits component has been added to:
+- `introduction.mdx`
+- `destinations/victoria-falls.mdx`
+- `adventure/hiking-and-trekking.mdx`
+
+### Adding to Additional Pages
+
+To add to more pages, insert before the final closing tags:
+
+```mdx
+---
+
+import PhotoCredits from '/snippets/photo-credits.mdx';
+
+<PhotoCredits />
+
+*Last updated: [Date]*
+```
+
+---
+
+## Attribution Requirements by Source
+
+### Unsplash
+- **Required:** No
+- **Recommended:** Yes (good practice and shows appreciation)
+- **Format:** Photographer name + link to their Unsplash profile
+- **License:** [Unsplash License](https://unsplash.com/license) - Free for commercial use
+
+### Pixabay
+- **Required:** No
+- **Recommended:** Yes (optional but appreciated)
+- **Format:** Photographer name or Pixabay credit
+- **License:** [Pixabay License](https://pixabay.com/service/license/) - Free for commercial use
+
+### Pexels
+- **Required:** No
+- **Recommended:** Yes
+- **Format:** Photographer name + link
+- **License:** Free for commercial use
+
+### Moses Adventures
+- **Required:** Yes (we have permission, so crediting is respectful)
+- **Format:** "Photo courtesy of Moses Adventures" or "Photo: Moses Adventures"
+- **Link:** Include link to https://www.moses-adventures.com/ when possible
 
 ---
 
 **Last Updated:** January 2025
 
-**Note:** Always respect copyright and usage terms. Unsplash images are free for commercial use without attribution, but crediting photographers is appreciated and professional.
+**Note:** While Unsplash, Pixabay, and Pexels don't require attribution, we credit photographers to:
+- Show professional courtesy and appreciation
+- Support the photography community
+- Maintain transparency with our users
+- Build trust and credibility
+- Acknowledge Moses Adventures partnership
