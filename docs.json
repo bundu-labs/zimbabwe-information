@@ -105,7 +105,8 @@
             "pages": [
               "introduction",
               "about-zimbabwe",
-              "when-to-visit"
+              "when-to-visit",
+              "book"
             ]
           },
           {
@@ -143,13 +144,16 @@
             "pages": [
               "essentials/visas-and-entry",
               "essentials/health-and-safety",
-              "essentials/images",
+              "essentials/travel-insurance",
               "essentials/safari-etiquette",
               "essentials/currency-and-money",
               "essentials/transportation",
               "essentials/distances",
               "essentials/accommodation",
-              "essentials/communication"
+              "essentials/communication",
+              "essentials/packing-guide",
+              "essentials/responsible-tourism",
+              "essentials/images"
             ]
           }
         ]
@@ -172,7 +176,8 @@
               "destinations/lake-kariba",
               "destinations/harare",
               "destinations/bulawayo",
-              "destinations/gonarezhou"
+              "destinations/gonarezhou",
+              "destinations/secondary-destinations"
             ]
           }
         ]
@@ -187,6 +192,10 @@
               "planning/budget-travel",
               "planning/luxury-travel",
               "planning/family-travel",
+              "planning/couples-travel",
+              "planning/solo-travel",
+              "planning/group-travel",
+              "planning/business-travel",
               "planning/safari-planning"
             ]
           }
