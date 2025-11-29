@@ -164,6 +164,13 @@
         "tab": "Destinations",
         "groups": [
           {
+            "group": "Overview",
+            "pages": [
+              "destinations/provinces-regions",
+              "adventure/things-to-do-by-region"
+            ]
+          },
+          {
             "group": "Top Destinations",
             "pages": [
               "destinations/victoria-falls",
@@ -172,14 +179,43 @@
               "destinations/mana-pools",
               "destinations/matusadona-national-park",
               "destinations/matobo-hills",
+              "destinations/lake-kariba",
+              "destinations/gonarezhou"
+            ]
+          },
+          {
+            "group": "Cities & Towns",
+            "pages": [
+              "destinations/harare",
+              "destinations/bulawayo",
+              "destinations/mutare",
+              "destinations/masvingo",
+              "destinations/gweru"
+            ]
+          },
+          {
+            "group": "Eastern Highlands",
+            "pages": [
               "destinations/eastern-highlands",
               "destinations/nyanga",
               "destinations/bvumba-mountains",
-              "destinations/lake-kariba",
-              "destinations/harare",
-              "destinations/bulawayo",
-              "destinations/gonarezhou",
-              "destinations/secondary-destinations"
+              "destinations/chimanimani"
+            ]
+          },
+          {
+            "group": "Day Trips & Attractions",
+            "pages": [
+              "destinations/chinhoyi-caves",
+              "destinations/lake-chivero",
+              "destinations/domboshava"
+            ]
+          },
+          {
+            "group": "Off the Beaten Path",
+            "pages": [
+              "destinations/secondary-destinations",
+              "destinations/small-towns",
+              "destinations/hidden-gems"
             ]
           }
         ]
@@ -277,6 +313,10 @@
         "header": "Destinations",
         "items": [
           {
+            "label": "Provinces & Regions",
+            "href": "https://travel-info.co.zw/destinations/provinces-regions"
+          },
+          {
             "label": "Victoria Falls",
             "href": "https://travel-info.co.zw/destinations/victoria-falls"
           },
@@ -293,28 +333,24 @@
             "href": "https://travel-info.co.zw/destinations/eastern-highlands"
           },
           {
-            "label": "Mana Pools",
-            "href": "https://travel-info.co.zw/destinations/mana-pools"
+            "label": "Harare",
+            "href": "https://travel-info.co.zw/destinations/harare"
           },
           {
-            "label": "Matobo Hills",
-            "href": "https://travel-info.co.zw/destinations/matobo-hills"
+            "label": "Bulawayo",
+            "href": "https://travel-info.co.zw/destinations/bulawayo"
           },
           {
-            "label": "Lake Kariba",
-            "href": "https://travel-info.co.zw/destinations/lake-kariba"
+            "label": "Mutare",
+            "href": "https://travel-info.co.zw/destinations/mutare"
           },
           {
-            "label": "Nyanga",
-            "href": "https://travel-info.co.zw/destinations/nyanga"
+            "label": "Hidden Gems",
+            "href": "https://travel-info.co.zw/destinations/hidden-gems"
           },
           {
-            "label": "Bvumba Mountains",
-            "href": "https://travel-info.co.zw/destinations/bvumba-mountains"
-          },
-          {
-            "label": "Gonarezhou",
-            "href": "https://travel-info.co.zw/destinations/gonarezhou"
+            "label": "Things to Do by Region",
+            "href": "https://travel-info.co.zw/adventure/things-to-do-by-region"
           }
         ]
       },
