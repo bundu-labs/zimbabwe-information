@@ -117,7 +117,9 @@
               "culture/people-and-tribes",
               "culture/art-and-music",
               "culture/cuisine",
-              "culture/festivals-and-events"
+              "culture/festivals-and-events",
+              "culture/shopping-guide",
+              "culture/religious-sites"
             ]
           },
           {
@@ -133,7 +135,10 @@
             "pages": [
               "adventure/activities-and-experiences",
               "adventure/water-sports",
-              "adventure/hiking-and-trekking"
+              "adventure/hiking-and-trekking",
+              "adventure/nightlife-entertainment",
+              "adventure/photography-guide",
+              "adventure/wellness-spa"
             ]
           }
         ]
@@ -150,12 +155,23 @@
               "essentials/safari-etiquette",
               "essentials/currency-and-money",
               "essentials/transportation",
+              "essentials/airport-guide",
               "essentials/distances",
               "essentials/accommodation",
               "essentials/communication",
               "essentials/packing-guide",
               "essentials/responsible-tourism",
               "essentials/images"
+            ]
+          },
+          {
+            "group": "Culture & Customs",
+            "pages": [
+              "essentials/local-customs",
+              "essentials/tipping-guide",
+              "essentials/public-holidays",
+              "essentials/weather-by-region",
+              "essentials/accessibility-guide"
             ]
           }
         ]
@@ -224,17 +240,35 @@
         "tab": "Trip Planning",
         "groups": [
           {
-            "group": "Trip Planning",
+            "group": "Getting Started",
             "pages": [
-              "planning/sample-itineraries",
+              "planning/first-time-visitors",
+              "planning/quick-itineraries",
+              "planning/sample-itineraries"
+            ]
+          },
+          {
+            "group": "Travel Styles",
+            "pages": [
               "planning/budget-travel",
               "planning/luxury-travel",
               "planning/family-travel",
               "planning/couples-travel",
               "planning/solo-travel",
               "planning/group-travel",
-              "planning/business-travel",
+              "planning/senior-travel",
+              "planning/lgbtq-travel",
+              "planning/destination-weddings",
               "planning/safari-planning"
+            ]
+          },
+          {
+            "group": "Business Travel",
+            "pages": [
+              "planning/business-travel",
+              "business/coworking-spaces",
+              "business/business-dining",
+              "business/embassies-consulates"
             ]
           }
         ]
@@ -248,7 +282,28 @@
               "get-involved/student-contributors-program",
               "get-involved/travel-enthusiast-community",
               "get-involved/business-partner-network",
-              "get-involved/local-expert-connections"
+              "get-involved/local-expert-connections",
+              "get-involved/volunteer-opportunities"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Resources",
+        "groups": [
+          {
+            "group": "Quick Reference",
+            "pages": [
+              "resources/quick-reference",
+              "resources/emergency-contacts"
+            ]
+          },
+          {
+            "group": "For Professionals",
+            "pages": [
+              "resources/travel-trade",
+              "resources/tour-operators",
+              "resources/research-resources"
             ]
           }
         ]
@@ -395,8 +450,20 @@
         "header": "Resources",
         "items": [
           {
-            "label": "Travel Essentials",
-            "href": "https://travel-info.co.zw/essentials/visas-and-entry"
+            "label": "First-Time Visitors",
+            "href": "https://travel-info.co.zw/planning/first-time-visitors"
+          },
+          {
+            "label": "Quick Reference",
+            "href": "https://travel-info.co.zw/resources/quick-reference"
+          },
+          {
+            "label": "Emergency Contacts",
+            "href": "https://travel-info.co.zw/resources/emergency-contacts"
+          },
+          {
+            "label": "Travel Trade",
+            "href": "https://travel-info.co.zw/resources/travel-trade"
           },
           {
             "label": "Book a Trip",
@@ -409,18 +476,6 @@
           {
             "label": "Contact Us",
             "href": "https://travel-info.co.zw/contact"
-          },
-          {
-            "label": "Privacy Policy",
-            "href": "https://travel-info.co.zw/privacy-policy"
-          },
-          {
-            "label": "Cookie Policy",
-            "href": "https://travel-info.co.zw/cookie-policy"
-          },
-          {
-            "label": "Terms of Service",
-            "href": "https://travel-info.co.zw/terms-of-service"
           }
         ]
       },
