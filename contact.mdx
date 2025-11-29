@@ -23,7 +23,7 @@ keywords: >-
   have questions about destinations, need assistance with trip planning, or
   want...
 canonical: 'https://travel-info.co.zw/contact'
-'article:modified_time': '2025-05-24T08:46:47.315Z'
+'article:modified_time': '2025-11-29T00:00:00.000Z'
 'og:title': Contact Us | Zimbabwe Travel Information
 'og:type': "article"
 'schema:type': Article
@@ -46,11 +46,65 @@ We're here to help you plan your perfect Zimbabwean adventure. Whether you have 
   </Card>
 </CardGroup>
 
-<Card title="Contact Us" icon="envelope-open-text" cta="Our team will respons to you shortly.">
-  <div className="w-full max-w-4xl mx-auto my-6 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800">
-  <iframe sandbox="allow-scripts allow-popups allow-forms allow-same-origin" width="100%" className="w-full h-[670px] border-0 dark:bg-gray-900" src="https://forms.helpdesk.com?licenseID=2046191682&contactFormID=b016bbb4-e37a-4519-8259-fe4a2e6693ce" title="Helpdesk Support Form" />
-
-  </div>
+<Card title="Send Us a Message" icon="envelope-open-text">
+  <form action="https://formspree.io/f/xjkwdbrk" method="POST" className="space-y-4">
+    <div>
+      <label htmlFor="name" className="block text-sm font-medium mb-1">Your Name *</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="John Smith"
+      />
+    </div>
+    <div>
+      <label htmlFor="email" className="block text-sm font-medium mb-1">Your Email *</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="you@example.com"
+      />
+    </div>
+    <div>
+      <label htmlFor="subject" className="block text-sm font-medium mb-1">Subject *</label>
+      <select
+        name="subject"
+        id="subject"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+      >
+        <option value="">Select a topic...</option>
+        <option value="Trip Planning">Trip Planning</option>
+        <option value="Destination Information">Destination Information</option>
+        <option value="Safari Enquiry">Safari Enquiry</option>
+        <option value="Accommodation">Accommodation</option>
+        <option value="Website Feedback">Website Feedback</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div>
+      <label htmlFor="message" className="block text-sm font-medium mb-1">Your Message *</label>
+      <textarea
+        name="message"
+        id="message"
+        required
+        rows="5"
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="How can we help you?"
+      ></textarea>
+    </div>
+    <button
+      type="submit"
+      className="w-full px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-md transition-colors"
+    >
+      Send Message
+    </button>
+  </form>
 </Card>
 
 ## Join Our Community
