@@ -1,58 +1,82 @@
----
-'og:image': 'https://travel-info.co.zw/images/hero-light.svg'
-'og:site_name': Zimbabwe Travel Information
-'twitter:card': summary_large_image
-'twitter:site': '@zimbabwetravel'
-'twitter:creator': '@zimbabwetravel'
-robots: 'index, follow'
-author: Zimbabwe Travel Information
-keywords: 'mintlify, starter, development, publishing, changes, troubleshooting'
-description: >-
-  Mintlify Starter Kit Click on Use this template to copy the Mintlify starter
-  kit. The starter kit contains examples including - Guide pages - Navigation
-  -...
-'og:description': >-
-  Mintlify Starter Kit Click on Use this template to copy the Mintlify starter
-  kit. The starter kit contains examples including - Guide pages - Navigation
-  -...
-'twitter:description': >-
-  Mintlify Starter Kit Click on Use this template to copy the Mintlify starter
-  kit. The starter kit contains examples including - Guide pages - Navigation
-  -...
-canonical: 'https://travel-info.co.zw/README'
-'article:modified_time': '2025-05-24T08:46:47.314Z'
-'og:type': article
-'schema:type': Article
----
-# Mintlify Starter Kit
+# Zimbabwe Travel Information
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+Your comprehensive guide to traveling in Zimbabwe. From Victoria Falls to wildlife safaris, cultural experiences to practical travel tips.
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+**Live site:** [travel-info.co.zw](https://travel-info.co.zw)
 
-### Development
+## What's Inside
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+### Destinations
+- **[Victoria Falls](/destinations/victoria-falls)** - One of the Seven Natural Wonders
+- **[Hwange National Park](/destinations/hwange-national-park)** - Zimbabwe's largest wildlife reserve
+- **[Mana Pools](/destinations/mana-pools)** - UNESCO World Heritage walking safari destination
+- **[Great Zimbabwe](/destinations/great-zimbabwe)** - Ancient stone city ruins
+- **[Eastern Highlands](/destinations/eastern-highlands)** - Mountain scenery and hiking
+- **[Lake Kariba](/destinations/lake-kariba)** - Houseboating and fishing
+- Plus 15+ more destinations including hidden gems and off-the-beaten-path locations
 
-```
+### Travel Planning
+- **[First-Time Visitors Guide](/planning/first-time-visitors)** - Start here if you're new to Zimbabwe
+- **[Sample Itineraries](/planning/sample-itineraries)** - Ready-made trip plans
+- Guides for different travelers: [Families](/planning/family-travel), [Solo](/planning/solo-travel), [Seniors](/planning/senior-travel), [LGBTQ+](/planning/lgbtq-travel), [Business](/planning/business-travel)
+- **[Safari Planning](/planning/safari-planning)** - Everything you need for a safari trip
+
+### Essential Information
+- [Visas & Entry Requirements](/essentials/visas-and-entry)
+- [Health & Safety](/essentials/health-and-safety)
+- [Currency & Money](/essentials/currency-and-money)
+- [Transportation](/essentials/transportation)
+- [Accommodation Guide](/essentials/accommodation)
+- [Packing Guide](/essentials/packing-guide)
+
+### Activities & Culture
+- [Adventure Activities](/adventure/activities-and-experiences) - Rafting, bungee, safaris & more
+- [Zimbabwean Cuisine](/culture/cuisine)
+- [Art & Music](/culture/art-and-music)
+- [Festivals & Events](/culture/festivals-and-events)
+
+### Resources
+- [Emergency Contacts](/resources/emergency-contacts)
+- [Tour Operators](/resources/tour-operators)
+- [FAQ](/faq)
+
+## Development
+
+This site is built with [Mintlify](https://mintlify.com).
+
+### Local Development
+
+Install the Mintlify CLI:
+
+```bash
 npm i -g mintlify
 ```
 
-Run the following command at the root of your documentation (where mint.json is)
+Run the development server:
 
-```
+```bash
 mintlify dev
 ```
 
-### Publishing Changes
+### Deployment
 
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
+Changes pushed to the main branch are automatically deployed via the Mintlify GitHub App.
 
-#### Troubleshooting
+### Troubleshooting
 
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `mint.json`
+- **Mintlify dev isn't running** - Run `mintlify install` to re-install dependencies
+- **Page loads as a 404** - Ensure you're running in a folder with `mint.json`
+
+## Contributing
+
+We welcome contributions! If you have suggestions for improving our travel guides or spot any outdated information, please open an issue or submit a pull request.
+
+## Contact
+
+- **Website:** [travel-info.co.zw](https://travel-info.co.zw)
+- **Email:** hi@travel-info.co.zw
+- **Contact Form:** [Get in touch](/contact)
+
+## License
+
+Content is for informational purposes. Please verify important details (visa requirements, health advisories, etc.) with official sources before traveling.
