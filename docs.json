@@ -117,7 +117,9 @@
               "culture/people-and-tribes",
               "culture/art-and-music",
               "culture/cuisine",
-              "culture/festivals-and-events"
+              "culture/festivals-and-events",
+              "culture/shopping-guide",
+              "culture/religious-sites"
             ]
           },
           {
@@ -133,7 +135,10 @@
             "pages": [
               "adventure/activities-and-experiences",
               "adventure/water-sports",
-              "adventure/hiking-and-trekking"
+              "adventure/hiking-and-trekking",
+              "adventure/nightlife-entertainment",
+              "adventure/photography-guide",
+              "adventure/wellness-spa"
             ]
           }
         ]
@@ -157,6 +162,16 @@
               "essentials/packing-guide",
               "essentials/responsible-tourism",
               "essentials/images"
+            ]
+          },
+          {
+            "group": "Culture & Customs",
+            "pages": [
+              "essentials/local-customs",
+              "essentials/tipping-guide",
+              "essentials/public-holidays",
+              "essentials/weather-by-region",
+              "essentials/accessibility-guide"
             ]
           }
         ]
@@ -241,6 +256,9 @@
               "planning/couples-travel",
               "planning/solo-travel",
               "planning/group-travel",
+              "planning/senior-travel",
+              "planning/lgbtq-travel",
+              "planning/honeymoon-weddings",
               "planning/safari-planning"
             ]
           },
@@ -264,7 +282,8 @@
               "get-involved/student-contributors-program",
               "get-involved/travel-enthusiast-community",
               "get-involved/business-partner-network",
-              "get-involved/local-expert-connections"
+              "get-involved/local-expert-connections",
+              "get-involved/volunteer-opportunities"
             ]
           }
         ]
