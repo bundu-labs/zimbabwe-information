@@ -1,10 +1,14 @@
+console.log('🟡 Loading supabase.js');
+
 import { createClient } from '@supabase/supabase-js';
 
 // Supabase configuration - anon key is safe for client-side use with RLS
 const supabaseUrl = 'https://aqjhuyqhgmmdutwzqvyv.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxamh1eXFoZ21tZHV0d3pxdnl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1Nzg5MDQsImV4cCI6MjA4MDE1NDkwNH0.TNC0UiYug3kRCVpySEHlCuXxsFRSuv3Mad2UwKMVrDE';
 
+console.log('🟡 Creating Supabase client...');
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+console.log('🟡 Supabase client created:', supabase ? '✓' : '✗');
 export { supabaseUrl };
 
 // Expert categories with labels and icons
