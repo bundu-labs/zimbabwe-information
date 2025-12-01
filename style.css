@@ -15,12 +15,14 @@
   --font-family: 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-heading: 'Noto Serif', Georgia, 'Times New Roman', serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  
-  /* Colors for better accessibility */
-  --bg-primary: #f0f0f0;
-  --text-primary: #1a1a1a;
+
+  /* Improved color palette for accessibility - warm off-white and soft charcoal */
+  --bg-primary: #FAF9F6;        /* Warm off-white - easier on eyes than pure white */
+  --bg-secondary: #F5F4F1;      /* Slightly darker for contrast areas */
+  --text-primary: #2D3436;      /* Soft charcoal - less harsh than black */
+  --text-secondary: #4A5568;    /* Muted text for less emphasis */
   --primary-color: #0D9373;
-  
+
   /* Spacing scale */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -28,25 +30,40 @@
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
+
+  /* Typography scale for better readability */
+  --font-size-base: 1.0625rem;  /* 17px - slightly larger than default 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-sm: 0.9375rem;    /* 15px */
+  --line-height-relaxed: 1.75;  /* More breathing room for body text */
 }
 
-/* 
- * Base Styles 
+/*
+ * Base Styles
  */
 body {
   font-family: var(--font-family);
   font-weight: 400;
-  line-height: 1.6;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
   color: var(--text-primary);
   background-color: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-display: swap; /* Improve font loading */
+  font-display: swap;
+  /* Improve text rendering */
+  text-rendering: optimizeLegibility;
 }
 
-/* Ensure navbar background is properly set */
+/* Ensure navbar background matches the warm off-white theme */
 #navbar {
-  background-color: #fffff2;
+  background-color: #FAF8F5;
+}
+
+/* Main content area - ensure good reading width and spacing */
+main, article, .content {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
 }
 
 /* 
@@ -152,28 +169,45 @@ h6, .heading6 {
   line-height: 1.7;
 }
 
-/* 
- * Text Elements 
+/*
+ * Text Elements - Optimized for readability
  */
 p {
-  margin-bottom: var(--spacing-md);
-  line-height: 1.7; /* Improved readability */
+  margin-bottom: var(--spacing-lg);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-base);
+  /* Optimal reading measure - about 65-75 characters per line */
+  max-width: 70ch;
+}
+
+/* Paragraphs inside articles/content should have good spacing */
+article p, .content p, main p {
+  margin-bottom: var(--spacing-lg);
 }
 
 ul, ol {
-  padding-left: var(--spacing-lg);
-  margin-bottom: var(--spacing-md);
-  line-height: 1.7;
+  padding-left: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-base);
+}
+
+li {
+  margin-bottom: var(--spacing-sm);
 }
 
 blockquote {
-  font-family: 'Noto Sans', var(--font-family);
+  font-family: var(--font-family);
   font-weight: 400;
   font-style: italic;
+  font-size: var(--font-size-lg);
   border-left: 4px solid var(--primary-color);
-  padding-left: var(--spacing-md);
-  margin-left: 0;
-  line-height: 1.7;
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+  background-color: var(--bg-secondary);
+  border-radius: 0 8px 8px 0;
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
 }
 
 /* Links */
@@ -455,7 +489,7 @@ article img[src*="/images/general/"] {
   }
 }
 
-/* Dark mode hamburger icon color adjustment */
+/* Dark mode hamburger icon color adjustment - matches warm cream text */
 @media (max-width: 768px) and (prefers-color-scheme: dark) {
   button[aria-label*="menu" i]::before,
   button[aria-label*="Menu" i]::before,
@@ -464,10 +498,10 @@ article img[src*="/images/general/"] {
   button[aria-label*="options" i]::before,
   button[aria-label*="Options" i]::before,
   button[aria-label*="navigation" i]::before {
-    background-color: #f0f0f0 !important;
+    background-color: #E8E6E3 !important;
     box-shadow:
-      0 8px 0 0 #f0f0f0,
-      0 16px 0 0 #f0f0f0 !important;
+      0 8px 0 0 #E8E6E3,
+      0 16px 0 0 #E8E6E3 !important;
   }
 }
 
@@ -528,29 +562,42 @@ select:focus {
   }
 }
 
-/* Dark mode support */
+/* Dark mode support - soft charcoal with warm cream text */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: #1a1a1a;
-    --text-primary: #f0f0f0;
+    --bg-primary: #1E2023;        /* Soft charcoal - not pure black */
+    --bg-secondary: #282A2E;      /* Slightly lighter for contrast */
+    --text-primary: #E8E6E3;      /* Warm cream - easier on eyes than white */
+    --text-secondary: #A0A4A8;    /* Muted text for less emphasis */
   }
-  
+
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
   }
-  
+
   #navbar {
-    background-color: #2a2a2a;
+    background-color: #252729;
   }
-  
+
   /* Slightly reduce heading weights in dark mode for better rendering */
   h1, .page-title {
     font-weight: 600;
   }
-  
+
   h2, h3 {
     font-weight: 500;
+  }
+
+  /* Blockquote styling for dark mode */
+  blockquote {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+  }
+
+  /* Cards and content boxes in dark mode */
+  .card, [class*="card"], [class*="callout"], [class*="note"] {
+    background-color: var(--bg-secondary);
   }
 }
 
