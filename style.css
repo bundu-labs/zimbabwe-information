@@ -55,10 +55,23 @@ select:focus {
 }
 
 /*
- * Contact Form Styles
+ * Form Styles
  */
+
+/* Form labels */
+form label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+/* Text inputs, selects, and textareas */
 form input[type="text"],
 form input[type="email"],
+form input[type="tel"],
+form input[type="url"],
 form select,
 form textarea {
   width: 100%;
@@ -69,6 +82,7 @@ form textarea {
   color: #111827;
   font-size: 1rem;
   line-height: 1.5;
+  margin-top: 0.25rem;
 }
 
 form select {
@@ -81,14 +95,31 @@ form textarea {
   resize: vertical;
 }
 
-form input:focus,
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="tel"]:focus,
+form input[type="url"]:focus,
 form select:focus,
 form textarea:focus {
   border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(13, 147, 115, 0.2);
 }
 
+/* Checkbox inputs */
+form input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+/* Submit buttons */
 form button[type="submit"] {
-  width: 100%;
+  display: inline-flex;
+  justify-content: center;
   padding: 0.625rem 1rem;
   background-color: var(--primary-color);
   color: #fff;
@@ -106,12 +137,22 @@ form button[type="submit"]:hover {
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
+  form label {
+    color: #d1d5db;
+  }
+
   form input[type="text"],
   form input[type="email"],
+  form input[type="tel"],
+  form input[type="url"],
   form select,
   form textarea {
     background-color: #1f2937;
     border-color: #4b5563;
     color: #f3f4f6;
+  }
+
+  form input[type="checkbox"] {
+    border-color: #4b5563;
   }
 }
