@@ -353,6 +353,7 @@ article img[src*="/images/general/"] {
 /*
  * Mobile Menu Accessibility Improvements
  * Increases touch target size for easier mobile navigation
+ * Replaces three-dot icon with hamburger menu icon
  * Apple HIG recommends minimum 44x44px touch targets
  */
 
@@ -373,20 +374,18 @@ article img[src*="/images/general/"] {
     justify-content: center !important;
   }
 
-  /* Target menu icons and make them larger */
-  #navbar button svg,
-  nav button svg,
-  header button svg,
-  [class*="navbar"] button svg,
-  [class*="topnav"] button svg,
-  [class*="mobile"] button svg {
-    width: 28px !important;
-    height: 28px !important;
-    min-width: 28px !important;
-    min-height: 28px !important;
+  /* Hide the original three-dot SVG icon and replace with hamburger */
+  button[aria-label*="menu" i] svg,
+  button[aria-label*="Menu" i] svg,
+  button[aria-label*="more" i] svg,
+  button[aria-label*="More" i] svg,
+  button[aria-label*="options" i] svg,
+  button[aria-label*="Options" i] svg,
+  button[aria-label*="navigation" i] svg {
+    display: none !important;
   }
 
-  /* Target three-dot menu / more options button specifically */
+  /* Create hamburger icon using CSS */
   button[aria-label*="menu" i],
   button[aria-label*="Menu" i],
   button[aria-label*="more" i],
@@ -397,20 +396,44 @@ article img[src*="/images/general/"] {
     min-width: 48px !important;
     min-height: 48px !important;
     padding: 12px !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
   }
 
-  button[aria-label*="menu" i] svg,
-  button[aria-label*="Menu" i] svg,
-  button[aria-label*="more" i] svg,
-  button[aria-label*="More" i] svg,
-  button[aria-label*="options" i] svg,
-  button[aria-label*="Options" i] svg,
-  button[aria-label*="navigation" i] svg {
-    width: 28px !important;
-    height: 28px !important;
+  /* Hamburger icon lines using pseudo-elements and box-shadow */
+  button[aria-label*="menu" i]::before,
+  button[aria-label*="Menu" i]::before,
+  button[aria-label*="more" i]::before,
+  button[aria-label*="More" i]::before,
+  button[aria-label*="options" i]::before,
+  button[aria-label*="Options" i]::before,
+  button[aria-label*="navigation" i]::before {
+    content: "" !important;
+    display: block !important;
+    width: 24px !important;
+    height: 3px !important;
+    background-color: currentColor !important;
+    border-radius: 2px !important;
+    box-shadow:
+      0 8px 0 0 currentColor,
+      0 16px 0 0 currentColor !important;
   }
 
-  /* Target hamburger menu icon */
+  /* Keep other navbar button SVGs visible and sized appropriately */
+  #navbar button:not([aria-label*="menu" i]):not([aria-label*="Menu" i]):not([aria-label*="more" i]):not([aria-label*="More" i]):not([aria-label*="options" i]):not([aria-label*="Options" i]):not([aria-label*="navigation" i]) svg,
+  nav button:not([aria-label*="menu" i]):not([aria-label*="Menu" i]):not([aria-label*="more" i]):not([aria-label*="More" i]):not([aria-label*="options" i]):not([aria-label*="Options" i]):not([aria-label*="navigation" i]) svg,
+  header button:not([aria-label*="menu" i]):not([aria-label*="Menu" i]):not([aria-label*="more" i]):not([aria-label*="More" i]):not([aria-label*="options" i]):not([aria-label*="Options" i]):not([aria-label*="navigation" i]) svg {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+  }
+
+  /* Target hamburger menu icon classes */
   [class*="hamburger"],
   [class*="burger"],
   [class*="menu-icon"],
@@ -429,6 +452,22 @@ article img[src*="/images/general/"] {
     min-height: 44px !important;
     padding: 12px 16px !important;
     font-size: 16px !important;
+  }
+}
+
+/* Dark mode hamburger icon color adjustment */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  button[aria-label*="menu" i]::before,
+  button[aria-label*="Menu" i]::before,
+  button[aria-label*="more" i]::before,
+  button[aria-label*="More" i]::before,
+  button[aria-label*="options" i]::before,
+  button[aria-label*="Options" i]::before,
+  button[aria-label*="navigation" i]::before {
+    background-color: #f0f0f0 !important;
+    box-shadow:
+      0 8px 0 0 #f0f0f0,
+      0 16px 0 0 #f0f0f0 !important;
   }
 }
 
