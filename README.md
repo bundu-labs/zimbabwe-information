@@ -79,4 +79,8 @@ We welcome contributions! If you have suggestions for improving our travel guide
 
 ## License
 
-Content is for informational purposes. Please verify important details (visa requirements, health advisories, etc.) with official sources before traveling.
+This work is licensed under a [Creative Commons Attribution 4.0 International License](LICENSE).
+
+You are free to share and adapt this content with appropriate attribution.
+
+**Note:** Please verify important details (visa requirements, health advisories, etc.) with official sources before traveling.
