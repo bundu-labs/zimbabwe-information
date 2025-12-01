@@ -1,20 +1,31 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: Travel information request
-labels: documentation, enhancement, question
+name: Content Request
+about: Suggest new travel information or content to add
+title: "[Request] "
+labels: documentation, enhancement
 assignees: bryanfawcett
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Content Topic**
+What travel topic or information would you like to see added?
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Why Is This Useful?**
+Explain how this information would help travelers to Zimbabwe.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Suggested Content**
+If you have specific information or sources to share, please include them here.
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Category**
+Where would this content fit best?
+- [ ] Destinations
+- [ ] Planning
+- [ ] Essentials (visas, health, safety)
+- [ ] Culture
+- [ ] Wildlife & Safari
+- [ ] Adventure Activities
+- [ ] Getting Involved
+- [ ] Other: ___________
+
+**Additional Context**
+Add any other context, links, or references about the content request.
