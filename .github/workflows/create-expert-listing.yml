@@ -1,0 +1,202 @@
+name: Create Expert Listing
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  create-listing:
+    # Only run when "approved" label is added to issues with "local-expert" label
+    if: github.event.label.name == 'approved' && contains(github.event.issue.labels.*.name, 'local-expert')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Parse issue and create listing
+        id: parse
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body;
+
+            // Parse the issue form fields
+            function parseField(body, label) {
+              const regex = new RegExp(`### ${label}\\s*\\n\\s*([\\s\\S]*?)(?=\\n### |$)`, 'i');
+              const match = body.match(regex);
+              if (match) {
+                return match[1].trim();
+              }
+              return '';
+            }
+
+            const data = {
+              fullName: parseField(body, 'Full Name'),
+              email: parseField(body, 'Email Address'),
+              phone: parseField(body, 'Phone/WhatsApp'),
+              location: parseField(body, 'Location/Region'),
+              category: parseField(body, 'Expert Category'),
+              yearsExperience: parseField(body, 'Years of Experience'),
+              certifications: parseField(body, 'Certifications & Qualifications'),
+              languages: parseField(body, 'Languages Spoken'),
+              services: parseField(body, 'Services Offered'),
+              bio: parseField(body, 'Short Bio'),
+              motivation: parseField(body, 'Why do you want to join our network\\?'),
+              website: parseField(body, 'Website or Social Media \\(optional\\)'),
+              profileImage: parseField(body, 'Profile Image URL \\(optional\\)')
+            };
+
+            // Create a URL-friendly slug from the name
+            const slug = data.fullName
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)/g, '');
+
+            // Map category to icon
+            const categoryIcons = {
+              'Safari Guide (Wildlife)': 'paw',
+              'Birding Specialist': 'dove',
+              'Walking Safari Guide': 'shoe-prints',
+              'Photography Guide': 'camera',
+              'Cultural & Heritage Expert': 'landmark',
+              'Adventure Activity Guide': 'person-hiking',
+              'Hiking & Trekking Guide': 'mountain',
+              'Fishing Guide': 'fish',
+              'Urban/City Guide': 'city',
+              'Food & Culinary Expert': 'utensils',
+              'Arts & Crafts Specialist': 'palette',
+              'Historical Guide': 'book',
+              'Other': 'user'
+            };
+
+            const icon = categoryIcons[data.category] || 'user';
+            const today = new Date().toISOString().split('T')[0];
+
+            // Generate MDX content
+            const mdxContent = `---
+            title: "${data.fullName}"
+            description: "${data.category} based in ${data.location} - ${data.bio.substring(0, 150)}..."
+            sidebarTitle: "${data.fullName.split(' ')[0]}"
+            'og:image': '${data.profileImage || 'https://travel-info.co.zw/images/hero-light.svg'}'
+            'og:site_name': "Zimbabwe Travel Information"
+            icon: "${icon}"
+            ---
+
+            # ${data.fullName}
+
+            <Card title="${data.category}" icon="${icon}">
+              **Location:** ${data.location}
+
+              **Experience:** ${data.yearsExperience}
+
+              **Languages:** ${data.languages}
+            </Card>
+
+            ## About
+
+            ${data.bio}
+
+            ## Services Offered
+
+            ${data.services}
+
+            ## Qualifications & Certifications
+
+            ${data.certifications}
+
+            ## Contact
+
+            <CardGroup cols={2}>
+              <Card title="Email" icon="envelope">
+                [${data.email}](mailto:${data.email})
+              </Card>
+              <Card title="Phone/WhatsApp" icon="phone">
+                ${data.phone}
+              </Card>
+            </CardGroup>
+
+            ${data.website ? `
+            ## Online Presence
+
+            [Visit Website/Profile](${data.website})
+            ` : ''}
+
+            ---
+
+            <Note>
+            This expert has been verified by Zimbabwe Travel Information. Last updated: ${today}
+            </Note>
+            `.split('\n').map(line => line.trim()).join('\n');
+
+            core.setOutput('slug', slug);
+            core.setOutput('mdx_content', mdxContent);
+            core.setOutput('full_name', data.fullName);
+            core.setOutput('category', data.category);
+            core.setOutput('location', data.location);
+
+      - name: Create expert listing file
+        run: |
+          mkdir -p experts
+          cat > "experts/${{ steps.parse.outputs.slug }}.mdx" << 'EXPERT_EOF'
+          ${{ steps.parse.outputs.mdx_content }}
+          EXPERT_EOF
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add expert listing: ${{ steps.parse.outputs.full_name }}"
+          title: "[Expert] Add listing for ${{ steps.parse.outputs.full_name }}"
+          body: |
+            ## New Expert Listing
+
+            This PR adds a new expert listing based on the approved application.
+
+            **Expert:** ${{ steps.parse.outputs.full_name }}
+            **Category:** ${{ steps.parse.outputs.category }}
+            **Location:** ${{ steps.parse.outputs.location }}
+
+            **Source Issue:** #${{ github.event.issue.number }}
+
+            ---
+
+            ### Checklist
+            - [ ] Review the generated MDX file
+            - [ ] Verify contact information is correct
+            - [ ] Add profile image if available
+            - [ ] Update docs.json navigation if needed
+          branch: expert/${{ steps.parse.outputs.slug }}
+          delete-branch: true
+          labels: |
+            local-expert
+            auto-generated
+
+      - name: Comment on issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Expert Listing Created! 🎉\n\nA pull request has been automatically created to add this expert to the directory.\n\n**Next Steps:**\n1. Review the generated PR\n2. Add a profile image if not provided\n3. Merge when ready\n\nThe listing will be live once the PR is merged.`
+            });
+
+            // Close the issue
+            github.rest.issues.update({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed'
+            });

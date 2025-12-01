@@ -285,6 +285,12 @@
               "get-involved/local-expert-connections",
               "get-involved/volunteer-opportunities"
             ]
+          },
+          {
+            "group": "Local Experts",
+            "pages": [
+              "experts/index"
+            ]
           }
         ]
       },

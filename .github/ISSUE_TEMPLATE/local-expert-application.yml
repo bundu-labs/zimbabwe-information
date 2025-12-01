@@ -1,0 +1,162 @@
+name: Local Expert Application
+description: Submit an application to join the Local Expert network
+title: "[Expert] "
+labels: ["local-expert", "application"]
+assignees:
+  - bryanfawcett
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Local Expert Application
+        Thank you for your interest in joining our Local Expert network! Please complete all fields below.
+
+  - type: input
+    id: full_name
+    attributes:
+      label: Full Name
+      description: Your full legal name
+      placeholder: e.g., Tendai Moyo
+    validations:
+      required: true
+
+  - type: input
+    id: email
+    attributes:
+      label: Email Address
+      description: Your contact email
+      placeholder: e.g., tendai@example.com
+    validations:
+      required: true
+
+  - type: input
+    id: phone
+    attributes:
+      label: Phone/WhatsApp
+      description: Your contact number
+      placeholder: e.g., +263 77 123 4567
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location/Region
+      description: Where are you based in Zimbabwe?
+      placeholder: e.g., Victoria Falls, Hwange, Harare
+    validations:
+      required: true
+
+  - type: dropdown
+    id: expert_category
+    attributes:
+      label: Expert Category
+      description: Select your primary area of expertise
+      options:
+        - Safari Guide (Wildlife)
+        - Birding Specialist
+        - Walking Safari Guide
+        - Photography Guide
+        - Cultural & Heritage Expert
+        - Adventure Activity Guide
+        - Hiking & Trekking Guide
+        - Fishing Guide
+        - Urban/City Guide
+        - Food & Culinary Expert
+        - Arts & Crafts Specialist
+        - Historical Guide
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: years_experience
+    attributes:
+      label: Years of Experience
+      description: How long have you been guiding?
+      options:
+        - 1-2 years
+        - 3-5 years
+        - 5-10 years
+        - 10+ years
+    validations:
+      required: true
+
+  - type: textarea
+    id: certifications
+    attributes:
+      label: Certifications & Qualifications
+      description: List your relevant certifications (ZPGA License, First Aid, FGASA, etc.)
+      placeholder: |
+        - ZPGA Professional Guide License Level 2
+        - First Aid Certified (2024)
+        - Dangerous Game Certificate
+    validations:
+      required: true
+
+  - type: input
+    id: languages
+    attributes:
+      label: Languages Spoken
+      description: List languages and proficiency levels
+      placeholder: e.g., English (fluent), Shona (native), German (conversational)
+    validations:
+      required: true
+
+  - type: textarea
+    id: services
+    attributes:
+      label: Services Offered
+      description: Describe the experiences and services you offer to travelers
+      placeholder: |
+        - Full-day game drives in Hwange National Park
+        - Walking safaris (certified)
+        - Bird watching tours
+        - Photography workshops
+    validations:
+      required: true
+
+  - type: textarea
+    id: bio
+    attributes:
+      label: Short Bio
+      description: A 2-3 sentence bio about yourself and your passion for Zimbabwe (will be displayed on your listing)
+      placeholder: |
+        Born and raised near Hwange, I've spent 15 years sharing the magic of Zimbabwe's wildlife with travelers from around the world. My specialty is tracking big cats and creating unforgettable walking safari experiences.
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why do you want to join our network?
+      description: Share your passion for Zimbabwe and why you want to connect with travelers
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Website or Social Media (optional)
+      description: Your website or social media profile
+      placeholder: https://your-website.com
+
+  - type: input
+    id: profile_image
+    attributes:
+      label: Profile Image URL (optional)
+      description: Link to a professional photo of yourself
+      placeholder: https://example.com/your-photo.jpg
+
+  - type: checkboxes
+    id: agreements
+    attributes:
+      label: Agreements
+      description: Please confirm the following
+      options:
+        - label: I confirm that all information provided is accurate
+          required: true
+        - label: I agree to the verification process (video interview, background check)
+          required: true
+        - label: I commit to ethical, sustainable tourism practices
+          required: true
