@@ -22,6 +22,9 @@ canonical: 'https://travel-info.co.zw/get-involved/local-expert-connections'
 'schema:type': Article
 ---
 
+import ExpertFormFormspree from "/snippets/ExpertFormFormspree.jsx"
+import ExpertFormSupabase from "/snippets/ExpertFormSupabase.jsx"
+import TestComponent from "/snippets/TestComponent.jsx"
 
 # Become a Local Expert
 
@@ -31,11 +34,23 @@ Are you a safari guide, cultural specialist, or adventure expert? Join our netwo
 
 <TestComponent />
 
-<Card title="Become a Verified Local Expert" icon="badge-check">
-  <p className="mb-4 text-gray-600 dark:text-gray-400">Share your knowledge, earn income, and connect with travelers from around the world. Complete the application below to get started.</p>
+<Tabs>
+  <Tab title="Formspree Form">
+    <Card title="Become a Verified Local Expert" icon="badge-check">
+      <p className="mb-4 text-gray-600 dark:text-gray-400">Share your knowledge, earn income, and connect with travelers from around the world. Complete the application below to get started.</p>
 
-  <ExpertForm />
-</Card>
+      <ExpertFormFormspree />
+    </Card>
+  </Tab>
+
+  <Tab title="Supabase Form">
+    <Card title="Supabase Version (For Comparison)" icon="database">
+      <p className="mb-4 text-gray-600 dark:text-gray-400">This version would store submissions directly in a Supabase database for structured data management.</p>
+
+      <ExpertFormSupabase />
+    </Card>
+  </Tab>
+</Tabs>
 
 <Note>
 **What happens next?** Your application is saved to our database. Our team will review it within 5-7 business days. If your qualifications meet our standards, we'll schedule a video interview to verify your credentials.
