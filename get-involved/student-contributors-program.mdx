@@ -127,88 +127,152 @@ To qualify for the Student Contributors Program, you should:
 
 ## Apply Now
 
-<Card title="Ready to share your Zimbabwe with the world?" icon="graduation-cap" iconType="duotone">
-  <p className="mt-2">Complete our application form to be considered for the upcoming contributor cohort.</p>
-  <div className="mt-4">
-    <form action="https://formspree.io/f/mgvkbwoq" method="POST">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Full Name
-            <input type="text" name="name" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Email
-            <input type="email" name="email" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            University/College
-            <input type="text" name="university" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Program/Year of Study
-            <input type="text" name="program" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Proposed Destination(s)
-            <input type="text" name="destinations" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Why are you interested in contributing to Zimbabwe Travel Information? (100-200 words)
-            <textarea name="interest" rows="4" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Your connection to the proposed destination(s) (100-200 words)
-            <textarea name="connection" rows="4" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Brief pitch for your proposed article (200-300 words)
-            <textarea name="pitch" rows="6" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Link to writing sample or portfolio (if available)
-            <input type="url" name="portfolio" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            How did you hear about this program?
-            <select name="referral_source" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              <option value="">Please select</option>
-              <option value="university">University notice</option>
-              <option value="social">Social media</option>
-              <option value="website">Zimbabwe Travel Information website</option>
-              <option value="friend">Friend or colleague</option>
-              <option value="professor">Professor recommendation</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
-        </div>
+<Card title="Ready to share your Zimbabwe with the world?" icon="graduation-cap">
+  <p className="mb-4 text-gray-600 dark:text-gray-400">Complete our application form to be considered for the upcoming contributor cohort. We review applications on a rolling basis.</p>
+
+  <form action="https://formspree.io/f/mgvkbwoq" method="POST" className="space-y-4">
+    <input type="hidden" name="_subject" value="Student Contributor Application - Zimbabwe Travel Info" />
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <label htmlFor="student_name" className="block text-sm font-medium mb-1">Full Name *</label>
+        <input
+          type="text"
+          name="name"
+          id="student_name"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="Your full name"
+        />
       </div>
-      <div className="mt-6">
-        <button type="submit" className="inline-flex justify-center rounded border border-transparent bg-indigo-600 py-1.5 px-3 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-          Submit Application
-        </button>
+      <div>
+        <label htmlFor="student_email" className="block text-sm font-medium mb-1">Email Address *</label>
+        <input
+          type="email"
+          name="email"
+          id="student_email"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="you@university.ac.zw"
+        />
       </div>
-    </form>
-  </div>
+    </div>
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <label htmlFor="student_university" className="block text-sm font-medium mb-1">University/College *</label>
+        <input
+          type="text"
+          name="university"
+          id="student_university"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="e.g., University of Zimbabwe"
+        />
+      </div>
+      <div>
+        <label htmlFor="student_program" className="block text-sm font-medium mb-1">Program/Year of Study *</label>
+        <input
+          type="text"
+          name="program"
+          id="student_program"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="e.g., BSc Tourism, 3rd Year"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label htmlFor="student_destination" className="block text-sm font-medium mb-1">Proposed Destination(s) *</label>
+      <input
+        type="text"
+        name="destinations"
+        id="student_destination"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="Which Zimbabwe destination(s) would you write about?"
+      />
+    </div>
+
+    <div>
+      <label htmlFor="student_interest" className="block text-sm font-medium mb-1">Why are you interested in contributing? (100-200 words) *</label>
+      <textarea
+        name="interest"
+        id="student_interest"
+        rows="4"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="Share your passion for Zimbabwe travel and why you want to contribute to our platform"
+      ></textarea>
+    </div>
+
+    <div>
+      <label htmlFor="student_connection" className="block text-sm font-medium mb-1">Your connection to the proposed destination(s) (100-200 words) *</label>
+      <textarea
+        name="connection"
+        id="student_connection"
+        rows="4"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="What makes you uniquely qualified to write about this destination? (local knowledge, personal experience, research, etc.)"
+      ></textarea>
+    </div>
+
+    <div>
+      <label htmlFor="student_pitch" className="block text-sm font-medium mb-1">Brief pitch for your proposed article (200-300 words) *</label>
+      <textarea
+        name="pitch"
+        id="student_pitch"
+        rows="5"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="Outline your article idea: What would you cover? What unique angle or insights would you bring? What would readers learn?"
+      ></textarea>
+    </div>
+
+    <div>
+      <label htmlFor="student_portfolio" className="block text-sm font-medium mb-1">Link to writing sample or portfolio (optional)</label>
+      <input
+        type="url"
+        name="portfolio"
+        id="student_portfolio"
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="https://your-portfolio.com or blog link"
+      />
+    </div>
+
+    <div>
+      <label htmlFor="student_referral" className="block text-sm font-medium mb-1">How did you hear about this program? *</label>
+      <select
+        name="referral_source"
+        id="student_referral"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+      >
+        <option value="">Please select...</option>
+        <option value="university">University notice/poster</option>
+        <option value="social">Social media</option>
+        <option value="website">Zimbabwe Travel Information website</option>
+        <option value="friend">Friend or classmate</option>
+        <option value="professor">Professor/lecturer recommendation</option>
+        <option value="career_services">Career services</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      className="w-full px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-md transition-colors"
+    >
+      Submit Application
+    </button>
+  </form>
 </Card>
+
+<Note>
+**Application Tips:** Strong applications include specific destination knowledge, a unique angle or personal connection to the location, and clear writing samples. We value authentic local perspectives and lesser-known destinations.
+</Note>
 
 ## Frequently Asked Questions
 

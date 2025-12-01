@@ -176,156 +176,218 @@ Support our platform while boosting your visibility. This package helps us keep 
 ## Application Form
 
 <Card title="Ready to join Zimbabwe's premier travel platform?" icon="rocket">
-  <p className="mt-2">Complete the form below to submit your business listing application. Our team will review your submission and contact you within 3 business days.</p>
-  
-  <div className="mt-4">
-    <form action="https://formspree.io/f/mvgerplg" method="POST">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Business Name *
-            <input type="text" name="business_name" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Contact Person *
-            <input type="text" name="contact_person" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Email Address *
-            <input type="email" name="email" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Phone Number *
-            <input type="tel" name="phone" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Website (if available)
-            <input type="url" name="website" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Business Category *
-            <select name="category" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              <option value="">Select Category</option>
-              <option value="accommodation">Accommodation</option>
-              <option value="activities">Activities & Tours</option>
-              <option value="dining">Dining & Entertainment</option>
-              <option value="transport">Transportation</option>
-              <option value="shopping">Shopping & Crafts</option>
-              <option value="services">Services</option>
-              <option value="attractions">Attractions</option>
-              <option value="wellness">Wellness & Health</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Location/Region *
-            <input type="text" name="location" required placeholder="e.g., Victoria Falls, Harare, Eastern Highlands" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
-          </label>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Listing Type *
-            <select name="listing_type" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              <option value="">Select Listing Type</option>
-              <option value="free">Free Listing</option>
-              <option value="verified">Verified Listing (requires verification)</option>
-            </select>
-          </label>
-        </div>
-        
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Business Description (100-300 words) *
-            <textarea name="description" rows="4" required placeholder="Briefly describe your business, what makes it unique, and the services you offer to travelers" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-          </label>
-        </div>
-        
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Target Travelers
-            <select name="target_travelers" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              <option value="">Primary target market</option>
-              <option value="international">International tourists</option>
-              <option value="regional">Regional African travelers</option>
-              <option value="domestic">Domestic Zimbabwean travelers</option>
-              <option value="business">Business travelers</option>
-              <option value="luxury">Luxury travelers</option>
-              <option value="budget">Budget travelers</option>
-              <option value="adventure">Adventure travelers</option>
-              <option value="family">Family travelers</option>
-              <option value="mixed">Mixed/All travelers</option>
-            </select>
-          </label>
-        </div>
-        
-        <div className="sm:col-span-2">
-          <div className="flex items-center">
-            <input type="checkbox" name="promotion_interest" value="yes" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-            <label className="ml-2 text-sm text-gray-700">I'm interested in the Business Promotion Package ($100)</label>
-          </div>
-        </div>
-        
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            How did you hear about Zimbabwe Travel Information?
-            <select name="referral_source" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-              <option value="">Please select</option>
-              <option value="website">Found your website</option>
-              <option value="social_media">Social media</option>
-              <option value="search_engine">Search engine</option>
-              <option value="referral">Business referral</option>
-              <option value="tourism_board">Tourism association</option>
-              <option value="student_contributor">Student contributor</option>
-              <option value="community_member">Community member</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
-        </div>
-        
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700">
-            Additional Comments or Questions
-            <textarea name="comments" rows="3" placeholder="Any specific questions about the listing process or additional information you'd like to share" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-          </label>
-        </div>
-        
-        <div className="sm:col-span-2">
-          <div className="flex items-center">
-            <input type="checkbox" name="terms_agreed" required className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-            <label className="ml-2 text-sm text-gray-700">
-              I agree to the <a href="/terms-of-service" className="text-indigo-600 hover:text-indigo-500">Terms of Service</a> and <a href="/privacy-policy" className="text-indigo-600 hover:text-indigo-500">Privacy Policy</a> *
-            </label>
-          </div>
-        </div>
+  <p className="mb-4 text-gray-600 dark:text-gray-400">Complete the form below to submit your business listing application. Our team will review your submission and contact you within 3 business days.</p>
+
+  <form action="https://formspree.io/f/mvgerplg" method="POST" className="space-y-4">
+    <input type="hidden" name="_subject" value="Business Listing Application - Zimbabwe Travel Info" />
+
+    <div>
+      <label htmlFor="biz_name" className="block text-sm font-medium mb-1">Business Name *</label>
+      <input
+        type="text"
+        name="business_name"
+        id="biz_name"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="Your business name"
+      />
+    </div>
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <label htmlFor="biz_contact" className="block text-sm font-medium mb-1">Contact Person *</label>
+        <input
+          type="text"
+          name="contact_person"
+          id="biz_contact"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="Primary contact name"
+        />
       </div>
-      
-      <div className="mt-6">
-        <button type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-          Submit Business Listing Application
-        </button>
+      <div>
+        <label htmlFor="biz_email" className="block text-sm font-medium mb-1">Email Address *</label>
+        <input
+          type="email"
+          name="email"
+          id="biz_email"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="business@example.com"
+        />
       </div>
-    </form>
-  </div>
+    </div>
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <label htmlFor="biz_phone" className="block text-sm font-medium mb-1">Phone Number *</label>
+        <input
+          type="tel"
+          name="phone"
+          id="biz_phone"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="+263 77 XXX XXXX"
+        />
+      </div>
+      <div>
+        <label htmlFor="biz_website" className="block text-sm font-medium mb-1">Website (optional)</label>
+        <input
+          type="url"
+          name="website"
+          id="biz_website"
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="https://your-business.com"
+        />
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <label htmlFor="biz_category" className="block text-sm font-medium mb-1">Business Category *</label>
+        <select
+          name="category"
+          id="biz_category"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        >
+          <option value="">Select category...</option>
+          <option value="accommodation">Accommodation</option>
+          <option value="activities">Activities & Tours</option>
+          <option value="dining">Dining & Entertainment</option>
+          <option value="transport">Transportation</option>
+          <option value="shopping">Shopping & Crafts</option>
+          <option value="services">Services</option>
+          <option value="attractions">Attractions</option>
+          <option value="wellness">Wellness & Health</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="biz_location" className="block text-sm font-medium mb-1">Location/Region *</label>
+        <input
+          type="text"
+          name="location"
+          id="biz_location"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="e.g., Victoria Falls, Harare"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label htmlFor="biz_listing_type" className="block text-sm font-medium mb-1">Listing Type *</label>
+      <select
+        name="listing_type"
+        id="biz_listing_type"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+      >
+        <option value="">Select listing type...</option>
+        <option value="free">Free Listing</option>
+        <option value="verified">Verified Listing (requires verification)</option>
+      </select>
+    </div>
+
+    <div>
+      <label htmlFor="biz_description" className="block text-sm font-medium mb-1">Business Description (100-300 words) *</label>
+      <textarea
+        name="description"
+        id="biz_description"
+        rows="4"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="Describe your business, what makes it unique, and the services you offer to travelers"
+      ></textarea>
+    </div>
+
+    <div>
+      <label htmlFor="biz_target" className="block text-sm font-medium mb-1">Target Travelers</label>
+      <select
+        name="target_travelers"
+        id="biz_target"
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+      >
+        <option value="">Select primary target market...</option>
+        <option value="international">International tourists</option>
+        <option value="regional">Regional African travelers</option>
+        <option value="domestic">Domestic Zimbabwean travelers</option>
+        <option value="business">Business travelers</option>
+        <option value="luxury">Luxury travelers</option>
+        <option value="budget">Budget travelers</option>
+        <option value="adventure">Adventure travelers</option>
+        <option value="family">Family travelers</option>
+        <option value="mixed">Mixed/All travelers</option>
+      </select>
+    </div>
+
+    <div className="flex items-center gap-2">
+      <input
+        type="checkbox"
+        name="promotion_interest"
+        id="biz_promo"
+        value="yes"
+        className="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500"
+      />
+      <label htmlFor="biz_promo" className="text-sm">I'm interested in the Business Promotion Package ($100)</label>
+    </div>
+
+    <div>
+      <label htmlFor="biz_referral" className="block text-sm font-medium mb-1">How did you hear about us?</label>
+      <select
+        name="referral_source"
+        id="biz_referral"
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+      >
+        <option value="">Please select...</option>
+        <option value="website">Found your website</option>
+        <option value="social_media">Social media</option>
+        <option value="search_engine">Search engine</option>
+        <option value="referral">Business referral</option>
+        <option value="tourism_board">Tourism association</option>
+        <option value="student_contributor">Student contributor</option>
+        <option value="community_member">Community member</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div>
+      <label htmlFor="biz_comments" className="block text-sm font-medium mb-1">Additional Comments or Questions</label>
+      <textarea
+        name="comments"
+        id="biz_comments"
+        rows="3"
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="Any questions about the listing process or additional information"
+      ></textarea>
+    </div>
+
+    <div className="flex items-start gap-2">
+      <input
+        type="checkbox"
+        name="terms_agreed"
+        id="biz_terms"
+        required
+        className="h-4 w-4 mt-1 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500"
+      />
+      <label htmlFor="biz_terms" className="text-sm">
+        I agree to the <a href="/terms-of-service" className="text-primary-600 hover:text-primary-500">Terms of Service</a> and <a href="/privacy-policy" className="text-primary-600 hover:text-primary-500">Privacy Policy</a> *
+      </label>
+    </div>
+
+    <button
+      type="submit"
+      className="w-full px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-md transition-colors"
+    >
+      Submit Business Listing Application
+    </button>
+  </form>
 </Card>
+
+<Note>
+**What happens next?** Our team reviews all applications within 3 business days. We'll contact you to confirm your listing details and discuss verification options if applicable.
+</Note>
 
 ## Frequently Asked Questions
 
