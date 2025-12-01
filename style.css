@@ -16,9 +16,7 @@
   --font-family-heading: 'Noto Serif', Georgia, 'Times New Roman', serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Improved color palette for accessibility - warm off-white and soft charcoal */
-  --bg-primary: #FAF9F6;        /* Warm off-white - easier on eyes than pure white */
-  --bg-secondary: #F5F4F1;      /* Slightly darker for contrast areas */
+  /* Color palette for accessibility */
   --text-primary: #2D3436;      /* Soft charcoal - less harsh than black */
   --text-secondary: #4A5568;    /* Muted text for less emphasis */
   --primary-color: #0D9373;
@@ -47,16 +45,10 @@ body {
   font-size: var(--font-size-base);
   line-height: var(--line-height-relaxed);
   color: var(--text-primary);
-  background-color: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-display: swap;
   text-rendering: optimizeLegibility;
-}
-
-/* Ensure navbar background matches the warm off-white theme */
-#navbar {
-  background-color: #FAF8F5;
 }
 
 /* Main content area - ensure good reading width and spacing */
@@ -201,7 +193,6 @@ blockquote {
   border-left: 4px solid var(--primary-color);
   padding: var(--spacing-md) var(--spacing-lg);
   margin: var(--spacing-lg) 0;
-  background-color: var(--bg-secondary);
   border-radius: 0 8px 8px 0;
   line-height: var(--line-height-relaxed);
   color: var(--text-secondary);
@@ -361,8 +352,7 @@ select:focus {
   left: -9999px;
   z-index: 9999;
   padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--primary-color);
-  color: white;
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 500;
 }
@@ -375,12 +365,7 @@ select:focus {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   body {
-    background-color: #ffffff;
     color: #000000;
-  }
-
-  #navbar {
-    background-color: #ffffff;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -397,22 +382,15 @@ select:focus {
   }
 }
 
-/* Dark mode support - soft charcoal with warm cream text */
+/* Dark mode support - text color adjustments */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: #1E2023;
-    --bg-secondary: #282A2E;
     --text-primary: #E8E6E3;
     --text-secondary: #A0A4A8;
   }
 
   body {
-    background-color: var(--bg-primary);
     color: var(--text-primary);
-  }
-
-  #navbar {
-    background-color: #252729;
   }
 
   h1, .page-title {
@@ -424,19 +402,13 @@ select:focus {
   }
 
   blockquote {
-    background-color: var(--bg-secondary);
     color: var(--text-secondary);
-  }
-
-  .card, [class*="card"], [class*="callout"], [class*="note"] {
-    background-color: var(--bg-secondary);
   }
 }
 
 /* Print styles */
 @media print {
   body {
-    background-color: white;
     color: black;
     font-size: 12pt;
     font-family: Georgia, 'Times New Roman', serif;
@@ -451,7 +423,6 @@ select:focus {
   }
 
   * {
-    background: transparent !important;
     color: black !important;
   }
 }
