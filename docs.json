@@ -285,6 +285,14 @@
               "get-involved/local-expert-connections",
               "get-involved/volunteer-opportunities"
             ]
+          },
+          {
+            "group": "Directory",
+            "pages": [
+              "experts/index",
+              "directory/businesses",
+              "directory/accommodation"
+            ]
           }
         ]
       },

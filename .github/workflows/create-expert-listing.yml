@@ -1,0 +1,116 @@
+name: Approve Expert Listing
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  approve-expert:
+    # Only run when "approved" label is added to issues with "local-expert" label
+    if: github.event.label.name == 'approved' && contains(github.event.issue.labels.*.name, 'local-expert')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Parse issue and update Supabase
+        uses: actions/github-script@v7
+        env:
+          SUPABASE_URL: https://aqjhuyqhgmmdutwzqvyv.supabase.co
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body;
+
+            // Parse the issue form fields
+            function parseField(body, label) {
+              const regex = new RegExp(`### ${label}\\s*\\n\\s*([\\s\\S]*?)(?=\\n### |$)`, 'i');
+              const match = body.match(regex);
+              if (match) {
+                return match[1].trim();
+              }
+              return '';
+            }
+
+            // Map display category to database key
+            const categoryMap = {
+              'Safari Guide (Wildlife)': 'safari_guide',
+              'Birding Specialist': 'bird_guide',
+              'Walking Safari Guide': 'walking_safari',
+              'Photography Guide': 'photography_guide',
+              'Cultural & Heritage Expert': 'cultural_expert',
+              'Adventure Activity Guide': 'adventure_guide',
+              'Hiking & Trekking Guide': 'hiking_guide',
+              'Fishing Guide': 'fishing_guide',
+              'Urban/City Guide': 'city_guide',
+              'Food & Culinary Expert': 'food_culinary',
+              'Arts & Crafts Specialist': 'art_crafts',
+              'Historical Guide': 'historical',
+              'Other': 'other'
+            };
+
+            const displayCategory = parseField(body, 'Expert Category');
+            const data = {
+              full_name: parseField(body, 'Full Name'),
+              email: parseField(body, 'Email Address'),
+              phone: parseField(body, 'Phone/WhatsApp'),
+              location: parseField(body, 'Location/Region'),
+              category: categoryMap[displayCategory] || 'other',
+              years_experience: parseField(body, 'Years of Experience'),
+              certifications: parseField(body, 'Certifications & Qualifications'),
+              languages: parseField(body, 'Languages Spoken'),
+              services: parseField(body, 'Services Offered'),
+              bio: parseField(body, 'Short Bio'),
+              motivation: parseField(body, 'Why do you want to join our network\\?'),
+              website: parseField(body, 'Website or Social Media \\(optional\\)') || null,
+              profile_image: parseField(body, 'Profile Image URL \\(optional\\)') || null,
+              status: 'approved',
+              verified: true
+            };
+
+            console.log('Parsed data:', JSON.stringify(data, null, 2));
+
+            // Insert into Supabase
+            const response = await fetch(`${process.env.SUPABASE_URL}/rest/v1/experts`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'apikey': process.env.SUPABASE_SERVICE_KEY,
+                'Authorization': `Bearer ${process.env.SUPABASE_SERVICE_KEY}`,
+                'Prefer': 'return=representation'
+              },
+              body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+              const error = await response.text();
+              throw new Error(`Supabase error: ${response.status} - ${error}`);
+            }
+
+            const result = await response.json();
+            console.log('Expert added to database:', result);
+
+            // Store for use in comment
+            core.setOutput('expert_name', data.full_name);
+            core.setOutput('expert_category', displayCategory);
+            core.setOutput('expert_location', data.location);
+
+      - name: Comment on issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Expert Added to Directory! 🎉\n\nThe expert listing has been approved and added to the database.\n\n**Details:**\n- Expert is now visible in the Local Expert Directory\n- Listing is marked as verified\n- Travelers can now find and contact this expert\n\nNo further action needed. The listing is live!`
+            });
+
+            // Close the issue
+            github.rest.issues.update({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed'
+            });

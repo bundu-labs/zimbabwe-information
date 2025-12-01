@@ -538,6 +538,172 @@ The most ethical approach might be to travel responsibly as a tourist, spend mon
 
 ---
 
+## Express Your Interest
+
+Ready to explore volunteering in Zimbabwe? Complete this form to receive information about ethical volunteering opportunities that match your skills and interests.
+
+<Card title="Volunteer Interest Form" icon="hand-holding-heart">
+  <p className="mb-4 text-gray-600 dark:text-gray-400">Help us connect you with legitimate, ethical volunteer opportunities in Zimbabwe. Your information helps us understand your background and match you with meaningful programs.</p>
+
+  <form action="https://formspree.io/f/xqavrjzo" method="POST" className="space-y-4">
+    <input type="hidden" name="_subject" value="Volunteer Interest Inquiry - Zimbabwe Travel Info" />
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <label htmlFor="vol_name" className="block text-sm font-medium mb-1">Full Name *</label>
+        <input
+          type="text"
+          name="name"
+          id="vol_name"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="Your full name"
+        />
+      </div>
+      <div>
+        <label htmlFor="vol_email" className="block text-sm font-medium mb-1">Email Address *</label>
+        <input
+          type="email"
+          name="email"
+          id="vol_email"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="you@example.com"
+        />
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <label htmlFor="vol_country" className="block text-sm font-medium mb-1">Country of Residence *</label>
+        <input
+          type="text"
+          name="country"
+          id="vol_country"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="Your country"
+        />
+      </div>
+      <div>
+        <label htmlFor="vol_profession" className="block text-sm font-medium mb-1">Profession/Field *</label>
+        <input
+          type="text"
+          name="profession"
+          id="vol_profession"
+          required
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          placeholder="e.g., Veterinarian, Teacher, Engineer"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label htmlFor="vol_interest" className="block text-sm font-medium mb-1">Area of Interest *</label>
+      <select
+        name="volunteer_interest"
+        id="vol_interest"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+      >
+        <option value="">Select your area of interest...</option>
+        <option value="wildlife_conservation">Wildlife Conservation</option>
+        <option value="community_education">Community Education</option>
+        <option value="healthcare">Healthcare & Medical</option>
+        <option value="agriculture">Agriculture & Sustainable Farming</option>
+        <option value="youth_programs">Youth Empowerment Programs</option>
+        <option value="environmental">Environmental Conservation</option>
+        <option value="research">Research & Science</option>
+        <option value="other">Other (please specify in message)</option>
+      </select>
+    </div>
+
+    <div>
+      <label htmlFor="vol_duration" className="block text-sm font-medium mb-1">Preferred Duration *</label>
+      <select
+        name="volunteer_duration"
+        id="vol_duration"
+        required
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+      >
+        <option value="">How long can you commit?</option>
+        <option value="2_4_weeks">2-4 weeks</option>
+        <option value="1_3_months">1-3 months</option>
+        <option value="3_6_months">3-6 months</option>
+        <option value="6_plus_months">6+ months</option>
+        <option value="flexible">Flexible / Not sure yet</option>
+      </select>
+    </div>
+
+    <div>
+      <label htmlFor="vol_skills" className="block text-sm font-medium mb-1">Relevant Skills & Qualifications *</label>
+      <textarea
+        name="skills"
+        id="vol_skills"
+        required
+        rows="3"
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="Describe your professional qualifications, certifications, and skills relevant to volunteering"
+      ></textarea>
+    </div>
+
+    <div>
+      <label htmlFor="vol_motivation" className="block text-sm font-medium mb-1">Why do you want to volunteer in Zimbabwe? *</label>
+      <textarea
+        name="motivation"
+        id="vol_motivation"
+        required
+        rows="4"
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="Share your motivation for volunteering and what you hope to contribute"
+      ></textarea>
+    </div>
+
+    <div>
+      <label htmlFor="vol_timeframe" className="block text-sm font-medium mb-1">Preferred Timeframe</label>
+      <input
+        type="text"
+        name="timeframe"
+        id="vol_timeframe"
+        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        placeholder="e.g., June-August 2025, Flexible"
+      />
+    </div>
+
+    <button
+      type="submit"
+      className="w-full px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-md transition-colors"
+    >
+      Submit Volunteer Interest
+    </button>
+  </form>
+</Card>
+
+<Note>
+**Our Commitment to Ethical Volunteering:** We only connect volunteers with verified, community-led organizations that genuinely benefit from skilled assistance. We never support orphanage tourism, unethical wildlife interactions, or programs that displace local workers.
+</Note>
+
+---
+
+## Join Our Community
+
+Connect with other travelers and volunteers who care about ethical tourism and making a positive impact in Zimbabwe:
+
+<CardGroup cols={2}>
+  <Card title="Facebook Community" icon="facebook">
+    Join our active community of Zimbabwe enthusiasts sharing responsible travel experiences.
+
+    [Join the Group →](https://www.facebook.com/groups/zimbabwetravelinfo)
+  </Card>
+  <Card title="Discord Server" icon="discord">
+    Real-time discussions about volunteering, conservation, and ethical tourism in Zimbabwe.
+
+    [Join Discord →](https://discord.gg/dzHWFB44yw)
+  </Card>
+</CardGroup>
+
+---
+
 *Last updated: January 2025*
 
 *The volunteer landscape changes. Always research current programs and verify legitimacy before committing.*
