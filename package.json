@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "gray-matter": "^4.0.3"
+  },
+  "overrides": {
+    "js-yaml": ">=3.14.2"
   }
 }

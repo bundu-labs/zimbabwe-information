@@ -1,38 +1,29 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: Information is not correct
+name: Content Issue
+about: Report incorrect, outdated, or missing information
+title: "[Content] "
 labels: bug, documentation
 assignees: bryanfawcett
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Page/Section Affected**
+Which page or section contains the issue? (Please include the URL or path)
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Describe the Issue**
+A clear description of what is incorrect, outdated, or missing.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Current Information**
+What does the documentation currently say?
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Correct Information**
+What should it say instead? (If you know the correct information)
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**Source/Reference**
+If applicable, provide a source or reference that supports the correction.
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+**Additional Context**
+Add any other context about the issue here, such as:
+- When you noticed the information became outdated
+- How this affects travelers planning their trip
+- Screenshots if helpful

@@ -94,15 +94,19 @@ jobs:
 
           function extractTextContent(content) {
             return content
-              .replace(/^---[\s\S]*?---/, '')
-              .replace(/#{1,6}\s/g, '')
-              .replace(/\*\*(.*?)\*\*/g, '$1')
-              .replace(/\*(.*?)\*/g, '$1')
-              .replace(/`(.*?)`/g, '$1')
-              .replace(/```[\s\S]*?```/g, '')
-              .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-              .replace(/<[^>]+>/g, '')
-              .replace(/\n+/g, ' ')
+              .replace(/^---[\s\S]*?---/, '')           // Remove frontmatter
+              .replace(/#{1,6}\s/g, '')                 // Remove headers
+              .replace(/\*\*(.+?)\*\*/g, '$1')          // Remove **bold**
+              .replace(/__(.+?)__/g, '$1')              // Remove __bold__
+              .replace(/\*(.+?)\*/g, '$1')              // Remove *italic*
+              .replace(/_(.+?)_/g, '$1')                // Remove _italic_
+              .replace(/~~(.+?)~~/g, '$1')              // Remove ~~strikethrough~~
+              .replace(/`([^`]+)`/g, '$1')              // Remove inline code
+              .replace(/```[\s\S]*?```/g, '')           // Remove code blocks
+              .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1') // Remove images, keep alt text
+              .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')  // Remove links, keep text
+              .replace(/<[^>]+>/g, '')                  // Remove HTML tags
+              .replace(/\n+/g, ' ')                     // Replace newlines with spaces
               .trim();
           }
 
