@@ -1,4 +1,13 @@
 {
+  "name": "zti-docs",
+  "description": "Zimbabwe Travel Information - Open source documentation for travel guides",
+  "version": "1.0.0",
+  "license": "CC-BY-4.0",
+  "homepage": "https://travel-info.co.zw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nyuchitech/zti-docs"
+  },
   "devDependencies": {
     "gray-matter": "^4.0.3"
   }

@@ -1,8 +1,17 @@
 # Summary of Changes - Zimbabwe Travel Information
 
-**Date:** November 21, 2025
+**Date:** December 1, 2025
 **Branch:** main
-**Commit:** bf4268b
+
+---
+
+## Project Overview
+
+Zimbabwe Travel Information is an open source documentation site providing comprehensive travel guides for Zimbabwe. The content is licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+
+- **Website:** [travel-info.co.zw](https://travel-info.co.zw)
+- **License:** [CC BY 4.0](../LICENSE)
+- **Built with:** [Mintlify](https://mintlify.com)
 
 ---
 
@@ -166,6 +175,7 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
 - [x] Downloaded 1 working image
 - [x] Created all utility scripts
 - [x] Converted SEO workflow to manual script
+- [x] Added CC BY 4.0 open source license
 - [x] Pushed all changes to main branch
 
 ### ⚠️ Needs Manual Work
@@ -233,6 +243,8 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
 - **6 scripts created:** Utility automation
 - **17 images added:** 1 complete, 16 need re-download
 - **1 guide created:** IMAGE_DOWNLOAD_GUIDE.md
+- **LICENSE:** CC BY 4.0 open source license
+- **package.json:** Added project metadata and license field
 
 ---
 
@@ -244,8 +256,9 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
 - Images stored in `/images/` will be automatically served by Mintlify
 - Photo credits must be maintained when using images
 - Bot protection on Pixabay can be bypassed with manual downloads
+- Project licensed under CC BY 4.0 - attribution required for reuse
 
 ---
 
-**Last Updated:** 2025-11-21
+**Last Updated:** 2025-12-01
 **Status:** Ready for image manual download
