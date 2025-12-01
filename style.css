@@ -1,347 +1,38 @@
 /*
  * Custom stylesheet for Zimbabwe Travel Information
- * Optimized with Noto Serif for headings and Noto Sans for body text
- * Following web font best practices for performance and accessibility
+ * Simple: fonts, colors, and accessibility only
  */
 
-/* Import fonts - Only load the weights we actually use */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap');
 
 /*
  * CSS Variables
  */
 :root {
-  --font-family: 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-heading: 'Noto Serif', Georgia, 'Times New Roman', serif;
-  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
-  /* Improved color palette for accessibility - warm off-white and soft charcoal */
-  --bg-primary: #FAF9F6;        /* Warm off-white - easier on eyes than pure white */
-  --bg-secondary: #F5F4F1;      /* Slightly darker for contrast areas */
-  --text-primary: #2D3436;      /* Soft charcoal - less harsh than black */
-  --text-secondary: #4A5568;    /* Muted text for less emphasis */
+  --font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
+  --font-family-heading: 'Noto Serif', Georgia, serif;
   --primary-color: #0D9373;
-
-  /* Spacing scale */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-
-  /* Typography scale for better readability */
-  --font-size-base: 1.0625rem;  /* 17px - slightly larger than default 16px */
-  --font-size-lg: 1.125rem;     /* 18px */
-  --font-size-sm: 0.9375rem;    /* 15px */
-  --line-height-relaxed: 1.75;  /* More breathing room for body text */
 }
 
 /*
- * Base Styles
+ * Typography
  */
 body {
   font-family: var(--font-family);
-  font-weight: 400;
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-display: swap;
-  text-rendering: optimizeLegibility;
 }
 
-/* Ensure navbar background matches the warm off-white theme */
-#navbar {
-  background-color: #FAF8F5;
-}
-
-/* Main content area - ensure good reading width and spacing */
-main, article, .content {
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
-}
-
-/*
- * Typography - Using Noto Serif for ALL headings
- */
-
-/* Main title (H1) */
-h1, .heading1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-heading);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin-top: 0.6em;
-  margin-bottom: 0.6em;
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
 }
 
-/* Page title - Extra large */
-.page-title {
-  font-family: var(--font-family-heading);
-  font-weight: 900;
-  font-size: clamp(3rem, 7vw, 5rem);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-
-/* Section headings (H2) */
-h2, .heading2 {
-  font-family: var(--font-family-heading);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  margin-top: var(--spacing-xl);
-  margin-bottom: var(--spacing-md);
-  font-size: clamp(1.75rem, 4vw, 2.25rem);
-}
-
-/* Sub-headings (H3) */
-h3, .heading3 {
-  font-family: var(--font-family-heading);
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: 0;
-  margin-top: var(--spacing-lg);
-  margin-bottom: var(--spacing-sm);
-  font-size: clamp(1.375rem, 3vw, 1.75rem);
-}
-
-/* Smaller headings (H4-H6) */
-h4, .heading4 {
-  font-family: var(--font-family-heading);
-  font-weight: 500;
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-  line-height: 1.4;
-  margin-top: var(--spacing-lg);
-  margin-bottom: var(--spacing-sm);
-}
-
-h5, .heading5 {
-  font-family: var(--font-family-heading);
-  font-weight: 500;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.5;
-  margin-top: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
-}
-
-h6, .heading6 {
-  font-family: var(--font-family-heading);
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-top: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
-}
-
-/* Special heading styles */
-.section-title {
-  font-family: var(--font-family-heading);
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  border-bottom: 2px solid var(--primary-color);
-  padding-bottom: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Hero section heading */
-.hero h1 {
-  font-family: var(--font-family-heading);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  margin-bottom: var(--spacing-md);
-}
-
-.hero p {
-  font-family: var(--font-family);
-  font-weight: 300;
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
-  max-width: 42rem;
-  line-height: 1.7;
-}
-
-/*
- * Text Elements - Optimized for readability
- */
-p {
-  margin-bottom: var(--spacing-lg);
-  line-height: var(--line-height-relaxed);
-  font-size: var(--font-size-base);
-  max-width: 70ch;
-}
-
-article p, .content p, main p {
-  margin-bottom: var(--spacing-lg);
-}
-
-ul, ol {
-  padding-left: var(--spacing-xl);
-  margin-bottom: var(--spacing-lg);
-  line-height: var(--line-height-relaxed);
-  font-size: var(--font-size-base);
-}
-
-li {
-  margin-bottom: var(--spacing-sm);
-}
-
-blockquote {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-style: italic;
-  font-size: var(--font-size-lg);
-  border-left: 4px solid var(--primary-color);
-  padding: var(--spacing-md) var(--spacing-lg);
-  margin: var(--spacing-lg) 0;
-  background-color: var(--bg-secondary);
-  border-radius: 0 8px 8px 0;
-  line-height: var(--line-height-relaxed);
-  color: var(--text-secondary);
-}
-
-/* Links */
-a {
-  text-decoration: none;
-  transition: color 0.2s ease;
-  color: inherit;
-}
-
-a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 2px;
-}
-
-/* Code blocks */
 code, pre {
-  font-family: var(--font-family-mono);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 }
 
 /*
- * Components
- */
-
-/* Footer */
-footer {
-  font-family: var(--font-family);
-  font-weight: 400;
-  line-height: 1.6;
-  font-size: 0.875rem;
-}
-
-/* Navigation */
-.tab-button {
-  font-family: var(--font-family);
-  font-weight: 500;
-  text-transform: none;
-}
-
-.sidebar-item {
-  font-family: var(--font-family);
-  font-weight: 400;
-}
-
-.sidebar-title {
-  font-family: var(--font-family-heading);
-  font-weight: 600;
-  letter-spacing: 0;
-}
-
-/* Buttons */
-button, .button, .primary-button {
-  font-family: var(--font-family);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
-
-/* Cards */
-.card-title {
-  font-family: var(--font-family-heading);
-  font-weight: 600;
-  letter-spacing: 0;
-  margin-bottom: var(--spacing-sm);
-  font-size: 1.25rem;
-}
-
-.card-description {
-  font-family: var(--font-family);
-  font-weight: 400;
-  line-height: 1.6;
-}
-
-/* Accordion */
-.accordion-title {
-  font-family: var(--font-family);
-  font-weight: 600;
-}
-
-/* Tables */
-th {
-  font-family: var(--font-family);
-  font-weight: 600;
-}
-
-td {
-  font-family: var(--font-family);
-  font-weight: 400;
-}
-
-/* Card grid */
-.card-grid {
-  gap: var(--spacing-lg);
-}
-
-/*
- * Performance Optimization
- */
-@font-face {
-  font-family: 'Noto Serif';
-  src: local('Noto Serif'), local('NotoSerif'), local('Noto Serif Regular');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Noto Sans';
-  src: local('Noto Sans'), local('NotoSans'), local('Noto Sans Regular');
-  font-display: swap;
-}
-
-/*
- * Responsive Design
- */
-@media (max-width: 768px) {
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
-  }
-
-  h1, .heading1 {
-    font-weight: 600;
-  }
-
-  h2, .heading2 {
-    font-weight: 600;
-  }
-
-  ul, ol {
-    padding-left: var(--spacing-md);
-  }
-
-  blockquote {
-    padding-left: var(--spacing-sm);
-  }
-}
-
-/*
- * Accessibility Improvements
+ * Accessibility
  */
 
 /* Focus styles for keyboard navigation */
@@ -352,40 +43,6 @@ textarea:focus,
 select:focus {
   outline: 3px solid var(--primary-color);
   outline-offset: 2px;
-  border-radius: 2px;
-}
-
-/* Skip to main content link */
-.skip-to-content {
-  position: absolute;
-  left: -9999px;
-  z-index: 9999;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.skip-to-content:focus {
-  left: 10px;
-  top: 10px;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  body {
-    background-color: #ffffff;
-    color: #000000;
-  }
-
-  #navbar {
-    background-color: #ffffff;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 900;
-  }
 }
 
 /* Reduced motion preferences */
@@ -394,64 +51,5 @@ select:focus {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-/* Dark mode support - soft charcoal with warm cream text */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary: #1E2023;
-    --bg-secondary: #282A2E;
-    --text-primary: #E8E6E3;
-    --text-secondary: #A0A4A8;
-  }
-
-  body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-  }
-
-  #navbar {
-    background-color: #252729;
-  }
-
-  h1, .page-title {
-    font-weight: 600;
-  }
-
-  h2, h3 {
-    font-weight: 500;
-  }
-
-  blockquote {
-    background-color: var(--bg-secondary);
-    color: var(--text-secondary);
-  }
-
-  .card, [class*="card"], [class*="callout"], [class*="note"] {
-    background-color: var(--bg-secondary);
-  }
-}
-
-/* Print styles */
-@media print {
-  body {
-    background-color: white;
-    color: black;
-    font-size: 12pt;
-    font-family: Georgia, 'Times New Roman', serif;
-  }
-
-  nav, .sidebar, footer {
-    display: none;
-  }
-
-  h1, h2 {
-    page-break-after: avoid;
-  }
-
-  * {
-    background: transparent !important;
-    color: black !important;
   }
 }
