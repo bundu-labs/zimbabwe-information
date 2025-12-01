@@ -51,7 +51,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-display: swap;
-  /* Improve text rendering */
   text-rendering: optimizeLegibility;
 }
 
@@ -66,16 +65,16 @@ main, article, .content {
   line-height: var(--line-height-relaxed);
 }
 
-/* 
- * Typography - Using Playfair Display for ALL headings
+/*
+ * Typography - Using Noto Serif for ALL headings
  */
 
 /* Main title (H1) */
 h1, .heading1 {
   font-family: var(--font-family-heading);
-  font-weight: 700; /* Bold but not too heavy */
+  font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.02em; /* Slight negative for large sizes */
+  letter-spacing: -0.02em;
   margin-top: 0.6em;
   margin-bottom: 0.6em;
   font-size: clamp(2.25rem, 5vw, 3.5rem);
@@ -84,7 +83,7 @@ h1, .heading1 {
 /* Page title - Extra large */
 .page-title {
   font-family: var(--font-family-heading);
-  font-weight: 900; /* Extra bold for impact */
+  font-weight: 900;
   font-size: clamp(3rem, 7vw, 5rem);
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -93,7 +92,7 @@ h1, .heading1 {
 /* Section headings (H2) */
 h2, .heading2 {
   font-family: var(--font-family-heading);
-  font-weight: 600; /* Semi-bold */
+  font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.01em;
   margin-top: var(--spacing-xl);
@@ -115,7 +114,7 @@ h3, .heading3 {
 /* Smaller headings (H4-H6) */
 h4, .heading4 {
   font-family: var(--font-family-heading);
-  font-weight: 500; /* Medium weight */
+  font-weight: 500;
   font-size: clamp(1.125rem, 2.5vw, 1.375rem);
   line-height: 1.4;
   margin-top: var(--spacing-lg);
@@ -176,11 +175,9 @@ p {
   margin-bottom: var(--spacing-lg);
   line-height: var(--line-height-relaxed);
   font-size: var(--font-size-base);
-  /* Optimal reading measure - about 65-75 characters per line */
   max-width: 70ch;
 }
 
-/* Paragraphs inside articles/content should have good spacing */
 article p, .content p, main p {
   margin-bottom: var(--spacing-lg);
 }
@@ -228,8 +225,8 @@ code, pre {
   font-family: var(--font-family-mono);
 }
 
-/* 
- * Components 
+/*
+ * Components
  */
 
 /* Footer */
@@ -244,7 +241,7 @@ footer {
 .tab-button {
   font-family: var(--font-family);
   font-weight: 500;
-  text-transform: none; /* Remove uppercase for better readability */
+  text-transform: none;
 }
 
 .sidebar-item {
@@ -303,46 +300,8 @@ td {
 }
 
 /*
- * Hero Images - Fixed height with cover for all destination pages
- * Handles both vertical and horizontal images gracefully
- */
-article > p:first-of-type > img,
-article img[src*="/images/destinations/"],
-article img[src*="/images/general/"] {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 12px;
-  margin-top: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Responsive hero image sizing */
-@media (max-width: 768px) {
-  article > p:first-of-type > img,
-  article img[src*="/images/destinations/"],
-  article img[src*="/images/general/"] {
-    height: 250px;
-    border-radius: 12px;
-    margin-bottom: var(--spacing-lg);
-  }
-}
-
-@media (min-width: 1024px) {
-  article > p:first-of-type > img,
-  article img[src*="/images/destinations/"],
-  article img[src*="/images/general/"] {
-    height: 500px;
-  }
-}
-
-/*
  * Performance Optimization
  */
-
-/* Preload critical fonts */
 @font-face {
   font-family: 'Noto Serif';
   src: local('Noto Serif'), local('NotoSerif'), local('Noto Serif Regular');
@@ -359,13 +318,11 @@ article img[src*="/images/general/"] {
  * Responsive Design
  */
 @media (max-width: 768px) {
-  /* Adjust heading sizes on mobile */
   h1, h2, h3, h4, h5, h6 {
     margin-top: var(--spacing-md);
     margin-bottom: var(--spacing-sm);
   }
 
-  /* Slightly reduce font weights on mobile for better rendering */
   h1, .heading1 {
     font-weight: 600;
   }
@@ -374,7 +331,6 @@ article img[src*="/images/general/"] {
     font-weight: 600;
   }
 
-  /* Reduce padding on mobile */
   ul, ol {
     padding-left: var(--spacing-md);
   }
@@ -385,420 +341,7 @@ article img[src*="/images/general/"] {
 }
 
 /*
- * Mobile Menu Accessibility Improvements
- * Increases touch target size for easier mobile navigation
- * Replaces three-dot icon with hamburger menu icon
- * Apple HIG recommends minimum 44x44px touch targets
- */
-
-/* Target mobile menu buttons in navbar - common Mintlify selectors */
-@media (max-width: 768px) {
-  /* Increase all navbar button touch targets */
-  #navbar button,
-  nav button,
-  header button,
-  [class*="navbar"] button,
-  [class*="topnav"] button,
-  [class*="mobile"] button {
-    min-width: 48px !important;
-    min-height: 48px !important;
-    padding: 12px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  /* Hide the original three-dot SVG icon and replace with hamburger */
-  button[aria-label*="menu" i] svg,
-  button[aria-label*="Menu" i] svg,
-  button[aria-label*="more" i] svg,
-  button[aria-label*="More" i] svg,
-  button[aria-label*="options" i] svg,
-  button[aria-label*="Options" i] svg,
-  button[aria-label*="navigation" i] svg {
-    display: none !important;
-  }
-
-  /* Create hamburger icon using CSS */
-  button[aria-label*="menu" i],
-  button[aria-label*="Menu" i],
-  button[aria-label*="more" i],
-  button[aria-label*="More" i],
-  button[aria-label*="options" i],
-  button[aria-label*="Options" i],
-  button[aria-label*="navigation" i] {
-    min-width: 48px !important;
-    min-height: 48px !important;
-    padding: 12px !important;
-    position: relative !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 5px !important;
-  }
-
-  /* Hamburger icon lines using pseudo-elements and box-shadow */
-  button[aria-label*="menu" i]::before,
-  button[aria-label*="Menu" i]::before,
-  button[aria-label*="more" i]::before,
-  button[aria-label*="More" i]::before,
-  button[aria-label*="options" i]::before,
-  button[aria-label*="Options" i]::before,
-  button[aria-label*="navigation" i]::before {
-    content: "" !important;
-    display: block !important;
-    width: 24px !important;
-    height: 3px !important;
-    background-color: currentColor !important;
-    border-radius: 2px !important;
-    box-shadow:
-      0 8px 0 0 currentColor,
-      0 16px 0 0 currentColor !important;
-  }
-
-  /* Keep other navbar button SVGs visible and sized appropriately */
-  #navbar button:not([aria-label*="menu" i]):not([aria-label*="Menu" i]):not([aria-label*="more" i]):not([aria-label*="More" i]):not([aria-label*="options" i]):not([aria-label*="Options" i]):not([aria-label*="navigation" i]) svg,
-  nav button:not([aria-label*="menu" i]):not([aria-label*="Menu" i]):not([aria-label*="more" i]):not([aria-label*="More" i]):not([aria-label*="options" i]):not([aria-label*="Options" i]):not([aria-label*="navigation" i]) svg,
-  header button:not([aria-label*="menu" i]):not([aria-label*="Menu" i]):not([aria-label*="more" i]):not([aria-label*="More" i]):not([aria-label*="options" i]):not([aria-label*="Options" i]):not([aria-label*="navigation" i]) svg {
-    width: 24px !important;
-    height: 24px !important;
-    min-width: 24px !important;
-    min-height: 24px !important;
-  }
-
-  /* Target hamburger menu icon classes */
-  [class*="hamburger"],
-  [class*="burger"],
-  [class*="menu-icon"],
-  [class*="menu-toggle"] {
-    min-width: 48px !important;
-    min-height: 48px !important;
-    padding: 10px !important;
-  }
-
-  /* Dropdown menu items - easier to tap */
-  [role="menu"] button,
-  [role="menu"] a,
-  [role="menuitem"],
-  [class*="dropdown"] button,
-  [class*="dropdown"] a {
-    min-height: 44px !important;
-    padding: 12px 16px !important;
-    font-size: 16px !important;
-  }
-}
-
-/* Dark mode hamburger icon color adjustment - matches warm cream text */
-@media (max-width: 768px) and (prefers-color-scheme: dark) {
-  button[aria-label*="menu" i]::before,
-  button[aria-label*="Menu" i]::before,
-  button[aria-label*="more" i]::before,
-  button[aria-label*="More" i]::before,
-  button[aria-label*="options" i]::before,
-  button[aria-label*="Options" i]::before,
-  button[aria-label*="navigation" i]::before {
-    background-color: #E8E6E3 !important;
-    box-shadow:
-      0 8px 0 0 #E8E6E3,
-      0 16px 0 0 #E8E6E3 !important;
-  }
-}
-
-/*
- * Mobile Navbar Horizontal Alignment
- * Ensures logo, search, and hamburger are centered on same axis
- */
-@media (max-width: 768px) {
-  /* Fix navbar container alignment */
-  #navbar,
-  nav,
-  header,
-  [class*="navbar"],
-  [class*="topnav"],
-  [class*="header"] {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-  }
-
-  /* Navbar inner container */
-  #navbar > div,
-  nav > div,
-  header > div,
-  [class*="navbar"] > div,
-  [class*="topnav"] > div {
-    display: flex !important;
-    align-items: center !important;
-    width: 100% !important;
-  }
-
-  /* Logo container alignment */
-  [class*="logo"],
-  [class*="brand"],
-  a[href="/"] img,
-  header a:first-child,
-  nav a:first-child {
-    display: flex !important;
-    align-items: center !important;
-  }
-
-  /* Right side buttons container */
-  [class*="navbar"] > div > div:last-child,
-  nav > div > div:last-child,
-  header > div > div:last-child {
-    display: flex !important;
-    align-items: center !important;
-    gap: 4px !important;
-  }
-
-  /* Ensure all navbar buttons are vertically centered */
-  #navbar button,
-  nav button,
-  header button {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    vertical-align: middle !important;
-  }
-
-  /* Search icon alignment */
-  button[aria-label*="search" i],
-  button[aria-label*="Search" i],
-  [class*="search"] button {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-}
-
-/*
- * Full-Screen Mobile Menu
- * Makes the mobile navigation menu nearly full-page with large touch targets
- */
-@media (max-width: 768px) {
-  /* Mobile menu overlay - make it full screen */
-  [role="dialog"],
-  [class*="mobile-menu"],
-  [class*="MobileMenu"],
-  [class*="mobileMenu"],
-  [class*="sidebar"][class*="mobile"],
-  [class*="nav-menu"],
-  [class*="menu-overlay"],
-  div[class*="fixed"][class*="inset"],
-  nav[class*="mobile"] {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: 100vw !important;
-    max-height: 100vh !important;
-    overflow-y: auto !important;
-    z-index: 9999 !important;
-    padding: 80px 24px 40px 24px !important;
-    background-color: var(--bg-primary) !important;
-  }
-
-  /* Mobile menu navigation items - much larger */
-  [role="dialog"] a,
-  [role="dialog"] button,
-  [class*="mobile-menu"] a,
-  [class*="mobile-menu"] button,
-  [class*="MobileMenu"] a,
-  [class*="MobileMenu"] button,
-  [class*="mobileMenu"] a,
-  [class*="mobileMenu"] button,
-  [class*="nav-menu"] a,
-  [class*="nav-menu"] button,
-  nav[class*="mobile"] a,
-  nav[class*="mobile"] button {
-    display: block !important;
-    width: 100% !important;
-    min-height: 60px !important;
-    padding: 18px 20px !important;
-    font-size: 1.375rem !important; /* 22px - much larger text */
-    font-weight: 500 !important;
-    line-height: 1.4 !important;
-    text-align: left !important;
-    border-radius: 12px !important;
-    margin-bottom: 8px !important;
-  }
-
-  /* Mobile menu section headers */
-  [role="dialog"] [class*="group"],
-  [role="dialog"] [class*="section"],
-  [role="dialog"] [class*="header"],
-  [class*="mobile-menu"] [class*="group"],
-  [class*="mobile-menu"] [class*="section"],
-  [class*="mobile-menu"] [class*="header"],
-  [class*="nav-menu"] [class*="group"],
-  [class*="nav-menu"] [class*="section"] {
-    font-size: 1rem !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    color: var(--text-secondary) !important;
-    padding: 16px 20px 8px 20px !important;
-    margin-top: 16px !important;
-  }
-
-  /* Mobile menu close button */
-  [role="dialog"] button[aria-label*="close" i],
-  [role="dialog"] button[aria-label*="Close" i],
-  [class*="mobile-menu"] button[aria-label*="close" i],
-  [class*="mobile-menu"] button[aria-label*="Close" i] {
-    position: absolute !important;
-    top: 16px !important;
-    right: 16px !important;
-    min-width: 56px !important;
-    min-height: 56px !important;
-    font-size: 1.5rem !important;
-  }
-
-  /* Mintlify-specific mobile sidebar selectors */
-  [data-radix-portal] > div,
-  [data-radix-dialog-content],
-  [class*="DialogContent"],
-  [class*="SheetContent"] {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: 100vw !important;
-    max-height: 100vh !important;
-    overflow-y: auto !important;
-    padding: 80px 20px 40px 20px !important;
-  }
-
-  /* Navigation links in mobile menu */
-  [data-radix-dialog-content] a,
-  [data-radix-dialog-content] button:not([aria-label*="close" i]):not([aria-label*="Close" i]),
-  [class*="DialogContent"] a,
-  [class*="SheetContent"] a,
-  [class*="SheetContent"] button:not([aria-label*="close" i]):not([aria-label*="Close" i]) {
-    display: flex !important;
-    align-items: center !important;
-    width: 100% !important;
-    min-height: 64px !important;
-    padding: 20px 24px !important;
-    font-size: 1.5rem !important; /* 24px - very large for easy tapping */
-    font-weight: 500 !important;
-    line-height: 1.3 !important;
-    text-align: left !important;
-    border-radius: 12px !important;
-    margin-bottom: 6px !important;
-    transition: background-color 0.15s ease !important;
-  }
-
-  /* Hover/active state for menu items */
-  [data-radix-dialog-content] a:hover,
-  [data-radix-dialog-content] a:active,
-  [class*="SheetContent"] a:hover,
-  [class*="SheetContent"] a:active {
-    background-color: var(--bg-secondary) !important;
-  }
-
-  /* Tab/accordion in mobile menu */
-  [data-radix-dialog-content] [role="tablist"],
-  [class*="SheetContent"] [role="tablist"] {
-    flex-direction: column !important;
-    gap: 8px !important;
-  }
-
-  [data-radix-dialog-content] [role="tab"],
-  [class*="SheetContent"] [role="tab"] {
-    min-height: 60px !important;
-    padding: 16px 24px !important;
-    font-size: 1.375rem !important;
-    justify-content: flex-start !important;
-  }
-
-  /* Nested menu items */
-  [data-radix-dialog-content] ul a,
-  [data-radix-dialog-content] li a,
-  [class*="SheetContent"] ul a,
-  [class*="SheetContent"] li a {
-    min-height: 56px !important;
-    padding: 16px 24px 16px 32px !important;
-    font-size: 1.25rem !important; /* 20px for nested items */
-  }
-}
-
-/*
- * Mobile Body Text Size Increase
- * Makes body text more readable on mobile devices
- */
-@media (max-width: 768px) {
-  /* Increase base font size on mobile */
-  body {
-    font-size: 1.125rem !important; /* 18px - larger than default */
-  }
-
-  /* Paragraphs */
-  p,
-  article p,
-  .content p,
-  main p {
-    font-size: 1.125rem !important; /* 18px */
-    line-height: 1.8 !important;
-  }
-
-  /* Lists */
-  ul, ol,
-  ul li, ol li {
-    font-size: 1.125rem !important;
-    line-height: 1.75 !important;
-  }
-
-  /* General content text */
-  article,
-  .content,
-  main,
-  [class*="prose"],
-  [class*="article"],
-  [class*="content"] {
-    font-size: 1.125rem !important;
-    line-height: 1.8 !important;
-  }
-
-  /* Card descriptions and smaller text */
-  .card-description,
-  [class*="card"] p,
-  [class*="Card"] p,
-  [class*="description"],
-  figcaption,
-  .caption {
-    font-size: 1.0625rem !important; /* 17px */
-    line-height: 1.7 !important;
-  }
-
-  /* Blockquotes */
-  blockquote {
-    font-size: 1.125rem !important;
-    line-height: 1.75 !important;
-  }
-
-  /* Table cells */
-  td {
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
-    padding: 12px !important;
-  }
-
-  th {
-    font-size: 1.0625rem !important;
-    padding: 12px !important;
-  }
-}
-
-/* 
- * Accessibility Improvements 
+ * Accessibility Improvements
  */
 
 /* Focus styles for keyboard navigation */
@@ -835,11 +378,11 @@ select:focus {
     background-color: #ffffff;
     color: #000000;
   }
-  
+
   #navbar {
     background-color: #ffffff;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-weight: 900;
   }
@@ -857,10 +400,10 @@ select:focus {
 /* Dark mode support - soft charcoal with warm cream text */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: #1E2023;        /* Soft charcoal - not pure black */
-    --bg-secondary: #282A2E;      /* Slightly lighter for contrast */
-    --text-primary: #E8E6E3;      /* Warm cream - easier on eyes than white */
-    --text-secondary: #A0A4A8;    /* Muted text for less emphasis */
+    --bg-primary: #1E2023;
+    --bg-secondary: #282A2E;
+    --text-primary: #E8E6E3;
+    --text-secondary: #A0A4A8;
   }
 
   body {
@@ -872,7 +415,6 @@ select:focus {
     background-color: #252729;
   }
 
-  /* Slightly reduce heading weights in dark mode for better rendering */
   h1, .page-title {
     font-weight: 600;
   }
@@ -881,133 +423,13 @@ select:focus {
     font-weight: 500;
   }
 
-  /* Blockquote styling for dark mode */
   blockquote {
     background-color: var(--bg-secondary);
     color: var(--text-secondary);
   }
 
-  /* Cards and content boxes in dark mode */
   .card, [class*="card"], [class*="callout"], [class*="note"] {
     background-color: var(--bg-secondary);
-  }
-}
-
-/*
- * Card Group Background Consistency
- * Ensures all card groups, cards, and content boxes have matching backgrounds
- */
-
-/* Light mode - consistent warm off-white backgrounds */
-.card-group,
-[class*="CardGroup"],
-[class*="card-group"],
-[class*="cardGroup"],
-[class*="cards"],
-[class*="Cards"] {
-  background-color: transparent !important;
-}
-
-/* Individual cards should match the secondary background */
-.card,
-[class*="Card"]:not([class*="CardGroup"]):not([class*="card-group"]),
-[class*="card"]:not([class*="card-group"]),
-[class*="callout"],
-[class*="Callout"],
-[class*="note"],
-[class*="Note"],
-[class*="tip"],
-[class*="Tip"],
-[class*="warning"],
-[class*="Warning"],
-[class*="info"],
-[class*="Info"],
-[class*="accordion"],
-[class*="Accordion"] {
-  background-color: var(--bg-secondary) !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-}
-
-/* Mintlify-specific card components */
-[class*="mt-card"],
-[class*="mt-Card"],
-div[class*="rounded"][class*="border"][class*="p-"] {
-  background-color: var(--bg-secondary) !important;
-}
-
-/* Card hover states */
-.card:hover,
-[class*="Card"]:not([class*="CardGroup"]):hover,
-[class*="card"]:not([class*="card-group"]):hover {
-  background-color: #EFEEEB !important;
-}
-
-/* Code blocks inside cards */
-.card pre,
-[class*="Card"] pre,
-[class*="card"] pre {
-  background-color: #E8E7E4 !important;
-}
-
-/* Ensure content areas have proper backgrounds */
-main,
-article,
-.content,
-[class*="content"],
-[class*="Content"] {
-  background-color: var(--bg-primary);
-}
-
-/* Fix any nested background issues */
-[class*="CardGroup"] > *,
-[class*="card-group"] > *,
-[class*="cardGroup"] > * {
-  background-color: var(--bg-secondary) !important;
-}
-
-/* Dark mode card background consistency */
-@media (prefers-color-scheme: dark) {
-  .card,
-  [class*="Card"]:not([class*="CardGroup"]):not([class*="card-group"]),
-  [class*="card"]:not([class*="card-group"]),
-  [class*="callout"],
-  [class*="Callout"],
-  [class*="note"],
-  [class*="Note"],
-  [class*="tip"],
-  [class*="Tip"],
-  [class*="warning"],
-  [class*="Warning"],
-  [class*="info"],
-  [class*="Info"],
-  [class*="accordion"],
-  [class*="Accordion"],
-  [class*="mt-card"],
-  [class*="mt-Card"],
-  div[class*="rounded"][class*="border"][class*="p-"] {
-    background-color: var(--bg-secondary) !important;
-    border-color: rgba(255, 255, 255, 0.08) !important;
-  }
-
-  /* Card hover in dark mode */
-  .card:hover,
-  [class*="Card"]:not([class*="CardGroup"]):hover,
-  [class*="card"]:not([class*="card-group"]):hover {
-    background-color: #2E3134 !important;
-  }
-
-  /* Code blocks inside cards - dark mode */
-  .card pre,
-  [class*="Card"] pre,
-  [class*="card"] pre {
-    background-color: #1A1C1E !important;
-  }
-
-  /* Nested cards in dark mode */
-  [class*="CardGroup"] > *,
-  [class*="card-group"] > *,
-  [class*="cardGroup"] > * {
-    background-color: var(--bg-secondary) !important;
   }
 }
 
@@ -1017,24 +439,17 @@ article,
     background-color: white;
     color: black;
     font-size: 12pt;
-  }
-  
-  /* Use serif for better print readability */
-  body {
     font-family: Georgia, 'Times New Roman', serif;
   }
-  
-  /* Hide navigation elements */
+
   nav, .sidebar, footer {
     display: none;
   }
-  
-  /* Ensure headings start on new pages if needed */
+
   h1, h2 {
     page-break-after: avoid;
   }
-  
-  /* Remove backgrounds and borders */
+
   * {
     background: transparent !important;
     color: black !important;
