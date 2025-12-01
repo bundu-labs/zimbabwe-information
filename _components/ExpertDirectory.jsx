@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { supabase, expertCategories, zimbabweRegions } from './supabase';
 
+console.log('🔵 ExpertDirectory.jsx module loaded');
+
 // Modal Component
 const ExpertModal = ({ expert, onClose }) => {
   if (!expert) return null;
@@ -180,6 +182,8 @@ const ExpertCard = ({ expert, onClick }) => {
 
 // Main Directory Component
 export default function ExpertDirectory({ showFilters = true, category: initialCategory = null }) {
+  console.log('✅ ExpertDirectory component rendering', { showFilters, initialCategory });
+
   const [experts, setExperts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -191,6 +195,7 @@ export default function ExpertDirectory({ showFilters = true, category: initialC
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
+    console.log('ExpertDirectory mounted, fetching experts...');
     fetchExperts();
   }, []);
 
@@ -253,8 +258,15 @@ export default function ExpertDirectory({ showFilters = true, category: initialC
     );
   }
 
+  console.log('ExpertDirectory state:', { loading, error, expertsCount: experts.length, filteredCount: filteredExperts.length });
+
   return (
     <div className="space-y-6">
+      <div className="border-2 border-purple-500 p-2 mb-2">
+        <p className="text-xs text-purple-600 dark:text-purple-400 font-mono">
+          🔍 DEBUG: ExpertDirectory | Experts: {experts.length} | Filtered: {filteredExperts.length} | Loading: {loading.toString()}
+        </p>
+      </div>
       {/* Filters */}
       {showFilters && (
         <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">

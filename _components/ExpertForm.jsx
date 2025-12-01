@@ -1,9 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase, expertCategories, zimbabweRegions } from './supabase';
 
 export default function ExpertForm() {
+  // Debug logging
+  useEffect(() => {
+    console.log('✅ ExpertForm component mounted');
+    console.log('Supabase client:', supabase);
+    console.log('Expert categories:', expertCategories);
+    console.log('Zimbabwe regions:', zimbabweRegions);
+  }, []);
+
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
@@ -66,6 +74,8 @@ export default function ExpertForm() {
     }
   };
 
+  console.log('ExpertForm render - status:', status);
+
   if (status === 'success') {
     return (
       <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6 text-center">
@@ -87,7 +97,13 @@ export default function ExpertForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <>
+      <div className="border-2 border-blue-500 p-2 mb-2">
+        <p className="text-xs text-blue-600 dark:text-blue-400 font-mono">
+          🔍 DEBUG: ExpertForm is rendering | Status: {status}
+        </p>
+      </div>
+      <form onSubmit={handleSubmit} className="space-y-4">
       {status === 'error' && (
         <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
           <p className="text-red-700 dark:text-red-300">{errorMessage}</p>
@@ -292,5 +308,6 @@ export default function ExpertForm() {
         )}
       </button>
     </form>
+    </>
   );
 }
