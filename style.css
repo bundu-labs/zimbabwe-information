@@ -506,39 +506,6 @@ article img[src*="/images/general/"] {
 }
 
 /*
- * Full-Screen Mobile Menu
- * Makes the mobile navigation menu larger with bigger touch targets
- * Uses Mintlify-specific selectors to avoid affecting other elements
- */
-@media (max-width: 768px) {
-  /* Mintlify mobile sidebar/sheet - make it larger */
-  [data-radix-scroll-area-viewport] {
-    padding: 16px 20px !important;
-  }
-
-  /* Navigation links in the mobile sidebar */
-  [data-radix-scroll-area-viewport] a {
-    min-height: 56px !important;
-    padding: 16px 20px !important;
-    font-size: 1.25rem !important; /* 20px - larger text */
-    font-weight: 500 !important;
-    line-height: 1.4 !important;
-    border-radius: 8px !important;
-    margin-bottom: 4px !important;
-  }
-
-  /* Group headers in mobile menu */
-  [data-radix-scroll-area-viewport] [class*="group"] > span,
-  [data-radix-scroll-area-viewport] [class*="Group"] > span {
-    font-size: 0.875rem !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    padding: 12px 20px 8px !important;
-  }
-}
-
-/*
  * Mobile Body Text Size Increase
  * Makes body text more readable on mobile devices
  */
