@@ -287,9 +287,11 @@
             ]
           },
           {
-            "group": "Local Experts",
+            "group": "Directory",
             "pages": [
-              "experts/index"
+              "experts/index",
+              "directory/businesses",
+              "directory/accommodation"
             ]
           }
         ]
