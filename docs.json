@@ -100,6 +100,77 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "Heritage & History",
+        "groups": [
+          {
+            "group": "UNESCO World Heritage",
+            "pages": [
+              "heritage/unesco-world-heritage",
+              "heritage/khami-ruins",
+              "destinations/great-zimbabwe",
+              "destinations/victoria-falls",
+              "destinations/mana-pools",
+              "destinations/matobo-hills"
+            ]
+          },
+          {
+            "group": "Ancient Ruins",
+            "pages": [
+              "heritage/naletale-ruins",
+              "heritage/dhlo-dhlo-ruins",
+              "heritage/ziwa-ruins",
+              "heritage/minor-ruins"
+            ]
+          },
+          {
+            "group": "Rock Art",
+            "pages": [
+              "rock-art/index",
+              "rock-art/matobo-rock-art",
+              "rock-art/nswatugi-cave",
+              "rock-art/pomongwe-cave",
+              "rock-art/chikupo-cave",
+              "rock-art/zombepata-cave",
+              "rock-art/mashonaland-sites",
+              "destinations/domboshava"
+            ]
+          },
+          {
+            "group": "Geological Wonders",
+            "pages": [
+              "geological/index",
+              "geological/balancing-rocks",
+              "geological/ngomakurira",
+              "destinations/chinhoyi-caves"
+            ]
+          },
+          {
+            "group": "Scenic Viewpoints",
+            "pages": [
+              "scenic/index",
+              "scenic/worlds-view-nyanga",
+              "scenic/worlds-view-matobo",
+              "scenic/chilojo-cliffs"
+            ]
+          },
+          {
+            "group": "Waterfalls",
+            "pages": [
+              "scenic/mtarazi-falls",
+              "scenic/pungwe-falls",
+              "scenic/bridal-veil-falls"
+            ]
+          },
+          {
+            "group": "Historic Sites",
+            "pages": [
+              "historic/index",
+              "historic/colonial-buildings"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Discover",
         "groups": [
           {
