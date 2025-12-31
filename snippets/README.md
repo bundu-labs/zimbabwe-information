@@ -4,6 +4,33 @@ This directory contains custom React components used throughout the Zimbabwe Tra
 
 ## Components
 
+### LocationMap
+Embeds an interactive OpenStreetMap with GPS coordinates for destination pages.
+
+**Usage:**
+```mdx
+import LocationMap from '/snippets/LocationMap';
+
+<LocationMap lat={-17.9243} lng={25.8572} zoom={14} title="Victoria Falls" />
+```
+
+**Props:**
+- `lat` (number, required): Latitude coordinate
+- `lng` (number, required): Longitude coordinate
+- `zoom` (number): Zoom level 1-18 (default: 12)
+- `title` (string): Location name for accessibility
+- `showMarker` (boolean): Show marker pin (default: true)
+- `height` (string): Map height (default: "400px")
+
+**Features:**
+- Free OpenStreetMap embed (no API key required)
+- Displays GPS coordinates in human-readable format
+- Link to view larger map on OpenStreetMap
+- Responsive design with dark mode support
+- Proper attribution included
+
+---
+
 ### ExpertForm
 Interactive form for local experts to apply to join the expert network. Submissions are stored in Supabase.
 
