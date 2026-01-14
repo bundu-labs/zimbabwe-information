@@ -13,16 +13,17 @@ import React from 'react';
  * @param {string} height - Map height (default "400px")
  *
  * Usage in MDX:
+ * import { LocationMap } from '/snippets/LocationMap.jsx';
  * <LocationMap lat={-17.9243} lng={25.8572} zoom={14} title="Victoria Falls" />
  */
-export default function LocationMap({
+export const LocationMap = ({
   lat,
   lng,
   zoom = 12,
   title = "Location",
   showMarker = true,
   height = "400px"
-}) {
+}) => {
   if (!lat || !lng) {
     return (
       <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-center text-gray-600 dark:text-gray-400">

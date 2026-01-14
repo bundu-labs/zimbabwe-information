@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { supabase, businessCategories, accommodationSubcategories, zimbabweRegions } from './supabase';
 
-export default function BusinessForm() {
+export const BusinessForm = () => {
   const [formData, setFormData] = useState({
     business_name: '',
     contact_person: '',

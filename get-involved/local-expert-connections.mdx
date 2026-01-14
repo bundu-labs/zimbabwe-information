@@ -22,9 +22,9 @@ canonical: 'https://travel-info.co.zw/get-involved/local-expert-connections'
 'schema:type': Article
 ---
 
-import ExpertFormFormspree from "/snippets/ExpertFormFormspree.jsx"
-import ExpertFormSupabase from "/snippets/ExpertFormSupabase.jsx"
-import TestComponent from "/snippets/TestComponent.jsx"
+import { ExpertForm } from "/snippets/ExpertFormFormspree.jsx"
+import { ExpertFormSupabase } from "/snippets/ExpertFormSupabase.jsx"
+import { TestComponent } from "/snippets/TestComponent.jsx"
 
 # Become a Local Expert
 
@@ -39,7 +39,7 @@ Are you a safari guide, cultural specialist, or adventure expert? Join our netwo
     <Card title="Become a Verified Local Expert" icon="badge-check">
       <p className="mb-4 text-gray-600 dark:text-gray-400">Share your knowledge, earn income, and connect with travelers from around the world. Complete the application below to get started.</p>
 
-      <ExpertFormFormspree />
+      <ExpertForm />
     </Card>
   </Tab>
 

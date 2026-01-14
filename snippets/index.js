@@ -1,13 +1,16 @@
 // Zimbabwe Travel Information - Custom Components
 // Export all custom React components for use in MDX pages
+// Note: Mintlify requires arrow function syntax for JSX snippets
 
-console.log('🟢 Loading _components/index.js');
+console.log('🟢 Loading snippets/index.js');
 
-export { default as ExpertDirectory } from './ExpertDirectory';
-export { default as ExpertForm } from './ExpertForm';
-export { default as BusinessDirectory } from './BusinessDirectory';
-export { default as BusinessForm } from './BusinessForm';
-export { default as TestComponent } from './TestComponent';
+export { ExpertDirectory } from './ExpertDirectory.jsx';
+export { ExpertForm } from './ExpertFormFormspree.jsx';
+export { ExpertFormSupabase } from './ExpertFormSupabase.jsx';
+export { BusinessDirectory } from './BusinessDirectory.jsx';
+export { BusinessForm } from './BusinessForm.jsx';
+export { TestComponent } from './TestComponent.jsx';
+export { LocationMap } from './LocationMap.jsx';
 
 console.log('🟢 All components exported from index.js');
 
@@ -18,4 +21,4 @@ export {
   businessCategories,
   accommodationSubcategories,
   zimbabweRegions,
-} from './supabase';
+} from './supabase.js';
