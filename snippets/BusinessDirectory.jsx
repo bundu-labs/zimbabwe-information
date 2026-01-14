@@ -233,11 +233,11 @@ const BusinessCard = ({ business, onClick }) => {
 };
 
 // Main Directory Component
-export default function BusinessDirectory({
+export const BusinessDirectory = ({
   showFilters = true,
   category: initialCategory = null,
   subcategory: initialSubcategory = null
-}) {
+}) => {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

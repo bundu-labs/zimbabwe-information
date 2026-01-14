@@ -4,7 +4,7 @@ import React from 'react';
 
 console.log('🧪 TestComponent.jsx module loaded');
 
-export default function TestComponent() {
+export const TestComponent = () => {
   console.log('🧪 TestComponent rendering');
 
   return (

@@ -181,7 +181,7 @@ const ExpertCard = ({ expert, onClick }) => {
 };
 
 // Main Directory Component
-export default function ExpertDirectory({ showFilters = true, category: initialCategory = null }) {
+export const ExpertDirectory = ({ showFilters = true, category: initialCategory = null }) => {
   console.log('✅ ExpertDirectory component rendering', { showFilters, initialCategory });
 
   const [experts, setExperts] = useState([]);

@@ -26,7 +26,7 @@ const zimbabweRegions = [
   'Great Zimbabwe', 'Masvingo', 'Mutare', 'Nyanga', 'Chimanimani', 'Other',
 ];
 
-export default function ExpertForm() {
+export const ExpertForm = () => {
   console.log('✅ ExpertForm component rendering');
 
   return (

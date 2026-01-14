@@ -29,7 +29,7 @@ const zimbabweRegions = [
   'Great Zimbabwe', 'Masvingo', 'Mutare', 'Nyanga', 'Chimanimani', 'Other',
 ];
 
-export default function ExpertFormSupabase() {
+export const ExpertFormSupabase = () => {
   console.log('✅ ExpertFormSupabase component rendering');
 
   return (
