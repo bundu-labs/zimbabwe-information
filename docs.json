@@ -100,6 +100,50 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "Discover",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "about-zimbabwe",
+              "when-to-visit",
+              "book"
+            ]
+          },
+          {
+            "group": "Culture & Experiences",
+            "pages": [
+              "culture/people-and-tribes",
+              "culture/art-and-music",
+              "culture/cuisine",
+              "culture/festivals-and-events",
+              "culture/shopping-guide",
+              "culture/religious-sites"
+            ]
+          },
+          {
+            "group": "Wildlife & Nature",
+            "pages": [
+              "wildlife/animals-and-birds",
+              "wildlife/national-parks-and-reserves",
+              "wildlife/conservation-efforts"
+            ]
+          },
+          {
+            "group": "Adventure Activities",
+            "pages": [
+              "adventure/activities-and-experiences",
+              "adventure/water-sports",
+              "adventure/hiking-and-trekking",
+              "adventure/nightlife-entertainment",
+              "adventure/photography-guide",
+              "adventure/wellness-spa"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Heritage & History",
         "groups": [
           {
@@ -166,50 +210,6 @@
             "pages": [
               "historic/index",
               "historic/colonial-buildings"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Discover",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "introduction",
-              "about-zimbabwe",
-              "when-to-visit",
-              "book"
-            ]
-          },
-          {
-            "group": "Culture & Experiences",
-            "pages": [
-              "culture/people-and-tribes",
-              "culture/art-and-music",
-              "culture/cuisine",
-              "culture/festivals-and-events",
-              "culture/shopping-guide",
-              "culture/religious-sites"
-            ]
-          },
-          {
-            "group": "Wildlife & Nature",
-            "pages": [
-              "wildlife/animals-and-birds",
-              "wildlife/national-parks-and-reserves",
-              "wildlife/conservation-efforts"
-            ]
-          },
-          {
-            "group": "Adventure Activities",
-            "pages": [
-              "adventure/activities-and-experiences",
-              "adventure/water-sports",
-              "adventure/hiking-and-trekking",
-              "adventure/nightlife-entertainment",
-              "adventure/photography-guide",
-              "adventure/wellness-spa"
             ]
           }
         ]
@@ -362,7 +362,8 @@
             "pages": [
               "experts/index",
               "directory/businesses",
-              "directory/accommodation"
+              "directory/accommodation",
+              "directory/campsites"
             ]
           }
         ]
