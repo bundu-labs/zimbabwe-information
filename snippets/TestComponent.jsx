@@ -1,12 +1,7 @@
-'use client';
-
 import React from 'react';
-
 console.log('🧪 TestComponent.jsx module loaded');
-
 export const TestComponent = () => {
   console.log('🧪 TestComponent rendering');
-
   return (
     <div className="border-4 border-red-500 bg-red-50 dark:bg-red-900/20 p-4 rounded-lg my-4">
       <h3 className="text-red-700 dark:text-red-300 font-bold text-lg mb-2">

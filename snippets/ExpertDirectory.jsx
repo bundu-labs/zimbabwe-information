@@ -1,21 +1,16 @@
-'use client';
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { supabase, expertCategories } from './supabase.js';
 import { VerificationBadge } from './VerificationBadge.jsx';
-
 // ---------------------------------------------------------------------------
 // Professional detail modal
 // ---------------------------------------------------------------------------
 const ProfessionalModal = ({ professional, onClose }) => {
   if (!professional) return null;
-
   const {
     person, occupation_type, specialisations, years_experience,
     license_type, license_number, services_offered, booking_url,
     verification_tier, aggregate_rating, review_count,
   } = professional;
-
   const ratingValue = aggregate_rating?.ratingValue;
   const bio = person?.bio || person?.description;
   const languages = person?.knowslanguage;
@@ -23,7 +18,6 @@ const ProfessionalModal = ({ professional, onClose }) => {
   const category = expertCategories[occupation_type] || { label: occupation_type || 'Guide', icon: 'user' };
   const name = person?.name || 'Unknown';
   const image = person?.image;
-
   return (
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
@@ -70,7 +64,6 @@ const ProfessionalModal = ({ professional, onClose }) => {
             &times;
           </button>
         </div>
-
         {/* Body */}
         <div className="p-6 space-y-5">
           <div className="grid grid-cols-2 gap-3">
@@ -87,7 +80,6 @@ const ProfessionalModal = ({ professional, onClose }) => {
               </div>
             )}
           </div>
-
           {specialisations && specialisations.length > 0 && (
             <div>
               <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
@@ -105,14 +97,12 @@ const ProfessionalModal = ({ professional, onClose }) => {
               </div>
             </div>
           )}
-
           {bio && (
             <div>
               <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">About</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{bio}</p>
             </div>
           )}
-
           {services_offered && services_offered.length > 0 && (
             <div>
               <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Services</h3>
@@ -123,7 +113,6 @@ const ProfessionalModal = ({ professional, onClose }) => {
               </div>
             </div>
           )}
-
           {license_type && (
             <div>
               <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Licence</h3>
@@ -132,12 +121,10 @@ const ProfessionalModal = ({ professional, onClose }) => {
               </p>
             </div>
           )}
-
           <div className="flex items-center gap-2 p-3 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
             <VerificationBadge tier={verification_tier} size="md" showLabel={true} />
             <span className="text-sm text-gray-500 dark:text-gray-400">— verified on Mukoko platform</span>
           </div>
-
           <div className="border-t border-gray-200 dark:border-gray-700 pt-5">
             <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Contact</h3>
             <div className="flex flex-wrap gap-3">
@@ -203,7 +190,6 @@ const ProfessionalModal = ({ professional, onClose }) => {
     </div>
   );
 };
-
 // ---------------------------------------------------------------------------
 // Professional card (grid item)
 // ---------------------------------------------------------------------------
@@ -213,7 +199,6 @@ const ProfessionalCard = ({ professional, onClick }) => {
   const category = expertCategories[occupation_type] || { label: occupation_type || 'Guide', icon: 'user' };
   const name = person?.name || 'Unknown';
   const image = person?.image;
-
   return (
     <div
       onClick={onClick}
@@ -257,7 +242,6 @@ const ProfessionalCard = ({ professional, onClick }) => {
     </div>
   );
 };
-
 // ---------------------------------------------------------------------------
 // ExpertDirectory — queries hospitality.professional JOIN identity.person
 // ---------------------------------------------------------------------------
@@ -268,7 +252,6 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
   const [selected, setSelected] = useState(null);
   const [categoryFilter, setCategoryFilter] = useState(initialCategory || '');
   const [searchQuery, setSearchQuery] = useState('');
-
   const fetchProfessionals = useCallback(async () => {
     try {
       setLoading(true);
@@ -307,7 +290,6 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
         .eq('is_active', true)
         .order('featured', { ascending: false })
         .order('review_count', { ascending: false });
-
       if (err) throw err;
       setProfessionals(data || []);
     } catch (err) {
@@ -316,9 +298,7 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
       setLoading(false);
     }
   }, []);
-
   useEffect(() => { fetchProfessionals(); }, [fetchProfessionals]);
-
   const filtered = professionals.filter((p) => {
     if (categoryFilter && p.occupation_type !== categoryFilter) return false;
     if (searchQuery) {
@@ -333,7 +313,6 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
     }
     return true;
   });
-
   return (
     <div className="space-y-6">
       {/* Filters */}
@@ -358,19 +337,16 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
           </select>
         </div>
       )}
-
       {/* Stats */}
       <p className="text-sm text-gray-500 dark:text-gray-400">
         {filtered.length} professional{filtered.length !== 1 ? 's' : ''} found
       </p>
-
       {error && (
         <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
           <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
           <button onClick={fetchProfessionals} className="mt-2 text-sm text-red-600 dark:text-red-400 underline">Try again</button>
         </div>
       )}
-
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[...Array(6)].map((_, i) => (
@@ -388,7 +364,6 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
           <p className="text-gray-500 dark:text-gray-400">No professionals found matching your search.</p>
         </div>
       )}
-
       {selected && (
         <ProfessionalModal professional={selected} onClose={() => setSelected(null)} />
       )}

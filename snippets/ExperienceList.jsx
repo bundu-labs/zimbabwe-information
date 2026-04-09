@@ -1,15 +1,11 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { supabase } from './supabase.js';
 import { VerificationBadge } from './VerificationBadge.jsx';
-
 const StarRating = ({ rating, count }) => {
   if (!rating) return null;
   const roundedRating = Math.round(rating * 2) / 2;
   const fullStars = Math.floor(roundedRating);
   const hasHalf = roundedRating % 1 !== 0;
-
   return (
     <div className="flex items-center gap-2">
       <div className="flex gap-0.5">
@@ -23,7 +19,6 @@ const StarRating = ({ rating, count }) => {
     </div>
   );
 };
-
 const ActivityBadge = ({ activityType }) => {
   const colors = {
     'Wildlife Viewing': 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300',
@@ -34,17 +29,13 @@ const ActivityBadge = ({ activityType }) => {
     'Scenic': 'bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-300',
     'default': 'bg-gray-100 dark:bg-gray-900/30 text-gray-800 dark:text-gray-300',
   };
-
   const colorClass = colors[activityType] || colors.default;
-
   return <span className={`text-xs px-3 py-1 rounded-full font-medium ${colorClass}`}>{activityType}</span>;
 };
-
 export const ExperienceList = ({ placeId, limit = 8 }) => {
   const [experiences, setExperiences] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
@@ -55,9 +46,7 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
           .select('*')
           .eq('place_id', placeId)
           .limit(limit);
-
         if (queryError) throw queryError;
-
         setExperiences(data || []);
       } catch (err) {
         setError(err.message);
@@ -65,12 +54,10 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
         setLoading(false);
       }
     };
-
     if (placeId) {
       fetchExperiences();
     }
   }, [placeId, limit]);
-
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -78,7 +65,6 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
       </div>
     );
   }
-
   if (error) {
     return (
       <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-800 dark:text-red-200">
@@ -87,7 +73,6 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
       </div>
     );
   }
-
   if (experiences.length === 0) {
     return (
       <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 text-center">
@@ -95,7 +80,6 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
       </div>
     );
   }
-
   return (
     <div className="space-y-4">
       {experiences.map((experience) => (
@@ -112,7 +96,6 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
               />
             </div>
           )}
-
           <div className="p-5 space-y-4">
             <div className="space-y-2">
               <h3 className="font-semibold text-lg text-gray-900 dark:text-white">{experience.name}</h3>
@@ -123,15 +106,12 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
                 )}
               </div>
             </div>
-
             {experience.description && (
               <p className="text-sm text-gray-600 dark:text-gray-400">{experience.description}</p>
             )}
-
             {experience.aggregate_rating?.ratingValue > 0 && (
               <StarRating rating={experience.aggregate_rating.ratingValue} count={experience.review_count} />
             )}
-
             <div className="grid grid-cols-3 gap-3 text-sm">
               {experience.duration_hours && (
                 <div className="bg-gray-50 dark:bg-gray-900 p-2 rounded">
@@ -139,14 +119,12 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
                   <p className="text-gray-900 dark:text-white font-semibold">{experience.duration_hours}h</p>
                 </div>
               )}
-
               {experience.price_usd && (
                 <div className="bg-gray-50 dark:bg-gray-900 p-2 rounded">
                   <p className="text-gray-600 dark:text-gray-400 text-xs font-semibold">Price</p>
                   <p className="text-gray-900 dark:text-white font-semibold">${experience.price_usd}</p>
                 </div>
               )}
-
               {experience.max_group_size && (
                 <div className="bg-gray-50 dark:bg-gray-900 p-2 rounded">
                   <p className="text-gray-600 dark:text-gray-400 text-xs font-semibold">Group Size</p>
@@ -154,7 +132,6 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
                 </div>
               )}
             </div>
-
             {(experience.languages_offered || experience.includes) && (
               <div className="border-t border-gray-200 dark:border-gray-800 pt-3 space-y-3">
                 {experience.languages_offered && experience.languages_offered.length > 0 && (
@@ -172,7 +149,6 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
                     </div>
                   </div>
                 )}
-
                 {experience.includes && experience.includes.length > 0 && (
                   <div>
                     <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">Includes</p>
@@ -191,7 +167,6 @@ export const ExperienceList = ({ placeId, limit = 8 }) => {
                 )}
               </div>
             )}
-
             {experience.requires_booking && experience.booking_url && (
               <a
                 href={experience.booking_url}

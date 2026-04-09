@@ -1,9 +1,5 @@
-'use client';
-
 import React from 'react';
-
 console.log('🔵 ExpertForm.jsx (Formspree version) loaded');
-
 const expertCategories = {
   safari_guide: 'Safari Guide',
   bird_guide: 'Birding Specialist',
@@ -19,16 +15,13 @@ const expertCategories = {
   historical: 'Historical Guide',
   other: 'Other',
 };
-
 const zimbabweRegions = [
   'Victoria Falls', 'Hwange', 'Mana Pools', 'Harare', 'Bulawayo',
   'Matobo Hills', 'Eastern Highlands', 'Lake Kariba', 'Gonarezhou',
   'Great Zimbabwe', 'Masvingo', 'Mutare', 'Nyanga', 'Chimanimani', 'Other',
 ];
-
 export const ExpertForm = () => {
   console.log('✅ ExpertForm component rendering');
-
   return (
     <>
       <div className="border-2 border-blue-500 p-2 mb-2">
@@ -36,7 +29,6 @@ export const ExpertForm = () => {
           🔍 DEBUG: ExpertForm (Formspree) is rendering
         </p>
       </div>
-
       <form
         action="https://formspree.io/f/xvgeropp"
         method="POST"
@@ -44,7 +36,6 @@ export const ExpertForm = () => {
       >
         <input type="hidden" name="_subject" value="New Local Expert Application" />
         <input type="hidden" name="_template" value="table" />
-
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="full_name" className="block text-sm font-medium mb-1">Full Name *</label>
@@ -69,7 +60,6 @@ export const ExpertForm = () => {
             />
           </div>
         </div>
-
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="phone" className="block text-sm font-medium mb-1">Phone/WhatsApp *</label>
@@ -97,7 +87,6 @@ export const ExpertForm = () => {
             </select>
           </div>
         </div>
-
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="category" className="block text-sm font-medium mb-1">Expert Category *</label>
@@ -129,7 +118,6 @@ export const ExpertForm = () => {
             </select>
           </div>
         </div>
-
         <div>
           <label htmlFor="certifications" className="block text-sm font-medium mb-1">Certifications & Qualifications *</label>
           <textarea
@@ -141,7 +129,6 @@ export const ExpertForm = () => {
             placeholder="List your relevant certifications (e.g., ZPGA License Level, First Aid, FGASA, Dangerous Game, etc.)"
           />
         </div>
-
         <div>
           <label htmlFor="languages" className="block text-sm font-medium mb-1">Languages Spoken *</label>
           <input
@@ -153,7 +140,6 @@ export const ExpertForm = () => {
             placeholder="e.g., English (fluent), Shona (native), German (conversational)"
           />
         </div>
-
         <div>
           <label htmlFor="services" className="block text-sm font-medium mb-1">Services You Offer *</label>
           <textarea
@@ -165,7 +151,6 @@ export const ExpertForm = () => {
             placeholder="Describe the experiences and services you offer to travelers"
           />
         </div>
-
         <div>
           <label htmlFor="bio" className="block text-sm font-medium mb-1">Short Bio *</label>
           <textarea
@@ -177,7 +162,6 @@ export const ExpertForm = () => {
             placeholder="A 2-3 sentence bio about yourself and your passion for Zimbabwe"
           />
         </div>
-
         <div>
           <label htmlFor="motivation" className="block text-sm font-medium mb-1">Why do you want to join our network? *</label>
           <textarea
@@ -189,7 +173,6 @@ export const ExpertForm = () => {
             placeholder="Share your passion for Zimbabwe and why you want to connect with travelers"
           />
         </div>
-
         <div>
           <label htmlFor="website" className="block text-sm font-medium mb-1">Website or Social Media (optional)</label>
           <input
@@ -200,7 +183,6 @@ export const ExpertForm = () => {
             placeholder="https://your-website.com or social media profile"
           />
         </div>
-
         <button
           type="submit"
           className="w-full px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-md transition-colors"

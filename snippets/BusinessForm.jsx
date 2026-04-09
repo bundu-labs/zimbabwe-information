@@ -1,8 +1,5 @@
-'use client';
-
 import React, { useState } from 'react';
 import { businessCategories, accommodationSubcategories, zimbabweRegions } from './supabase.js';
-
 /**
  * BusinessForm — business listing application form
  *
@@ -18,7 +15,6 @@ export const BusinessForm = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
-
   const [formData, setFormData] = useState({
     // Business info
     business_name: '',
@@ -38,17 +34,14 @@ export const BusinessForm = () => {
     // Consent
     agree_terms: false,
   });
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
-
     try {
       // Build sign-up URL with pre-filled params for business.mukoko.com
       const params = new URLSearchParams({
@@ -71,7 +64,6 @@ export const BusinessForm = () => {
       setSubmitting(false);
     }
   };
-
   if (submitted) {
     return (
       <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-8 text-center">
@@ -91,12 +83,9 @@ export const BusinessForm = () => {
       </div>
     );
   }
-
   const inputClass = "w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent";
   const labelClass = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
-
   const isAccommodation = formData.category === 'accommodation';
-
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Step indicator */}
@@ -113,16 +102,13 @@ export const BusinessForm = () => {
           {step === 1 ? 'Business details' : 'Contact & submit'}
         </span>
       </div>
-
       {step === 1 && (
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Business details</h3>
-
           <div>
             <label className={labelClass}>Business name *</label>
             <input name="business_name" value={formData.business_name} onChange={handleChange} required className={inputClass} placeholder="Your business name" />
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className={labelClass}>Category *</label>
@@ -145,7 +131,6 @@ export const BusinessForm = () => {
               </div>
             )}
           </div>
-
           <div>
             <label className={labelClass}>Location *</label>
             <select name="location" value={formData.location} onChange={handleChange} required className={inputClass}>
@@ -153,17 +138,14 @@ export const BusinessForm = () => {
               {zimbabweRegions.map((r) => <option key={r} value={r}>{r}</option>)}
             </select>
           </div>
-
           <div>
             <label className={labelClass}>Street address (optional)</label>
             <input name="address" value={formData.address} onChange={handleChange} className={inputClass} placeholder="123 Main Street, Harare" />
           </div>
-
           <div>
             <label className={labelClass}>Description *</label>
             <textarea name="description" value={formData.description} onChange={handleChange} required rows={4} className={inputClass} placeholder="Describe your business, what you offer, and what makes it special..." />
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className={labelClass}>Price range</label>
@@ -176,12 +158,10 @@ export const BusinessForm = () => {
               </select>
             </div>
           </div>
-
           <div>
             <label className={labelClass}>Key amenities (optional)</label>
             <input name="amenities" value={formData.amenities} onChange={handleChange} className={inputClass} placeholder="Pool, WiFi, Game drives, Restaurant (comma-separated)" />
           </div>
-
           <button
             type="button"
             onClick={() => setStep(2)}
@@ -192,16 +172,13 @@ export const BusinessForm = () => {
           </button>
         </div>
       )}
-
       {step === 2 && (
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Contact information</h3>
-
           <div>
             <label className={labelClass}>Your name *</label>
             <input name="contact_name" value={formData.contact_name} onChange={handleChange} required className={inputClass} placeholder="Full name" />
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className={labelClass}>Email *</label>
@@ -212,12 +189,10 @@ export const BusinessForm = () => {
               <input name="phone" type="tel" value={formData.phone} onChange={handleChange} required className={inputClass} placeholder="+263 77 123 4567" />
             </div>
           </div>
-
           <div>
             <label className={labelClass}>Website (optional)</label>
             <input name="website_url" type="url" value={formData.website_url} onChange={handleChange} className={inputClass} placeholder="https://yourbusiness.com" />
           </div>
-
           <div className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
             <input
               type="checkbox"
@@ -233,13 +208,11 @@ export const BusinessForm = () => {
               My listing will be reviewed before appearing in the directory.
             </label>
           </div>
-
           {error && (
             <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
               <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
             </div>
           )}
-
           <div className="flex gap-3">
             <button type="button" onClick={() => setStep(1)} className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors font-medium">
               ← Back

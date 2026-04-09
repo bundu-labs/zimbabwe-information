@@ -1,9 +1,6 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import { supabase, expertCategories } from './supabase.js';
 import { VerificationBadge } from './VerificationBadge.jsx';
-
 /**
  * ProfessionalCard — embedded profile card for a single professional
  *
@@ -24,7 +21,6 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
   const [professional, setProfessional] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     if (!personId && !professionalId) {
       setError('ProfessionalCard requires personId or professionalId prop.');
@@ -33,12 +29,10 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
     }
     fetchProfessional();
   }, [personId, professionalId]);
-
   const fetchProfessional = async () => {
     try {
       setLoading(true);
       setError(null);
-
       let query = supabase
         .schema('hospitality')
         .from('professional')
@@ -69,13 +63,11 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
           )
         `)
         .single();
-
       if (personId) {
         query = query.eq('person_id', personId);
       } else {
         query = query.eq('id', professionalId);
       }
-
       const { data, error: err } = await query;
       if (err) throw err;
       setProfessional(data);
@@ -85,13 +77,11 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
       setLoading(false);
     }
   };
-
   if (loading) {
     return (
       <div className="animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl h-32" />
     );
   }
-
   if (error || !professional) {
     return (
       <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl">
@@ -99,13 +89,11 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
       </div>
     );
   }
-
   const {
     person, occupation_type, specialisations, years_experience,
     license_type, license_number, services_offered, booking_url,
     verification_tier, aggregate_rating, review_count, available_for_hire,
   } = professional;
-
   const ratingValue = aggregate_rating?.ratingValue;
   const bio = person?.bio || person?.description;
   const languages = person?.knowslanguage;
@@ -113,7 +101,6 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
   const category = expertCategories[occupation_type] || { label: occupation_type || 'Guide', icon: 'user' };
   const name = person?.name || 'Unknown';
   const image = person?.image;
-
   if (compact) {
     return (
       <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
@@ -145,7 +132,6 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
       </div>
     );
   }
-
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
@@ -163,7 +149,6 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
             <VerificationBadge tier={verification_tier} size="md" showLabel={true} />
           </div>
           <p className="text-primary-600 dark:text-primary-400 font-medium mt-0.5">{category.label}</p>
-
           <div className="flex flex-wrap items-center gap-4 mt-2">
             {ratingValue > 0 && (
               <span className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
@@ -182,7 +167,6 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
           </div>
         </div>
       </div>
-
       {/* Specialisations */}
       {specialisations && specialisations.length > 0 && (
         <div className="px-6 pb-4">
@@ -195,14 +179,12 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
           </div>
         </div>
       )}
-
       {/* Bio */}
       {bio && (
         <div className="px-6 pb-4">
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{bio}</p>
         </div>
       )}
-
       {/* Languages */}
       {languages && languages.length > 0 && (
         <div className="px-6 pb-4">
@@ -212,7 +194,6 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
           </p>
         </div>
       )}
-
       {/* Licence */}
       {license_type && (
         <div className="px-6 pb-4">
@@ -222,7 +203,6 @@ export const ProfessionalCard = ({ personId, professionalId, compact = false }) 
           </p>
         </div>
       )}
-
       {/* Footer actions */}
       <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-4 flex flex-wrap gap-3 bg-gray-50 dark:bg-gray-800/50">
         {person?.email && (

@@ -1,7 +1,4 @@
-'use client';
-
 import { createClient } from '@supabase/supabase-js';
-
 // mukoko_platform_cloud — shared database for all Zimbabwe Information Platform apps
 // Project ID: tdcpuzqyoodrdsxldgsh | Region: EU-Central-1
 //
@@ -9,9 +6,7 @@ import { createClient } from '@supabase/supabase-js';
 // To rotate: Supabase dashboard → Project Settings → API → Publishable key
 const SUPABASE_URL = 'https://tdcpuzqyoodrdsxldgsh.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_aNdSABNOLB3sG7OMjHN0Vw_5SDouXAL';
-
 export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-
 // ---------------------------------------------------------------------------
 // Verification tiers — mirrors system.verification_tier in the platform DB
 // Mineral-colored badges used across all Mukoko platform apps
@@ -23,7 +18,6 @@ export const verificationTiers = {
   government:  { label: 'Government',   mineral: 'Gold',       darkColor: '#FFD740', lightColor: '#5D4037', icon: 'shield-check' },
   licensed:    { label: 'Licensed',     mineral: 'Tanzanite',  darkColor: '#B388FF', lightColor: '#4B0082', icon: 'award' },
 };
-
 // ---------------------------------------------------------------------------
 // Professional categories — maps to hospitality.professional occupation_type values
 // ---------------------------------------------------------------------------
@@ -42,7 +36,6 @@ export const expertCategories = {
   historical:        { label: 'Historical Guide',           icon: 'book' },
   other:             { label: 'Other',                      icon: 'user' },
 };
-
 // ---------------------------------------------------------------------------
 // Business categories — maps to commerce.business_category top-level groups
 // ---------------------------------------------------------------------------
@@ -58,7 +51,6 @@ export const businessCategories = {
   nightlife:     { label: 'Nightlife',               icon: 'music' },
   venues:        { label: 'Venues',                  icon: 'building' },
 };
-
 // ---------------------------------------------------------------------------
 // Accommodation subcategories — maps to hospitality.establishment schema_type
 // ---------------------------------------------------------------------------
@@ -72,7 +64,6 @@ export const accommodationSubcategories = {
   hostel:        { label: 'Hostel / Backpackers', icon: 'bed' },
   resort:        { label: 'Resort',              icon: 'umbrella-beach' },
 };
-
 // ---------------------------------------------------------------------------
 // Zimbabwe regions — used for filtering across all directories
 // ---------------------------------------------------------------------------

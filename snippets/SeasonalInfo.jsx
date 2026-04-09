@@ -1,10 +1,6 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { supabase } from './supabase.js';
-
 const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
 const getRatingColor = (rating) => {
   switch (rating) {
     case 'excellent':
@@ -19,7 +15,6 @@ const getRatingColor = (rating) => {
       return 'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700';
   }
 };
-
 const getRatingTextColor = (rating) => {
   switch (rating) {
     case 'excellent':
@@ -34,12 +29,10 @@ const getRatingTextColor = (rating) => {
       return 'text-gray-800 dark:text-gray-200';
   }
 };
-
 export const SeasonalInfo = ({ placeId }) => {
   const [seasonalData, setSeasonalData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchSeasonalData = async () => {
       try {
@@ -50,16 +43,13 @@ export const SeasonalInfo = ({ placeId }) => {
           .select('*')
           .eq('entity_id', placeId)
           .order('month', { ascending: true });
-
         if (queryError) throw queryError;
-
         const sortedData = Array(12).fill(null);
         data?.forEach((item) => {
           if (item.month >= 1 && item.month <= 12) {
             sortedData[item.month - 1] = item;
           }
         });
-
         setSeasonalData(sortedData);
       } catch (err) {
         setError(err.message);
@@ -67,12 +57,10 @@ export const SeasonalInfo = ({ placeId }) => {
         setLoading(false);
       }
     };
-
     if (placeId) {
       fetchSeasonalData();
     }
   }, [placeId]);
-
   if (loading) {
     return (
       <div className="flex items-center justify-center py-8">
@@ -80,7 +68,6 @@ export const SeasonalInfo = ({ placeId }) => {
       </div>
     );
   }
-
   if (error) {
     return (
       <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-800 dark:text-red-200">
@@ -89,7 +76,6 @@ export const SeasonalInfo = ({ placeId }) => {
       </div>
     );
   }
-
   if (seasonalData.every((item) => item === null)) {
     return (
       <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 text-center">
@@ -97,7 +83,6 @@ export const SeasonalInfo = ({ placeId }) => {
       </div>
     );
   }
-
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
@@ -130,7 +115,6 @@ export const SeasonalInfo = ({ placeId }) => {
           </div>
         ))}
       </div>
-
       {seasonalData.some((item) => item?.notes) && (
         <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
           <p className="font-semibold text-blue-900 dark:text-blue-200 mb-3">Seasonal Notes</p>

@@ -1,14 +1,10 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { supabase } from './supabase.js';
 import { VerificationBadge } from './VerificationBadge.jsx';
-
 const getPriceDisplay = (priceRange) => {
   const count = priceRange?.length || 0;
   return '$'.repeat(Math.min(count, 4)) || '$$';
 };
-
 const getSchemaTypeLabel = (schemaType) => {
   const labels = {
     LodgingBusiness: 'Accommodation',
@@ -20,13 +16,11 @@ const getSchemaTypeLabel = (schemaType) => {
   };
   return labels[schemaType] || schemaType;
 };
-
 const StarRating = ({ rating, count }) => {
   if (!rating) return null;
   const roundedRating = Math.round(rating * 2) / 2;
   const fullStars = Math.floor(roundedRating);
   const hasHalf = roundedRating % 1 !== 0;
-
   return (
     <div className="flex items-center gap-2">
       <div className="flex gap-0.5">
@@ -40,26 +34,20 @@ const StarRating = ({ rating, count }) => {
     </div>
   );
 };
-
 export const EstablishmentGrid = ({ placeId, schemaType = null, limit = 6 }) => {
   const [establishments, setEstablishments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchEstablishments = async () => {
       try {
         setLoading(true);
         let query = supabase.schema('hospitality').from('establishment').select('*').eq('place_id', placeId);
-
         if (schemaType) {
           query = query.eq('schema_type', schemaType);
         }
-
         const { data, error: queryError } = await query.limit(limit);
-
         if (queryError) throw queryError;
-
         setEstablishments(data || []);
       } catch (err) {
         setError(err.message);
@@ -67,12 +55,10 @@ export const EstablishmentGrid = ({ placeId, schemaType = null, limit = 6 }) => 
         setLoading(false);
       }
     };
-
     if (placeId) {
       fetchEstablishments();
     }
   }, [placeId, schemaType, limit]);
-
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -80,7 +66,6 @@ export const EstablishmentGrid = ({ placeId, schemaType = null, limit = 6 }) => 
       </div>
     );
   }
-
   if (error) {
     return (
       <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-800 dark:text-red-200">
@@ -89,7 +74,6 @@ export const EstablishmentGrid = ({ placeId, schemaType = null, limit = 6 }) => 
       </div>
     );
   }
-
   if (establishments.length === 0) {
     return (
       <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 text-center">
@@ -97,7 +81,6 @@ export const EstablishmentGrid = ({ placeId, schemaType = null, limit = 6 }) => 
       </div>
     );
   }
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {establishments.map((establishment) => (
@@ -114,7 +97,6 @@ export const EstablishmentGrid = ({ placeId, schemaType = null, limit = 6 }) => 
               />
             </div>
           )}
-
           <div className="p-4 space-y-3">
             <div className="space-y-1">
               <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2">{establishment.name}</h3>
@@ -127,22 +109,18 @@ export const EstablishmentGrid = ({ placeId, schemaType = null, limit = 6 }) => 
                 )}
               </div>
             </div>
-
             {establishment.aggregate_rating?.ratingValue > 0 && (
               <StarRating rating={establishment.aggregate_rating.ratingValue} count={establishment.review_count} />
             )}
-
             {establishment.description && (
               <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{establishment.description}</p>
             )}
-
             <div className="flex items-center justify-between text-sm">
               <span className="text-gray-600 dark:text-gray-400">{getPriceDisplay(establishment.price_range)}</span>
               {establishment.star_rating && (
                 <span className="font-semibold text-amber-600 dark:text-amber-400">{establishment.star_rating}★</span>
               )}
             </div>
-
             {establishment.amenity_features && establishment.amenity_features.length > 0 && (
               <div className="flex gap-1 flex-wrap">
                 {establishment.amenity_features.slice(0, 3).map((amenity, index) => (
@@ -160,7 +138,6 @@ export const EstablishmentGrid = ({ placeId, schemaType = null, limit = 6 }) => 
                 )}
               </div>
             )}
-
             <div className="pt-2 space-y-2 border-t border-gray-200 dark:border-gray-800">
               {establishment.booking_url && (
                 <a

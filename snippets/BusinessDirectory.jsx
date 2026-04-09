@@ -1,9 +1,6 @@
-'use client';
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { supabase, businessCategories } from './supabase.js';
 import { VerificationBadge } from './VerificationBadge.jsx';
-
 // ---------------------------------------------------------------------------
 // Price range indicator
 // ---------------------------------------------------------------------------
@@ -22,23 +19,19 @@ const PriceRange = ({ range }) => {
     </span>
   );
 };
-
 // Map commerce.local_business verification_status to badge tier
 const statusToTier = (status) => {
   if (status === 'verified') return 'otp';
   return 'unverified';
 };
-
 // ---------------------------------------------------------------------------
 // Business detail modal
 // ---------------------------------------------------------------------------
 const BusinessModal = ({ business, onClose }) => {
   if (!business) return null;
-
   const { name, logo, description, businesstype, telephone, email, url,
           pricerange, verification_status, place } = business;
   const tier = statusToTier(verification_status);
-
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50" onClick={onClose}>
       <div
@@ -79,7 +72,6 @@ const BusinessModal = ({ business, onClose }) => {
             &times;
           </button>
         </div>
-
         {/* Body */}
         <div className="p-6 space-y-5">
           {description && (
@@ -88,7 +80,6 @@ const BusinessModal = ({ business, onClose }) => {
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{description}</p>
             </div>
           )}
-
           <div className="border-t border-gray-200 dark:border-gray-700 pt-5">
             <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Contact & links</h3>
             <div className="flex flex-wrap gap-3">
@@ -141,7 +132,6 @@ const BusinessModal = ({ business, onClose }) => {
     </div>
   );
 };
-
 // ---------------------------------------------------------------------------
 // Business card (grid item)
 // ---------------------------------------------------------------------------
@@ -149,7 +139,6 @@ const BusinessCard = ({ business, onClick }) => {
   const { name, logo, description, businesstype, pricerange, verification_status, place } = business;
   const tier = statusToTier(verification_status);
   const catInfo = businessCategories[businesstype] || { label: businesstype || 'Business' };
-
   return (
     <div
       onClick={onClick}
@@ -185,7 +174,6 @@ const BusinessCard = ({ business, onClick }) => {
     </div>
   );
 };
-
 // ---------------------------------------------------------------------------
 // BusinessDirectory — queries commerce.local_business with place join
 // ---------------------------------------------------------------------------
@@ -196,12 +184,10 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
   const [selected, setSelected] = useState(null);
   const [categoryFilter, setCategoryFilter] = useState(initialCategory || '');
   const [searchQuery, setSearchQuery] = useState('');
-
   const fetchBusinesses = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
-
       let query = supabase
         .schema('commerce')
         .from('local_business')
@@ -226,11 +212,9 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
           )
         `)
         .order('name');
-
       if (placeId) {
         query = query.eq('place_id', placeId);
       }
-
       const { data, error: err } = await query.limit(50);
       if (err) throw err;
       setBusinesses(data || []);
@@ -240,9 +224,7 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
       setLoading(false);
     }
   }, [placeId]);
-
   useEffect(() => { fetchBusinesses(); }, [fetchBusinesses]);
-
   const filtered = businesses.filter((b) => {
     if (categoryFilter && b.businesstype !== categoryFilter) return false;
     if (searchQuery) {
@@ -255,7 +237,6 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
     }
     return true;
   });
-
   return (
     <div className="space-y-6">
       {showFilters && (
@@ -279,18 +260,15 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
           </select>
         </div>
       )}
-
       <p className="text-sm text-gray-500 dark:text-gray-400">
         {filtered.length} business{filtered.length !== 1 ? 'es' : ''} found
       </p>
-
       {error && (
         <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
           <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
           <button onClick={fetchBusinesses} className="mt-2 text-sm text-red-600 dark:text-red-400 underline">Try again</button>
         </div>
       )}
-
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[...Array(6)].map((_, i) => (
@@ -308,7 +286,6 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
           <p className="text-gray-500 dark:text-gray-400">No businesses found matching your search.</p>
         </div>
       )}
-
       {selected && <BusinessModal business={selected} onClose={() => setSelected(null)} />}
     </div>
   );

@@ -1,8 +1,5 @@
-'use client';
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { supabase } from './supabase.js';
-
 /**
  * ContributorDashboard — authenticated content gap browser
  *
@@ -15,14 +12,12 @@ import { supabase } from './supabase.js';
  *
  * Requires: user must be signed in via Supabase Auth (shared Mukoko identity).
  */
-
 const priorityConfig = {
   critical: { label: 'Critical',  color: 'text-red-600 dark:text-red-400',    bg: 'bg-red-50 dark:bg-red-900/20',    border: 'border-red-200 dark:border-red-800' },
   high:     { label: 'High',      color: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-900/20', border: 'border-orange-200 dark:border-orange-800' },
   medium:   { label: 'Medium',    color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-900/20',  border: 'border-amber-200 dark:border-amber-800' },
   low:      { label: 'Low',       color: 'text-gray-500 dark:text-gray-400',   bg: 'bg-gray-50 dark:bg-gray-800',       border: 'border-gray-200 dark:border-gray-700' },
 };
-
 const gapTypeLabels = {
   missing_article:    'Missing article',
   incomplete_content: 'Incomplete content',
@@ -30,7 +25,6 @@ const gapTypeLabels = {
   missing_photos:     'Missing photos',
   missing_data:       'Missing data',
 };
-
 // ---------------------------------------------------------------------------
 // Auth gate — shows login prompt if not signed in
 // ---------------------------------------------------------------------------
@@ -64,14 +58,12 @@ const AuthGate = ({ onSignIn, loading }) => (
     </div>
   </div>
 );
-
 // ---------------------------------------------------------------------------
 // Gap card
 // ---------------------------------------------------------------------------
 const GapCard = ({ gap, onClaim, claiming }) => {
   const priority = priorityConfig[gap.priority] || priorityConfig.low;
   const typeLabel = gapTypeLabels[gap.gap_type] || gap.gap_type;
-
   return (
     <div className={`rounded-xl border p-5 ${priority.border} ${priority.bg} transition-shadow hover:shadow-md`}>
       <div className="flex items-start justify-between gap-3">
@@ -117,7 +109,6 @@ const GapCard = ({ gap, onClaim, claiming }) => {
     </div>
   );
 };
-
 // ---------------------------------------------------------------------------
 // Main ContributorDashboard
 // ---------------------------------------------------------------------------
@@ -130,27 +121,22 @@ export const ContributorDashboard = () => {
   const [claiming, setClaiming] = useState(null);
   const [claimedGaps, setClaimedGaps] = useState(new Set());
   const [filters, setFilters] = useState({ priority: '', gap_type: '' });
-
   // Auth check
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user || null);
       setAuthLoading(false);
     });
-
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user || null);
     });
-
     return () => subscription.unsubscribe();
   }, []);
-
   // Fetch gaps when authenticated
   const fetchGaps = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
-
       let query = supabase
         .schema('content')
         .from('content_gap')
@@ -168,10 +154,8 @@ export const ContributorDashboard = () => {
         .in('status', ['open', 'claimed'])
         .order('priority', { ascending: false })
         .limit(30);
-
       if (filters.priority) query = query.eq('priority', filters.priority);
       if (filters.gap_type) query = query.eq('gap_type', filters.gap_type);
-
       const { data, error: err } = await query;
       if (err) throw err;
       setGaps(data || []);
@@ -181,17 +165,14 @@ export const ContributorDashboard = () => {
       setLoading(false);
     }
   }, [filters]);
-
   useEffect(() => {
     if (user) fetchGaps();
   }, [user, fetchGaps]);
-
   const handleSignIn = async () => {
     setAuthLoading(true);
     // Redirect to Mukoko auth — shared identity across all apps
     window.location.href = 'https://business.mukoko.com/sign-in?redirect=' + encodeURIComponent(window.location.href);
   };
-
   const handleClaim = async (gap) => {
     if (!user) return;
     setClaiming(gap.id);
@@ -201,11 +182,9 @@ export const ContributorDashboard = () => {
         .from('content_gap')
         .update({ status: 'claimed', claimed_by: user.id, claimed_at: new Date().toISOString() })
         .eq('id', gap.id);
-
       if (err) throw err;
       setClaimedGaps((prev) => new Set([...prev, gap.id]));
       setGaps((prev) => prev.map((g) => g.id === gap.id ? { ...g, status: 'claimed' } : g));
-
       // Redirect to write the article
       window.open(`https://business.mukoko.com/contribute/${gap.id}`, '_blank');
     } catch (err) {
@@ -214,7 +193,6 @@ export const ContributorDashboard = () => {
       setClaiming(null);
     }
   };
-
   if (authLoading) {
     return (
       <div className="flex items-center justify-center py-16">
@@ -222,13 +200,10 @@ export const ContributorDashboard = () => {
       </div>
     );
   }
-
   if (!user) {
     return <AuthGate onSignIn={handleSignIn} loading={authLoading} />;
   }
-
   const openGaps = gaps.filter((g) => g.status === 'open' || claimedGaps.has(g.id) === false);
-
   return (
     <div className="space-y-6">
       {/* User bar */}
@@ -248,7 +223,6 @@ export const ContributorDashboard = () => {
           Sign out
         </button>
       </div>
-
       {/* Filters */}
       <div className="flex flex-wrap gap-3">
         <select
@@ -272,18 +246,15 @@ export const ContributorDashboard = () => {
           ))}
         </select>
       </div>
-
       {/* Stats */}
       <p className="text-sm text-gray-500 dark:text-gray-400">
         {openGaps.length} open gap{openGaps.length !== 1 ? 's' : ''} — claim one to start writing
       </p>
-
       {error && (
         <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
           <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
         </div>
       )}
-
       {loading ? (
         <div className="flex items-center justify-center py-12">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600" />

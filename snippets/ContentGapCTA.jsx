@@ -1,8 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { supabase } from './supabase.js';
-
 const getPriorityColor = (priority) => {
   switch (priority) {
     case 'critical':
@@ -17,7 +14,6 @@ const getPriorityColor = (priority) => {
       return 'bg-gray-100 dark:bg-gray-900/20 border-gray-300 dark:border-gray-800 text-gray-800 dark:text-gray-200';
   }
 };
-
 const getPriorityLabel = (priority) => {
   switch (priority) {
     case 'critical':
@@ -32,11 +28,9 @@ const getPriorityLabel = (priority) => {
       return priority;
   }
 };
-
 export const ContentGapCTA = ({ placeId }) => {
   const [gaps, setGaps] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const fetchGaps = async () => {
       try {
@@ -48,7 +42,6 @@ export const ContentGapCTA = ({ placeId }) => {
           .eq('entity_id', placeId)
           .eq('status', 'open')
           .order('priority', { ascending: true });
-
         if (!queryError && data) {
           setGaps(data);
         }
@@ -58,18 +51,14 @@ export const ContentGapCTA = ({ placeId }) => {
         setLoading(false);
       }
     };
-
     if (placeId) {
       fetchGaps();
     }
   }, [placeId]);
-
   if (loading || gaps.length === 0) {
     return null;
   }
-
   const hasCriticalGaps = gaps.some((gap) => gap.priority === 'critical');
-
   return (
     <div
       className={`border-2 rounded-lg p-6 space-y-4 ${
@@ -91,7 +80,6 @@ export const ContentGapCTA = ({ placeId }) => {
           {gaps.length === 1 ? 'gap' : 'gaps'} identified.
         </p>
       </div>
-
       {gaps.length > 0 && (
         <div className="space-y-2">
           {gaps.slice(0, 3).map((gap) => (
@@ -110,7 +98,6 @@ export const ContentGapCTA = ({ placeId }) => {
           )}
         </div>
       )}
-
       <a
         href="https://business.mukoko.com/contribute"
         target="_blank"
@@ -119,7 +106,6 @@ export const ContentGapCTA = ({ placeId }) => {
       >
         Contribute Missing Information
       </a>
-
       <p className="text-xs text-gray-600 dark:text-gray-400 italic">
         Your contributions help keep Zimbabwe Travel Information accurate and comprehensive.
       </p>

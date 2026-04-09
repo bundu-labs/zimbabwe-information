@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-
 /**
  * LocationMap - Embeds an OpenStreetMap for a destination
  *
@@ -31,21 +28,17 @@ export const LocationMap = ({
       </div>
     );
   }
-
   // Calculate bounding box for the embed (rough approximation based on zoom)
   // Higher zoom = smaller bbox
   const delta = 0.5 / Math.pow(2, zoom - 10);
   const bbox = `${lng - delta},${lat - delta},${lng + delta},${lat + delta}`;
-
   // Build OpenStreetMap embed URL
   let mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik`;
   if (showMarker) {
     mapUrl += `&marker=${lat},${lng}`;
   }
-
   // Link to full map
   const fullMapUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=${zoom}/${lat}/${lng}`;
-
   return (
     <div className="my-6">
       {/* GPS Coordinates Display */}
@@ -68,7 +61,6 @@ export const LocationMap = ({
           View larger map →
         </a>
       </div>
-
       {/* Map Container */}
       <div
         className="relative rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700"
@@ -87,7 +79,6 @@ export const LocationMap = ({
           allowFullScreen
         />
       </div>
-
       {/* Attribution */}
       <div className="mt-2 text-xs text-gray-500 dark:text-gray-500">
         Map data © <a

@@ -1,8 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { supabase } from './supabase.js';
-
 const getDifficultyColor = (difficulty) => {
   switch (difficulty?.toLowerCase()) {
     case 'easy':
@@ -17,28 +14,23 @@ const getDifficultyColor = (difficulty) => {
       return 'bg-gray-100 dark:bg-gray-900/30 text-gray-800 dark:text-gray-300';
   }
 };
-
 export const ItineraryView = ({ itineraryId }) => {
   const [itinerary, setItinerary] = useState(null);
   const [stops, setStops] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchItinerary = async () => {
       try {
         setLoading(true);
-
         const { data: itinData, error: itinError } = await supabase
           .schema('content')
           .from('itinerary')
           .select('*')
           .eq('id', itineraryId)
           .single();
-
         if (itinError) throw itinError;
         setItinerary(itinData);
-
         const { data: stopsData, error: stopsError } = await supabase
           .schema('content')
           .from('itinerary_stop')
@@ -61,7 +53,6 @@ export const ItineraryView = ({ itineraryId }) => {
           .eq('itinerary_id', itineraryId)
           .order('day_number', { ascending: true })
           .order('stop_order', { ascending: true });
-
         if (stopsError) throw stopsError;
         setStops(stopsData || []);
       } catch (err) {
@@ -70,12 +61,10 @@ export const ItineraryView = ({ itineraryId }) => {
         setLoading(false);
       }
     };
-
     if (itineraryId) {
       fetchItinerary();
     }
   }, [itineraryId]);
-
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -83,7 +72,6 @@ export const ItineraryView = ({ itineraryId }) => {
       </div>
     );
   }
-
   if (error) {
     return (
       <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-800 dark:text-red-200">
@@ -92,7 +80,6 @@ export const ItineraryView = ({ itineraryId }) => {
       </div>
     );
   }
-
   if (!itinerary) {
     return (
       <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 text-center">
@@ -100,18 +87,15 @@ export const ItineraryView = ({ itineraryId }) => {
       </div>
     );
   }
-
   const groupedStops = stops.reduce((acc, stop) => {
     const day = stop.day_number;
     if (!acc[day]) acc[day] = [];
     acc[day].push(stop);
     return acc;
   }, {});
-
   const days = Object.keys(groupedStops)
     .map(Number)
     .sort((a, b) => a - b);
-
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -122,7 +106,6 @@ export const ItineraryView = ({ itineraryId }) => {
             <p className="text-gray-600 dark:text-gray-400 mt-2">{itinerary.description}</p>
           )}
         </div>
-
         <div className="flex flex-wrap gap-4 text-sm">
           {itinerary.duration_days && (
             <div className="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/20 px-4 py-2 rounded-lg">
@@ -132,21 +115,18 @@ export const ItineraryView = ({ itineraryId }) => {
               </span>
             </div>
           )}
-
           {itinerary.difficulty && (
             <div className={`flex items-center gap-2 px-4 py-2 rounded-lg ${getDifficultyColor(itinerary.difficulty)}`}>
               <span className="font-semibold">Difficulty:</span>
               <span className="capitalize">{itinerary.difficulty}</span>
             </div>
           )}
-
           {itinerary.target_audience && (
             <div className="flex items-center gap-2 bg-purple-50 dark:bg-purple-900/20 px-4 py-2 rounded-lg">
               <span className="font-semibold text-purple-900 dark:text-purple-200">For:</span>
               <span className="text-purple-800 dark:text-purple-300">{itinerary.target_audience}</span>
             </div>
           )}
-
           {itinerary.total_distance_km && (
             <div className="flex items-center gap-2 bg-green-50 dark:bg-green-900/20 px-4 py-2 rounded-lg">
               <span className="font-semibold text-green-900 dark:text-green-200">Distance:</span>
@@ -155,13 +135,11 @@ export const ItineraryView = ({ itineraryId }) => {
           )}
         </div>
       </div>
-
       {/* Timeline */}
       {days.length > 0 ? (
         <div className="relative">
           {/* Vertical line */}
           <div className="absolute left-4 md:left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-teal-500 to-teal-300 dark:to-teal-700"></div>
-
           <div className="space-y-8">
             {days.map((dayNum) => (
               <div key={dayNum} className="space-y-4">
@@ -174,7 +152,6 @@ export const ItineraryView = ({ itineraryId }) => {
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white">Day {dayNum}</h2>
                   </div>
                 </div>
-
                 {/* Stops for this day */}
                 <div className="ml-20 md:ml-24 space-y-4">
                   {groupedStops[dayNum].map((stop, stopIndex) => {
@@ -182,7 +159,6 @@ export const ItineraryView = ({ itineraryId }) => {
                     const nextDayIndex = days.indexOf(dayNum) + 1;
                     const showTravelTime =
                       !isLastStop && stopIndex < groupedStops[dayNum].length - 1;
-
                     return (
                       <div key={stop.id} className="space-y-3">
                         {/* Travel time from previous */}
@@ -193,7 +169,6 @@ export const ItineraryView = ({ itineraryId }) => {
                             </p>
                           </div>
                         )}
-
                         {/* Stop card */}
                         <div className="bg-white dark:bg-gray-950 border-2 border-gray-200 dark:border-gray-800 rounded-lg p-5 space-y-3 hover:shadow-md transition-shadow">
                           <div className="flex items-start justify-between gap-3">
@@ -213,11 +188,9 @@ export const ItineraryView = ({ itineraryId }) => {
                               </div>
                             )}
                           </div>
-
                           {stop.description && (
                             <p className="text-sm text-gray-700 dark:text-gray-300">{stop.description}</p>
                           )}
-
                           {stop.activities && stop.activities.length > 0 && (
                             <div className="space-y-2">
                               <p className="text-xs font-semibold text-gray-600 dark:text-gray-400">Activities:</p>
@@ -233,13 +206,11 @@ export const ItineraryView = ({ itineraryId }) => {
                               </div>
                             </div>
                           )}
-
                           {stop.accommodation_id && (
                             <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-200 dark:border-blue-800 text-sm text-blue-800 dark:text-blue-300">
                               <p className="font-semibold">Accommodation arranged for this stop</p>
                             </div>
                           )}
-
                           {stop.places && (stop.places.latitude || stop.places.longitude) && (
                             <a
                               href={`https://travel.mukoko.com/place/${stop.place_id}`}
@@ -251,7 +222,6 @@ export const ItineraryView = ({ itineraryId }) => {
                             </a>
                           )}
                         </div>
-
                         {/* Travel time to next day */}
                         {isLastStop &&
                           nextDayIndex < days.length &&

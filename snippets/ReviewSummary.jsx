@@ -1,14 +1,10 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { supabase } from './supabase.js';
-
 const StarRating = ({ rating, showCount = true, count = null }) => {
   if (!rating && rating !== 0) return null;
   const roundedRating = Math.round(rating * 2) / 2;
   const fullStars = Math.floor(roundedRating);
   const hasHalf = roundedRating % 1 !== 0;
-
   return (
     <div className="flex items-center gap-2">
       <div className="flex gap-0.5">
@@ -22,19 +18,16 @@ const StarRating = ({ rating, showCount = true, count = null }) => {
     </div>
   );
 };
-
 export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(null);
   const [reviewCount, setReviewCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         setLoading(true);
-
         const { data, error: queryError } = await supabase
           .schema('engagement')
           .from('review')
@@ -56,16 +49,12 @@ export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
           .eq('moderation_status', 'approved')
           .order('created_at', { ascending: false })
           .limit(maxReviews);
-
         if (queryError) throw queryError;
-
         setReviews(data || []);
-
         if (data && data.length > 0) {
           const avgRating = data.reduce((sum, review) => sum + (review.rating || 0), 0) / data.length;
           setAverageRating(avgRating);
         }
-
         const { count, error: countError } = await supabase
           .schema('engagement')
           .from('review')
@@ -73,7 +62,6 @@ export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
           .eq('item_reviewed_schema', entitySchema)
           .eq('item_reviewed_id', entityId)
           .eq('moderation_status', 'approved');
-
         if (!countError && count !== null) {
           setReviewCount(count);
         }
@@ -83,12 +71,10 @@ export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
         setLoading(false);
       }
     };
-
     if (entityId && entitySchema) {
       fetchReviews();
     }
   }, [entityId, entitySchema, maxReviews]);
-
   if (loading) {
     return (
       <div className="flex items-center justify-center py-8">
@@ -96,7 +82,6 @@ export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
       </div>
     );
   }
-
   if (error) {
     return (
       <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-800 dark:text-red-200">
@@ -104,7 +89,6 @@ export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
       </div>
     );
   }
-
   if (reviewCount === 0) {
     return (
       <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 text-center">
@@ -112,7 +96,6 @@ export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
       </div>
     );
   }
-
   return (
     <div className="space-y-6">
       {averageRating !== null && (
@@ -128,7 +111,6 @@ export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
           </div>
         </div>
       )}
-
       {reviews.length > 0 && (
         <div className="space-y-4">
           <h3 className="font-semibold text-gray-900 dark:text-white">Recent Reviews</h3>
@@ -163,15 +145,12 @@ export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
                 </div>
                 <StarRating rating={review.rating} showCount={false} />
               </div>
-
               {review.headline && (
                 <p className="font-semibold text-gray-900 dark:text-white text-sm">{review.headline}</p>
               )}
-
               {review.body && (
                 <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">{review.body}</p>
               )}
-
               {review.helpful_count > 0 && (
                 <p className="text-xs text-gray-600 dark:text-gray-400">
                   {review.helpful_count} {review.helpful_count === 1 ? 'person' : 'people'} found this helpful
@@ -181,7 +160,6 @@ export const ReviewSummary = ({ entityId, entitySchema, maxReviews = 3 }) => {
           ))}
         </div>
       )}
-
       {reviewCount > maxReviews && (
         <div className="text-center pt-4">
           <p className="text-sm text-gray-600 dark:text-gray-400">
