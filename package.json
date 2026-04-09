@@ -1,15 +1,19 @@
 {
-  "name": "zti-docs",
-  "description": "Zimbabwe Travel Information - Open source documentation for travel guides",
+  "name": "zimbabwe-information-platform",
+  "description": "Zimbabwe Information Platform — monorepo for travel-info.co.zw (Mintlify docs) and apps under mukoko.com",
   "version": "1.0.0",
+  "private": true,
   "license": "CC-BY-4.0",
   "homepage": "https://travel-info.co.zw",
   "repository": {
     "type": "git",
     "url": "https://github.com/nyuchitech/zti-docs"
   },
+  "workspaces": [
+    "apps/*"
+  ],
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0",
+    "@supabase/supabase-js": "^2.68.0",
     "react": "^18.2.0"
   },
   "devDependencies": {
@@ -17,5 +21,8 @@
   },
   "overrides": {
     "js-yaml": ">=3.14.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

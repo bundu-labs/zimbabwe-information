@@ -1,22 +1,36 @@
-// Zimbabwe Travel Information - Custom Components
-// Export all custom React components for use in MDX pages
-// Note: Mintlify requires arrow function syntax for JSX snippets
+// Zimbabwe Information Platform — Mintlify custom components
+// All components use arrow function + named export syntax (Mintlify requirement)
 
-console.log('🟢 Loading snippets/index.js');
-
+// --- Directories ---
 export { ExpertDirectory } from './ExpertDirectory.jsx';
-export { ExpertForm } from './ExpertFormFormspree.jsx';
-export { ExpertFormSupabase } from './ExpertFormSupabase.jsx';
 export { BusinessDirectory } from './BusinessDirectory.jsx';
+
+// --- Forms ---
+export { ExpertFormSupabase } from './ExpertFormSupabase.jsx';
 export { BusinessForm } from './BusinessForm.jsx';
-export { TestComponent } from './TestComponent.jsx';
+
+// --- Maps ---
 export { LocationMap } from './LocationMap.jsx';
 
-console.log('🟢 All components exported from index.js');
+// --- Place components (embed in destination articles) ---
+export { SeasonalInfo } from './SeasonalInfo.jsx';
+export { EstablishmentGrid } from './EstablishmentGrid.jsx';
+export { ExperienceList } from './ExperienceList.jsx';
+export { ReviewSummary } from './ReviewSummary.jsx';
+export { ContentGapCTA } from './ContentGapCTA.jsx';
+export { ItineraryView } from './ItineraryView.jsx';
 
-// Re-export utilities and constants
+// --- Profile components ---
+export { ProfessionalCard } from './ProfessionalCard.jsx';
+export { VerificationBadge } from './VerificationBadge.jsx';
+
+// --- Contributor program ---
+export { ContributorDashboard } from './ContributorDashboard.jsx';
+
+// --- Supabase client + constants ---
 export {
   supabase,
+  verificationTiers,
   expertCategories,
   businessCategories,
   accommodationSubcategories,
