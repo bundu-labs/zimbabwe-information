@@ -1,4 +1,4 @@
-import React from 'react';
+
 /**
  * LocationMap - Embeds an OpenStreetMap for a destination
  *
