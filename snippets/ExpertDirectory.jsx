@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase, expertCategories, verificationTiers } from './supabase.js';
 // ---------------------------------------------------------------------------
 // renderBadge — inline verification badge (avoids cross-snippet JSX import)
@@ -418,11 +418,7 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
         </div>
       ) : filtered.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((p) => (
-            <React.Fragment key={p.id}>
-              {ProfessionalCard({ professional: p, onClick: () => setSelected(p) })}
-            </React.Fragment>
-          ))}
+          {filtered.map((p) => ProfessionalCard({ professional: p, onClick: () => setSelected(p) }))}
         </div>
       ) : (
         <div className="text-center py-16 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">

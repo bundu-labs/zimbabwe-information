@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase, businessCategories, verificationTiers } from './supabase.js';
 // ---------------------------------------------------------------------------
 // renderBadge — inline verification badge (avoids cross-snippet JSX import)
@@ -306,11 +306,7 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
         </div>
       ) : filtered.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((b) => (
-            <React.Fragment key={b.id}>
-              {BusinessCard({ business: b, onClick: () => setSelected(b) })}
-            </React.Fragment>
-          ))}
+          {filtered.map((b) => BusinessCard({ business: b, onClick: () => setSelected(b) }))}
         </div>
       ) : (
         <div className="text-center py-16 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
