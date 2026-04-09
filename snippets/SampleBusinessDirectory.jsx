@@ -1,20 +1,20 @@
 import { useState } from 'react';
 
-const SAMPLE_BUSINESSES = [
-  { id: '1', name: 'Victoria Falls Safari Lodge', category: 'Accommodation', location: 'Victoria Falls', price: 3, rating: 4.9, reviews: 312, description: 'Luxury thatched lodge overlooking active watering holes visited by elephant, buffalo and giraffe. 5 minutes from the Falls.', tier: 'licensed' },
-  { id: '2', name: 'Wild Horizons', category: 'Tour Operator', location: 'Victoria Falls', price: 2, rating: 4.8, reviews: 198, description: 'Zimbabwe leading adventure and safari company. Game drives, walking safaris, and helicopter rides over the Falls.', tier: 'licensed' },
-  { id: '3', name: 'Bumi Hills Safari Lodge', category: 'Accommodation', location: 'Lake Kariba', price: 3, rating: 4.7, reviews: 156, description: 'Clifftop lodge above Lake Kariba with panoramic views. World-class houseboat safaris and tiger fishing.', tier: 'government' },
-  { id: '4', name: 'Amalinda Lodge', category: 'Accommodation', location: 'Matobo Hills', price: 3, rating: 4.9, reviews: 89, description: 'Extraordinary lodge built into ancient Matobo boulders. Rock art walks and rhino tracking on foot.', tier: 'otp' },
-  { id: '5', name: 'Dzimbahwe Restaurant', category: 'Dining', location: 'Harare', price: 2, rating: 4.6, reviews: 241, description: 'Contemporary Zimbabwean cuisine. Dishes include sadza, nyama, and seasonal game in a beautifully decorated space.', tier: 'community' },
-  { id: '6', name: 'Backpackers Bazaar', category: 'Accommodation', location: 'Victoria Falls', price: 1, rating: 4.5, reviews: 503, description: 'Legendary backpacker haunt steps from the Falls. Budget dorms, private rooms, camping, and a buzzing social scene.', tier: 'otp' },
-];
-
-const TIER_COLORS = { licensed: '#B388FF', government: '#FFD740', otp: '#00B0FF', community: '#D4A574', unverified: '#6B6B66' };
-const TIER_LABELS = { licensed: 'Licensed', government: 'Government', otp: 'OTP Verified', community: 'Community', unverified: 'Unverified' };
-
-const priceLabel = (n) => Array.from({ length: 3 }, (_, i) => i < n ? '$' : '·').join('');
-
 export const SampleBusinessDirectory = () => {
+  // ALL constants inside the function — Mintlify evals only the function body
+  const SAMPLE_BUSINESSES = [
+    { id: '1', name: 'Victoria Falls Safari Lodge', category: 'Accommodation', location: 'Victoria Falls', price: 3, rating: 4.9, reviews: 312, description: 'Luxury thatched lodge overlooking active watering holes visited by elephant, buffalo and giraffe. 5 minutes from the Falls.', tier: 'licensed' },
+    { id: '2', name: 'Wild Horizons', category: 'Tour Operator', location: 'Victoria Falls', price: 2, rating: 4.8, reviews: 198, description: 'Zimbabwe leading adventure and safari company. Game drives, walking safaris, and helicopter rides over the Falls.', tier: 'licensed' },
+    { id: '3', name: 'Bumi Hills Safari Lodge', category: 'Accommodation', location: 'Lake Kariba', price: 3, rating: 4.7, reviews: 156, description: 'Clifftop lodge above Lake Kariba with panoramic views. World-class houseboat safaris and tiger fishing.', tier: 'government' },
+    { id: '4', name: 'Amalinda Lodge', category: 'Accommodation', location: 'Matobo Hills', price: 3, rating: 4.9, reviews: 89, description: 'Extraordinary lodge built into ancient Matobo boulders. Rock art walks and rhino tracking on foot.', tier: 'otp' },
+    { id: '5', name: 'Dzimbahwe Restaurant', category: 'Dining', location: 'Harare', price: 2, rating: 4.6, reviews: 241, description: 'Contemporary Zimbabwean cuisine. Sadza, nyama, and seasonal game in a beautifully decorated space.', tier: 'community' },
+    { id: '6', name: 'Backpackers Bazaar', category: 'Accommodation', location: 'Victoria Falls', price: 1, rating: 4.5, reviews: 503, description: 'Legendary backpacker haunt steps from the Falls. Budget dorms, private rooms, camping, and a buzzing social scene.', tier: 'otp' },
+  ];
+
+  const TIER_COLORS = { licensed: '#B388FF', government: '#FFD740', otp: '#00B0FF', community: '#D4A574', unverified: '#6B6B66' };
+  const TIER_LABELS = { licensed: 'Licensed', government: 'Government', otp: 'OTP Verified', community: 'Community', unverified: 'Unverified' };
+  const priceLabel = (n) => Array.from({ length: 3 }, (_, i) => i < n ? '$' : '·').join('');
+
   const [search, setSearch] = useState('');
 
   const filtered = SAMPLE_BUSINESSES.filter((b) =>

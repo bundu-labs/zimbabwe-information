@@ -1,75 +1,75 @@
 import { useState, useEffect, useCallback } from 'react';
 
-// ---------------------------------------------------------------------------
-// Supabase Data API — uses fetch() directly so no npm package is needed.
-// Mintlify loads local .js files as classic scripts (not ES modules),
-// so cross-file imports via ./supabase.js fail at runtime.
-// ---------------------------------------------------------------------------
-const SUPABASE_URL = 'https://tdcpuzqyoodrdsxldgsh.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_aNdSABNOLB3sG7OMjHN0Vw_5SDouXAL';
-
-// ---------------------------------------------------------------------------
-// Constants — inlined from supabase.js for the same reason
-// ---------------------------------------------------------------------------
-const verificationTiers = {
-  unverified:  { label: 'Unverified',   icon: 'circle',       mineral: null,         darkColor: '#6B6B66' },
-  community:   { label: 'Community',    icon: 'users',        mineral: 'Terracotta', darkColor: '#D4A574' },
-  otp:         { label: 'OTP Verified', icon: 'phone',        mineral: 'Cobalt',     darkColor: '#00B0FF' },
-  government:  { label: 'Government',   icon: 'shield-check', mineral: 'Gold',       darkColor: '#FFD740' },
-  licensed:    { label: 'Licensed',     icon: 'award',        mineral: 'Tanzanite',  darkColor: '#B388FF' },
-};
-
-const businessCategories = {
-  accommodation: { label: 'Accommodation' },
-  activities:    { label: 'Activities & Tours' },
-  dining:        { label: 'Dining & Entertainment' },
-  transport:     { label: 'Transportation' },
-  shopping:      { label: 'Shopping & Crafts' },
-  services:      { label: 'Services' },
-  attractions:   { label: 'Attractions' },
-  wellness:      { label: 'Wellness & Health' },
-  nightlife:     { label: 'Nightlife' },
-  venues:        { label: 'Venues' },
-};
-
-// ---------------------------------------------------------------------------
-// renderBadge — returns JSX using only lowercase elements (safe in Mintlify MDX)
-// ---------------------------------------------------------------------------
-const renderBadge = (tier = 'unverified', size = 'md', showLabel = false) => {
-  const tierInfo = verificationTiers[tier] || verificationTiers.unverified;
-  const sizes = {
-    sm: { badge: 'w-4 h-4', text: 'text-xs', gap: 'gap-1' },
-    md: { badge: 'w-5 h-5', text: 'text-sm', gap: 'gap-1.5' },
-    lg: { badge: 'w-6 h-6', text: 'text-base', gap: 'gap-2' },
-  };
-  const s = sizes[size] || sizes.md;
-  const iconPath = {
-    circle:        <circle cx="12" cy="12" r="9" strokeWidth="2" stroke="currentColor" fill="none" />,
-    phone:         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 8V5z" />,
-    users:         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />,
-    'shield-check': <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />,
-    award:         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />,
-  };
-  return (
-    <span className={`inline-flex items-center ${s.gap} flex-shrink-0`} title={`${tierInfo.label}${tierInfo.mineral ? ` — ${tierInfo.mineral}` : ''}`}>
-      <svg className={`${s.badge} flex-shrink-0`} style={{ color: tierInfo.darkColor }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label={`${tierInfo.label} verification`}>
-        {iconPath[tierInfo.icon] || iconPath.circle}
-      </svg>
-      {showLabel && <span className={`${s.text} font-medium`} style={{ color: tierInfo.darkColor }}>{tierInfo.label}</span>}
-    </span>
-  );
-};
-
-// Map verification_status string to tier key
-const statusToTier = (status) => {
-  if (status === 'verified') return 'otp';
-  return 'unverified';
-};
-
-// ---------------------------------------------------------------------------
-// BusinessDirectory — single self-contained exported component
-// ---------------------------------------------------------------------------
 export const BusinessDirectory = ({ showFilters = true, category: initialCategory = null, placeId = null }) => {
+  // ALL constants inside the function — Mintlify evals only the component body
+  const SUPABASE_URL = 'https://tdcpuzqyoodrdsxldgsh.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_aNdSABNOLB3sG7OMjHN0Vw_5SDouXAL';
+
+  const verificationTiers = {
+    unverified:  { label: 'Unverified',   icon: 'circle',       mineral: null,         darkColor: '#6B6B66' },
+    community:   { label: 'Community',    icon: 'users',        mineral: 'Terracotta', darkColor: '#D4A574' },
+    otp:         { label: 'OTP Verified', icon: 'phone',        mineral: 'Cobalt',     darkColor: '#00B0FF' },
+    government:  { label: 'Government',   icon: 'shield-check', mineral: 'Gold',       darkColor: '#FFD740' },
+    licensed:    { label: 'Licensed',     icon: 'award',        mineral: 'Tanzanite',  darkColor: '#B388FF' },
+  };
+
+  const businessCategories = {
+    accommodation: { label: 'Accommodation' },
+    activities:    { label: 'Activities & Tours' },
+    dining:        { label: 'Dining & Entertainment' },
+    transport:     { label: 'Transportation' },
+    shopping:      { label: 'Shopping & Crafts' },
+    services:      { label: 'Services' },
+    attractions:   { label: 'Attractions' },
+    wellness:      { label: 'Wellness & Health' },
+    nightlife:     { label: 'Nightlife' },
+    venues:        { label: 'Venues' },
+  };
+
+  const renderBadge = (tier = 'unverified', size = 'md', showLabel = false) => {
+    const tierInfo = verificationTiers[tier] || verificationTiers.unverified;
+    const sizes = {
+      sm: { badge: 'w-4 h-4', text: 'text-xs', gap: 'gap-1' },
+      md: { badge: 'w-5 h-5', text: 'text-sm', gap: 'gap-1.5' },
+      lg: { badge: 'w-6 h-6', text: 'text-base', gap: 'gap-2' },
+    };
+    const s = sizes[size] || sizes.md;
+    const iconPath = {
+      circle:        <circle cx="12" cy="12" r="9" strokeWidth="2" stroke="currentColor" fill="none" />,
+      phone:         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 8V5z" />,
+      users:         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />,
+      'shield-check': <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />,
+      award:         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />,
+    };
+    return (
+      <span className={`inline-flex items-center ${s.gap} flex-shrink-0`} title={`${tierInfo.label}${tierInfo.mineral ? ` — ${tierInfo.mineral}` : ''}`}>
+        <svg className={`${s.badge} flex-shrink-0`} style={{ color: tierInfo.darkColor }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label={`${tierInfo.label} verification`}>
+          {iconPath[tierInfo.icon] || iconPath.circle}
+        </svg>
+        {showLabel && <span className={`${s.text} font-medium`} style={{ color: tierInfo.darkColor }}>{tierInfo.label}</span>}
+      </span>
+    );
+  };
+
+  const statusToTier = (status) => {
+    if (status === 'verified') return 'otp';
+    return 'unverified';
+  };
+
+  const priceIndicator = (range) => {
+    if (!range) return null;
+    const levels = ['$', '$$', '$$$', '$$$$'];
+    const current = levels.indexOf(range);
+    if (current === -1) return <span className="text-sm text-gray-500 dark:text-gray-400">{range}</span>;
+    return (
+      <span className="text-sm">
+        {levels.map((l, i) => (
+          <span key={l} className={i <= current ? 'text-gray-700 dark:text-gray-300' : 'text-gray-300 dark:text-gray-600'}>$</span>
+        ))}
+      </span>
+    );
+  };
+
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -120,20 +120,6 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
     }
     return true;
   });
-
-  const priceIndicator = (range) => {
-    if (!range) return null;
-    const levels = ['$', '$$', '$$$', '$$$$'];
-    const current = levels.indexOf(range);
-    if (current === -1) return <span className="text-sm text-gray-500 dark:text-gray-400">{range}</span>;
-    return (
-      <span className="text-sm">
-        {levels.map((l, i) => (
-          <span key={l} className={i <= current ? 'text-gray-700 dark:text-gray-300' : 'text-gray-300 dark:text-gray-600'}>$</span>
-        ))}
-      </span>
-    );
-  };
 
   return (
     <div className="space-y-6">
@@ -226,7 +212,6 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
           })}
         </div>
       ) : (searchQuery || categoryFilter) ? (
-        /* Filtered search returned nothing — nudge to broaden or apply */
         <div className="text-center py-12 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
           <svg className="w-10 h-10 mx-auto text-gray-300 dark:text-gray-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -241,7 +226,6 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
           </button>
         </div>
       ) : (
-        /* Directory is empty — invite businesses to join */
         <div className="text-center py-14 bg-gradient-to-br from-primary-50 to-teal-50 dark:from-primary-900/20 dark:to-teal-900/20 rounded-xl border border-primary-200 dark:border-primary-800">
           <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
             <svg className="w-7 h-7 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -264,7 +248,7 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
         </div>
       )}
 
-      {/* Modal — inlined, no sub-component */}
+      {/* Modal */}
       {selected && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50" onClick={() => setSelected(null)}>
           <div
