@@ -1,8 +1,35 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { supabase, businessCategories } from './supabase.js';
-import { VerificationBadge } from './VerificationBadge.jsx';
+import { supabase, businessCategories, verificationTiers } from './supabase.js';
+// ---------------------------------------------------------------------------
+// renderBadge — inline verification badge (avoids cross-snippet JSX import)
+// ---------------------------------------------------------------------------
+const renderBadge = (tier = 'unverified', size = 'md', showLabel = false) => {
+  const tierInfo = verificationTiers[tier] || verificationTiers.unverified;
+  const sizes = {
+    sm: { badge: 'w-4 h-4', text: 'text-xs', gap: 'gap-1' },
+    md: { badge: 'w-5 h-5', text: 'text-sm', gap: 'gap-1.5' },
+    lg: { badge: 'w-6 h-6', text: 'text-base', gap: 'gap-2' },
+  };
+  const s = sizes[size] || sizes.md;
+  const icons = {
+    circle: <circle cx="12" cy="12" r="9" strokeWidth="2" stroke="currentColor" fill="none" />,
+    users: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />,
+    phone: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 8V5z" />,
+    'shield-check': <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />,
+    award: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />,
+  };
+  return (
+    <span className={`inline-flex items-center ${s.gap} flex-shrink-0`} title={`${tierInfo.label}${tierInfo.mineral ? ` — ${tierInfo.mineral}` : ''}`}>
+      <svg className={`${s.badge} flex-shrink-0`} style={{ color: tierInfo.darkColor }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label={`${tierInfo.label} verification`}>
+        {icons[tierInfo.icon] || icons.circle}
+      </svg>
+      {showLabel && <span className={`${s.text} font-medium`} style={{ color: tierInfo.darkColor }}>{tierInfo.label}</span>}
+    </span>
+  );
+};
 // ---------------------------------------------------------------------------
 // Price range indicator
+// Called as PriceRange({...}) to avoid MDX component lookup.
 // ---------------------------------------------------------------------------
 const PriceRange = ({ range }) => {
   if (!range) return null;
@@ -26,6 +53,7 @@ const statusToTier = (status) => {
 };
 // ---------------------------------------------------------------------------
 // Business detail modal
+// Called as BusinessModal({...}) to avoid MDX component lookup.
 // ---------------------------------------------------------------------------
 const BusinessModal = ({ business, onClose }) => {
   if (!business) return null;
@@ -51,7 +79,7 @@ const BusinessModal = ({ business, onClose }) => {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">{name}</h2>
-                <VerificationBadge tier={tier} size="md" />
+                {renderBadge(tier, 'md')}
               </div>
               {businesstype && (
                 <p className="text-primary-600 dark:text-primary-400 font-medium text-sm">
@@ -63,7 +91,7 @@ const BusinessModal = ({ business, onClose }) => {
               )}
               {pricerange && (
                 <div className="mt-1">
-                  <PriceRange range={pricerange} />
+                  {PriceRange({ range: pricerange })}
                 </div>
               )}
             </div>
@@ -134,6 +162,7 @@ const BusinessModal = ({ business, onClose }) => {
 };
 // ---------------------------------------------------------------------------
 // Business card (grid item)
+// Called as BusinessCard({...}) to avoid MDX component lookup.
 // ---------------------------------------------------------------------------
 const BusinessCard = ({ business, onClick }) => {
   const { name, logo, description, businesstype, pricerange, verification_status, place } = business;
@@ -155,7 +184,7 @@ const BusinessCard = ({ business, onClick }) => {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5">
             <h3 className="font-semibold text-gray-900 dark:text-white truncate">{name}</h3>
-            <VerificationBadge tier={tier} size="sm" />
+            {renderBadge(tier, 'sm')}
           </div>
           <p className="text-sm text-primary-600 dark:text-primary-400 font-medium">{catInfo.label}</p>
           {place?.name && (
@@ -163,7 +192,7 @@ const BusinessCard = ({ business, onClick }) => {
           )}
           {pricerange && (
             <div className="mt-1">
-              <PriceRange range={pricerange} />
+              {PriceRange({ range: pricerange })}
             </div>
           )}
         </div>
@@ -278,7 +307,9 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
       ) : filtered.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((b) => (
-            <BusinessCard key={b.id} business={b} onClick={() => setSelected(b)} />
+            <React.Fragment key={b.id}>
+              {BusinessCard({ business: b, onClick: () => setSelected(b) })}
+            </React.Fragment>
           ))}
         </div>
       ) : (
@@ -286,7 +317,7 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
           <p className="text-gray-500 dark:text-gray-400">No businesses found matching your search.</p>
         </div>
       )}
-      {selected && <BusinessModal business={selected} onClose={() => setSelected(null)} />}
+      {selected && BusinessModal({ business: selected, onClose: () => setSelected(null) })}
     </div>
   );
 };
