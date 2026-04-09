@@ -345,6 +345,37 @@
         ]
       },
       {
+        "tab": "Directory",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "directory/index"
+            ]
+          },
+          {
+            "group": "People & Experts",
+            "pages": [
+              "directory/experts"
+            ]
+          },
+          {
+            "group": "Places to Stay",
+            "pages": [
+              "directory/accommodation",
+              "directory/campsites"
+            ]
+          },
+          {
+            "group": "Businesses",
+            "pages": [
+              "directory/businesses",
+              "directory/hospitality"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Community Engagement",
         "groups": [
           {
@@ -355,15 +386,6 @@
               "get-involved/business-partner-network",
               "get-involved/local-expert-connections",
               "get-involved/volunteer-opportunities"
-            ]
-          },
-          {
-            "group": "Directory",
-            "pages": [
-              "experts/index",
-              "directory/businesses",
-              "directory/accommodation",
-              "directory/campsites"
             ]
           }
         ]
@@ -413,16 +435,16 @@
   "navbar": {
     "links": [
       {
+        "label": "Directory",
+        "href": "https://travel-info.co.zw/directory"
+      },
+      {
         "label": "FAQs",
         "href": "https://travel-info.co.zw/faq"
       },
       {
         "label": "Contact",
         "href": "https://travel-info.co.zw/contact"
-      },
-      {
-        "label": "Privacy",
-        "href": "https://travel-info.co.zw/privacy-policy"
       }
     ],
     "primary": {

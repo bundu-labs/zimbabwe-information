@@ -14,16 +14,21 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
   };
 
   const businessCategories = {
-    accommodation: { label: 'Accommodation' },
-    activities:    { label: 'Activities & Tours' },
-    dining:        { label: 'Dining & Entertainment' },
-    transport:     { label: 'Transportation' },
-    shopping:      { label: 'Shopping & Crafts' },
-    services:      { label: 'Services' },
-    attractions:   { label: 'Attractions' },
-    wellness:      { label: 'Wellness & Health' },
-    nightlife:     { label: 'Nightlife' },
-    venues:        { label: 'Venues' },
+    LodgingBusiness:          { label: 'Accommodation' },
+    TravelAgency:             { label: 'Tours & DMC' },
+    FoodEstablishment:        { label: 'Dining' },
+    EntertainmentBusiness:    { label: 'Entertainment' },
+    ProfessionalService:      { label: 'Professional Services' },
+    Store:                    { label: 'Retail & Shopping' },
+    ShoppingCenter:           { label: 'Shopping Centre' },
+    HealthAndBeautyBusiness:  { label: 'Health & Beauty' },
+    SportsActivityLocation:   { label: 'Sports & Activities' },
+    TouristInformationCenter: { label: 'Tourist Information' },
+    LocalBusiness:            { label: 'General Business' },
+    AutomotiveBusiness:       { label: 'Automotive' },
+    FinancialService:         { label: 'Financial Services' },
+    LegalService:             { label: 'Legal Services' },
+    HomeAndConstructionBusiness: { label: 'Home & Construction' },
   };
 
   const renderBadge = (tier = 'unverified', size = 'md', showLabel = false) => {
@@ -84,7 +89,7 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
       let url =
         `${SUPABASE_URL}/rest/v1/local_business` +
         `?select=id,name,alternatename,description,businesstype,place_id,telephone,email,url,logo,` +
-        `pricerange,verification_status,place:place_id(id,name,latitude,longitude)` +
+        `pricerange,verification_status` +
         `&order=name.asc&limit=50`;
       if (placeId) {
         url += `&place_id=eq.${placeId}`;
@@ -114,8 +119,7 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
       const q = searchQuery.toLowerCase();
       return (
         b.name?.toLowerCase().includes(q) ||
-        b.description?.toLowerCase().includes(q) ||
-        b.place?.name?.toLowerCase().includes(q)
+        b.description?.toLowerCase().includes(q)
       );
     }
     return true;
@@ -196,9 +200,6 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
                       {renderBadge(tier, 'sm')}
                     </div>
                     <p className="text-sm text-primary-600 dark:text-primary-400 font-medium">{catInfo.label}</p>
-                    {b.place?.name && (
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{b.place.name}</p>
-                    )}
                     {b.pricerange && (
                       <div className="mt-1">{priceIndicator(b.pricerange)}</div>
                     )}
@@ -274,9 +275,6 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
                       {businessCategories[selected.businesstype]?.label || selected.businesstype}
                     </p>
                   )}
-                  {selected.place?.name && (
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{selected.place.name}</p>
-                  )}
                   {selected.pricerange && (
                     <div className="mt-1">{priceIndicator(selected.pricerange)}</div>
                   )}
@@ -328,16 +326,6 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
                   >
                     View full profile →
                   </a>
-                  {selected.place?.id && (
-                    <a
-                      href={`https://travel.mukoko.com/place/${selected.place.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-sm font-medium"
-                    >
-                      View on map →
-                    </a>
-                  )}
                 </div>
               </div>
             </div>
