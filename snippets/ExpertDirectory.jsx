@@ -146,13 +146,13 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
       )}
 
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[...Array(6)].map((_, i) => (
             <div key={i} className="animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl h-32" />
           ))}
         </div>
       ) : filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {filtered.map((p) => {
             const name = expertCategories[p.occupation_type]?.label || p.occupation_type || 'Expert';
             const image = null;
@@ -162,7 +162,7 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
               <div
                 key={p.id}
                 onClick={() => setSelected(p)}
-                className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all cursor-pointer relative"
+                className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all cursor-pointer relative"
               >
                 {p.featured && (
                   <span className="absolute top-3 right-3 px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-xs font-medium rounded-full">Featured</span>
@@ -192,7 +192,7 @@ export const ExpertDirectory = ({ showFilters = true, category: initialCategory 
                   </div>
                 </div>
                 {p.specialisations?.length > 0 && (
-                  <p className="mt-3 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{(Array.isArray(p.specialisations) ? p.specialisations : [p.specialisations]).join(', ')}</p>
+                  <p className="mt-3 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">{(Array.isArray(p.specialisations) ? p.specialisations : [p.specialisations]).join(', ')}</p>
                 )}
               </div>
             );

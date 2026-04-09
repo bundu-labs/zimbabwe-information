@@ -194,13 +194,13 @@ export const AccommodationDirectory = ({ region: initialRegion = null, showFilte
 
       {/* Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[...Array(6)].map((_, i) => (
             <div key={i} className="animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl h-48" />
           ))}
         </div>
       ) : filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {filtered.map((b) => {
             const est = establishments[b.id];
             const tier = statusToTier(b.verification_status);

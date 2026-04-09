@@ -170,13 +170,13 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
 
       {/* Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[...Array(6)].map((_, i) => (
             <div key={i} className="animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl h-28" />
           ))}
         </div>
       ) : filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {filtered.map((b) => {
             const tier = statusToTier(b.verification_status);
             const catInfo = businessCategories[b.businesstype] || { label: b.businesstype || 'Business' };
@@ -184,7 +184,7 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
               <div
                 key={b.id}
                 onClick={() => setSelected(b)}
-                className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all cursor-pointer"
+                className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all cursor-pointer"
               >
                 <div className="flex items-start gap-3">
                   {b.logo ? (
@@ -206,7 +206,7 @@ export const BusinessDirectory = ({ showFilters = true, category: initialCategor
                   </div>
                 </div>
                 {b.description && (
-                  <p className="mt-3 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">{b.description}</p>
+                  <p className="mt-3 text-sm text-gray-600 dark:text-gray-300 line-clamp-3">{b.description}</p>
                 )}
               </div>
             );
