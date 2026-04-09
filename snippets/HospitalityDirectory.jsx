@@ -25,29 +25,26 @@ export const HospitalityDirectory = ({ showFilters = true }) => {
     HealthAndBeautyBusiness:  { label: 'Wellness',       icon: '💆' },
   };
 
-  const verificationTiers = {
-    unverified: { label: 'Unverified',   color: '#6B7280' },
-    community:  { label: 'Community',    color: '#D4A574' },
-    otp:        { label: 'OTP Verified', color: '#00B0FF' },
-    government: { label: 'Government',   color: '#FFD740' },
-    licensed:   { label: 'Licensed',     color: '#B388FF' },
-  };
-
-  const statusToTier = (status) => (status === 'verified' ? 'otp' : 'unverified');
-
-  const priceIndicator = (range) => {
-    if (!range) return null;
-    const levels = ['$', '$$', '$$$', '$$$$'];
-    const current = levels.indexOf(range);
-    if (current === -1) return <span className="text-sm text-gray-500">{range}</span>;
+  const renderVerificationBadge = (tier, showLabel = false) => {
+    const tiers = {
+      community:  { bg: '#C8956C', label: 'Community Verified',  icon: <path fill="currentColor" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/> },
+      otp:        { bg: '#1D9BF0', label: 'Identity Verified',   icon: <path fill="currentColor" fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/> },
+      government: { bg: '#F59E0B', label: 'Government Verified', icon: <path fill="currentColor" fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/> },
+      licensed:   { bg: '#7C3AED', label: 'Licensed & Verified', icon: <path fill="currentColor" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/> },
+    };
+    const t = tiers[tier];
+    if (!t) return null;
     return (
-      <span className="text-sm">
-        {levels.map((l, i) => (
-          <span key={l} className={i <= current ? 'text-gray-700 dark:text-gray-300' : 'text-gray-300 dark:text-gray-600'}>$</span>
-        ))}
+      <span className="inline-flex items-center gap-1 flex-shrink-0" title={t.label}>
+        <span className="inline-flex items-center justify-center w-5 h-5 rounded-full" style={{ backgroundColor: t.bg }}>
+          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">{t.icon}</svg>
+        </span>
+        {showLabel && <span className="text-xs font-medium" style={{ color: t.bg }}>{t.label}</span>}
       </span>
     );
   };
+
+  const statusToTier = (status) => (status === 'verified' ? 'otp' : 'unverified');
 
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -93,7 +90,6 @@ export const HospitalityDirectory = ({ showFilters = true }) => {
     return true;
   });
 
-  // Group by type for display
   const grouped = typeFilter
     ? { [typeFilter]: filtered }
     : filtered.reduce((acc, b) => {
@@ -171,30 +167,32 @@ export const HospitalityDirectory = ({ showFilters = true }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {items.map((b) => {
                   const tier = statusToTier(b.verification_status);
-                  const tierInfo = verificationTiers[tier];
+                  const typeInfo = typeLabels[b.businesstype] || { label: b.businesstype || 'Business', icon: '🏢' };
                   return (
                     <div
                       key={b.id}
                       onClick={() => setSelected(b)}
                       className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all cursor-pointer"
                     >
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-center gap-3">
                         {b.logo ? (
-                          <img src={b.logo} alt={b.name} className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
+                          <img src={b.logo} alt={b.name} className="w-12 h-12 rounded-xl object-cover flex-shrink-0" />
                         ) : (
-                          <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center flex-shrink-0 text-xl">
-                            {typeLabels[b.businesstype]?.icon || '🏢'}
+                          <div className="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900 flex items-center justify-center flex-shrink-0 text-xl">
+                            {typeInfo.icon}
                           </div>
                         )}
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-1.5 flex-wrap">
                             <h4 className="font-semibold text-gray-900 dark:text-white truncate">{b.name}</h4>
-                            <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: tierInfo.color }} title={tierInfo.label} />
+                            {renderVerificationBadge(tier)}
                           </div>
-                          <p className="text-xs text-primary-600 dark:text-primary-400 font-medium mt-0.5">
-                            {typeLabels[b.businesstype]?.label || b.businesstype}
-                          </p>
-                          {b.pricerange && <div className="mt-1">{priceIndicator(b.pricerange)}</div>}
+                          <div className="flex flex-wrap gap-1.5 mt-1.5">
+                            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300">{typeInfo.label}</span>
+                            {b.pricerange && (
+                              <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">{b.pricerange}</span>
+                            )}
+                          </div>
                         </div>
                       </div>
                       {b.description && (
@@ -235,14 +233,22 @@ export const HospitalityDirectory = ({ showFilters = true }) => {
           >
             <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 flex justify-between items-start">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center text-2xl">
+                <div className="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900 flex items-center justify-center text-2xl flex-shrink-0">
                   {typeLabels[selected.businesstype]?.icon || '🏢'}
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">{selected.name}</h2>
-                  <p className="text-sm text-primary-600 dark:text-primary-400 font-medium">
-                    {typeLabels[selected.businesstype]?.label || selected.businesstype}
-                  </p>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">{selected.name}</h2>
+                    {renderVerificationBadge(statusToTier(selected.verification_status), true)}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300">
+                      {typeLabels[selected.businesstype]?.label || selected.businesstype}
+                    </span>
+                    {selected.pricerange && (
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">{selected.pricerange}</span>
+                    )}
+                  </div>
                 </div>
               </div>
               <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-2xl leading-none" aria-label="Close">&times;</button>
