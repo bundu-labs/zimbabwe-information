@@ -1,5 +1,3 @@
-import React from 'react';
-console.log('🔵 ExpertForm.jsx (Formspree version) loaded');
 const expertCategories = {
   safari_guide: 'Safari Guide',
   bird_guide: 'Birding Specialist',
@@ -21,15 +19,8 @@ const zimbabweRegions = [
   'Great Zimbabwe', 'Masvingo', 'Mutare', 'Nyanga', 'Chimanimani', 'Other',
 ];
 export const ExpertForm = () => {
-  console.log('✅ ExpertForm component rendering');
   return (
-    <>
-      <div className="border-2 border-blue-500 p-2 mb-2">
-        <p className="text-xs text-blue-600 dark:text-blue-400 font-mono">
-          🔍 DEBUG: ExpertForm (Formspree) is rendering
-        </p>
-      </div>
-      <form
+    <form
         action="https://formspree.io/f/xvgeropp"
         method="POST"
         className="space-y-4"
@@ -190,6 +181,6 @@ export const ExpertForm = () => {
           Submit Expert Application
         </button>
       </form>
-    </>
   );
 }
+

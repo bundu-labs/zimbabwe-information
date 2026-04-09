@@ -1,5 +1,30 @@
-import React, { useState } from 'react';
-import { expertCategories, zimbabweRegions } from './supabase.js';
+import { useState } from 'react';
+
+// ---------------------------------------------------------------------------
+// Constants inlined — ./supabase.js can't be imported (Mintlify loads it as
+// a classic script, not an ES module, so export statements throw SyntaxError)
+// ---------------------------------------------------------------------------
+const expertCategories = {
+  safari_guide:      { label: 'Safari Guide' },
+  bird_guide:        { label: 'Birding Specialist' },
+  walking_safari:    { label: 'Walking Safari Guide' },
+  photography_guide: { label: 'Photography Guide' },
+  cultural_expert:   { label: 'Cultural & Heritage Expert' },
+  adventure_guide:   { label: 'Adventure Activity Guide' },
+  hiking_guide:      { label: 'Hiking & Trekking Guide' },
+  fishing_guide:     { label: 'Fishing Guide' },
+  city_guide:        { label: 'Urban/City Guide' },
+  food_culinary:     { label: 'Food & Culinary Expert' },
+  art_crafts:        { label: 'Arts & Crafts Specialist' },
+  historical:        { label: 'Historical Guide' },
+  other:             { label: 'Other' },
+};
+
+const zimbabweRegions = [
+  'Victoria Falls', 'Hwange', 'Mana Pools', 'Harare', 'Bulawayo',
+  'Matobo Hills', 'Eastern Highlands', 'Lake Kariba', 'Gonarezhou',
+  'Great Zimbabwe', 'Masvingo', 'Mutare', 'Nyanga', 'Chimanimani', 'Other',
+];
 /**
  * ExpertFormSupabase — professional listing application form
  *
@@ -86,22 +111,11 @@ export const ExpertFormSupabase = () => {
   const labelClass = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Step indicator */}
+      {/* Step indicator — hardcoded to avoid React.Fragment (MDX treats capital JSX tags as missing components) */}
       <div className="flex items-center gap-2 mb-6">
-        {[1, 2].map((s) => (
-          <React.Fragment key={s}>
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
-                step >= s
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
-              }`}
-            >
-              {s}
-            </div>
-            {s < 2 && <div className={`flex-1 h-0.5 ${step > s ? 'bg-primary-600' : 'bg-gray-200 dark:bg-gray-700'}`} />}
-          </React.Fragment>
-        ))}
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${step >= 1 ? 'bg-primary-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'}`}>1</div>
+        <div className={`flex-1 h-0.5 ${step > 1 ? 'bg-primary-600' : 'bg-gray-200 dark:bg-gray-700'}`} />
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${step >= 2 ? 'bg-primary-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'}`}>2</div>
         <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">
           {step === 1 ? 'Personal info' : 'Professional details'}
         </span>
