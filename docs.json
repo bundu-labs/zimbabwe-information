@@ -407,6 +407,12 @@
               "resources/tour-operators",
               "resources/research-resources"
             ]
+          },
+          {
+            "group": "Updates",
+            "pages": [
+              "changelog"
+            ]
           }
         ]
       },
