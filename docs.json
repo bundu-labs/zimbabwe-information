@@ -79,7 +79,9 @@
         "contactType": "customer service",
         "email": "hi@travel-info.co.zw",
         "areaServed": "ZW",
-        "availableLanguage": ["English"]
+        "availableLanguage": [
+          "English"
+        ]
       },
       "address": {
         "@type": "PostalAddress",
@@ -90,12 +92,19 @@
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
         "opens": "09:00",
         "closes": "17:00",
         "timeZone": "Africa/Harare"
       }
-    }
+    },
+    "indexing": "all"
   },
   "navigation": {
     "tabs": [
@@ -624,5 +633,23 @@
   },
   "appearance": {
     "default": "system"
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs",
+    "latex": true
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "api": {
+    "playground": {
+      "display": "interactive"
+    }
+  },
+  "interaction": {
+    "drilldown": true
+  },
+  "metadata": {
+    "timestamp": true
   }
 }
