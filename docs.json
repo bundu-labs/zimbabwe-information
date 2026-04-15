@@ -618,5 +618,11 @@
       "discord": "https://discord.gg/dzHWFB44yw"
     },
     "copyright": "© 2025 Zimbabwe Travel Platform. All rights reserved."
+  },
+  "background": {
+    "decoration": "grid"
+  },
+  "appearance": {
+    "default": "system"
   }
 }
