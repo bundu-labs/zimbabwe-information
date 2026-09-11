@@ -5,9 +5,11 @@ This directory contains custom React components used throughout the Zimbabwe Tra
 ## Components
 
 ### LocationMap
+
 Embeds an interactive OpenStreetMap with GPS coordinates for destination pages.
 
 **Usage:**
+
 ```mdx
 import LocationMap from '/snippets/LocationMap';
 
@@ -15,6 +17,7 @@ import LocationMap from '/snippets/LocationMap';
 ```
 
 **Props:**
+
 - `lat` (number, required): Latitude coordinate
 - `lng` (number, required): Longitude coordinate
 - `zoom` (number): Zoom level 1-18 (default: 12)
@@ -23,6 +26,7 @@ import LocationMap from '/snippets/LocationMap';
 - `height` (string): Map height (default: "400px")
 
 **Features:**
+
 - Free OpenStreetMap embed (no API key required)
 - Displays GPS coordinates in human-readable format
 - Link to view larger map on OpenStreetMap
@@ -32,14 +36,17 @@ import LocationMap from '/snippets/LocationMap';
 ---
 
 ### ExpertForm
+
 Interactive form for local experts to apply to join the expert network. Submissions are stored in Supabase.
 
 **Usage:**
+
 ```mdx
 <ExpertForm />
 ```
 
 **Features:**
+
 - Real-time form validation
 - Supabase integration for data storage
 - Success/error states with user feedback
@@ -48,19 +55,23 @@ Interactive form for local experts to apply to join the expert network. Submissi
 ---
 
 ### ExpertDirectory
+
 Displays a searchable, filterable directory of verified local experts.
 
 **Usage:**
+
 ```mdx
 <ExpertDirectory />
 <ExpertDirectory showFilters={false} category="safari_guide" />
 ```
 
 **Props:**
+
 - `showFilters` (boolean): Show/hide filter controls (default: true)
 - `category` (string): Pre-filter by expert category (optional)
 
 **Features:**
+
 - Search by name, bio, services, or location
 - Filter by category and location
 - Modal view for detailed expert information
@@ -70,20 +81,24 @@ Displays a searchable, filterable directory of verified local experts.
 ---
 
 ### BusinessDirectory
+
 Displays a searchable directory of verified businesses (accommodation, tours, dining, etc.).
 
 **Usage:**
+
 ```mdx
 <BusinessDirectory />
 <BusinessDirectory category="accommodation" subcategory="lodge" />
 ```
 
 **Props:**
+
 - `showFilters` (boolean): Show/hide filter controls (default: true)
 - `category` (string): Pre-filter by business category (optional)
 - `subcategory` (string): Pre-filter by subcategory (optional, accommodation only)
 
 **Features:**
+
 - Search functionality
 - Category and subcategory filtering
 - Accommodation subcategory tabs
@@ -94,9 +109,11 @@ Displays a searchable directory of verified businesses (accommodation, tours, di
 ---
 
 ### BusinessForm
+
 Form for businesses to apply for listing in the directory.
 
 **Usage:**
+
 ```mdx
 <BusinessForm />
 ```
@@ -106,14 +123,18 @@ Form for businesses to apply for listing in the directory.
 ## Configuration
 
 ### Supabase Setup
+
 All components require the Supabase client configured in `_components/supabase.js`.
 
 **Connection details:**
+
 - URL: `https://aqjhuyqhgmmdutwzqvyv.supabase.co`
 - Uses Row Level Security (RLS) with anonymous key for client-side access
 
 ### Expert Categories
+
 Available categories defined in `supabase.js`:
+
 - Safari Guide
 - Birding Specialist
 - Walking Safari Guide
@@ -123,7 +144,9 @@ Available categories defined in `supabase.js`:
 - And more...
 
 ### Zimbabwe Regions
+
 Predefined regions for location filtering:
+
 - Victoria Falls, Hwange, Mana Pools
 - Harare, Bulawayo, Mutare
 - Eastern Highlands, Lake Kariba
@@ -146,18 +169,23 @@ Or if using the Mintlify platform, dependencies are managed automatically via `p
 ## Common Issues & Solutions
 
 ### SES Module Errors
+
 If you see errors like:
+
 - `SES Removing unpermitted intrinsics`
 - `SES_UNCAUGHT_EXCEPTION: SyntaxError: import declarations may only appear at top level of a module`
 
 **Solution:** Ensure `@supabase/supabase-js` is listed in `package.json` dependencies. The package manager needs to install this before the components can load.
 
 ### Analytics CORS Errors (Amplitude, Google Analytics)
+
 Errors like:
+
 - `Cross-Origin Request Blocked`
 - `Amplitude Logger [Error]: NetworkError`
 
 **These are expected in local development** and occur due to:
+
 - Browser privacy extensions (uBlock, Privacy Badger, etc.)
 - Local development environment restrictions
 - CORS policies on analytics endpoints
@@ -175,6 +203,7 @@ Errors like:
 ```
 
 ### Cookie Warnings
+
 Messages like `Cookie "AMP_TLDTEST" has been rejected` are normal for analytics services and don't affect functionality.
 
 ---
@@ -225,5 +254,6 @@ If components aren't loading data:
 ## Support
 
 For issues or questions:
-- GitHub: https://github.com/nyuchitech/zti-docs/issues
-- Email: hi@travel-info.co.zw
+
+- GitHub: <https://github.com/nyuchitech/zti-docs/issues>
+- Email: <hi@travel-info.co.zw>
