@@ -18,6 +18,7 @@ If you have specific information or sources to share, please include them here.
 
 **Category**
 Where would this content fit best?
+
 - [ ] Destinations
 - [ ] Planning
 - [ ] Essentials (visas, health, safety)
