@@ -79,9 +79,7 @@
         "contactType": "customer service",
         "email": "hi@travel-info.co.zw",
         "areaServed": "ZW",
-        "availableLanguage": [
-          "English"
-        ]
+        "availableLanguage": ["English"]
       },
       "address": {
         "@type": "PostalAddress",
@@ -92,13 +90,7 @@
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         "opens": "09:00",
         "closes": "17:00",
         "timeZone": "Africa/Harare"
@@ -113,12 +105,7 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
-              "introduction",
-              "about-zimbabwe",
-              "when-to-visit",
-              "book"
-            ]
+            "pages": ["introduction", "about-zimbabwe", "when-to-visit", "book"]
           },
           {
             "group": "Culture & Experiences",
@@ -216,10 +203,7 @@
           },
           {
             "group": "Historic Sites",
-            "pages": [
-              "historic/index",
-              "historic/colonial-buildings"
-            ]
+            "pages": ["historic/index", "historic/colonial-buildings"]
           }
         ]
       },
@@ -358,29 +342,19 @@
         "groups": [
           {
             "group": "Overview",
-            "pages": [
-              "directory/index"
-            ]
+            "pages": ["directory/index"]
           },
           {
             "group": "People & Experts",
-            "pages": [
-              "directory/experts"
-            ]
+            "pages": ["directory/experts"]
           },
           {
             "group": "Places to Stay",
-            "pages": [
-              "directory/accommodation",
-              "directory/campsites"
-            ]
+            "pages": ["directory/accommodation", "directory/campsites"]
           },
           {
             "group": "Businesses",
-            "pages": [
-              "directory/businesses",
-              "directory/hospitality"
-            ]
+            "pages": ["directory/businesses", "directory/hospitality"]
           }
         ]
       },
@@ -419,9 +393,7 @@
           },
           {
             "group": "Updates",
-            "pages": [
-              "changelog"
-            ]
+            "pages": ["changelog"]
           }
         ]
       },
@@ -430,18 +402,11 @@
         "groups": [
           {
             "group": "Help & Resources",
-            "pages": [
-              "contact",
-              "faq"
-            ]
+            "pages": ["contact", "faq"]
           },
           {
             "group": "Legal",
-            "pages": [
-              "privacy-policy",
-              "cookie-policy",
-              "terms-of-service"
-            ]
+            "pages": ["privacy-policy", "cookie-policy", "terms-of-service"]
           }
         ]
       }

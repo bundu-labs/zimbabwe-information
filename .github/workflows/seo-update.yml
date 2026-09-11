@@ -23,7 +23,7 @@ on:
         required: false
         default: false
         type: boolean
-  
+
   # DISABLED: Also run on push to main branch for MDX/MD files
   # push:
   #   branches: [ main ]
@@ -38,7 +38,7 @@ env:
 jobs:
   update-seo:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: 🛎️ Checkout Repository
         uses: actions/checkout@v4
@@ -68,7 +68,10 @@ jobs:
           // Get environment variables
           const DRY_RUN = process.env.DRY_RUN === 'true';
           const FORCE_UPDATE = process.env.FORCE_UPDATE === 'true';
-          const DIRECTORIES = process.env.DIRECTORIES ? process.env.DIRECTORIES.split(',').map(d => d.trim()) : ['./destinations', './planning', './essentials', './culture', './wildlife', './adventure', './get-involved', './'];
+          const DIRECTORIES = process.env.DIRECTORIES
+            ? process.env.DIRECTORIES.split(',').map(d => d.trim())
+            : ['./destinations', './planning', './essentials', './culture',
+               './wildlife', './adventure', './get-involved', './'];
 
           // SEO Configuration for Zimbabwe Travel Information
           const SEO_DEFAULTS = {
@@ -79,7 +82,8 @@ jobs:
             'twitter:creator': '@zimbabwetravel',
             'robots': 'index, follow',
             'author': 'Zimbabwe Travel Information',
-            'keywords': 'Zimbabwe travel, Victoria Falls, Hwange National Park, Great Zimbabwe, safari, African tourism, Zimbabwe destinations, travel guide'
+            'keywords': 'Zimbabwe travel, Victoria Falls, Hwange National Park, ' +
+              'Great Zimbabwe, safari, African tourism, Zimbabwe destinations, travel guide'
           };
 
           const SUPPORTED_EXTENSIONS = ['.mdx', '.md'];
@@ -113,14 +117,14 @@ jobs:
           function generateDescription(content, maxLength = 160) {
             const text = extractTextContent(content);
             if (text.length <= maxLength) return text;
-            
+
             const truncated = text.substring(0, maxLength);
             const lastSentence = truncated.lastIndexOf('.');
-            
+
             if (lastSentence > maxLength * 0.7) {
               return truncated.substring(0, lastSentence + 1);
             }
-            
+
             return truncated.substring(0, truncated.lastIndexOf(' ')) + '...';
           }
 
@@ -128,21 +132,24 @@ jobs:
             const headings = content.match(/#{1,6}\s(.+)/g) || [];
             const headingText = headings.map(h => h.replace(/#{1,6}\s/, '')).join(' ');
             const allText = `${title} ${headingText}`.toLowerCase();
-            
+
             const words = allText
               .replace(/[^\w\s]/g, '')
               .split(/\s+/)
               .filter(word => word.length > 3)
-              .filter(word => !['this', 'that', 'with', 'from', 'they', 'been', 'have', 'will', 'your', 'what', 'when', 'where', 'how', 'the', 'and', 'for', 'are'].includes(word));
-            
+              .filter(word => ![
+                'this', 'that', 'with', 'from', 'they', 'been', 'have', 'will', 'your', 'what', 'when',
+                'where', 'how', 'the', 'and', 'for', 'are'
+              ].includes(word));
+
             // Prioritize Zimbabwe-specific keywords
-            const priorityKeywords = words.filter(word => 
+            const priorityKeywords = words.filter(word =>
               ZIMBABWE_KEYWORDS.some(kw => kw.includes(word) || word.includes(kw))
             );
-            
+
             const uniquePriority = [...new Set(priorityKeywords)];
             const uniqueOthers = [...new Set(words.filter(w => !priorityKeywords.includes(w)))];
-            
+
             return [...uniquePriority, ...uniqueOthers].slice(0, 15).join(', ');
           }
 
@@ -152,7 +159,7 @@ jobs:
               .replace(/\.mdx?$/, '')
               .replace(/\/index$/, '')
               .replace(/^\.\//, '');
-            
+
             return `https://travel-info.co.zw/${relativePath}`;
           }
 
@@ -161,7 +168,7 @@ jobs:
               const content = fs.readFileSync(filePath, 'utf8');
               const parsed = matter(content);
               let updated = false;
-              
+
               // Add default SEO fields if missing or force update
               Object.keys(SEO_DEFAULTS).forEach(key => {
                 if (!parsed.data[key] || FORCE_UPDATE) {
@@ -169,7 +176,7 @@ jobs:
                   updated = true;
                 }
               });
-              
+
               // Generate description if missing
               if (!parsed.data.description || FORCE_UPDATE) {
                 const description = generateDescription(parsed.content);
@@ -180,7 +187,7 @@ jobs:
                   updated = true;
                 }
               }
-              
+
               // Generate keywords if missing
               if (!parsed.data.keywords || FORCE_UPDATE) {
                 const keywords = generateKeywords(parsed.content, parsed.data.title);
@@ -189,28 +196,28 @@ jobs:
                   updated = true;
                 }
               }
-              
+
               // Add canonical URL
               if (!parsed.data['canonical'] || FORCE_UPDATE) {
                 parsed.data['canonical'] = generateCanonicalUrl(filePath);
                 updated = true;
               }
-              
+
               // Update modified time
               parsed.data['article:modified_time'] = new Date().toISOString();
-              
+
               // Ensure og:title matches title
               if (parsed.data.title && (!parsed.data['og:title'] || FORCE_UPDATE)) {
                 parsed.data['og:title'] = `${parsed.data.title} | Zimbabwe Travel Information`;
                 updated = true;
               }
-              
+
               // Add og:type for article pages
               if (!parsed.data['og:type'] || FORCE_UPDATE) {
                 parsed.data['og:type'] = 'article';
                 updated = true;
               }
-              
+
               // Add schema type hint
               if (!parsed.data['schema:type'] || FORCE_UPDATE) {
                 if (filePath.includes('destinations')) {
@@ -222,7 +229,7 @@ jobs:
                 }
                 updated = true;
               }
-              
+
               if (updated && !DRY_RUN) {
                 const updatedContent = matter.stringify(parsed.content, parsed.data);
                 fs.writeFileSync(filePath, updatedContent);
@@ -232,7 +239,7 @@ jobs:
               } else {
                 console.log(`⏭️  No changes: ${filePath}`);
               }
-              
+
               return updated;
             } catch (error) {
               console.error(`❌ Error processing ${filePath}:`, error.message);
@@ -242,19 +249,21 @@ jobs:
 
           function processDirectory(dirPath) {
             const results = { processed: 0, updated: 0, errors: 0 };
-            
+
             if (!fs.existsSync(dirPath)) {
               console.log(`📁 Directory not found: ${dirPath}`);
               return results;
             }
-            
+
             const files = fs.readdirSync(dirPath);
-            
+
             files.forEach(file => {
               const filePath = path.join(dirPath, file);
               const stat = fs.statSync(filePath);
-              
-              if (stat.isDirectory() && !file.startsWith('.') && file !== 'node_modules' && file !== 'components' && file !== 'images' && file !== 'logo') {
+
+              if (stat.isDirectory() && !file.startsWith('.') &&
+                  file !== 'node_modules' && file !== 'components' &&
+                  file !== 'images' && file !== 'logo') {
                 const subResults = processDirectory(filePath);
                 results.processed += subResults.processed;
                 results.updated += subResults.updated;
@@ -266,7 +275,7 @@ jobs:
                 }
               }
             });
-            
+
             return results;
           }
 
@@ -276,9 +285,9 @@ jobs:
             console.log(`Force Update: ${FORCE_UPDATE}`);
             console.log(`Directories: ${DIRECTORIES.join(', ')}`);
             console.log('');
-            
+
             let totalResults = { processed: 0, updated: 0, errors: 0 };
-            
+
             DIRECTORIES.forEach(dir => {
               console.log(`📂 Processing: ${dir}`);
               const results = processDirectory(dir);
@@ -286,12 +295,12 @@ jobs:
               totalResults.updated += results.updated;
               totalResults.errors += results.errors;
             });
-            
+
             console.log('\n📊 Summary:');
             console.log(`Files processed: ${totalResults.processed}`);
             console.log(`Files updated: ${totalResults.updated}`);
             console.log(`Errors: ${totalResults.errors}`);
-            
+
             // Write outputs to GitHub environment file (new method)
             const outputFile = process.env.GITHUB_OUTPUT;
             if (outputFile) {
@@ -309,14 +318,16 @@ jobs:
         env:
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
           FORCE_UPDATE: ${{ github.event.inputs.force_update || 'false' }}
-          DIRECTORIES: ${{ github.event.inputs.directories || './destinations,./planning,./essentials,./culture,./wildlife,./adventure,./get-involved,./' }}
+          DIRECTORIES: "${{ github.event.inputs.directories || \
+            './destinations,./planning,./essentials,./culture,./wildlife,\
+            ./adventure,./get-involved,./' }}"
         run: node update-seo.js
 
       - name: 🔍 Validate with Mintlify CLI
         if: steps.seo_update.outputs.has_changes == 'true'
         run: |
           echo "🔍 Running Mintlify validation..."
-          
+
           # Check for broken links
           if command -v mintlify &> /dev/null; then
             mintlify broken-links || echo "⚠️ Some broken links found - please review"
@@ -327,23 +338,24 @@ jobs:
       - name: 📋 Generate Change Summary
         if: steps.seo_update.outputs.has_changes == 'true'
         run: |
-          echo "## 🇿🇼 Zimbabwe Travel Information SEO Update Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Files Processed:** ${{ steps.seo_update.outputs.files_processed }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Files Updated:** ${{ steps.seo_update.outputs.files_updated }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Mode:** ${{ github.event.inputs.dry_run == 'true' && 'Dry Run' || 'Live Update' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Trigger:** ${{ github.event_name == 'schedule' && 'Scheduled (Weekly)' || 'Manual' }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 🔧 SEO Fields Added/Updated:" >> $GITHUB_STEP_SUMMARY
-          echo "- Open Graph image and metadata" >> $GITHUB_STEP_SUMMARY
-          echo "- Twitter Card settings" >> $GITHUB_STEP_SUMMARY
-          echo "- Robots directives" >> $GITHUB_STEP_SUMMARY
-          echo "- Auto-generated descriptions" >> $GITHUB_STEP_SUMMARY
-          echo "- Zimbabwe tourism-specific keywords" >> $GITHUB_STEP_SUMMARY
-          echo "- Canonical URLs for travel-info.co.zw" >> $GITHUB_STEP_SUMMARY
-          echo "- Schema.org type hints (TouristDestination, TravelGuide)" >> $GITHUB_STEP_SUMMARY
-          echo "- Modified timestamps" >> $GITHUB_STEP_SUMMARY
-
+          {
+            echo "## 🇿🇼 Zimbabwe Travel Information SEO Update Summary"
+            echo ""
+            echo "- **Files Processed:** ${{ steps.seo_update.outputs.files_processed }}"
+            echo "- **Files Updated:** ${{ steps.seo_update.outputs.files_updated }}"
+            echo "- **Mode:** ${{ github.event.inputs.dry_run == 'true' && 'Dry Run' || 'Live Update' }}"
+            echo "- **Trigger:** ${{ github.event_name == 'schedule' && 'Scheduled (Weekly)' || 'Manual' }}"
+            echo ""
+            echo "### 🔧 SEO Fields Added/Updated:"
+            echo "- Open Graph image and metadata"
+            echo "- Twitter Card settings"
+            echo "- Robots directives"
+            echo "- Auto-generated descriptions"
+            echo "- Zimbabwe tourism-specific keywords"
+            echo "- Canonical URLs for travel-info.co.zw"
+            echo "- Schema.org type hints (TouristDestination, TravelGuide)"
+            echo "- Modified timestamps"
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: 🔐 Configure Git User
         if: steps.seo_update.outputs.has_changes == 'true' && github.event.inputs.dry_run != 'true'
         run: |
@@ -356,27 +368,27 @@ jobs:
           # Show current git status
           echo "📋 Current git status:"
           git status
-          
+
           # Stage all changes first
           echo "📝 Staging all changes..."
           git add -A
-          
+
           # Check if there are changes to commit
           if git diff --staged --quiet; then
             echo "✅ No changes to commit - all files are already up to date"
             exit 0
           fi
-          
+
           # Show what files will be committed
           echo "📄 Files to be committed:"
           git diff --staged --name-status
-          
+
           # Create commit message
           cat > commit_msg.txt << EOF
           🇿🇼 Bulk update SEO metadata for Zimbabwe Travel Information
 
           - Updated ${{ steps.seo_update.outputs.files_updated }} files
-          - Added Open Graph and Twitter Card metadata  
+          - Added Open Graph and Twitter Card metadata
           - Generated descriptions for pages missing them
           - Added Zimbabwe tourism-specific keywords
           - Included canonical URLs for travel-info.co.zw
@@ -385,23 +397,23 @@ jobs:
 
           Co-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           EOF
-          
+
           # Commit the staged changes
           echo "💾 Creating commit..."
           git commit -F commit_msg.txt
-          
+
           # Clean up
           rm -f commit_msg.txt
-          
+
           # Fetch the latest state of origin/main without merging
           echo "🔄 Fetching latest changes from origin..."
           git fetch origin main
-          
+
           # Check if we need to integrate remote changes
           LOCAL=$(git rev-parse HEAD)
           REMOTE=$(git rev-parse origin/main)
           BASE=$(git merge-base HEAD origin/main)
-          
+
           if [ "$LOCAL" = "$REMOTE" ]; then
             echo "✅ Branch is up to date with origin/main"
           elif [ "$LOCAL" = "$BASE" ]; then
@@ -416,7 +428,7 @@ jobs:
             # Branches have diverged, try to merge
             git pull --rebase=false origin main
           fi
-          
+
           # Push to main branch
           echo "🚀 Pushing changes to origin/main..."
           if git push origin main; then
@@ -434,11 +446,11 @@ jobs:
           echo "✅ SEO update completed successfully for Zimbabwe Travel Information!"
           echo "📈 ${{ steps.seo_update.outputs.files_updated }} files were updated with SEO improvements"
           echo "🌿 Changes have been pushed to the main branch"
-          
+
           if [ "${{ github.event_name }}" == "schedule" ]; then
             echo "⏰ This was a scheduled weekly SEO update"
           fi
-          
+
           if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
             echo "🔍 This was a dry run - no files were actually modified"
             echo "💡 Run again with 'dry_run: false' to apply changes"
@@ -447,14 +459,14 @@ jobs:
             echo "🌍 Your Zimbabwe travel content is now better optimized for search engines!"
           fi
 
-      - name: ⚠️ No Changes Notification  
+      - name: ⚠️ No Changes Notification
         if: steps.seo_update.outputs.has_changes != 'true'
         run: |
           echo "✅ All files already have optimal SEO configuration!"
           echo "📊 Processed ${{ steps.seo_update.outputs.files_processed }} files"
           echo "💡 Use 'force_update: true' to refresh all SEO metadata"
           echo "🇿🇼 Zimbabwe Travel Information is already SEO-optimized!"
-          
+
           if [ "${{ github.event_name }}" == "schedule" ]; then
             echo "⏰ This was a scheduled weekly check - no updates needed"
             echo "📝 No changes were made, so nothing was committed or pushed."

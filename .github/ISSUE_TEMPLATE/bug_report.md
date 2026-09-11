@@ -24,6 +24,7 @@ If applicable, provide a source or reference that supports the correction.
 
 **Additional Context**
 Add any other context about the issue here, such as:
+
 - When you noticed the information became outdated
 - How this affects travelers planning their trip
 - Screenshots if helpful

@@ -121,8 +121,10 @@ body:
     attributes:
       label: Short Bio
       description: A 2-3 sentence bio about yourself and your passion for Zimbabwe (will be displayed on your listing)
-      placeholder: |
-        Born and raised near Hwange, I've spent 15 years sharing the magic of Zimbabwe's wildlife with travelers from around the world. My specialty is tracking big cats and creating unforgettable walking safari experiences.
+      placeholder: >
+        Born and raised near Hwange, I've spent 15 years sharing the magic of Zimbabwe's wildlife with
+        travelers from around the world. My specialty is tracking big cats and creating unforgettable walking
+        safari experiences.
     validations:
       required: true
 

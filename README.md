@@ -7,6 +7,7 @@ Your comprehensive guide to traveling in Zimbabwe. From Victoria Falls to wildli
 ## What's Inside
 
 ### Destinations
+
 - **[Victoria Falls](/destinations/victoria-falls)** - One of the Seven Natural Wonders
 - **[Hwange National Park](/destinations/hwange-national-park)** - Zimbabwe's largest wildlife reserve
 - **[Mana Pools](/destinations/mana-pools)** - UNESCO World Heritage walking safari destination
@@ -16,12 +17,14 @@ Your comprehensive guide to traveling in Zimbabwe. From Victoria Falls to wildli
 - Plus 15+ more destinations including hidden gems and off-the-beaten-path locations
 
 ### Travel Planning
+
 - **[First-Time Visitors Guide](/planning/first-time-visitors)** - Start here if you're new to Zimbabwe
 - **[Sample Itineraries](/planning/sample-itineraries)** - Ready-made trip plans
 - Guides for different travelers: [Families](/planning/family-travel), [Solo](/planning/solo-travel), [Seniors](/planning/senior-travel), [LGBTQ+](/planning/lgbtq-travel), [Business](/planning/business-travel)
 - **[Safari Planning](/planning/safari-planning)** - Everything you need for a safari trip
 
 ### Essential Information
+
 - [Visas & Entry Requirements](/essentials/visas-and-entry)
 - [Health & Safety](/essentials/health-and-safety)
 - [Currency & Money](/essentials/currency-and-money)
@@ -30,12 +33,14 @@ Your comprehensive guide to traveling in Zimbabwe. From Victoria Falls to wildli
 - [Packing Guide](/essentials/packing-guide)
 
 ### Activities & Culture
+
 - [Adventure Activities](/adventure/activities-and-experiences) - Rafting, bungee, safaris & more
 - [Zimbabwean Cuisine](/culture/cuisine)
 - [Art & Music](/culture/art-and-music)
 - [Festivals & Events](/culture/festivals-and-events)
 
 ### Resources
+
 - [Emergency Contacts](/resources/emergency-contacts)
 - [Tour Operators](/resources/tour-operators)
 - [FAQ](/faq)
@@ -74,7 +79,7 @@ We welcome contributions! If you have suggestions for improving our travel guide
 ## Contact
 
 - **Website:** [travel-info.co.zw](https://travel-info.co.zw)
-- **Email:** hi@travel-info.co.zw
+- **Email:** <hi@travel-info.co.zw>
 - **Contact Form:** [Get in touch](/contact)
 
 ## License

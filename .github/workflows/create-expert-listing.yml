@@ -104,7 +104,10 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `## Expert Added to Directory! 🎉\n\nThe expert listing has been approved and added to the database.\n\n**Details:**\n- Expert is now visible in the Local Expert Directory\n- Listing is marked as verified\n- Travelers can now find and contact this expert\n\nNo further action needed. The listing is live!`
+              body: `## Expert Added to Directory! 🎉\n\n\
+            The expert listing has been approved and added to the database.\n\n**Details:**\n\
+            - Expert is now visible in the Local Expert Directory\n- Listing is marked as verified\n\
+            - Travelers can now find and contact this expert\n\nNo further action needed. The listing is live!`
             });
 
             // Close the issue
