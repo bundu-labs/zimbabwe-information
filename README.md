@@ -1,91 +1,126 @@
 # Zimbabwe Travel Information
 
-Your comprehensive guide to traveling in Zimbabwe. From Victoria Falls to wildlife safaris, cultural experiences to practical travel tips.
+> A comprehensive, independent travel guide to Zimbabwe — destinations,
+> planning, and practical essentials.
 
-**Live site:** [travel-info.co.zw](https://travel-info.co.zw)
+[![Lint](https://github.com/bundu-labs/zimbabwe-information/actions/workflows/lint.yml/badge.svg)](https://github.com/bundu-labs/zimbabwe-information/actions/workflows/lint.yml)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+![Mintlify](https://img.shields.io/badge/Mintlify-docs-0D9373?style=flat-square)
+![Pages](https://img.shields.io/badge/pages-129_MDX-0D9373?style=flat-square)
 
-## What's Inside
+**Version:** 1.0.0 | **Live:** [travel-info.co.zw](https://travel-info.co.zw) | **Deploys via:** the Mintlify GitHub App on push to `main`
+
+---
+
+## What it is
+
+The repository behind [travel-info.co.zw](https://travel-info.co.zw) — 129
+MDX pages of Zimbabwe travel information, published as a
+[Mintlify](https://mintlify.com) site. It covers 24 destinations, 14 planning
+guides, 18 pages of practical essentials, plus adventure, culture, heritage,
+wildlife, rock art, geology, and a directory of operators and experts.
+
+The content is written to be read by a traveller who has never been to
+Zimbabwe: what the place is, when to go, what it costs, what the entry
+requirements are, and who to contact when something goes wrong. It is
+licensed CC BY 4.0 precisely so that tour operators, embassies and other
+guides can reuse it.
+
+The repository is also configured as an npm workspace root (`apps/*`) for the
+wider Zimbabwe Information Platform. Only the Mintlify site is in this tree
+today; `apps/README.md` records the sibling applications and where they live.
+There is no database schema here — `supabase/schema.sql` is a deprecated stub
+that says so, and this repo is a read-only consumer of the shared platform
+database.
+
+## What's inside
 
 ### Destinations
 
-- **[Victoria Falls](/destinations/victoria-falls)** - One of the Seven Natural Wonders
-- **[Hwange National Park](/destinations/hwange-national-park)** - Zimbabwe's largest wildlife reserve
-- **[Mana Pools](/destinations/mana-pools)** - UNESCO World Heritage walking safari destination
-- **[Great Zimbabwe](/destinations/great-zimbabwe)** - Ancient stone city ruins
-- **[Eastern Highlands](/destinations/eastern-highlands)** - Mountain scenery and hiking
-- **[Lake Kariba](/destinations/lake-kariba)** - Houseboating and fishing
-- Plus 15+ more destinations including hidden gems and off-the-beaten-path locations
+- [Victoria Falls](https://travel-info.co.zw/destinations/victoria-falls) — one of the Seven Natural Wonders
+- [Hwange National Park](https://travel-info.co.zw/destinations/hwange-national-park) — Zimbabwe's largest wildlife reserve
+- [Mana Pools](https://travel-info.co.zw/destinations/mana-pools) — UNESCO World Heritage walking-safari destination
+- [Great Zimbabwe](https://travel-info.co.zw/destinations/great-zimbabwe) — the ancient stone city
+- [Eastern Highlands](https://travel-info.co.zw/destinations/eastern-highlands) — mountain scenery and hiking
+- [Lake Kariba](https://travel-info.co.zw/destinations/lake-kariba) — houseboating and fishing
+- Plus 18 more, including cities, hidden gems and off-the-beaten-path locations
 
-### Travel Planning
+### Travel planning
 
-- **[First-Time Visitors Guide](/planning/first-time-visitors)** - Start here if you're new to Zimbabwe
-- **[Sample Itineraries](/planning/sample-itineraries)** - Ready-made trip plans
-- Guides for different travelers: [Families](/planning/family-travel), [Solo](/planning/solo-travel), [Seniors](/planning/senior-travel), [LGBTQ+](/planning/lgbtq-travel), [Business](/planning/business-travel)
-- **[Safari Planning](/planning/safari-planning)** - Everything you need for a safari trip
+- [First-time visitors guide](https://travel-info.co.zw/planning/first-time-visitors) — start here
+- [Sample itineraries](https://travel-info.co.zw/planning/sample-itineraries) — ready-made trip plans
+- Guides by traveller: families, solo, seniors, LGBTQ+, business
+- Safari planning, budgeting, and when to visit
 
-### Essential Information
+### Essential information
 
-- [Visas & Entry Requirements](/essentials/visas-and-entry)
-- [Health & Safety](/essentials/health-and-safety)
-- [Currency & Money](/essentials/currency-and-money)
-- [Transportation](/essentials/transportation)
-- [Accommodation Guide](/essentials/accommodation)
-- [Packing Guide](/essentials/packing-guide)
+- [Visas and entry requirements](https://travel-info.co.zw/essentials/visas-and-entry)
+- [Health and safety](https://travel-info.co.zw/essentials/health-and-safety)
+- [Currency and money](https://travel-info.co.zw/essentials/currency-and-money)
+- [Transportation](https://travel-info.co.zw/essentials/transportation)
+- Accommodation, packing, tipping, insurance, accessibility, local customs
 
-### Activities & Culture
+### Activities, culture and resources
 
-- [Adventure Activities](/adventure/activities-and-experiences) - Rafting, bungee, safaris & more
-- [Zimbabwean Cuisine](/culture/cuisine)
-- [Art & Music](/culture/art-and-music)
-- [Festivals & Events](/culture/festivals-and-events)
+- [Adventure activities](https://travel-info.co.zw/adventure/activities-and-experiences) — rafting, bungee, safaris
+- Cuisine, art and music, festivals, people and tribes
+- [Emergency contacts](https://travel-info.co.zw/resources/emergency-contacts) and tour operators
+- [FAQ](https://travel-info.co.zw/faq)
 
-### Resources
+## Repository structure
 
-- [Emergency Contacts](/resources/emergency-contacts)
-- [Tour Operators](/resources/tour-operators)
-- [FAQ](/faq)
+| Path                                                                         | What is in it                                           |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------- |
+| `docs.json`                                                                  | The Mintlify manifest — navigation, theme, SEO metadata |
+| `destinations/`, `planning/`, `essentials/`, `adventure/`, `culture/`        | The main guide content                                  |
+| `wildlife/`, `heritage/`, `historic/`, `scenic/`, `geological/`, `rock-art/` | Thematic collections                                    |
+| `directory/`, `experts/`, `resources/`, `get-involved/`, `business/`         | Operators, contributors and commercial pages            |
+| `snippets/`, `images/`, `logo/`, `style.css`, `fonts.json`                   | Shared components and site chrome                       |
+| `apps/`                                                                      | Workspace root for the sibling platform apps            |
 
-## Development
+## Local development
 
-This site is built with [Mintlify](https://mintlify.com).
-
-### Local Development
-
-Install the Mintlify CLI:
-
-```bash
-npm i -g mintlify
-```
-
-Run the development server:
+The site is built with [Mintlify](https://mintlify.com). Install the CLI and
+run the dev server from the repository root, where `docs.json` lives:
 
 ```bash
-mintlify dev
+npm install -g mint
+mint dev
 ```
 
-### Deployment
+If a page 404s locally, check you are running in the folder that contains
+`docs.json` — Mintlify's older manifest name, `mint.json`, is not used here.
 
-Changes pushed to the main branch are automatically deployed via the Mintlify GitHub App.
+## Deploy
 
-### Troubleshooting
-
-- **Mintlify dev isn't running** - Run `mintlify install` to re-install dependencies
-- **Page loads as a 404** - Ensure you're running in a folder with `mint.json`
+Changes merged to `main` are deployed automatically by the Mintlify GitHub
+App. There is no deploy workflow in this repository; the GitHub Actions
+workflows here cover lint, labelling, SEO updates, and the expert-listing
+form.
 
 ## Contributing
 
-We welcome contributions! If you have suggestions for improving our travel guides or spot any outdated information, please open an issue or submit a pull request.
+Suggestions and corrections are welcome — open an issue or a pull request.
+Travel information decays quickly, so a PR that fixes an out-of-date price,
+visa rule or operator contact is as valuable as a new page.
+
+**Note:** verify anything consequential — visa requirements, health
+advisories, border hours — with official sources before travelling. This is a
+guide, not a government notice.
+
+## Licence and governance
+
+Licensed under [Creative Commons Attribution 4.0 International](LICENSE). You
+are free to share and adapt this content with appropriate attribution.
+
+This repository is a Bundu Foundation initiative (ZIP — the Zimbabwe
+Information Platform). The Bundu Foundation is the governance body;
+[Nyuchi](https://nyuchi.com) is the operator.
+
+© Bundu Foundation, operated by Nyuchi Africa (Pvt) Ltd.
 
 ## Contact
 
-- **Website:** [travel-info.co.zw](https://travel-info.co.zw)
-- **Email:** <hi@travel-info.co.zw>
-- **Contact Form:** [Get in touch](/contact)
-
-## License
-
-This work is licensed under a [Creative Commons Attribution 4.0 International License](LICENSE).
-
-You are free to share and adapt this content with appropriate attribution.
-
-**Note:** Please verify important details (visa requirements, health advisories, etc.) with official sources before traveling.
+- **Website** — [travel-info.co.zw](https://travel-info.co.zw)
+- **Email** — <hi@travel-info.co.zw>
+- **Contact form** — [travel-info.co.zw/contact](https://travel-info.co.zw/contact)
