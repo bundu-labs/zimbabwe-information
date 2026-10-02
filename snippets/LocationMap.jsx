@@ -1,4 +1,3 @@
-
 /**
  * LocationMap - Embeds an OpenStreetMap for a destination
  *
@@ -19,7 +18,7 @@ export const LocationMap = ({
   zoom = 12,
   title = "Location",
   showMarker = true,
-  height = "400px"
+  height = "400px",
 }) => {
   if (!lat || !lng) {
     return (
@@ -44,12 +43,28 @@ export const LocationMap = ({
       {/* GPS Coordinates Display */}
       <div className="flex flex-wrap items-center gap-4 mb-3 text-sm">
         <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
           </svg>
           <span className="font-mono">
-            {lat.toFixed(4)}°{lat >= 0 ? 'N' : 'S'}, {lng.toFixed(4)}°{lng >= 0 ? 'E' : 'W'}
+            {lat.toFixed(4)}°{lat >= 0 ? "N" : "S"}, {lng.toFixed(4)}°
+            {lng >= 0 ? "E" : "W"}
           </span>
         </div>
         <a
@@ -69,9 +84,9 @@ export const LocationMap = ({
         <iframe
           src={mapUrl}
           style={{
-            width: '100%',
-            height: '100%',
-            border: 0
+            width: "100%",
+            height: "100%",
+            border: 0,
           }}
           title={`Map of ${title}`}
           loading="lazy"
@@ -81,7 +96,8 @@ export const LocationMap = ({
       </div>
       {/* Attribution */}
       <div className="mt-2 text-xs text-gray-500 dark:text-gray-500">
-        Map data © <a
+        Map data ©{" "}
+        <a
           href="https://www.openstreetmap.org/copyright"
           target="_blank"
           rel="noopener noreferrer"
@@ -92,4 +108,4 @@ export const LocationMap = ({
       </div>
     </div>
   );
-}
+};
