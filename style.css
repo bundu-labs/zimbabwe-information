@@ -4,16 +4,16 @@
  */
 
 /* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap");
 
 /*
  * CSS Variables
  */
 :root {
-  --font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
-  --font-family-heading: 'Noto Serif', Georgia, serif;
-  --primary-color: #0D9373;
+  --font-family: "Noto Sans", system-ui, -apple-system, sans-serif;
+  --font-family-heading: "Noto Serif", Georgia, serif;
+  --primary-color: #0d9373;
 }
 
 /*
@@ -23,11 +23,17 @@ body {
   font-family: var(--font-family);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-family-heading);
 }
 
-code, pre {
+code,
+pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 }
 

@@ -20,10 +20,12 @@ Zimbabwe Travel Information is an open source documentation site providing compr
 ### 1. ✅ Fixed MDX Syntax Errors (55 files)
 
 **Problem:** Browser console showed errors like:
+
 - `Uncaught SyntaxError: Failed to execute 'appendChild' on 'Node': Cannot use import statement outside a module`
 - `Unexpected character before name` in MDX frontmatter
 
 **Solution:**
+
 - Created `.github/fix-yaml-syntax.sh` to batch fix unquoted YAML values
 - Added quotes to 5 types of YAML fields:
   - `'twitter:card': "summary_large_image"`
@@ -39,11 +41,13 @@ Zimbabwe Travel Information is an open source documentation site providing compr
 ### 2. ✅ Created Image Download System
 
 **Scripts Created:**
+
 1. **`.github/download-images.sh`** - Downloads images from external sources
 2. **`.github/update-image-paths.sh`** - Updates MDX files to use local paths
 3. **`.github/IMAGE_DOWNLOAD_GUIDE.md`** - Comprehensive manual guide
 
 **Directory Structure Created:**
+
 ```
 /images/
   /destinations/
@@ -63,6 +67,7 @@ Zimbabwe Travel Information is an open source documentation site providing compr
 ```
 
 **Images Downloaded:**
+
 - ✅ 1 complete: `business-scene.jpg` (396K)
 - ⚠️ 16 partial: Bot protection / 404 errors from Pixabay
 - ❌ 7 failed: Iconic Expeditions images return 404
@@ -72,13 +77,15 @@ Zimbabwe Travel Information is an open source documentation site providing compr
 ### 3. ⚠️ Image Download Limitations
 
 **Issue:** Most image URLs return HTML error pages or XML instead of actual images due to:
+
 1. **Bot Protection:** Pixabay/Iconic Expeditions detect automated downloads
 2. **404 Errors:** Some Iconic Expeditions URLs no longer exist
 3. **Authentication:** May require browser headers/cookies
 
 **Images That Need Manual Download:**
 
-#### From Pixabay (16 images):
+#### From Pixabay (16 images)
+
 - Mana Pools elephants
 - Matobo Hills balancing rocks
 - Great Zimbabwe stone walls
@@ -96,7 +103,8 @@ Zimbabwe Travel Information is an open source documentation site providing compr
 - Safari jeep
 - Solo travel
 
-#### From Iconic Expeditions (7 images):
+#### From Iconic Expeditions (7 images)
+
 - Victoria Falls aerial view
 - Hwange elephants at waterhole
 - Lake Kariba sunset
@@ -106,6 +114,7 @@ Zimbabwe Travel Information is an open source documentation site providing compr
 - Family safari vehicle
 
 **Workaround Options:**
+
 1. Manual browser download (right-click → save as)
 2. Use browser extension to preserve cookies
 3. Contact Iconic Expeditions for direct image access
@@ -119,10 +128,12 @@ Zimbabwe Travel Information is an open source documentation site providing compr
 **Now:** Manual scripts you can run when needed
 
 **Files Created:**
+
 - `.github/seo-update.js` - Node.js script with full SEO logic
 - `.github/run-seo-update.sh` - Bash wrapper for easy execution
 
 **Usage:**
+
 ```bash
 # Dry run (test without changes)
 bash .github/run-seo-update.sh --dry-run
@@ -138,6 +149,7 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
 ```
 
 **What it does:**
+
 - Adds Open Graph metadata
 - Generates descriptions from content
 - Creates Zimbabwe-specific keywords
@@ -149,18 +161,21 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
 
 ### 5. ✅ Created Utility Scripts
 
-**`.github/fix-yaml-syntax.sh`**
+#### `.github/fix-yaml-syntax.sh`
+
 - Fixes unquoted YAML values in MDX frontmatter
 - Processes all `.mdx` files recursively
 - Safe to run multiple times (idempotent)
 
-**`.github/download-images.sh`**
+#### `.github/download-images.sh`
+
 - Downloads images from Pixabay and Iconic Expeditions
 - Creates proper directory structure
 - Skips Iconic images (404 errors)
 - Note: Most Pixabay downloads fail due to bot protection
 
-**`.github/update-image-paths.sh`**
+#### `.github/update-image-paths.sh`
+
 - Batch updates all MDX files
 - Replaces external URLs with local paths
 - Run AFTER images are successfully downloaded
@@ -170,6 +185,7 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
 ## Current Status
 
 ### ✅ Completed
+
 - [x] Fixed all MDX syntax errors
 - [x] Created image directory structure
 - [x] Downloaded 1 working image
@@ -179,6 +195,7 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
 - [x] Pushed all changes to main branch
 
 ### ⚠️ Needs Manual Work
+
 - [ ] Manually download 16 Pixabay images (bot protection)
 - [ ] Manually download 7 Iconic Expeditions images (404 errors)
 - [ ] Optimize downloaded images (TinyPNG.com or Squoosh.app)
@@ -186,6 +203,7 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
 - [ ] Verify images display correctly on deployed site
 
 ### 💡 Optional Improvements
+
 - [ ] Contact Iconic Expeditions for working image URLs
 - [ ] Request images directly from Moses Adventures
 - [ ] Find alternative sources on Unsplash
@@ -207,11 +225,13 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
    - Keep as JPEG format
 
 3. **Update MDX References:**
+
    ```bash
    bash .github/update-image-paths.sh
    ```
 
 4. **Commit and Push:**
+
    ```bash
    git add images/
    git commit -m "Add optimized local images for all pages"
@@ -227,13 +247,13 @@ bash .github/run-seo-update.sh --dirs=./destinations,./planning
 
 ## Scripts Reference
 
-| Script | Purpose | Usage |
-|--------|---------|-------|
-| `fix-yaml-syntax.sh` | Fix MDX frontmatter | `bash .github/fix-yaml-syntax.sh` |
-| `download-images.sh` | Download images | `bash .github/download-images.sh` |
-| `update-image-paths.sh` | Update MDX image refs | `bash .github/update-image-paths.sh` |
-| `run-seo-update.sh` | Update SEO metadata | `bash .github/run-seo-update.sh [--dry-run\|--force]` |
-| `seo-update.js` | SEO script (called by wrapper) | `node .github/seo-update.js [options]` |
+| Script                  | Purpose                        | Usage                                                 |
+| ----------------------- | ------------------------------ | ----------------------------------------------------- |
+| `fix-yaml-syntax.sh`    | Fix MDX frontmatter            | `bash .github/fix-yaml-syntax.sh`                     |
+| `download-images.sh`    | Download images                | `bash .github/download-images.sh`                     |
+| `update-image-paths.sh` | Update MDX image refs          | `bash .github/update-image-paths.sh`                  |
+| `run-seo-update.sh`     | Update SEO metadata            | `bash .github/run-seo-update.sh [--dry-run\|--force]` |
+| `seo-update.js`         | SEO script (called by wrapper) | `node .github/seo-update.js [options]`                |
 
 ---
 
