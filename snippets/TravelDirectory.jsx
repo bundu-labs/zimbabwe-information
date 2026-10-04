@@ -81,6 +81,13 @@ export const TravelDirectory = ({
   const [openId, setOpenId] = useState(null);
   const requestSeq = useRef(0);
 
+  // ?search= prefills the search box (itinerary links use it).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const q = new URLSearchParams(window.location.search).get("search");
+    if (q) setQuery(q.slice(0, 100));
+  }, []);
+
   useEffect(() => {
     const t = setTimeout(() => setDebouncedQuery(query.trim()), 350);
     return () => clearTimeout(t);
