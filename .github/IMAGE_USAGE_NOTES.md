@@ -5,7 +5,8 @@
 ### **Licensed External Images**
 
 **Iconic Expeditions** - We have permission to use their images
-- Source: https://iconic-expeditions.com/
+
+- Source: <https://iconic-expeditions.com/>
 - Usage: With permission
 - Credit Format: `*Photo courtesy of [Iconic Expeditions](https://iconic-expeditions.com/)*`
 
@@ -44,6 +45,7 @@
 ## Free Image Sources (For Future Use)
 
 ### **Unsplash** (Free, no attribution required but recommended)
+
 - 30,000+ Victoria Falls images
 - 100+ Zimbabwe images
 - Professional quality
@@ -51,6 +53,7 @@
 - Credit: `*Photo: [Photographer Name](unsplash-profile-url) via Unsplash*`
 
 ### **Pixabay** (Public domain, free commercial use)
+
 - 20,000+ Victoria Falls images
 - 200+ Zimbabwe images
 - 8,000+ African elephant images
@@ -58,6 +61,7 @@
 - Credit: `*Photo via Pixabay*` or `*Photo: [Photographer] via Pixabay*`
 
 ### **Moses Adventures** (Permission granted)
+
 - Contact for specific tour photos
 - Authentic Zimbabwe travel experiences
 - Credit: `*Photo courtesy of [Moses Adventures](https://www.moses-adventures.com/)*`
@@ -66,7 +70,8 @@
 
 ## Implementation Status
 
-### Pages Updated with Real Photos:
+### Pages Updated with Real Photos
+
 - ✅ destinations/victoria-falls.mdx - Iconic Expeditions aerial view
 - ✅ planning/luxury-travel.mdx - Multiple Iconic Expeditions images
 - ✅ planning/safari-planning.mdx - Iconic Expeditions images
@@ -75,8 +80,10 @@
 - ✅ planning/group-travel.mdx - Iconic Expeditions images
 - ✅ planning/solo-travel.mdx - Iconic Expeditions images
 
-### Pages Still Using Placeholders (Need Updates):
+### Pages Still Using Placeholders (Need Updates)
+
 All pages currently using `/images/hero-light.svg` should be updated with:
+
 1. Iconic Expeditions images (where appropriate)
 2. Downloaded Unsplash/Pixabay images (hosted locally)
 3. Moses Adventures photos (when received)
@@ -86,19 +93,23 @@ All pages currently using `/images/hero-light.svg` should be updated with:
 ## How to Add Images Properly
 
 ### Step 1: Choose Image Source
+
 1. Check if Iconic Expeditions has suitable image
 2. If not, search Unsplash/Pixabay
 3. Download and save to `/images/[category]/` folder
 4. Or use Moses Adventures image if available
 
 ### Step 2: Add Image to Page
+
 ```mdx
 ![Descriptive alt text](image-url-or-path)
 *Photo courtesy of [Source](link)*
 ```
 
 ### Step 3: Add Page-Level Credits
+
 At bottom of page:
+
 ```mdx
 ---
 
@@ -111,7 +122,8 @@ import PhotoCredits from '/snippets/photo-credits.mdx';
 
 ## Priority Pages Needing Real Images
 
-### High Priority (Main Destination Pages):
+### High Priority (Main Destination Pages)
+
 1. ❌ destinations/hwange-national-park.mdx - Use Iconic elephant at waterhole
 2. ❌ destinations/lake-kariba.mdx - Use Iconic Kariba sunset
 3. ❌ destinations/eastern-highlands.mdx - Need mountain photos
@@ -119,12 +131,14 @@ import PhotoCredits from '/snippets/photo-credits.mdx';
 5. ❌ destinations/great-zimbabwe.mdx - Need ruins photos
 6. ❌ destinations/mana-pools.mdx - Need wildlife/river photos
 
-### Medium Priority (Wildlife & Adventure):
+### Medium Priority (Wildlife & Adventure)
+
 1. ❌ wildlife/animals-and-birds.mdx
 2. ❌ adventure/hiking-and-trekking.mdx
 3. ❌ adventure/water-sports.mdx
 
-### Lower Priority (Essentials):
+### Lower Priority (Essentials)
+
 - Most essentials pages can use icon graphics or simple photos
 
 ---

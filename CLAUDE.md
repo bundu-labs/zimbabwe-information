@@ -5,20 +5,21 @@
 **travel-info.co.zw** is the editorial and documentation layer of the **Zimbabwe Information Platform** — a Mintlify-powered docs site that serves as the SEO-heavy, Google-indexed content layer. Destination guides, safari planning articles, seasonal travel advice, professional profiles, and contributor-written content live here. Every other app in the ecosystem links here for detailed editorial content.
 
 This is a **monorepo root**. The `/apps` directory is reserved for the other platform apps:
+
 - `apps/` — business.mukoko.com (Next.js 15), travel.mukoko.com (Next.js 15), barstool.mukoko.com
 
-- **Live site:** https://travel-info.co.zw
-- **Repository:** https://github.com/nyuchitech/zti-docs
+- **Live site:** <https://travel-info.co.zw>
+- **Repository:** <https://github.com/nyuchitech/zti-docs>
 - **License:** CC BY 4.0 (Creative Commons Attribution 4.0 International)
 
 ### Platform context
 
-| App | Domain | Purpose |
-|-----|--------|---------|
-| **zti-docs** (this repo) | travel-info.co.zw | Editorial content, SEO layer |
-| business-mukoko | business.mukoko.com | Business directory, verification, profiles |
-| zti-app | travel.mukoko.com | Interactive MapLibre travel map |
-| barstool | barstool.mukoko.com | Nightlife discovery |
+| App                      | Domain              | Purpose                                    |
+| ------------------------ | ------------------- | ------------------------------------------ |
+| **zti-docs** (this repo) | travel-info.co.zw   | Editorial content, SEO layer               |
+| business-mukoko          | business.mukoko.com | Business directory, verification, profiles |
+| zti-app                  | travel.mukoko.com   | Interactive MapLibre travel map            |
+| barstool                 | barstool.mukoko.com | Nightlife discovery                        |
 
 All apps share **one database** (`mukoko_platform_cloud`, `tdcpuzqyoodrdsxldgsh`) and **one auth system** (Supabase Auth — shared Mukoko identity).
 
@@ -26,14 +27,14 @@ All apps share **one database** (`mukoko_platform_cloud`, `tdcpuzqyoodrdsxldgsh`
 
 ## Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **Mintlify** | Documentation platform and static site generator |
-| **MDX** | Markdown with JSX components for content |
-| **React** | Custom interactive components in `/snippets` |
-| **Supabase** | `mukoko_platform_cloud` — shared platform database |
-| **Tailwind CSS** | Styling (via Mintlify + custom `style.css`) |
-| **GitHub Actions** | CI/CD workflows |
+| Technology         | Purpose                                            |
+| ------------------ | -------------------------------------------------- |
+| **Mintlify**       | Documentation platform and static site generator   |
+| **MDX**            | Markdown with JSX components for content           |
+| **React**          | Custom interactive components in `/snippets`       |
+| **Supabase**       | `mukoko_platform_cloud` — shared platform database |
+| **Tailwind CSS**   | Styling (via Mintlify + custom `style.css`)        |
+| **GitHub Actions** | CI/CD workflows                                    |
 
 ### Supabase connection
 
@@ -90,9 +91,8 @@ zti-docs/
 ├── # React Components & Snippets
 ├── snippets/                 # Reusable MDX snippets and React components
 │   ├── ExpertDirectory.jsx   # Expert listing component
-│   ├── ExpertFormSupabase.jsx # Expert application form
+│   ├── ApplicationForm.jsx   # Business + expert application forms (Nyuchi API)
 │   ├── BusinessDirectory.jsx # Business listing component
-│   ├── BusinessForm.jsx      # Business application form
 │   ├── supabase.js           # Supabase client configuration
 │   ├── photo-credits.mdx     # Reusable photo credits snippet
 │   └── README.md             # Component documentation
@@ -133,6 +133,7 @@ zti-docs/
 ### docs.json (Mintlify Configuration)
 
 The main configuration file controlling:
+
 - **Navigation**: Tab-based navigation with groups (Heritage, Destinations, Planning, etc.)
 - **SEO**: Global meta tags, Open Graph, Twitter cards, structured data
 - **Theme**: Colors (`#0D9373` primary), logo, layout settings
@@ -142,6 +143,7 @@ The main configuration file controlling:
 ### package.json
 
 Dependencies:
+
 - `@supabase/supabase-js` - Database client
 - `react` - Component framework
 - `gray-matter` - YAML frontmatter parsing (dev)
@@ -235,23 +237,22 @@ import PhotoCredits from '/snippets/photo-credits.mdx';
 
 Custom React components live in `/snippets/`. All exported from `index.js`.
 
-| Component | Queries | Purpose |
-|-----------|---------|---------|
-| `ExpertDirectory.jsx` | `hospitality.professional` + `identity.person` | Searchable professional directory |
-| `BusinessDirectory.jsx` | `commerce.local_business` + `business.organization` + `places.places` | Business directory |
-| `ExpertFormSupabase.jsx` | `hospitality.professional_application` | Professional listing application form |
-| `BusinessForm.jsx` | `commerce.business_application` | Business listing application form |
-| `LocationMap.jsx` | Static lat/lng props | OpenStreetMap embed |
-| `VerificationBadge.jsx` | (static — tier prop) | Mineral-colored verification badge |
-| `ProfessionalCard.jsx` | `hospitality.professional` + `identity.person` | Inline profile card for articles |
-| `SeasonalInfo.jsx` | `places.seasonal_info` | Month-by-month visit conditions |
-| `EstablishmentGrid.jsx` | `hospitality.establishment` | Grid of lodges/restaurants at a place |
-| `ExperienceList.jsx` | `hospitality.experience` | Activities at a place |
-| `ReviewSummary.jsx` | `engagement.review` | Aggregate rating + recent reviews |
-| `ContentGapCTA.jsx` | `content.content_gap` | "Help improve this page" CTA |
-| `ContributorDashboard.jsx` | `content.content_gap` | Authenticated gap browser |
-| `ItineraryView.jsx` | `content.itinerary` + `content.itinerary_stop` | Day-by-day trip plan |
-| `supabase.js` | — | Supabase client + shared constants |
+| Component                  | Queries                                                               | Purpose                               |
+| -------------------------- | --------------------------------------------------------------------- | ------------------------------------- |
+| `ExpertDirectory.jsx`      | `hospitality.professional` + `identity.person`                        | Searchable professional directory     |
+| `BusinessDirectory.jsx`    | `commerce.local_business` + `business.organization` + `places.places` | Business directory                    |
+| `ApplicationForm.jsx`      | `POST /v1/applications/{businesses,experts}` (Nyuchi API, Turnstile)  | Business and expert application forms |
+| `LocationMap.jsx`          | Static lat/lng props                                                  | OpenStreetMap embed                   |
+| `VerificationBadge.jsx`    | (static — tier prop)                                                  | Mineral-colored verification badge    |
+| `ProfessionalCard.jsx`     | `hospitality.professional` + `identity.person`                        | Inline profile card for articles      |
+| `SeasonalInfo.jsx`         | `places.seasonal_info`                                                | Month-by-month visit conditions       |
+| `EstablishmentGrid.jsx`    | `hospitality.establishment`                                           | Grid of lodges/restaurants at a place |
+| `ExperienceList.jsx`       | `hospitality.experience`                                              | Activities at a place                 |
+| `ReviewSummary.jsx`        | `engagement.review`                                                   | Aggregate rating + recent reviews     |
+| `ContentGapCTA.jsx`        | `content.content_gap`                                                 | "Help improve this page" CTA          |
+| `ContributorDashboard.jsx` | `content.content_gap`                                                 | Authenticated gap browser             |
+| `ItineraryView.jsx`        | `content.itinerary` + `content.itinerary_stop`                        | Day-by-day trip plan                  |
+| `supabase.js`              | —                                                                     | Supabase client + shared constants    |
 
 ### LocationMap Component
 
@@ -269,6 +270,7 @@ import { LocationMap } from '/snippets/LocationMap.jsx';
 ```
 
 **Props:**
+
 - `lat` (required): Latitude coordinate
 - `lng` (required): Longitude coordinate
 - `zoom`: Zoom level 1-18 (default: 12)
@@ -277,20 +279,22 @@ import { LocationMap } from '/snippets/LocationMap.jsx';
 - `height`: Map height (default: "400px")
 
 **Key Zimbabwe coordinates:**
-| Location | Latitude | Longitude |
-|----------|----------|-----------|
-| Victoria Falls | -17.9243 | 25.8572 |
-| Hwange NP (Main Camp) | -18.3667 | 26.5000 |
-| Great Zimbabwe | -20.2744 | 30.9339 |
-| Mana Pools | -15.7500 | 29.4000 |
-| Harare | -17.8292 | 31.0522 |
-| Bulawayo | -20.1325 | 28.5833 |
-| Lake Kariba | -16.5167 | 28.8000 |
-| Matobo Hills | -20.5000 | 28.5000 |
+
+| Location              | Latitude | Longitude |
+| --------------------- | -------- | --------- |
+| Victoria Falls        | -17.9243 | 25.8572   |
+| Hwange NP (Main Camp) | -18.3667 | 26.5000   |
+| Great Zimbabwe        | -20.2744 | 30.9339   |
+| Mana Pools            | -15.7500 | 29.4000   |
+| Harare                | -17.8292 | 31.0522   |
+| Bulawayo              | -20.1325 | 28.5833   |
+| Lake Kariba           | -16.5167 | 28.8000   |
+| Matobo Hills          | -20.5000 | 28.5000   |
 
 ### Conventions
 
 1. **Arrow function syntax (REQUIRED)**: Mintlify requires arrow functions for JSX snippets:
+
    ```jsx
    // CORRECT - use arrow function with named export
    export const MyComponent = ({ prop }) => {
@@ -300,11 +304,14 @@ import { LocationMap } from '/snippets/LocationMap.jsx';
    // WRONG - function declarations don't work in Mintlify
    export default function MyComponent({ prop }) { ... }
    ```
+
 2. **Named exports (REQUIRED)**: Use named exports, not default exports
 3. **Import with .jsx extension**: Always include the `.jsx` extension in imports:
+
    ```mdx
    import { MyComponent } from '/snippets/MyComponent.jsx';
    ```
+
 4. **Use client directive**: Add `'use client'` for client-side components
 5. **Dark mode**: Use Tailwind's `dark:` prefix for dark mode styles
 6. **Responsive**: Mobile-first with `sm:`, `md:`, `lg:` breakpoints
@@ -316,6 +323,7 @@ import { LocationMap } from '/snippets/LocationMap.jsx';
 All components connect to `mukoko_platform_cloud` via `/snippets/supabase.js`.
 
 Use `.schema('schema_name').from('table_name')` for non-public schemas:
+
 ```js
 // Correct pattern for platform schemas
 const { data } = await supabase.schema('hospitality').from('professional').select(...)
@@ -419,15 +427,15 @@ bash .github/update-image-paths.sh
 
 Based on `FUTURE_PAGES_PLAN.md`, focus areas for new content:
 
-| Priority | Category | Current | Gap |
-|----------|----------|---------|-----|
-| High | Rock Art | 7 pages | 15+ potential |
-| High | Scenic/Waterfalls | 7 pages | 20+ potential |
-| High | Heritage/Ruins | 6 pages | 10+ potential |
-| High | Wildlife/Parks | 3 pages | 15+ potential |
-| Medium | Geological | 3 pages | 10+ potential |
-| Medium | Historic | 2 pages | 15+ potential |
-| Medium | Cities/Towns | 5 pages | 10+ potential |
+| Priority | Category          | Current | Gap           |
+| -------- | ----------------- | ------- | ------------- |
+| High     | Rock Art          | 7 pages | 15+ potential |
+| High     | Scenic/Waterfalls | 7 pages | 20+ potential |
+| High     | Heritage/Ruins    | 6 pages | 10+ potential |
+| High     | Wildlife/Parks    | 3 pages | 15+ potential |
+| Medium   | Geological        | 3 pages | 10+ potential |
+| Medium   | Historic          | 2 pages | 15+ potential |
+| Medium   | Cities/Towns      | 5 pages | 10+ potential |
 
 ---
 
@@ -504,6 +512,18 @@ Expected in local development due to browser restrictions. Resolves in productio
 
 ## Contact
 
-- **Website:** https://travel-info.co.zw
-- **Email:** hi@travel-info.co.zw
-- **GitHub Issues:** https://github.com/nyuchitech/zti-docs/issues
+- **Website:** <https://travel-info.co.zw>
+- **Email:** <hi@travel-info.co.zw>
+- **GitHub Issues:** <https://github.com/nyuchitech/zti-docs/issues>
+
+---
+
+## Track big work in GitHub issues
+
+Any substantial build, migration, investigation or multi-step task gets a GitHub issue in the repo that owns it — before or as work starts — so another session, agent or person can pick it up.
+
+- The issue holds the goal, the owner's decisions (verbatim where given), the plan, acceptance criteria, owner-only steps and links.
+- Every PR references its issue (`Refs #n`; `Fixes #n` only when the merge completes it).
+- Post progress, decisions and a hand-off note (what's done, what's left, branch names) as issue comments — at each merge and before a session or agent finishes.
+- Work spanning repos gets a tracking issue that links the per-repo issues.
+- Never put secrets, credential status or exploitable detail in issues on public repos.

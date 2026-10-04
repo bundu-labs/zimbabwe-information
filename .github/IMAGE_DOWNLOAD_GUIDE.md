@@ -3,6 +3,7 @@
 ## Current Situation
 
 We've updated ~28 pages with external image URLs from:
+
 - Iconic Expeditions (7 images)
 - Pixabay (20+ images)
 
@@ -64,11 +65,13 @@ You have permission, so:
 Before uploading, optimize for web:
 
 **Tools:**
+
 - **TinyPNG.com** - Free, easy to use
 - **Squoosh.app** - Google's image optimizer
 - **ImageOptim** (Mac) - Desktop app
 
 **Target:**
+
 - Hero images: < 300KB
 - Standard images: < 150KB
 - Format: JPG for photos, WebP for best compression
@@ -140,76 +143,76 @@ Before uploading, optimize for web:
 
 **Wildlife:**
 
-5. **Animals and Birds - Elephant Herd**
+1. **Animals and Birds - Elephant Herd**
    - Current: `https://cdn.pixabay.com/photo/2016/11/14/03/55/elephants-1822636_1280.jpg`
    - Save as: `/images/wildlife/elephant-herd.jpg`
    - Credit: Pixabay
 
-6. **Conservation - Elephant**
+2. **Conservation - Elephant**
    - Current: `https://cdn.pixabay.com/photo/2017/05/19/10/50/elephant-2325899_1280.jpg`
    - Save as: `/images/wildlife/conservation-elephant.jpg`
    - Credit: Pixabay
 
-7. **National Parks - Savanna**
+3. **National Parks - Savanna**
    - Current: `https://cdn.pixabay.com/photo/2018/09/13/15/45/savanna-3675851_1280.jpg`
    - Save as: `/images/wildlife/savanna-wildlife.jpg`
    - Credit: Pixabay
 
 **Adventure:**
 
-8. **Water Sports - Rafting**
+1. **Water Sports - Rafting**
    - Current: `https://cdn.pixabay.com/photo/2016/05/24/11/48/white-water-rafting-1412162_1280.jpg`
    - Save as: `/images/adventure/white-water-rafting.jpg`
    - Credit: Pixabay
 
-9. **Activities - Safari**
+2. **Activities - Safari**
    - Current: `https://cdn.pixabay.com/photo/2017/07/10/10/32/africa-2489708_1280.jpg`
    - Save as: `/images/adventure/african-safari.jpg`
    - Credit: Pixabay
 
 **Culture:**
 
-10. **Art and Music - Drums**
-    - Current: `https://cdn.pixabay.com/photo/2018/01/21/02/46/drum-3096641_1280.jpg`
-    - Save as: `/images/culture/traditional-drums.jpg`
-    - Credit: Pixabay
+1. **Art and Music - Drums**
+   - Current: `https://cdn.pixabay.com/photo/2018/01/21/02/46/drum-3096641_1280.jpg`
+   - Save as: `/images/culture/traditional-drums.jpg`
+   - Credit: Pixabay
 
-11. **Cuisine - Food**
-    - Current: `https://cdn.pixabay.com/photo/2020/03/07/14/32/food-4910625_1280.jpg`
-    - Save as: `/images/culture/traditional-food.jpg`
-    - Credit: Pixabay
+2. **Cuisine - Food**
+   - Current: `https://cdn.pixabay.com/photo/2020/03/07/14/32/food-4910625_1280.jpg`
+   - Save as: `/images/culture/traditional-food.jpg`
+   - Credit: Pixabay
 
-12. **Festivals - Celebration**
-    - Current: `https://cdn.pixabay.com/photo/2017/08/06/18/33/person-2595309_1280.jpg`
-    - Save as: `/images/culture/cultural-celebration.jpg`
-    - Credit: Pixabay
+3. **Festivals - Celebration**
+   - Current: `https://cdn.pixabay.com/photo/2017/08/06/18/33/person-2595309_1280.jpg`
+   - Save as: `/images/culture/cultural-celebration.jpg`
+   - Credit: Pixabay
 
 **Planning:**
 
-13. **Business Travel**
-    - Current: `https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg`
-    - Save as: `/images/planning/business-scene.jpg`
-    - Credit: Pixabay
+1. **Business Travel**
+   - Current: `https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg`
+   - Save as: `/images/planning/business-scene.jpg`
+   - Credit: Pixabay
 
-14. **Couples Travel - Sunset**
-    - Current: `https://cdn.pixabay.com/photo/2017/08/05/22/47/lake-2586370_1280.jpg`
-    - Save as: `/images/planning/romantic-sunset.jpg`
-    - Credit: Pixabay
+2. **Couples Travel - Sunset**
+   - Current: `https://cdn.pixabay.com/photo/2017/08/05/22/47/lake-2586370_1280.jpg`
+   - Save as: `/images/planning/romantic-sunset.jpg`
+   - Credit: Pixabay
 
-15. **Group Travel - Elephants**
-    - Current: `https://cdn.pixabay.com/photo/2017/07/26/15/27/elephants-2542331_1280.jpg`
-    - Save as: `/images/planning/group-safari.jpg`
-    - Credit: Pixabay
+3. **Group Travel - Elephants**
+   - Current: `https://cdn.pixabay.com/photo/2017/07/26/15/27/elephants-2542331_1280.jpg`
+   - Save as: `/images/planning/group-safari.jpg`
+   - Credit: Pixabay
 
-16. **Safari Planning - Jeep**
-    - Current: `https://cdn.pixabay.com/photo/2019/02/17/09/51/africa-4001076_1280.jpg`
-    - Save as: `/images/planning/safari-jeep.jpg`
-    - Credit: Pixabay
+4. **Safari Planning - Jeep**
+   - Current: `https://cdn.pixabay.com/photo/2019/02/17/09/51/africa-4001076_1280.jpg`
+   - Save as: `/images/planning/safari-jeep.jpg`
+   - Credit: Pixabay
 
-17. **Solo Travel**
-    - Current: `https://cdn.pixabay.com/photo/2017/08/06/12/06/people-2593341_1280.jpg`
-    - Save as: `/images/planning/solo-adventure.jpg`
-    - Credit: Pixabay
+5. **Solo Travel**
+   - Current: `https://cdn.pixabay.com/photo/2017/08/06/12/06/people-2593341_1280.jpg`
+   - Save as: `/images/planning/solo-adventure.jpg`
+   - Credit: Pixabay
 
 ---
 
@@ -220,12 +223,14 @@ Before uploading, optimize for web:
 Replace external URLs with local paths:
 
 **Before:**
+
 ```mdx
 ![Victoria Falls aerial view](https://iconic-expeditions.com/wp-content/uploads/2024/03/Victoria-Falls-Aerial-View.jpg)
 *Photo courtesy of [Iconic Expeditions](https://iconic-expeditions.com/)*
 ```
 
 **After:**
+
 ```mdx
 ![Victoria Falls aerial view](/images/destinations/victoria-falls/aerial-view.jpg)
 *Photo courtesy of [Iconic Expeditions](https://iconic-expeditions.com/)*
@@ -260,6 +265,7 @@ For better quality Zimbabwe-specific images:
 5. Easier to credit properly
 
 **Unsplash searches to try:**
+
 - "Victoria Falls Zimbabwe"
 - "Zimbabwe wildlife"
 - "African safari Zimbabwe"
@@ -271,6 +277,7 @@ For better quality Zimbabwe-specific images:
 ## Moses Adventures Images
 
 Contact Moses Adventures and request:
+
 1. High-resolution tour photos
 2. Specific permissions/license
 3. How they want to be credited
