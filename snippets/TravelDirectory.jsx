@@ -1,32 +1,31 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 /**
- * TravelDirectory — the published Zimbabwe travel directory.
+ * TravelDirectory — the published Zimbabwe travel business directory.
  *
- * Reads the Nyuchi API's public places endpoints only (listed places,
- * `isActive: true`). No keys and no database access in the browser:
+ * Reads the Nyuchi API's public travel endpoints only. They return listed
+ * businesses (verified, active) without owner ids. No keys and no database
+ * access in the browser:
  *
- *   GET https://api.nyuchi.com/v1/places?country_id=…&province_id=…&category=…&q=…
- *   GET https://api.nyuchi.com/v1/places/regions?country=ZW
+ *   GET https://api.nyuchi.com/v1/travel/businesses?type=…&search=…&limit=…&offset=…
  *
- * Businesses manage their own listing on Mukoko Kweli; the Nyuchi console
- * reviews and verifies it; this page publishes it. Every listing links
- * to Kweli's claim flow, deep-linked by place id:
+ * Businesses create and manage their listing on Mukoko Kweli (which writes
+ * /v1/travel/businesses); the Nyuchi console reviews and verifies it; this
+ * page publishes it. Every listing links back to Kweli:
  *
- *   https://kweli.mukoko.com/en/verify?place=<placeId>&source=zti
+ *   https://kweli.mukoko.com/en/verify?place=<placeId>&business=<id>&source=zti
  *
  * Usage:
  *   import { TravelDirectory } from "/snippets/TravelDirectory.jsx"
  *   <TravelDirectory />
- *   <TravelDirectory category="hotels" />
- *   <TravelDirectory categories={["hotels", "restaurants"]} />
+ *   <TravelDirectory types={["accommodation"]} />
  *
- * Props: `category` (initial categorySlug), `categories` (slugs on
- * offer; defaults to every travel category), `showFilters`, `pageSize`.
+ * Props: `type` (initial establishment type), `types` (types on offer;
+ * defaults to every travel type), `showFilters`, `pageSize`.
  */
 export const TravelDirectory = ({
-  category: initialCategory = "",
-  categories: allowedSlugs = null,
+  type: initialType = "",
+  types: allowedTypes = null,
   showFilters = true,
   pageSize = 24,
 }) => {
@@ -34,104 +33,47 @@ export const TravelDirectory = ({
   // component body, so module-level values are not available at runtime.
   const API_URL = "https://api.nyuchi.com/v1";
   const KWELI_URL = "https://kweli.mukoko.com";
-  const COUNTRY_ISO = "ZW";
-  // Fallback when /v1/places/regions is not reachable yet: Zimbabwe's
-  // id in the places geography (places.placesGeo).
-  const ZIMBABWE_COUNTRY_ID = "019f07da-e0f1-7bfe-a086-cc1c219ace76";
 
-  // Travel-relevant categories (places.categories), keyed by categorySlug.
-  const TRAVEL_CATEGORIES = [
-    {
-      slug: "hotels",
-      id: "019f47ca-dc03-7f6c-8c1a-8389e8ba045f",
-      label: "Places to stay",
-    },
-    {
-      slug: "tour-operators",
-      id: "019f47ca-dc03-759e-bc47-e609dc421c90",
-      label: "Travel & tours",
-    },
-    {
-      slug: "restaurants",
-      id: "019f47ca-dc03-7b18-8901-2a001690bb3b",
-      label: "Restaurants",
-    },
-    {
-      slug: "cafes",
-      id: "019f47ca-dc03-7db6-b691-f749bf194476",
-      label: "Cafés & coffee",
-    },
-    {
-      slug: "bars",
-      id: "019f47ca-dc03-7978-bb9e-568ee3d091d5",
-      label: "Bars & pubs",
-    },
-    {
-      slug: "national-parks",
-      id: "019f47ca-dc03-7f5a-a439-c16c7aee1562",
-      label: "Parks & reserves",
-    },
-    {
-      slug: "nature",
-      id: "019f47ca-dc03-7484-8637-8ab43b97ed21",
-      label: "Nature & outdoors",
-    },
-    {
-      slug: "landmarks",
-      id: "019f47ca-dc03-7908-870c-228fde902f51",
-      label: "Landmarks & attractions",
-    },
-    {
-      slug: "museums",
-      id: "019f47ca-dc03-79be-8c3a-4875251b7730",
-      label: "Museums & galleries",
-    },
-    {
-      slug: "entertainment",
-      id: "019f47ca-dc03-7aec-afc6-9879d7842d61",
-      label: "Entertainment & leisure",
-    },
-    {
-      slug: "shopping",
-      id: "019f47ca-dc03-7740-9e70-5fd599cb311f",
-      label: "Shopping",
-    },
+  // GET /v1/travel/meta/categories, with British labels.
+  const TRAVEL_TYPES = [
+    { id: "accommodation", label: "Places to stay" },
+    { id: "tour_operator", label: "Tour operators" },
+    { id: "safari_guide", label: "Safari guides" },
+    { id: "travel_agency", label: "Travel agencies" },
+    { id: "adventure", label: "Adventure" },
+    { id: "cultural", label: "Culture & heritage" },
+    { id: "dining", label: "Dining" },
+    { id: "transport", label: "Transport" },
   ];
 
-  const TIERS = {
-    0: null,
-    1: { label: "Community verified", mineral: "Terracotta" },
-    2: { label: "Verified by phone", mineral: "Cobalt" },
-    3: { label: "Government verified", mineral: "Gold" },
-    4: { label: "Licensed", mineral: "Tanzanite" },
-  };
-
-  const categoryOptions = allowedSlugs
-    ? TRAVEL_CATEGORIES.filter((c) => allowedSlugs.includes(c.slug))
-    : TRAVEL_CATEGORIES;
-  const categoryById = Object.fromEntries(
-    TRAVEL_CATEGORIES.map((c) => [c.id, c]),
+  const typeOptions = allowedTypes
+    ? TRAVEL_TYPES.filter((t) => allowedTypes.includes(t.id))
+    : TRAVEL_TYPES;
+  const typeLabel = Object.fromEntries(
+    TRAVEL_TYPES.map((t) => [t.id, t.label]),
   );
 
-  const kweliClaimUrl = (placeId) =>
-    `${KWELI_URL}/en/verify?place=${encodeURIComponent(placeId)}&source=zti`;
+  const kweliManageUrl = (b) => {
+    const params = new URLSearchParams();
+    if (b.placeId) params.set("place", b.placeId);
+    params.set("business", b._id);
+    params.set("source", "zti");
+    return `${KWELI_URL}/en/verify?${params.toString()}`;
+  };
   const kweliListUrl = `${KWELI_URL}/en/verify?source=zti`;
 
-  const [countryId, setCountryId] = useState(null);
-  const [regions, setRegions] = useState([]);
-  // The API filters one category at a time, so a category is always
-  // chosen: the one asked for, else the first on offer.
-  const [categorySlug, setCategorySlug] = useState(
-    categoryOptions.some((c) => c.slug === initialCategory)
-      ? initialCategory
-      : categoryOptions[0]?.slug || "hotels",
+  const [typeId, setTypeId] = useState(
+    typeOptions.some((t) => t.id === initialType)
+      ? initialType
+      : typeOptions.length === 1
+        ? typeOptions[0].id
+        : "",
   );
-  const [regionId, setRegionId] = useState("");
+  const [area, setArea] = useState("");
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
-  const [places, setPlaces] = useState([]);
+  const [items, setItems] = useState([]);
   const [total, setTotal] = useState(null);
-  const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(false);
@@ -139,82 +81,86 @@ export const TravelDirectory = ({
   const [openId, setOpenId] = useState(null);
   const requestSeq = useRef(0);
 
-  // Country + regions. A failure only hides the region filter.
-  useEffect(() => {
-    let cancelled = false;
-    fetch(`${API_URL}/places/regions?country=${COUNTRY_ISO}`)
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .then((body) => {
-        if (cancelled) return;
-        setCountryId(body?.country?.id || ZIMBABWE_COUNTRY_ID);
-        setRegions(Array.isArray(body?.regions) ? body.regions : []);
-      })
-      .catch(() => {
-        if (!cancelled) setCountryId(ZIMBABWE_COUNTRY_ID);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   useEffect(() => {
     const t = setTimeout(() => setDebouncedQuery(query.trim()), 350);
     return () => clearTimeout(t);
   }, [query]);
 
+  // With several types on offer and none chosen, the API's default pool is
+  // every travel type; a page that offers a subset asks for each in turn.
   const buildUrl = useCallback(
-    (fromOffset) => {
+    (fromOffset, oneType) => {
       const params = new URLSearchParams();
-      params.set("country_id", countryId);
       params.set("limit", String(pageSize));
       params.set("offset", String(fromOffset));
-      const cat = TRAVEL_CATEGORIES.find((c) => c.slug === categorySlug);
-      if (cat) params.set("category", cat.id);
-      if (regionId) params.set("province_id", regionId);
-      if (debouncedQuery.length >= 2) params.set("q", debouncedQuery);
-      return `${API_URL}/places?${params.toString()}`;
+      if (oneType) params.set("type", oneType);
+      if (debouncedQuery.length >= 2) params.set("search", debouncedQuery);
+      return `${API_URL}/travel/businesses?${params.toString()}`;
     },
-    [countryId, categorySlug, regionId, debouncedQuery, pageSize],
+    [debouncedQuery, pageSize],
+  );
+
+  const typesToFetch = typeId
+    ? [typeId]
+    : allowedTypes
+      ? typeOptions.map((t) => t.id)
+      : [null];
+  const typesKey = typesToFetch.join(",");
+
+  const fetchPage = useCallback(
+    async (fromOffset) => {
+      const responses = await Promise.all(
+        typesKey.split(",").map(async (t) => {
+          const res = await fetch(buildUrl(fromOffset, t || null));
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        }),
+      );
+      const docs = responses.flatMap((r) =>
+        Array.isArray(r?.businesses) ? r.businesses : [],
+      );
+      const count = responses.reduce(
+        (n, r) => n + (typeof r?.total === "number" ? r.total : 0),
+        0,
+      );
+      return { docs, count };
+    },
+    [buildUrl, typesKey],
   );
 
   const load = useCallback(async () => {
-    if (!countryId) return;
     const seq = ++requestSeq.current;
     setLoading(true);
     setError(null);
     setOpenId(null);
     try {
-      const res = await fetch(buildUrl(0));
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const body = await res.json();
+      const { docs, count } = await fetchPage(0);
       if (seq !== requestSeq.current) return;
-      const docs = Array.isArray(body?.data) ? body.data : [];
-      setPlaces(docs);
-      setTotal(typeof body?.total === "number" ? body.total : null);
-      setOffset(docs.length);
-      setHasMore(docs.length === pageSize);
+      setItems(docs);
+      setTotal(count);
+      setHasMore(docs.length < count);
     } catch {
       if (seq === requestSeq.current) {
         setError("We couldn't load the directory. Please try again.");
-        setPlaces([]);
+        setItems([]);
       }
     } finally {
       if (seq === requestSeq.current) setLoading(false);
     }
-  }, [countryId, buildUrl, pageSize]);
+  }, [fetchPage]);
 
   const loadMore = async () => {
     const seq = requestSeq.current;
     setLoadingMore(true);
     try {
-      const res = await fetch(buildUrl(offset));
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const body = await res.json();
+      const { docs } = await fetchPage(items.length);
       if (seq !== requestSeq.current) return;
-      const docs = Array.isArray(body?.data) ? body.data : [];
-      setPlaces((prev) => prev.concat(docs));
-      setOffset((o) => o + docs.length);
-      setHasMore(docs.length === pageSize);
+      const seen = new Set(items.map((b) => b._id));
+      const fresh = docs.filter((b) => !seen.has(b._id));
+      setItems(items.concat(fresh));
+      setHasMore(
+        fresh.length > 0 && items.length + fresh.length < (total || 0),
+      );
     } catch {
       setError("We couldn't load more listings. Please try again.");
     } finally {
@@ -226,20 +172,24 @@ export const TravelDirectory = ({
     load();
   }, [load]);
 
-  const regionName = (id) => regions.find((r) => r.id === id)?.name || null;
-
-  const addressLine = (p) => {
-    const a = p.address || {};
-    const street = [a.houseNumber, a.street].filter(Boolean).join(" ");
-    const parts = [street, a.city, regionName(p.hierarchy?.provinceId)];
-    return parts.filter(Boolean).join(", ");
+  const areaOf = (b) => {
+    const a = b.address || {};
+    return a.addressLocality || a.city || a.addressRegion || a.region || "";
   };
+  const areas = Array.from(new Set(items.map(areaOf).filter(Boolean))).sort(
+    (a, b) => a.localeCompare(b, "en-GB"),
+  );
+  const shown = area ? items.filter((b) => areaOf(b) === area) : items;
 
-  const mapUrl = (p) => {
-    const c = p.geo?.coordinates;
-    if (!Array.isArray(c) || c.length < 2) return null;
-    const [lng, lat] = c;
-    return `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=16/${lat}/${lng}`;
+  const addressLine = (b) => {
+    const a = b.address || {};
+    return [
+      a.streetAddress || a.street,
+      a.addressLocality || a.city,
+      a.addressRegion || a.region,
+    ]
+      .filter(Boolean)
+      .join(", ");
   };
 
   const safeUrl = (u) => {
@@ -253,15 +203,21 @@ export const TravelDirectory = ({
     }
   };
 
-  const filtersActive = Boolean(regionId || debouncedQuery);
+  const asList = (v) => (Array.isArray(v) ? v.filter(Boolean).join(", ") : "");
+
+  const filtersActive = Boolean(
+    debouncedQuery || area || (typeId && typeOptions.length > 1),
+  );
   const clearFilters = () => {
     setQuery("");
     setDebouncedQuery("");
-    setRegionId("");
+    setArea("");
+    if (typeOptions.length > 1) setTypeId("");
   };
 
   const inputClass =
     "px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary";
+  const labelClass = "text-sm font-medium text-gray-700 dark:text-gray-300";
 
   return (
     <div className="not-prose space-y-5">
@@ -273,10 +229,7 @@ export const TravelDirectory = ({
           className="grid grid-cols-1 sm:grid-cols-3 gap-3"
         >
           <div className="flex flex-col gap-1 sm:col-span-3">
-            <label
-              htmlFor="zti-dir-q"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300"
-            >
+            <label htmlFor="zti-dir-q" className={labelClass}>
               Search by name
             </label>
             <input
@@ -284,51 +237,46 @@ export const TravelDirectory = ({
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="e.g. Victoria Falls, lodge, safari"
+              placeholder="e.g. lodge, safari, Victoria Falls"
               autoComplete="off"
               className={inputClass}
             />
           </div>
-          {categoryOptions.length > 1 && (
+          {typeOptions.length > 1 && (
             <div className="flex flex-col gap-1">
-              <label
-                htmlFor="zti-dir-cat"
-                className="text-sm font-medium text-gray-700 dark:text-gray-300"
-              >
-                Category
+              <label htmlFor="zti-dir-type" className={labelClass}>
+                Type of business
               </label>
               <select
-                id="zti-dir-cat"
-                value={categorySlug}
-                onChange={(e) => setCategorySlug(e.target.value)}
+                id="zti-dir-type"
+                value={typeId}
+                onChange={(e) => setTypeId(e.target.value)}
                 className={inputClass}
               >
-                {categoryOptions.map((c) => (
-                  <option key={c.slug} value={c.slug}>
-                    {c.label}
+                <option value="">All types</option>
+                {typeOptions.map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.label}
                   </option>
                 ))}
               </select>
             </div>
           )}
-          {regions.length > 0 && (
+          {areas.length > 1 && (
             <div className="flex flex-col gap-1">
-              <label
-                htmlFor="zti-dir-region"
-                className="text-sm font-medium text-gray-700 dark:text-gray-300"
-              >
-                Province
+              <label htmlFor="zti-dir-area" className={labelClass}>
+                Town or region
               </label>
               <select
-                id="zti-dir-region"
-                value={regionId}
-                onChange={(e) => setRegionId(e.target.value)}
+                id="zti-dir-area"
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
                 className={inputClass}
               >
-                <option value="">All of Zimbabwe</option>
-                {regions.map((r) => (
-                  <option key={r.id} value={r.id}>
-                    {r.name}
+                <option value="">Everywhere</option>
+                {areas.map((a) => (
+                  <option key={a} value={a}>
+                    {a}
                   </option>
                 ))}
               </select>
@@ -345,9 +293,11 @@ export const TravelDirectory = ({
           ? "Loading listings…"
           : error
             ? ""
-            : total !== null
-              ? `${total.toLocaleString("en-GB")} listing${total === 1 ? "" : "s"}`
-              : `Showing ${places.length} listing${places.length === 1 ? "" : "s"}`}
+            : area
+              ? `${shown.length} listing${shown.length === 1 ? "" : "s"} in ${area}`
+              : total !== null
+                ? `${total.toLocaleString("en-GB")} listing${total === 1 ? "" : "s"}`
+                : ""}
       </p>
 
       {error && (
@@ -355,7 +305,7 @@ export const TravelDirectory = ({
           role="alert"
           className="p-4 rounded-xl border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20"
         >
-          <p className="text-sm font-medium text-red-700 dark:text-red-300">
+          <p className="m-0 text-sm font-medium text-red-700 dark:text-red-300">
             {error}
           </p>
           <button
@@ -373,21 +323,19 @@ export const TravelDirectory = ({
           className="grid grid-cols-1 sm:grid-cols-2 gap-4"
           aria-hidden="true"
         >
-          {[0, 1, 2, 3, 4, 5].map((i) => (
+          {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
               className="animate-pulse rounded-xl bg-gray-100 dark:bg-gray-800 h-28"
             />
           ))}
         </div>
-      ) : !error && places.length === 0 ? (
-        <div className="text-center py-10 px-4 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
-          <p className="font-medium text-gray-700 dark:text-gray-300">
-            {filtersActive
-              ? "No listings match your search."
-              : "No listings in this category yet."}
-          </p>
-          {filtersActive && (
+      ) : !error && shown.length === 0 ? (
+        filtersActive ? (
+          <div className="text-center py-10 px-4 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
+            <p className="m-0 font-medium text-gray-700 dark:text-gray-300">
+              No listings match your search.
+            </p>
             <button
               type="button"
               onClick={clearFilters}
@@ -395,84 +343,113 @@ export const TravelDirectory = ({
             >
               Clear filters
             </button>
-          )}
-          <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
-            Run a travel business in Zimbabwe?{" "}
+          </div>
+        ) : (
+          <div className="text-center py-12 px-4 rounded-xl border border-primary/30 bg-primary/5">
+            <h3 className="m-0 text-lg font-semibold text-gray-900 dark:text-white">
+              Be the first to list your business
+            </h3>
+            <p className="mt-2 mb-0 text-sm text-gray-600 dark:text-gray-300 max-w-md mx-auto">
+              Run a lodge, tour company, restaurant or other travel business in
+              Zimbabwe? Create your listing on Mukoko Kweli. Once it has been
+              reviewed, it appears here. Listing is free, and verification is
+              never a payment.
+            </p>
             <a
               href={kweliListUrl}
-              className="font-medium text-primary underline hover:no-underline"
+              className="inline-flex mt-5 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:opacity-90"
             >
-              List your business on Mukoko Kweli
+              List your business on Kweli
             </a>
-            .
-          </p>
-        </div>
+          </div>
+        )
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 list-none p-0 m-0">
-          {places.map((p) => {
-            const cat = categoryById[p.primaryCategoryId];
-            const tier = TIERS[p.bundu?.verificationTier || 0];
-            const isOpen = openId === p._id;
-            const detailId = `zti-dir-detail-${p._id}`;
-            const where = addressLine(p);
-            const website = p.url ? safeUrl(p.url) : null;
-            const map = mapUrl(p);
+          {shown.map((b) => {
+            const isOpen = openId === b._id;
+            const detailId = `zti-dir-detail-${b._id}`;
+            const where = addressLine(b);
+            const website = b.url ? safeUrl(b.url) : null;
+            const logo = b.logo ? safeUrl(b.logo) : null;
+            const payment = asList(b.paymentAccepted);
+            const currencies = asList(b.currenciesAccepted);
             return (
               <li
-                key={p._id}
+                key={b._id}
                 className="m-0 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4"
               >
-                <h3 className="m-0 text-base font-semibold text-gray-900 dark:text-white">
-                  {p.name}
-                </h3>
-                <div className="mt-1.5 flex flex-wrap gap-1.5">
-                  {cat && (
-                    <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                      {cat.label}
-                    </span>
+                <div className="flex items-start gap-3">
+                  {logo && (
+                    <img
+                      src={logo}
+                      alt=""
+                      className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
+                      loading="lazy"
+                    />
                   )}
-                  {tier && (
-                    <span
-                      className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary"
-                      title={`${tier.mineral} tier on the Mukoko verification ladder`}
-                    >
-                      {tier.label}
-                    </span>
-                  )}
+                  <div className="min-w-0">
+                    <h3 className="m-0 text-base font-semibold text-gray-900 dark:text-white">
+                      {b.name}
+                    </h3>
+                    <div className="mt-1.5 flex flex-wrap gap-1.5">
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        {typeLabel[b.establishmentType] || "Travel business"}
+                      </span>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                        Verified
+                      </span>
+                      {b.priceRange && (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                          {b.priceRange}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
                 {where && (
                   <p className="mt-2 mb-0 text-sm text-gray-600 dark:text-gray-400">
                     {where}
                   </p>
                 )}
-                {p.description && (
+                {b.description && (
                   <p className="mt-2 mb-0 text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
-                    {p.description}
+                    {b.description}
                   </p>
                 )}
                 <button
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={detailId}
-                  onClick={() => setOpenId(isOpen ? null : p._id)}
+                  onClick={() => setOpenId(isOpen ? null : b._id)}
                   className="mt-3 text-sm font-medium text-primary underline hover:no-underline"
                 >
                   {isOpen ? "Hide details" : "Details"}
-                  <span className="sr-only"> for {p.name}</span>
+                  <span className="sr-only"> for {b.name}</span>
                 </button>
                 {isOpen && (
                   <div
                     id={detailId}
                     className="mt-3 space-y-2 text-sm text-gray-700 dark:text-gray-300"
                   >
-                    {p.telephone && (
+                    {b.telephone && (
                       <p className="m-0">
                         Phone:{" "}
                         <a
-                          href={`tel:${p.telephone}`}
+                          href={`tel:${b.telephone}`}
                           className="text-primary underline"
                         >
-                          {p.telephone}
+                          {b.telephone}
+                        </a>
+                      </p>
+                    )}
+                    {b.email && (
+                      <p className="m-0">
+                        Email:{" "}
+                        <a
+                          href={`mailto:${b.email}`}
+                          className="text-primary underline"
+                        >
+                          {b.email}
                         </a>
                       </p>
                     )}
@@ -489,38 +466,29 @@ export const TravelDirectory = ({
                         </a>
                       </p>
                     )}
-                    {map && (
-                      <p className="m-0">
-                        <a
-                          href={map}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary underline"
-                        >
-                          View on the map
-                          <span className="sr-only">
-                            {" "}
-                            (OpenStreetMap, opens in a new tab)
-                          </span>
-                        </a>
-                      </p>
+                    {currencies && (
+                      <p className="m-0">Currencies accepted: {currencies}</p>
                     )}
-                    {!tier && (
-                      <p className="m-0 text-gray-500 dark:text-gray-400">
-                        Not yet verified. Details come from open map data and
-                        may be out of date.
-                      </p>
-                    )}
+                    {payment && <p className="m-0">Payment: {payment}</p>}
+                    {!b.telephone &&
+                      !b.email &&
+                      !website &&
+                      !currencies &&
+                      !payment && (
+                        <p className="m-0 text-gray-500 dark:text-gray-400">
+                          No contact details listed yet.
+                        </p>
+                      )}
                   </div>
                 )}
                 <p className="mt-3 mb-0 pt-3 border-t border-gray-100 dark:border-gray-800 text-xs text-gray-500 dark:text-gray-400">
                   Is this your business?{" "}
                   <a
-                    href={kweliClaimUrl(p._id)}
+                    href={kweliManageUrl(b)}
                     className="font-medium text-primary underline hover:no-underline"
                   >
                     Claim or manage it on Kweli
-                    <span className="sr-only"> ({p.name})</span>
+                    <span className="sr-only"> ({b.name})</span>
                   </a>
                 </p>
               </li>
@@ -529,7 +497,7 @@ export const TravelDirectory = ({
         </ul>
       )}
 
-      {!loading && !error && hasMore && (
+      {!loading && !error && hasMore && !area && (
         <div className="text-center">
           <button
             type="button"
@@ -542,18 +510,20 @@ export const TravelDirectory = ({
         </div>
       )}
 
-      <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-4 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
-        <p className="m-0 text-sm text-gray-700 dark:text-gray-300">
-          Listings are managed by the businesses themselves on Mukoko Kweli and
-          reviewed before they appear here.
-        </p>
-        <a
-          href={kweliListUrl}
-          className="inline-flex justify-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium whitespace-nowrap hover:opacity-90"
-        >
-          List your business
-        </a>
-      </div>
+      {!loading && shown.length > 0 && (
+        <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-4 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+          <p className="m-0 text-sm text-gray-700 dark:text-gray-300">
+            Businesses manage their own listings on Mukoko Kweli, and listings
+            are reviewed before they appear here.
+          </p>
+          <a
+            href={kweliListUrl}
+            className="inline-flex justify-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium whitespace-nowrap hover:opacity-90"
+          >
+            List your business
+          </a>
+        </div>
+      )}
     </div>
   );
 };
