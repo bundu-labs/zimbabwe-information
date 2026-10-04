@@ -10,6 +10,11 @@
 // notice and a Cloudflare Turnstile token (a privacy-preserving human check),
 // sent in the CF-Turnstile-Response header and verified server-side.
 //
+// The expert form also asks, separately and unticked, whether the applicant
+// wants to be listed in the public expert directory once approved. It is
+// sent as `list_in_directory`; the directory (snippets/ExpertDirectory.jsx)
+// shows only approved experts who ticked it, and never contact details.
+//
 // TURNSTILE_SITE_KEY is the widget's PUBLIC site key; it is not a secret.
 // While it is empty the forms show "opening soon" and cannot be sent.
 //
@@ -337,8 +342,11 @@ export const ApplicationForm = ({ kind: requestedKind = "businesses" }) => {
   const config = FORMS[kind];
   const open = Boolean(TURNSTILE_SITE_KEY);
   const idPrefix = `apply-${kind}`;
+  // Only the expert form offers a listing in the public directory.
+  const offersListing = kind === "experts";
   const initial = () => {
     const data = { privacy_consent: false };
+    if (offersListing) data.list_in_directory = false;
     config.fields.forEach((f) => {
       data[f.name] = f.initial || "";
     });
@@ -425,6 +433,7 @@ export const ApplicationForm = ({ kind: requestedKind = "businesses" }) => {
     setState("sending");
     setError("");
     const payload = { privacy_consent: data.privacy_consent };
+    if (offersListing) payload.list_in_directory = data.list_in_directory;
     config.fields.forEach((f) => {
       const value = String(data[f.name] || "").trim();
       if (value) payload[f.name] = value;
@@ -544,6 +553,7 @@ export const ApplicationForm = ({ kind: requestedKind = "businesses" }) => {
   }
 
   const consentId = `${idPrefix}-consent`;
+  const listingId = `${idPrefix}-listing`;
   return (
     <form
       onSubmit={onSubmit}
@@ -581,6 +591,37 @@ export const ApplicationForm = ({ kind: requestedKind = "businesses" }) => {
           {config.fields.slice(0, 4).map(field)}
         </div>
         {config.fields.slice(4).map(field)}
+        {offersListing ? (
+          <div className="flex items-start gap-3 rounded-lg bg-gray-50 dark:bg-gray-800 p-4">
+            <input
+              type="checkbox"
+              id={listingId}
+              name="list_in_directory"
+              checked={data.list_in_directory}
+              onChange={onChange}
+              aria-describedby={`${listingId}-hint`}
+              className="mt-1 h-4 w-4 rounded border-gray-400"
+            />
+            <div>
+              <label
+                htmlFor={listingId}
+                className="text-sm font-medium text-gray-800 dark:text-gray-200"
+              >
+                List me in the public expert directory
+              </label>
+              <p id={`${listingId}-hint`} className={hintClass}>
+                Optional. If we approve your application, your name, expertise,
+                area, years of experience, languages, services, about you and
+                website appear in the{" "}
+                <a href="/experts" className="underline">
+                  expert directory
+                </a>
+                . Your email, phone and certifications are never shown. To be
+                taken off later, email {CONTACT_EMAIL}.
+              </p>
+            </div>
+          </div>
+        ) : null}
         <div className="flex items-start gap-3 rounded-lg bg-gray-50 dark:bg-gray-800 p-4">
           <input
             type="checkbox"
@@ -599,7 +640,11 @@ export const ApplicationForm = ({ kind: requestedKind = "businesses" }) => {
             I agree that the details in this form may be stored and used to
             review my application and to contact me about it. They are sent to
             the Nyuchi API, the platform behind Zimbabwe Travel Information, and
-            are not published. Read the{" "}
+            are not published
+            {offersListing
+              ? " unless you choose to be listed in the expert directory"
+              : ""}
+            . Read the{" "}
             <a href="/privacy-policy" className="underline">
               privacy policy
             </a>
