@@ -35,9 +35,15 @@ on:
 env:
   NODE_VERSION: '19'
 
+# Least privilege by default; the one job below commits SEO updates to main.
+permissions:
+  contents: read
+
 jobs:
   update-seo:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: 🛎️ Checkout Repository
