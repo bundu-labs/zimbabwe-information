@@ -14,17 +14,17 @@ canonical: 'https://travel-info.co.zw/directory/hospitality'
 'og:type': "website"
 ---
 
-import { HospitalityDirectory } from "/snippets/HospitalityDirectory.jsx"
+import { TravelDirectory } from "/snippets/TravelDirectory.jsx"
 
 Browse verified hospitality businesses across Zimbabwe — from safari lodges and bush camps to restaurants, DMCs, wellness centres, and activity providers.
 
 <Note>
-Use the category tabs to filter by type: Accommodation, Dining, Tours & DMC, Activities, Wellness, and Entertainment.
+Choose a category (places to stay, restaurants, cafés, bars, travel and tours, or entertainment), then search by name or narrow the list by province.
 </Note>
 
 ## Browse Hospitality
 
-<HospitalityDirectory />
+<TravelDirectory categories={["hotels", "restaurants", "cafes", "bars", "tour-operators", "entertainment"]} />
 
 ---
 
@@ -46,6 +46,6 @@ Use the category tabs to filter by type: Accommodation, Dining, Tours & DMC, Act
 
 ## List Your Business
 
-<Card title="Get Listed Free" icon="badge-check" href="/get-involved/business-partner-network">
-  Free listings for all legitimate hospitality businesses in Zimbabwe.
+<Card title="List your business on Kweli" icon="badge-check" href="https://kweli.mukoko.com/en/verify?source=zti">
+  Free listings for all legitimate hospitality businesses in Zimbabwe, managed on Mukoko Kweli.
 </Card>

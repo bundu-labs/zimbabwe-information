@@ -54,6 +54,30 @@ Interactive form for local experts to apply to join the expert network. Submissi
 
 ---
 
+### TravelDirectory
+
+The published Zimbabwe travel directory. It reads only the Nyuchi API's public places endpoints (`GET /v1/places`, `GET /v1/places/regions`), which return listed places. There are no keys and no database access in the browser. Businesses manage their own listings on [Mukoko Kweli](https://kweli.mukoko.com), the Nyuchi console reviews and verifies them, and this site publishes them.
+
+**Usage:**
+
+```mdx
+import { TravelDirectory } from "/snippets/TravelDirectory.jsx"
+
+<TravelDirectory />
+<TravelDirectory categories={["hotels"]} />
+```
+
+**Props:**
+
+- `category` (string): the category slug to start on
+- `categories` (string[]): the category slugs on offer (default: every travel category)
+- `showFilters` (boolean): show the search, category and province controls (default: true)
+- `pageSize` (number): listings per page (default: 24)
+
+**Kweli links:** every listing links to `https://kweli.mukoko.com/en/verify?place=<placeId>&source=zti` ("Is this your business? Claim or manage it on Kweli"). "List your business" links to `https://kweli.mukoko.com/en/verify?source=zti`.
+
+---
+
 ### ExpertDirectory
 
 Displays a searchable, filterable directory of verified local experts.
