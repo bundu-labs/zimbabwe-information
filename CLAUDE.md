@@ -91,9 +91,8 @@ zti-docs/
 ├── # React Components & Snippets
 ├── snippets/                 # Reusable MDX snippets and React components
 │   ├── ExpertDirectory.jsx   # Expert listing component
-│   ├── ExpertFormSupabase.jsx # Expert application form
+│   ├── ApplicationForm.jsx   # Business + expert application forms (Nyuchi API)
 │   ├── BusinessDirectory.jsx # Business listing component
-│   ├── BusinessForm.jsx      # Business application form
 │   ├── supabase.js           # Supabase client configuration
 │   ├── photo-credits.mdx     # Reusable photo credits snippet
 │   └── README.md             # Component documentation
@@ -242,8 +241,7 @@ Custom React components live in `/snippets/`. All exported from `index.js`.
 | -------------------------- | --------------------------------------------------------------------- | ------------------------------------- |
 | `ExpertDirectory.jsx`      | `hospitality.professional` + `identity.person`                        | Searchable professional directory     |
 | `BusinessDirectory.jsx`    | `commerce.local_business` + `business.organization` + `places.places` | Business directory                    |
-| `ExpertFormSupabase.jsx`   | `hospitality.professional_application`                                | Professional listing application form |
-| `BusinessForm.jsx`         | `commerce.business_application`                                       | Business listing application form     |
+| `ApplicationForm.jsx`      | `POST /v1/applications/{businesses,experts}` (Nyuchi API, Turnstile)  | Business and expert application forms |
 | `LocationMap.jsx`          | Static lat/lng props                                                  | OpenStreetMap embed                   |
 | `VerificationBadge.jsx`    | (static — tier prop)                                                  | Mineral-colored verification badge    |
 | `ProfessionalCard.jsx`     | `hospitality.professional` + `identity.person`                        | Inline profile card for articles      |
