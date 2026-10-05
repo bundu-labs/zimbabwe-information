@@ -239,7 +239,7 @@ Custom React components live in `/snippets/`. All exported from `index.js`.
 
 | Component                  | Queries                                                               | Purpose                               |
 | -------------------------- | --------------------------------------------------------------------- | ------------------------------------- |
-| `ExpertDirectory.jsx`      | `hospitality.professional` + `identity.person`                        | Searchable professional directory     |
+| `ExpertDirectory.jsx`      | `GET /v1/applications/experts/directory` (Nyuchi API, public)         | Approved, opted-in local experts      |
 | `BusinessDirectory.jsx`    | `commerce.local_business` + `business.organization` + `places.places` | Business directory                    |
 | `ApplicationForm.jsx`      | `POST /v1/applications/{businesses,experts}` (Nyuchi API, Turnstile)  | Business and expert application forms |
 | `LocationMap.jsx`          | Static lat/lng props                                                  | OpenStreetMap embed                   |
