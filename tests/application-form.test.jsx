@@ -58,6 +58,38 @@ describe.each([
   });
 });
 
+describe("the expert directory opt-in", () => {
+  const experts = render("experts");
+  const checkbox = experts.match(
+    /<input[^>]*name="list_in_directory"[^>]*>/,
+  )?.[0];
+
+  it("is offered on the expert form, plainly worded and labelled", () => {
+    expect(checkbox).toBeTruthy();
+    expect(checkbox).toContain('type="checkbox"');
+    expect(experts).toContain("List me in the public expert directory");
+    expect(experts).toContain('for="apply-experts-listing"');
+  });
+
+  it("is unticked and optional", () => {
+    expect(checkbox).not.toMatch(/\schecked/);
+    expect(checkbox).not.toMatch(/\srequired/);
+  });
+
+  it("says contact details are never shown", () => {
+    expect(experts).toContain(
+      "Your email, phone and certifications are never shown",
+    );
+  });
+
+  it("is sent as list_in_directory, for experts only", () => {
+    expect(source).toContain(
+      "payload.list_in_directory = data.list_in_directory",
+    );
+    expect(render("businesses")).not.toContain("list_in_directory");
+  });
+});
+
 describe("Mintlify constraints", () => {
   it("imports nothing (Mintlify allows only local imports)", () => {
     expect(source).not.toMatch(/^import /m);
