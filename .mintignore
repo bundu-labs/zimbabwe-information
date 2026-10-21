@@ -1,0 +1,10 @@
+# Repo docs and non-site files: keep them out of the published site and sitemap
+README.md
+CLAUDE.md
+SECURITY.md
+FUTURE_PAGES_PLAN.md
+LICENSE
+apps/
+tests/
+supabase/
+.github/

@@ -24,20 +24,19 @@
       "author": "Zimbabwe Travel Information",
       "robots": "index, follow",
       "og:image:alt": "Zimbabwe Travel Information - Your Ultimate Guide to Zimbabwe",
-      "og:image": "https://travel-info.co.zw/images/hero-light.svg",
-      "og:title": "Zimbabwe Travel Information - Your Definitive Guide to Zimbabwe",
+      "og:image": "https://www.travel-info.co.zw/images/og-zimbabwe-travel.jpg",
+      "og:title": "Zimbabwe Travel Guide 2026 - Zimbabwe Travel Information",
       "og:description": "Experience Zimbabwe's thundering Victoria Falls, spectacular wildlife safaris, ancient ruins, and vibrant culture. Plan your authentic Zimbabwe adventure with expert local guidance.",
       "og:site_name": "Zimbabwe Travel Information",
       "og:type": "website",
-      "og:url": "https://travel-info.co.zw",
+      "og:url": "https://www.travel-info.co.zw",
       "og:locale": "en_US",
       "twitter:card": "summary_large_image",
       "twitter:site": "@zimbabwetravel",
       "twitter:creator": "@zimbabwetravel",
       "twitter:title": "Zimbabwe Travel Information - Discover the Heart of Africa",
       "twitter:description": "Plan your Zimbabwe adventure with comprehensive guides to Victoria Falls, safari destinations, cultural experiences, and practical travel information.",
-      "twitter:image": "https://travel-info.co.zw/images/hero-light.svg",
-      "canonical": "https://travel-info.co.zw",
+      "twitter:image": "https://www.travel-info.co.zw/images/og-zimbabwe-travel.jpg",
       "viewport": "width=device-width, initial-scale=1.0",
       "language": "en",
       "geo.region": "ZW",
@@ -48,8 +47,7 @@
       "application-name": "Zimbabwe Travel Information",
       "theme-color": "#0D9373",
       "msapplication-TileColor": "#0D9373",
-      "msapplication-TileImage": "https://travel-info.co.zw/favicon.svg",
-      "fb:app_id": "your_facebook_app_id_here",
+      "msapplication-TileImage": "https://www.travel-info.co.zw/favicon.svg",
       "article:publisher": "https://www.facebook.com/zimbabwetravelinfo",
       "article:author": "Zimbabwe Travel Information",
       "article:section": "Travel",
@@ -67,8 +65,8 @@
       "@type": "TravelAgency",
       "name": "Zimbabwe Travel Information",
       "description": "Zimbabwe's definitive digital guide to experiencing the authentic beauty and adventure of Zimbabwe",
-      "url": "https://travel-info.co.zw",
-      "logo": "https://travel-info.co.zw/logo/noBgColor.svg",
+      "url": "https://www.travel-info.co.zw",
+      "logo": "https://www.travel-info.co.zw/logo/noBgColor.svg",
       "sameAs": [
         "https://www.facebook.com/groups/zimbabwetravelinfo",
         "https://discord.gg/dzHWFB44yw"
@@ -105,7 +103,13 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["introduction", "about-zimbabwe", "when-to-visit", "book"]
+            "pages": [
+              "introduction",
+              "about-zimbabwe",
+              "when-to-visit",
+              "book",
+              "about-this-guide"
+            ]
           },
           {
             "group": "Culture & Experiences",
@@ -122,6 +126,7 @@
             "group": "Wildlife & Nature",
             "pages": [
               "wildlife/animals-and-birds",
+              "wildlife/birding-in-zimbabwe",
               "wildlife/national-parks-and-reserves",
               "wildlife/conservation-efforts"
             ]
@@ -213,7 +218,11 @@
           {
             "group": "Essential Information",
             "pages": [
+              "essentials/travel-advice",
               "essentials/visas-and-entry",
+              "essentials/park-fees",
+              "essentials/beitbridge-border",
+              "essentials/weather-by-month",
               "essentials/health-and-safety",
               "essentials/travel-insurance",
               "essentials/safari-etiquette",
@@ -254,13 +263,17 @@
             "group": "Top Destinations",
             "pages": [
               "destinations/victoria-falls",
+              "destinations/victoria-falls-zimbabwe-vs-zambia",
+              "destinations/zambezi-national-park",
               "destinations/hwange-national-park",
               "destinations/great-zimbabwe",
               "destinations/mana-pools",
               "destinations/matusadona-national-park",
+              "destinations/chizarira-national-park",
               "destinations/matobo-hills",
               "destinations/lake-kariba",
-              "destinations/gonarezhou"
+              "destinations/gonarezhou",
+              "destinations/save-valley-and-malilangwe"
             ]
           },
           {
@@ -268,6 +281,7 @@
             "pages": [
               "destinations/harare",
               "destinations/bulawayo",
+              "destinations/bulawayo-street-names",
               "destinations/mutare",
               "destinations/masvingo",
               "destinations/gweru"
@@ -324,7 +338,9 @@
               "planning/senior-travel",
               "planning/lgbtq-travel",
               "planning/destination-weddings",
-              "planning/safari-planning"
+              "planning/safari-planning",
+              "planning/walking-and-canoe-safaris",
+              "planning/zimbabwe-vs-zambia-vs-botswana"
             ]
           },
           {
@@ -417,21 +433,21 @@
     "links": [
       {
         "label": "Directory",
-        "href": "https://travel-info.co.zw/directory"
+        "href": "https://www.travel-info.co.zw/directory"
       },
       {
         "label": "FAQs",
-        "href": "https://travel-info.co.zw/faq"
+        "href": "https://www.travel-info.co.zw/faq"
       },
       {
         "label": "Contact",
-        "href": "https://travel-info.co.zw/contact"
+        "href": "https://www.travel-info.co.zw/contact"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Book a Trip",
-      "href": "https://travel-info.co.zw/book"
+      "href": "https://www.travel-info.co.zw/book"
     }
   },
   "integrations": {
@@ -452,43 +468,43 @@
         "items": [
           {
             "label": "Provinces & Regions",
-            "href": "https://travel-info.co.zw/destinations/provinces-regions"
+            "href": "https://www.travel-info.co.zw/destinations/provinces-regions"
           },
           {
             "label": "Victoria Falls",
-            "href": "https://travel-info.co.zw/destinations/victoria-falls"
+            "href": "https://www.travel-info.co.zw/destinations/victoria-falls"
           },
           {
             "label": "Hwange National Park",
-            "href": "https://travel-info.co.zw/destinations/hwange-national-park"
+            "href": "https://www.travel-info.co.zw/destinations/hwange-national-park"
           },
           {
             "label": "Great Zimbabwe",
-            "href": "https://travel-info.co.zw/destinations/great-zimbabwe"
+            "href": "https://www.travel-info.co.zw/destinations/great-zimbabwe"
           },
           {
             "label": "Eastern Highlands",
-            "href": "https://travel-info.co.zw/destinations/eastern-highlands"
+            "href": "https://www.travel-info.co.zw/destinations/eastern-highlands"
           },
           {
             "label": "Harare",
-            "href": "https://travel-info.co.zw/destinations/harare"
+            "href": "https://www.travel-info.co.zw/destinations/harare"
           },
           {
             "label": "Bulawayo",
-            "href": "https://travel-info.co.zw/destinations/bulawayo"
+            "href": "https://www.travel-info.co.zw/destinations/bulawayo"
           },
           {
             "label": "Mutare",
-            "href": "https://travel-info.co.zw/destinations/mutare"
+            "href": "https://www.travel-info.co.zw/destinations/mutare"
           },
           {
             "label": "Hidden Gems",
-            "href": "https://travel-info.co.zw/destinations/hidden-gems"
+            "href": "https://www.travel-info.co.zw/destinations/hidden-gems"
           },
           {
             "label": "Things to Do by Region",
-            "href": "https://travel-info.co.zw/adventure/things-to-do-by-region"
+            "href": "https://www.travel-info.co.zw/adventure/things-to-do-by-region"
           }
         ]
       },
@@ -497,35 +513,35 @@
         "items": [
           {
             "label": "About Zimbabwe",
-            "href": "https://travel-info.co.zw/about-zimbabwe"
+            "href": "https://www.travel-info.co.zw/about-zimbabwe"
           },
           {
             "label": "When to Visit",
-            "href": "https://travel-info.co.zw/when-to-visit"
+            "href": "https://www.travel-info.co.zw/when-to-visit"
           },
           {
             "label": "Safari Planning",
-            "href": "https://travel-info.co.zw/planning/safari-planning"
+            "href": "https://www.travel-info.co.zw/planning/safari-planning"
           },
           {
             "label": "Budget Travel",
-            "href": "https://travel-info.co.zw/planning/budget-travel"
+            "href": "https://www.travel-info.co.zw/planning/budget-travel"
           },
           {
             "label": "Luxury Travel",
-            "href": "https://travel-info.co.zw/planning/luxury-travel"
+            "href": "https://www.travel-info.co.zw/planning/luxury-travel"
           },
           {
             "label": "Family Travel",
-            "href": "https://travel-info.co.zw/planning/family-travel"
+            "href": "https://www.travel-info.co.zw/planning/family-travel"
           },
           {
             "label": "Sample Itineraries",
-            "href": "https://travel-info.co.zw/planning/sample-itineraries"
+            "href": "https://www.travel-info.co.zw/planning/sample-itineraries"
           },
           {
             "label": "Travel Essentials",
-            "href": "https://travel-info.co.zw/essentials/visas-and-entry"
+            "href": "https://www.travel-info.co.zw/essentials/visas-and-entry"
           }
         ]
       },
@@ -534,31 +550,31 @@
         "items": [
           {
             "label": "First-Time Visitors",
-            "href": "https://travel-info.co.zw/planning/first-time-visitors"
+            "href": "https://www.travel-info.co.zw/planning/first-time-visitors"
           },
           {
             "label": "Quick Reference",
-            "href": "https://travel-info.co.zw/resources/quick-reference"
+            "href": "https://www.travel-info.co.zw/resources/quick-reference"
           },
           {
             "label": "Emergency Contacts",
-            "href": "https://travel-info.co.zw/resources/emergency-contacts"
+            "href": "https://www.travel-info.co.zw/resources/emergency-contacts"
           },
           {
             "label": "Travel Trade",
-            "href": "https://travel-info.co.zw/resources/travel-trade"
+            "href": "https://www.travel-info.co.zw/resources/travel-trade"
           },
           {
             "label": "Book a Trip",
-            "href": "https://travel-info.co.zw/book"
+            "href": "https://www.travel-info.co.zw/book"
           },
           {
             "label": "FAQs",
-            "href": "https://travel-info.co.zw/faq"
+            "href": "https://www.travel-info.co.zw/faq"
           },
           {
             "label": "Contact Us",
-            "href": "https://travel-info.co.zw/contact"
+            "href": "https://www.travel-info.co.zw/contact"
           }
         ]
       },
@@ -567,19 +583,19 @@
         "items": [
           {
             "label": "Join Our Community",
-            "href": "https://travel-info.co.zw/get-involved/travel-enthusiast-community"
+            "href": "https://www.travel-info.co.zw/get-involved/travel-enthusiast-community"
           },
           {
             "label": "Business Partner Network",
-            "href": "https://travel-info.co.zw/get-involved/business-partner-network"
+            "href": "https://www.travel-info.co.zw/get-involved/business-partner-network"
           },
           {
             "label": "Local Expert Connections",
-            "href": "https://travel-info.co.zw/get-involved/local-expert-connections"
+            "href": "https://www.travel-info.co.zw/get-involved/local-expert-connections"
           },
           {
             "label": "Student Contributors",
-            "href": "https://travel-info.co.zw/get-involved/student-contributors-program"
+            "href": "https://www.travel-info.co.zw/get-involved/student-contributors-program"
           },
           {
             "label": "Zimbabwe's Tukshop",
