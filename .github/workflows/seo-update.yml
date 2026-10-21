@@ -81,7 +81,7 @@ jobs:
 
           // SEO Configuration for Zimbabwe Travel Information
           const SEO_DEFAULTS = {
-            'og:image': 'https://travel-info.co.zw/images/hero-light.svg',
+            'og:image': 'https://www.travel-info.co.zw/images/og-zimbabwe-travel.jpg',
             'og:site_name': 'Zimbabwe Travel Information',
             'twitter:card': 'summary_large_image',
             'twitter:site': '@zimbabwetravel',
@@ -166,7 +166,7 @@ jobs:
               .replace(/\/index$/, '')
               .replace(/^\.\//, '');
 
-            return `https://travel-info.co.zw/${relativePath}`;
+            return `https://www.travel-info.co.zw/${relativePath}`;
           }
 
           function processFile(filePath) {

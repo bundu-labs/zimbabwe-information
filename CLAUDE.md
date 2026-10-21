@@ -8,7 +8,7 @@ This is a **monorepo root**. The `/apps` directory is reserved for the other pla
 
 - `apps/` — business.mukoko.com (Next.js 15), travel.mukoko.com (Next.js 15), barstool.mukoko.com
 
-- **Live site:** <https://travel-info.co.zw>
+- **Live site:** <https://www.travel-info.co.zw> (the apex `travel-info.co.zw` redirects to www; canonicals must use www)
 - **Repository:** <https://github.com/nyuchitech/zti-docs>
 - **License:** CC BY 4.0 (Creative Commons Attribution 4.0 International)
 
@@ -160,7 +160,7 @@ Every content page follows this frontmatter pattern:
 ---
 title: "Page Title"
 description: "1-2 sentence description for SEO"
-og:image: "https://travel-info.co.zw/images/hero-light.svg"
+og:image: "https://www.travel-info.co.zw/images/og-zimbabwe-travel.jpg"
 og:site_name: "Zimbabwe Travel Information"
 twitter:card: "summary_large_image"
 twitter:site: "@zimbabwetravel"
@@ -170,7 +170,7 @@ author: "Zimbabwe Travel Information"
 keywords: "comma, separated, keywords"
 og:description: "Same as description"
 twitter:description: "Same as description"
-canonical: "https://travel-info.co.zw/path/to/page"
+canonical: "https://www.travel-info.co.zw/path/to/page"
 article:modified_time: "2025-11-29T00:00:00.000Z"
 og:title: "Page Title | Zimbabwe Travel Information"
 og:type: "article"
