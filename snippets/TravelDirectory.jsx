@@ -54,7 +54,7 @@ export const TravelDirectory = ({
   const kweliManageUrl = (b) => {
     const params = new URLSearchParams();
     if (b.placeId) params.set("place", b.placeId);
-    params.set("business", b._id);
+    if (b._id) params.set("business", b._id);
     params.set("source", "zti");
     return `${KWELI_URL}/en/verify?${params.toString()}`;
   };
@@ -98,6 +98,7 @@ export const TravelDirectory = ({
       const params = new URLSearchParams();
       params.set("limit", String(pageSize));
       params.set("offset", String(fromOffset));
+      params.set("country", "ZW");
       if (oneType) params.set("type", oneType);
       if (debouncedQuery.length >= 2) params.set("search", debouncedQuery);
       return `${API_URL}/travel/businesses?${params.toString()}`;
@@ -187,6 +188,7 @@ export const TravelDirectory = ({
   const shown = area ? items.filter((b) => areaOf(b) === area) : items;
 
   const addressLine = (b) => {
+    if (typeof b.address === "string") return b.address;
     const a = b.address || {};
     return [
       a.streetAddress || a.street,
@@ -355,6 +357,7 @@ export const TravelDirectory = ({
               Be the first to list your business
             </h3>
             <p className="mt-2 mb-0 text-sm text-gray-600 dark:text-gray-300 max-w-md mx-auto">
+              Verified listings appear here as businesses are checked on Kweli.
               Run a lodge, tour company, restaurant or other travel business in
               Zimbabwe? Create your listing on Mukoko Kweli. Once it has been
               reviewed, it appears here. Listing is free, and verification is
@@ -371,16 +374,21 @@ export const TravelDirectory = ({
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 list-none p-0 m-0">
           {shown.map((b) => {
-            const isOpen = openId === b._id;
-            const detailId = `zti-dir-detail-${b._id}`;
+            const key = b._id || b.placeId || b.slug || b.name;
+            const isOpen = openId === key;
+            const detailId = `zti-dir-detail-${key}`;
             const where = addressLine(b);
             const website = b.url ? safeUrl(b.url) : null;
-            const logo = b.logo ? safeUrl(b.logo) : null;
+            const logo = b.logo || b.image ? safeUrl(b.logo || b.image) : null;
+            const badge = b.verification?.label || "Verified";
+            const badgeUrl = b.verification?.url
+              ? safeUrl(b.verification.url)
+              : null;
             const payment = asList(b.paymentAccepted);
             const currencies = asList(b.currenciesAccepted);
             return (
               <li
-                key={b._id}
+                key={key}
                 className="m-0 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4"
               >
                 <div className="flex items-start gap-3">
@@ -400,9 +408,24 @@ export const TravelDirectory = ({
                       <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
                         {typeLabel[b.establishmentType] || "Travel business"}
                       </span>
-                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                        Verified
-                      </span>
+                      {badgeUrl ? (
+                        <a
+                          href={badgeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary no-underline hover:underline"
+                        >
+                          {badge}
+                          <span className="sr-only">
+                            {" "}
+                            on Kweli (opens in a new tab)
+                          </span>
+                        </a>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                          {badge}
+                        </span>
+                      )}
                       {b.priceRange && (
                         <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
                           {b.priceRange}
@@ -425,7 +448,7 @@ export const TravelDirectory = ({
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={detailId}
-                  onClick={() => setOpenId(isOpen ? null : b._id)}
+                  onClick={() => setOpenId(isOpen ? null : key)}
                   className="mt-3 text-sm font-medium text-primary underline hover:no-underline"
                 >
                   {isOpen ? "Hide details" : "Details"}
