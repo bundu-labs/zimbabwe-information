@@ -15,7 +15,7 @@ export const PlanTrip = ({ place = "Zimbabwe", slug = "general" }) => {
     <a
       href={href}
       target="_blank"
-      rel="noopener"
+      rel="sponsored noopener"
       className="not-prose my-6 block rounded-xl border border-primary/30 bg-primary/5 p-5 no-underline transition-colors hover:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-primary-light/30 dark:bg-primary-light/10"
     >
       <span className="block text-xs font-semibold uppercase tracking-wide text-primary dark:text-primary-light">
@@ -30,6 +30,7 @@ export const PlanTrip = ({ place = "Zimbabwe", slug = "general" }) => {
       </span>
       <span className="mt-3 inline-block text-sm font-semibold text-primary dark:text-primary-light">
         Get a quote from Moses Adventures →
+        <span className="sr-only"> (opens in a new tab)</span>
       </span>
     </a>
   );
