@@ -210,6 +210,16 @@ export const TravelDirectory = ({
     }
   };
 
+  // Only https links on Kweli itself are shown as "on Mukoko Kweli".
+  const kweliPlaceUrl = (u) => {
+    const href = u ? safeUrl(u) : null;
+    if (!href) return null;
+    const { protocol, hostname } = new URL(href);
+    return protocol === "https:" && hostname === new URL(KWELI_URL).hostname
+      ? href
+      : null;
+  };
+
   const asList = (v) => (Array.isArray(v) ? v.filter(Boolean).join(", ") : "");
 
   const filtersActive = Boolean(
@@ -381,10 +391,8 @@ export const TravelDirectory = ({
             const website = b.url ? safeUrl(b.url) : null;
             const logo = b.logo || b.image ? safeUrl(b.logo || b.image) : null;
             const badge = b.verification?.label || "Verified";
-            const kweliPage = b.kweliUrl ? safeUrl(b.kweliUrl) : null;
-            const badgeUrl = b.verification?.url
-              ? safeUrl(b.verification.url)
-              : null;
+            const kweliPage = kweliPlaceUrl(b.kweliUrl);
+            const badgeUrl = kweliPlaceUrl(b.verification?.url);
             const payment = asList(b.paymentAccepted);
             const currencies = asList(b.currenciesAccepted);
             return (
@@ -407,7 +415,7 @@ export const TravelDirectory = ({
                         <a
                           href={kweliPage}
                           target="_blank"
-                          rel="noopener"
+                          rel="noopener noreferrer"
                           className="text-gray-900 dark:text-white no-underline hover:underline"
                         >
                           {b.name}
