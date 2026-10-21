@@ -103,7 +103,13 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["introduction", "about-zimbabwe", "when-to-visit", "book"]
+            "pages": [
+              "introduction",
+              "about-zimbabwe",
+              "when-to-visit",
+              "book",
+              "about-this-guide"
+            ]
           },
           {
             "group": "Culture & Experiences",
@@ -213,6 +219,8 @@
             "pages": [
               "essentials/travel-advice",
               "essentials/visas-and-entry",
+              "essentials/park-fees",
+              "essentials/beitbridge-border",
               "essentials/health-and-safety",
               "essentials/travel-insurance",
               "essentials/safari-etiquette",
