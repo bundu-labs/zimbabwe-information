@@ -221,6 +221,7 @@
               "essentials/visas-and-entry",
               "essentials/park-fees",
               "essentials/beitbridge-border",
+              "essentials/weather-by-month",
               "essentials/health-and-safety",
               "essentials/travel-insurance",
               "essentials/safari-etiquette",
@@ -261,6 +262,7 @@
             "group": "Top Destinations",
             "pages": [
               "destinations/victoria-falls",
+              "destinations/victoria-falls-zimbabwe-vs-zambia",
               "destinations/hwange-national-park",
               "destinations/great-zimbabwe",
               "destinations/mana-pools",
@@ -331,7 +333,8 @@
               "planning/senior-travel",
               "planning/lgbtq-travel",
               "planning/destination-weddings",
-              "planning/safari-planning"
+              "planning/safari-planning",
+              "planning/walking-and-canoe-safaris"
             ]
           },
           {
