@@ -39,6 +39,11 @@ describe("TravelDirectory", () => {
     expect(source).toContain("b.logo || b.image");
   });
 
+  it("links each card to its Kweli place page", () => {
+    expect(source).toContain("b.kweliUrl ? safeUrl(b.kweliUrl) : null");
+    expect(source).toContain("href={kweliPage}");
+  });
+
   it("explains the empty state", () => {
     expect(source).toContain(
       "Verified listings appear here as businesses are checked on Kweli.",
