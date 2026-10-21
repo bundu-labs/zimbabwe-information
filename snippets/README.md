@@ -281,3 +281,13 @@ For issues or questions:
 
 - GitHub: <https://github.com/nyuchitech/zti-docs/issues>
 - Email: <hi@travel-info.co.zw>
+
+## PlanTrip
+
+"Premium booking partner" call to action linking to Moses Adventures, plus a link to /book, which lists all booking partners. The link carries `rel="sponsored"` and a per-page `utm_campaign`, so referrals are labelled for search engines and countable by the partner. Use it for every booking link instead of hand-writing the URL.
+
+```mdx
+import { PlanTrip } from '/snippets/PlanTrip.jsx';
+
+<PlanTrip place="Hwange" slug="hwange-national-park" />
+```
