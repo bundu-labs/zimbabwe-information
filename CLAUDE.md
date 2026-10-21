@@ -237,23 +237,23 @@ import PhotoCredits from '/snippets/photo-credits.mdx';
 
 Custom React components live in `/snippets/`. All exported from `index.js`.
 
-| Component                  | Queries                                                               | Purpose                                  |
-| -------------------------- | --------------------------------------------------------------------- | ---------------------------------------- |
-| `ExpertDirectory.jsx`      | `GET /v1/applications/experts/directory` (Nyuchi API, public)         | Approved, opted-in local experts         |
-| `BusinessDirectory.jsx`    | `commerce.local_business` + `business.organization` + `places.places` | Business directory                       |
-| `ApplicationForm.jsx`      | `POST /v1/applications/{businesses,experts}` (Nyuchi API, Turnstile)  | Business and expert application forms    |
-| `LocationMap.jsx`          | Static lat/lng props                                                  | OpenStreetMap embed                      |
-| `PlanTrip.jsx`             | (static — `place`, `slug` props)                                      | Booking-partner CTA, rel=sponsored + UTM |
-| `VerificationBadge.jsx`    | (static — tier prop)                                                  | Mineral-colored verification badge       |
-| `ProfessionalCard.jsx`     | `hospitality.professional` + `identity.person`                        | Inline profile card for articles         |
-| `SeasonalInfo.jsx`         | `places.seasonal_info`                                                | Month-by-month visit conditions          |
-| `EstablishmentGrid.jsx`    | `hospitality.establishment`                                           | Grid of lodges/restaurants at a place    |
-| `ExperienceList.jsx`       | `hospitality.experience`                                              | Activities at a place                    |
-| `ReviewSummary.jsx`        | `engagement.review`                                                   | Aggregate rating + recent reviews        |
-| `ContentGapCTA.jsx`        | `content.content_gap`                                                 | "Help improve this page" CTA             |
-| `ContributorDashboard.jsx` | `content.content_gap`                                                 | Authenticated gap browser                |
-| `ItineraryView.jsx`        | `content.itinerary` + `content.itinerary_stop`                        | Day-by-day trip plan                     |
-| `supabase.js`              | —                                                                     | Supabase client + shared constants       |
+| Component                  | Queries                                                               | Purpose                                          |
+| -------------------------- | --------------------------------------------------------------------- | ------------------------------------------------ |
+| `ExpertDirectory.jsx`      | `GET /v1/applications/experts/directory` (Nyuchi API, public)         | Approved, opted-in local experts                 |
+| `BusinessDirectory.jsx`    | `commerce.local_business` + `business.organization` + `places.places` | Business directory                               |
+| `ApplicationForm.jsx`      | `POST /v1/applications/{businesses,experts}` (Nyuchi API, Turnstile)  | Business and expert application forms            |
+| `LocationMap.jsx`          | Static lat/lng props                                                  | OpenStreetMap embed                              |
+| `PlanTrip.jsx`             | (static — `place`, `slug` props)                                      | Premium-partner CTA (rel=sponsored, UTM) + /book |
+| `VerificationBadge.jsx`    | (static — tier prop)                                                  | Mineral-colored verification badge               |
+| `ProfessionalCard.jsx`     | `hospitality.professional` + `identity.person`                        | Inline profile card for articles                 |
+| `SeasonalInfo.jsx`         | `places.seasonal_info`                                                | Month-by-month visit conditions                  |
+| `EstablishmentGrid.jsx`    | `hospitality.establishment`                                           | Grid of lodges/restaurants at a place            |
+| `ExperienceList.jsx`       | `hospitality.experience`                                              | Activities at a place                            |
+| `ReviewSummary.jsx`        | `engagement.review`                                                   | Aggregate rating + recent reviews                |
+| `ContentGapCTA.jsx`        | `content.content_gap`                                                 | "Help improve this page" CTA                     |
+| `ContributorDashboard.jsx` | `content.content_gap`                                                 | Authenticated gap browser                        |
+| `ItineraryView.jsx`        | `content.itinerary` + `content.itinerary_stop`                        | Day-by-day trip plan                             |
+| `supabase.js`              | —                                                                     | Supabase client + shared constants               |
 
 ### LocationMap Component
 
