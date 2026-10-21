@@ -210,6 +210,16 @@ export const TravelDirectory = ({
     }
   };
 
+  // Only https links on Kweli itself are shown as "on Mukoko Kweli".
+  const kweliPlaceUrl = (u) => {
+    const href = u ? safeUrl(u) : null;
+    if (!href) return null;
+    const { protocol, hostname } = new URL(href);
+    return protocol === "https:" && hostname === new URL(KWELI_URL).hostname
+      ? href
+      : null;
+  };
+
   const asList = (v) => (Array.isArray(v) ? v.filter(Boolean).join(", ") : "");
 
   const filtersActive = Boolean(
@@ -381,9 +391,8 @@ export const TravelDirectory = ({
             const website = b.url ? safeUrl(b.url) : null;
             const logo = b.logo || b.image ? safeUrl(b.logo || b.image) : null;
             const badge = b.verification?.label || "Verified";
-            const badgeUrl = b.verification?.url
-              ? safeUrl(b.verification.url)
-              : null;
+            const kweliPage = kweliPlaceUrl(b.kweliUrl);
+            const badgeUrl = kweliPlaceUrl(b.verification?.url);
             const payment = asList(b.paymentAccepted);
             const currencies = asList(b.currenciesAccepted);
             return (
@@ -402,7 +411,22 @@ export const TravelDirectory = ({
                   )}
                   <div className="min-w-0">
                     <h3 className="m-0 text-base font-semibold text-gray-900 dark:text-white">
-                      {b.name}
+                      {kweliPage ? (
+                        <a
+                          href={kweliPage}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-900 dark:text-white no-underline hover:underline"
+                        >
+                          {b.name}
+                          <span className="sr-only">
+                            {" "}
+                            on Mukoko Kweli (opens in a new tab)
+                          </span>
+                        </a>
+                      ) : (
+                        b.name
+                      )}
                     </h3>
                     <div className="mt-1.5 flex flex-wrap gap-1.5">
                       <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
