@@ -35,8 +35,19 @@ describe("TravelDirectory", () => {
 
   it("shows the Kweli tier badge with its verify link", () => {
     expect(source).toContain("b.verification?.label");
-    expect(source).toContain("safeUrl(b.verification.url)");
+    expect(source).toContain("kweliPlaceUrl(b.verification?.url)");
     expect(source).toContain("b.logo || b.image");
+  });
+
+  it("links each card to its Kweli place page", () => {
+    expect(source).toMatch(/kweliPage = kweliPlaceUrl\(b\.kweliUrl\)/);
+    expect(source).toMatch(/href=\{kweliPage\}/);
+  });
+
+  it("only links https URLs on the Kweli host", () => {
+    expect(source).toMatch(
+      /protocol === "https:" && hostname === new URL\(KWELI_URL\)\.hostname/,
+    );
   });
 
   it("explains the empty state", () => {

@@ -633,5 +633,32 @@
   },
   "metadata": {
     "timestamp": true
-  }
+  },
+  "redirects": [
+    {
+      "source": "/destinations/kariba",
+      "destination": "/destinations/lake-kariba",
+      "permanent": true
+    },
+    {
+      "source": "/destinations/mana-pools-national-park",
+      "destination": "/destinations/mana-pools",
+      "permanent": true
+    },
+    {
+      "source": "/essentials/visa-and-entry",
+      "destination": "/essentials/visas-and-entry",
+      "permanent": true
+    },
+    {
+      "source": "/planning/honeymoon-weddings",
+      "destination": "/planning/destination-weddings",
+      "permanent": true
+    },
+    {
+      "source": "/discover",
+      "destination": "/introduction",
+      "permanent": true
+    }
+  ]
 }
