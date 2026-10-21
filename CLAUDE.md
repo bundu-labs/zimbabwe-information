@@ -6,7 +6,7 @@
 
 This is a **monorepo root**. The `/apps` directory is reserved for the other platform apps:
 
-- `apps/` — business.mukoko.com (Next.js 15), travel.mukoko.com (Next.js 15), barstool.mukoko.com
+- `apps/` — travel.mukoko.com (Next.js 15), barstool.mukoko.com
 
 - **Live site:** <https://www.travel-info.co.zw> (the apex `travel-info.co.zw` redirects to www; canonicals must use www)
 - **Repository:** <https://github.com/nyuchitech/zti-docs>
@@ -14,12 +14,12 @@ This is a **monorepo root**. The `/apps` directory is reserved for the other pla
 
 ### Platform context
 
-| App                      | Domain              | Purpose                                    |
-| ------------------------ | ------------------- | ------------------------------------------ |
-| **zti-docs** (this repo) | travel-info.co.zw   | Editorial content, SEO layer               |
-| business-mukoko          | business.mukoko.com | Business directory, verification, profiles |
-| zti-app                  | travel.mukoko.com   | Interactive MapLibre travel map            |
-| barstool                 | barstool.mukoko.com | Nightlife discovery                        |
+| App                      | Domain              | Purpose                                                                    |
+| ------------------------ | ------------------- | -------------------------------------------------------------------------- |
+| **zti-docs** (this repo) | travel-info.co.zw   | Editorial content, SEO layer                                               |
+| Mukoko Kweli             | kweli.mukoko.com    | Places, business directory and verification (absorbed business.mukoko.com) |
+| zti-app                  | travel.mukoko.com   | Interactive MapLibre travel map                                            |
+| barstool                 | barstool.mukoko.com | Nightlife discovery                                                        |
 
 All apps share **one database** (`mukoko_platform_cloud`, `tdcpuzqyoodrdsxldgsh`) and **one auth system** (Supabase Auth — shared Mukoko identity).
 
