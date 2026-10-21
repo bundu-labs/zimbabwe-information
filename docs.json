@@ -126,6 +126,7 @@
             "group": "Wildlife & Nature",
             "pages": [
               "wildlife/animals-and-birds",
+              "wildlife/birding-in-zimbabwe",
               "wildlife/national-parks-and-reserves",
               "wildlife/conservation-efforts"
             ]
@@ -280,6 +281,7 @@
             "pages": [
               "destinations/harare",
               "destinations/bulawayo",
+              "destinations/bulawayo-street-names",
               "destinations/mutare",
               "destinations/masvingo",
               "destinations/gweru"
@@ -337,7 +339,8 @@
               "planning/lgbtq-travel",
               "planning/destination-weddings",
               "planning/safari-planning",
-              "planning/walking-and-canoe-safaris"
+              "planning/walking-and-canoe-safaris",
+              "planning/zimbabwe-vs-zambia-vs-botswana"
             ]
           },
           {
