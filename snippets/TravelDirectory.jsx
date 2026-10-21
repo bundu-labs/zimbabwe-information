@@ -381,6 +381,7 @@ export const TravelDirectory = ({
             const website = b.url ? safeUrl(b.url) : null;
             const logo = b.logo || b.image ? safeUrl(b.logo || b.image) : null;
             const badge = b.verification?.label || "Verified";
+            const kweliPage = b.kweliUrl ? safeUrl(b.kweliUrl) : null;
             const badgeUrl = b.verification?.url
               ? safeUrl(b.verification.url)
               : null;
@@ -402,7 +403,22 @@ export const TravelDirectory = ({
                   )}
                   <div className="min-w-0">
                     <h3 className="m-0 text-base font-semibold text-gray-900 dark:text-white">
-                      {b.name}
+                      {kweliPage ? (
+                        <a
+                          href={kweliPage}
+                          target="_blank"
+                          rel="noopener"
+                          className="text-gray-900 dark:text-white no-underline hover:underline"
+                        >
+                          {b.name}
+                          <span className="sr-only">
+                            {" "}
+                            on Mukoko Kweli (opens in a new tab)
+                          </span>
+                        </a>
+                      ) : (
+                        b.name
+                      )}
                     </h3>
                     <div className="mt-1.5 flex flex-wrap gap-1.5">
                       <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
