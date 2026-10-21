@@ -2,11 +2,10 @@
 
 This directory contains the other apps in the Zimbabwe Information Platform monorepo.
 
-| App         | Domain              | Repo                       | Status                 |
-| ----------- | ------------------- | -------------------------- | ---------------------- |
-| `business/` | business.mukoko.com | nyuchitech/business-mukoko | Next.js 15, App Router |
-| `travel/`   | travel.mukoko.com   | nyuchitech/zti-app         | Next.js 15, App Router |
-| `barstool/` | barstool.mukoko.com | nyuchitech/barstool        | Next.js 15, App Router |
+| App         | Domain              | Repo                | Status                 |
+| ----------- | ------------------- | ------------------- | ---------------------- |
+| `travel/`   | travel.mukoko.com   | nyuchitech/zti-app  | Next.js 15, App Router |
+| `barstool/` | barstool.mukoko.com | nyuchitech/barstool | Next.js 15, App Router |
 
 All apps share:
 
@@ -16,3 +15,5 @@ All apps share:
 - **Maps**: MapLibre GL JS on OpenStreetMap vector tiles
 
 The Mintlify documentation site (travel-info.co.zw) lives at the repo root.
+
+Business listings, places and verification live on Mukoko Kweli (kweli.mukoko.com), which absorbed business.mukoko.com.
