@@ -67,4 +67,10 @@ describe("TravelDirectory", () => {
     expect(source).toContain('1: "Community verified"');
     expect(source).toContain("const badge = tierLabel(b.verification);");
   });
+
+  it("asks properties, guides and people who aren't listed to get verified on Kweli", () => {
+    expect(source).toContain("/en/verify?source=travel-info");
+    expect(source.match(/your guides, or you yourself/g)?.length).toBe(2);
+    expect(source.match(/Get listed on Kweli/g)?.length).toBe(2);
+  });
 });
