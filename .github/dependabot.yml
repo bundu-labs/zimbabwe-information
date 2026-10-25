@@ -1,0 +1,13 @@
+# Main only takes releases (org main gate: staging, release/* and
+# bot/registry-pin), so dependency bumps go to staging and ship with the
+# next release. Workflow pins are left to the org registry-pin bot.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    target-branch: staging
+    schedule:
+      interval: weekly
+    # Wait a week before proposing a newly published version.
+    cooldown:
+      default-days: 7
