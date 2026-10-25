@@ -34,7 +34,7 @@ describe("TravelDirectory", () => {
   });
 
   it("shows the Kweli tier badge with its verify link", () => {
-    expect(source).toContain("b.verification?.label");
+    expect(source).toContain("tierLabel(b.verification)");
     expect(source).toContain("kweliPlaceUrl(b.verification?.url)");
     expect(source).toContain("b.logo || b.image");
   });
@@ -61,5 +61,10 @@ describe("TravelDirectory", () => {
     expect(source).toContain("setTotal(dropped > 0 ? null : count)");
     expect(source).toContain("fetchPage(rawOffsets)");
     expect(source).toContain("buildUrl(offsets[t] || 0, t || null)");
+  });
+
+  it("shows Kweli tier names, not the feed's short label", () => {
+    expect(source).toContain('1: "Community verified"');
+    expect(source).toContain("const badge = tierLabel(b.verification);");
   });
 });
