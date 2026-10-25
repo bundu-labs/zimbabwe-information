@@ -75,6 +75,7 @@ export const TravelDirectory = ({
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(false);
+  const [rawOffsets, setRawOffsets] = useState({});
   const [error, setError] = useState(null);
   const [openId, setOpenId] = useState(null);
   const requestSeq = useRef(0);
@@ -113,23 +114,41 @@ export const TravelDirectory = ({
       : [null];
   const typesKey = typesToFetch.join(",");
 
+  // Each type is paged on its own gateway offset, keyed by type id ("" for
+  // the default pool), so one type's page never shifts another's.
   const fetchPage = useCallback(
-    async (fromOffset) => {
+    async (offsets) => {
+      const types = typesKey.split(",");
       const responses = await Promise.all(
-        typesKey.split(",").map(async (t) => {
-          const res = await fetch(buildUrl(fromOffset, t || null));
+        types.map(async (t) => {
+          const res = await fetch(buildUrl(offsets[t] || 0, t || null));
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           return res.json();
         }),
       );
-      const docs = responses.flatMap((r) =>
+      const next = {};
+      let more = false;
+      responses.forEach((r, i) => {
+        const t = types[i];
+        const got = Array.isArray(r?.businesses) ? r.businesses.length : 0;
+        next[t] = (offsets[t] || 0) + got;
+        if (got > 0 && typeof r?.total === "number" && next[t] < r.total)
+          more = true;
+      });
+      const raw = responses.flatMap((r) =>
         Array.isArray(r?.businesses) ? r.businesses : [],
       );
       const count = responses.reduce(
         (n, r) => n + (typeof r?.total === "number" ? r.total : 0),
         0,
       );
-      return { docs, count };
+      // Only verified places are listed, whatever the feed sends: a Kweli
+      // place below tier 1 is unverified. Gateway businesses carry no
+      // verification block and are verified before they are served.
+      const docs = raw.filter(
+        (b) => !b?.verification || Number(b.verification.tier) >= 1,
+      );
+      return { docs, count, next, more, dropped: raw.length - docs.length };
     },
     [buildUrl, typesKey],
   );
@@ -140,11 +159,14 @@ export const TravelDirectory = ({
     setError(null);
     setOpenId(null);
     try {
-      const { docs, count } = await fetchPage(0);
+      const { docs, count, next, more, dropped } = await fetchPage({});
       if (seq !== requestSeq.current) return;
       setItems(docs);
-      setTotal(count);
-      setHasMore(docs.length < count);
+      // The gateway's total counts what it sent; once unverified places are
+      // dropped it no longer matches what is listed, so no count is shown.
+      setTotal(dropped > 0 ? null : count);
+      setRawOffsets(next);
+      setHasMore(more);
     } catch {
       if (seq === requestSeq.current) {
         setError("We couldn't load the directory. Please try again.");
@@ -159,14 +181,14 @@ export const TravelDirectory = ({
     const seq = requestSeq.current;
     setLoadingMore(true);
     try {
-      const { docs } = await fetchPage(items.length);
+      const { docs, next, more, dropped } = await fetchPage(rawOffsets);
       if (seq !== requestSeq.current) return;
       const seen = new Set(items.map((b) => b._id));
       const fresh = docs.filter((b) => !seen.has(b._id));
       setItems(items.concat(fresh));
-      setHasMore(
-        fresh.length > 0 && items.length + fresh.length < (total || 0),
-      );
+      if (dropped > 0) setTotal(null);
+      setRawOffsets(next);
+      setHasMore(more);
     } catch {
       setError("We couldn't load more listings. Please try again.");
     } finally {
