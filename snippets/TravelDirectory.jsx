@@ -75,6 +75,7 @@ export const TravelDirectory = ({
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(false);
+  const [rawOffset, setRawOffset] = useState(0);
   const [error, setError] = useState(null);
   const [openId, setOpenId] = useState(null);
   const requestSeq = useRef(0);
@@ -122,14 +123,25 @@ export const TravelDirectory = ({
           return res.json();
         }),
       );
-      const docs = responses.flatMap((r) =>
+      const raw = responses.flatMap((r) =>
         Array.isArray(r?.businesses) ? r.businesses : [],
       );
       const count = responses.reduce(
         (n, r) => n + (typeof r?.total === "number" ? r.total : 0),
         0,
       );
-      return { docs, count };
+      // Only verified places are listed, whatever the feed sends: a Kweli
+      // place below tier 1 is unverified. Gateway businesses carry no
+      // verification block and are verified before they are served.
+      const docs = raw.filter(
+        (b) => !b?.verification || Number(b.verification.tier) >= 1,
+      );
+      return {
+        docs,
+        count,
+        fetched: raw.length,
+        dropped: raw.length - docs.length,
+      };
     },
     [buildUrl, typesKey],
   );
@@ -140,11 +152,14 @@ export const TravelDirectory = ({
     setError(null);
     setOpenId(null);
     try {
-      const { docs, count } = await fetchPage(0);
+      const { docs, count, fetched, dropped } = await fetchPage(0);
       if (seq !== requestSeq.current) return;
       setItems(docs);
-      setTotal(count);
-      setHasMore(docs.length < count);
+      // The gateway's total counts what it sent; once unverified places are
+      // dropped it no longer matches what is listed, so no count is shown.
+      setTotal(dropped > 0 ? null : count);
+      setRawOffset(fetched);
+      setHasMore(docs.length > 0 && fetched < count);
     } catch {
       if (seq === requestSeq.current) {
         setError("We couldn't load the directory. Please try again.");
@@ -159,14 +174,14 @@ export const TravelDirectory = ({
     const seq = requestSeq.current;
     setLoadingMore(true);
     try {
-      const { docs } = await fetchPage(items.length);
+      const { docs, count, fetched, dropped } = await fetchPage(rawOffset);
       if (seq !== requestSeq.current) return;
       const seen = new Set(items.map((b) => b._id));
       const fresh = docs.filter((b) => !seen.has(b._id));
       setItems(items.concat(fresh));
-      setHasMore(
-        fresh.length > 0 && items.length + fresh.length < (total || 0),
-      );
+      if (dropped > 0) setTotal(null);
+      setRawOffset(rawOffset + fetched);
+      setHasMore(fetched > 0 && rawOffset + fetched < count);
     } catch {
       setError("We couldn't load more listings. Please try again.");
     } finally {

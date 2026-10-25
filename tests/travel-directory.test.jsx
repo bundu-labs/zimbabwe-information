@@ -55,4 +55,10 @@ describe("TravelDirectory", () => {
       "Verified listings appear here as businesses are checked on Kweli.",
     );
   });
+
+  it("lists only verified places, whatever the feed sends", () => {
+    expect(source).toContain("Number(b.verification.tier) >= 1");
+    expect(source).toContain("setTotal(dropped > 0 ? null : count)");
+    expect(source).toContain("fetchPage(rawOffset)");
+  });
 });
