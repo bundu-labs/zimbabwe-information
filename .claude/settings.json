@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push origin *:refs/heads/release/*)",
+      "Bash(npx vp check)",
+      "Bash(npx vp test)",
+      "Bash(npx mint validate)",
+      "Bash(npx mint broken-links)",
+      "mcp__github__pull_request_read",
+      "mcp__github__issue_read",
+      "mcp__github__list_issues",
+      "mcp__MongoDB_Atlas__find",
+      "mcp__MongoDB_Atlas__list-collections",
+      "mcp__MongoDB_Atlas__list-databases",
+      "mcp__MongoDB_Atlas__collection-schema",
+      "mcp__WorkOS__query",
+      "mcp__Mukoko_Kweli__search_places",
+      "mcp__Mukoko_Kweli__get_place",
+      "mcp__Mukoko_Kweli__get_verification",
+      "mcp__Mzizi__mzizi_search",
+      "mcp__Mzizi__mzizi_get_component"
+    ]
+  }
+}
