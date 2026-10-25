@@ -407,8 +407,8 @@ export const TravelDirectory = ({
               Verified listings appear here as businesses are checked on Kweli.
               If your lodge, camp or property, your guides, or you yourself
               aren't in this directory, get verified on Mukoko Kweli. Every
-              listing here is verified there first. Listing is free, and
-              verification is never a payment.
+              listing here is verified there first. Listing is free, and no one
+              can pay for a higher tier.
             </p>
             <a
               href={kweliListUrl}
