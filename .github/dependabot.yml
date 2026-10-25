@@ -8,3 +8,6 @@ updates:
     target-branch: staging
     schedule:
       interval: weekly
+    # Wait a week before proposing a newly published version.
+    cooldown:
+      default-days: 7
