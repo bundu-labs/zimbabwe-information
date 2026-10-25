@@ -128,6 +128,9 @@
               "wildlife/animals-and-birds",
               "wildlife/birding-in-zimbabwe",
               "wildlife/national-parks-and-reserves",
+              "wildlife/best-time-for-safari",
+              "wildlife/big-five-in-zimbabwe",
+              "wildlife/painted-dogs",
               "wildlife/conservation-efforts"
             ]
           },
@@ -147,6 +150,15 @@
       {
         "tab": "Heritage & History",
         "groups": [
+          {
+            "group": "History",
+            "pages": [
+              "history/index",
+              "history/precolonial-kingdoms",
+              "history/ndebele-kingdom",
+              "history/colonial-era-and-independence"
+            ]
+          },
           {
             "group": "UNESCO World Heritage",
             "pages": [
@@ -208,7 +220,14 @@
           },
           {
             "group": "Historic Sites",
-            "pages": ["historic/index", "historic/colonial-buildings"]
+            "pages": [
+              "historic/index",
+              "historic/colonial-buildings",
+              "historic/national-heroes-acre",
+              "historic/old-bulawayo",
+              "historic/museums",
+              "historic/mission-and-pioneer-sites"
+            ]
           }
         ]
       },
@@ -273,7 +292,8 @@
               "destinations/matobo-hills",
               "destinations/lake-kariba",
               "destinations/gonarezhou",
-              "destinations/save-valley-and-malilangwe"
+              "destinations/save-valley-and-malilangwe",
+              "destinations/umfurudzi-park"
             ]
           },
           {
@@ -282,6 +302,7 @@
               "destinations/harare",
               "destinations/bulawayo",
               "destinations/bulawayo-street-names",
+              "destinations/gweru-street-names",
               "destinations/mutare",
               "destinations/masvingo",
               "destinations/gweru"
