@@ -148,6 +148,15 @@
         "tab": "Heritage & History",
         "groups": [
           {
+            "group": "History",
+            "pages": [
+              "history/index",
+              "history/precolonial-kingdoms",
+              "history/ndebele-kingdom",
+              "history/colonial-era-and-independence"
+            ]
+          },
+          {
             "group": "UNESCO World Heritage",
             "pages": [
               "heritage/unesco-world-heritage",
