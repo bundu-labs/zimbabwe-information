@@ -485,12 +485,8 @@
   "footer": {
     "links": [
       {
-        "header": "Destinations",
+        "header": "Destinations & wildlife",
         "items": [
-          {
-            "label": "Provinces & Regions",
-            "href": "https://www.travel-info.co.zw/destinations/provinces-regions"
-          },
           {
             "label": "Victoria Falls",
             "href": "https://www.travel-info.co.zw/destinations/victoria-falls"
@@ -500,8 +496,20 @@
             "href": "https://www.travel-info.co.zw/destinations/hwange-national-park"
           },
           {
-            "label": "Great Zimbabwe",
-            "href": "https://www.travel-info.co.zw/destinations/great-zimbabwe"
+            "label": "Mana Pools",
+            "href": "https://www.travel-info.co.zw/destinations/mana-pools"
+          },
+          {
+            "label": "Lake Kariba",
+            "href": "https://www.travel-info.co.zw/destinations/lake-kariba"
+          },
+          {
+            "label": "Matobo Hills",
+            "href": "https://www.travel-info.co.zw/destinations/matobo-hills"
+          },
+          {
+            "label": "Gonarezhou",
+            "href": "https://www.travel-info.co.zw/destinations/gonarezhou"
           },
           {
             "label": "Eastern Highlands",
@@ -516,111 +524,139 @@
             "href": "https://www.travel-info.co.zw/destinations/bulawayo"
           },
           {
-            "label": "Mutare",
-            "href": "https://www.travel-info.co.zw/destinations/mutare"
+            "label": "National parks",
+            "href": "https://www.travel-info.co.zw/wildlife/national-parks-and-reserves"
           },
           {
-            "label": "Hidden Gems",
-            "href": "https://www.travel-info.co.zw/destinations/hidden-gems"
-          },
-          {
-            "label": "Things to Do by Region",
-            "href": "https://www.travel-info.co.zw/adventure/things-to-do-by-region"
+            "label": "Big Five",
+            "href": "https://www.travel-info.co.zw/wildlife/big-five-in-zimbabwe"
           }
         ]
       },
       {
-        "header": "Travel Planning",
+        "header": "Plan your trip",
         "items": [
           {
-            "label": "About Zimbabwe",
-            "href": "https://www.travel-info.co.zw/about-zimbabwe"
+            "label": "Zimbabwe travel guide",
+            "href": "https://www.travel-info.co.zw/introduction"
           },
           {
-            "label": "When to Visit",
+            "label": "When to visit",
             "href": "https://www.travel-info.co.zw/when-to-visit"
           },
           {
-            "label": "Safari Planning",
+            "label": "Best time for safari",
+            "href": "https://www.travel-info.co.zw/wildlife/best-time-for-safari"
+          },
+          {
+            "label": "Itineraries",
+            "href": "https://www.travel-info.co.zw/planning/zimbabwe-itineraries"
+          },
+          {
+            "label": "Safari planning",
             "href": "https://www.travel-info.co.zw/planning/safari-planning"
           },
           {
-            "label": "Budget Travel",
-            "href": "https://www.travel-info.co.zw/planning/budget-travel"
-          },
-          {
-            "label": "Luxury Travel",
-            "href": "https://www.travel-info.co.zw/planning/luxury-travel"
-          },
-          {
-            "label": "Family Travel",
-            "href": "https://www.travel-info.co.zw/planning/family-travel"
-          },
-          {
-            "label": "Sample Itineraries",
-            "href": "https://www.travel-info.co.zw/planning/sample-itineraries"
-          },
-          {
-            "label": "Travel Essentials",
+            "label": "Visas and entry",
             "href": "https://www.travel-info.co.zw/essentials/visas-and-entry"
+          },
+          {
+            "label": "Is Zimbabwe safe?",
+            "href": "https://www.travel-info.co.zw/essentials/travel-advice"
+          },
+          {
+            "label": "Currency and money",
+            "href": "https://www.travel-info.co.zw/essentials/currency-and-money"
+          },
+          {
+            "label": "Park fees 2026",
+            "href": "https://www.travel-info.co.zw/essentials/park-fees"
+          },
+          {
+            "label": "Emergency contacts",
+            "href": "https://www.travel-info.co.zw/resources/emergency-contacts"
+          },
+          {
+            "label": "Book a trip",
+            "href": "https://www.travel-info.co.zw/book"
           }
         ]
       },
       {
-        "header": "Resources",
+        "header": "History & culture",
         "items": [
           {
-            "label": "First-Time Visitors",
-            "href": "https://www.travel-info.co.zw/planning/first-time-visitors"
+            "label": "History of Zimbabwe",
+            "href": "https://www.travel-info.co.zw/history"
           },
           {
-            "label": "Quick Reference",
-            "href": "https://www.travel-info.co.zw/resources/quick-reference"
+            "label": "Great Zimbabwe",
+            "href": "https://www.travel-info.co.zw/destinations/great-zimbabwe"
           },
           {
-            "label": "Emergency Contacts",
-            "href": "https://www.travel-info.co.zw/resources/emergency-contacts"
+            "label": "Precolonial kingdoms",
+            "href": "https://www.travel-info.co.zw/history/precolonial-kingdoms"
           },
           {
-            "label": "Travel Trade",
-            "href": "https://www.travel-info.co.zw/resources/travel-trade"
+            "label": "The Ndebele kingdom",
+            "href": "https://www.travel-info.co.zw/history/ndebele-kingdom"
           },
           {
-            "label": "Book a Trip",
-            "href": "https://www.travel-info.co.zw/book"
+            "label": "Colonial era and independence",
+            "href": "https://www.travel-info.co.zw/history/colonial-era-and-independence"
+          },
+          {
+            "label": "UNESCO World Heritage",
+            "href": "https://www.travel-info.co.zw/heritage/unesco-world-heritage"
+          },
+          {
+            "label": "National Heroes' Acre",
+            "href": "https://www.travel-info.co.zw/historic/national-heroes-acre"
+          },
+          {
+            "label": "Museums",
+            "href": "https://www.travel-info.co.zw/historic/museums"
+          },
+          {
+            "label": "Rock art",
+            "href": "https://www.travel-info.co.zw/rock-art"
+          },
+          {
+            "label": "People and cultures",
+            "href": "https://www.travel-info.co.zw/culture/people-and-tribes"
+          }
+        ]
+      },
+      {
+        "header": "About",
+        "items": [
+          {
+            "label": "About this guide",
+            "href": "https://www.travel-info.co.zw/about-this-guide"
+          },
+          {
+            "label": "Verified directory",
+            "href": "https://www.travel-info.co.zw/directory"
+          },
+          {
+            "label": "Get listed on Kweli",
+            "href": "https://kweli.mukoko.com/en/verify?source=travel-info"
           },
           {
             "label": "FAQs",
             "href": "https://www.travel-info.co.zw/faq"
           },
           {
-            "label": "Contact Us",
+            "label": "Contact",
             "href": "https://www.travel-info.co.zw/contact"
-          }
-        ]
-      },
-      {
-        "header": "Community",
-        "items": [
-          {
-            "label": "Join Our Community",
-            "href": "https://www.travel-info.co.zw/get-involved/travel-enthusiast-community"
           },
           {
-            "label": "Business Partner Network",
-            "href": "https://www.travel-info.co.zw/get-involved/business-partner-network"
+            "label": "Privacy policy",
+            "href": "https://www.travel-info.co.zw/privacy-policy"
           },
           {
-            "label": "Local Expert Connections",
-            "href": "https://www.travel-info.co.zw/get-involved/local-expert-connections"
-          },
-          {
-            "label": "Student Contributors",
-            "href": "https://www.travel-info.co.zw/get-involved/student-contributors-program"
-          },
-          {
-            "label": "Zimbabwe's Tukshop",
-            "href": "https://shop.travel-info.co.zw"
+            "label": "Terms of service",
+            "href": "https://www.travel-info.co.zw/terms-of-service"
           }
         ]
       }
@@ -629,7 +665,7 @@
       "facebook": "https://www.facebook.com/groups/zimbabwetravelinfo",
       "discord": "https://discord.gg/dzHWFB44yw"
     },
-    "copyright": "© 2025 Zimbabwe Travel Platform. All rights reserved."
+    "copyright": "© 2026 Zimbabwe Travel Information. Content under CC BY 4.0."
   },
   "background": {
     "decoration": "grid"

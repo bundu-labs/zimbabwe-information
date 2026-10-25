@@ -162,3 +162,44 @@ form button[type="submit"]:hover {
     border-color: #4b5563;
   }
 }
+
+/* Footer link columns: Mintlify stacks them in one column below 640px,
+   which makes a very long footer on phones. Use 2 columns on phones,
+   3 on tablets and all 4 on wide screens. */
+#footer [class*="sm:grid"] {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  column-gap: 1.5rem;
+  row-gap: 2rem;
+}
+
+#footer [class*="sm:grid"] > * {
+  min-width: 0;
+  align-items: flex-start !important;
+}
+
+#footer [class*="sm:grid"] > * > * {
+  gap: 0.625rem;
+}
+
+#footer [class*="sm:grid"] a,
+#footer [class*="sm:grid"] p,
+#footer [class*="sm:grid"] span {
+  white-space: normal;
+}
+
+@media (min-width: 640px) {
+  #footer [class*="sm:grid"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  #footer [class*="sm:grid"] > * > * {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #footer [class*="sm:grid"] {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
