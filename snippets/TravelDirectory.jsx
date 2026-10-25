@@ -58,7 +58,7 @@ export const TravelDirectory = ({
     params.set("source", "zti");
     return `${KWELI_URL}/en/verify?${params.toString()}`;
   };
-  const kweliListUrl = `${KWELI_URL}/en/verify?source=zti`;
+  const kweliListUrl = `${KWELI_URL}/en/verify?source=travel-info`;
 
   const [typeId, setTypeId] = useState(
     typeOptions.some((t) => t.id === initialType)
@@ -242,6 +242,21 @@ export const TravelDirectory = ({
       : null;
   };
 
+  // Kweli's tier names, as readers see them. The feed sends a short label
+  // ("community"); unknown labels are shown capitalised as a fallback.
+  const TIER_LABELS = {
+    1: "Community verified",
+    2: "Contact verified",
+    3: "Government verified",
+    4: "Licensed professional",
+  };
+  const tierLabel = (v) => {
+    if (!v) return "Verified";
+    if (TIER_LABELS[Number(v.tier)]) return TIER_LABELS[Number(v.tier)];
+    const l = String(v.label || "").trim();
+    return l ? l.charAt(0).toUpperCase() + l.slice(1) : "Verified";
+  };
+
   const asList = (v) => (Array.isArray(v) ? v.filter(Boolean).join(", ") : "");
 
   const filtersActive = Boolean(
@@ -386,20 +401,20 @@ export const TravelDirectory = ({
         ) : (
           <div className="text-center py-12 px-4 rounded-xl border border-primary/30 bg-primary/5">
             <h3 className="m-0 text-lg font-semibold text-gray-900 dark:text-white">
-              Be the first to list your business
+              Not listed yet?
             </h3>
             <p className="mt-2 mb-0 text-sm text-gray-600 dark:text-gray-300 max-w-md mx-auto">
               Verified listings appear here as businesses are checked on Kweli.
-              Run a lodge, tour company, restaurant or other travel business in
-              Zimbabwe? Create your listing on Mukoko Kweli. Once it has been
-              reviewed, it appears here. Listing is free, and verification is
-              never a payment.
+              If your lodge, camp or property, your guides, or you yourself
+              aren't in this directory, get verified on Mukoko Kweli. Every
+              listing here is verified there first. Listing is free, and
+              verification is never a payment.
             </p>
             <a
               href={kweliListUrl}
               className="inline-flex mt-5 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:opacity-90"
             >
-              List your business on Kweli
+              Get listed on Kweli
             </a>
           </div>
         )
@@ -412,7 +427,7 @@ export const TravelDirectory = ({
             const where = addressLine(b);
             const website = b.url ? safeUrl(b.url) : null;
             const logo = b.logo || b.image ? safeUrl(b.logo || b.image) : null;
-            const badge = b.verification?.label || "Verified";
+            const badge = tierLabel(b.verification);
             const kweliPage = kweliPlaceUrl(b.kweliUrl);
             const badgeUrl = kweliPlaceUrl(b.verification?.url);
             const payment = asList(b.paymentAccepted);
@@ -587,14 +602,15 @@ export const TravelDirectory = ({
       {!loading && shown.length > 0 && (
         <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-4 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
           <p className="m-0 text-sm text-gray-700 dark:text-gray-300">
-            Businesses manage their own listings on Mukoko Kweli, and listings
-            are reviewed before they appear here.
+            <strong>Not listed yet?</strong> If your lodge, camp or property,
+            your guides, or you yourself aren't in this directory, get verified
+            on Mukoko Kweli. Every listing here is verified there first.
           </p>
           <a
             href={kweliListUrl}
             className="inline-flex justify-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium whitespace-nowrap hover:opacity-90"
           >
-            List your business
+            Get listed on Kweli
           </a>
         </div>
       )}
