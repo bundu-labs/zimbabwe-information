@@ -242,6 +242,21 @@ export const TravelDirectory = ({
       : null;
   };
 
+  // Kweli's tier names, as readers see them. The feed sends a short label
+  // ("community"); unknown labels are shown capitalised as a fallback.
+  const TIER_LABELS = {
+    1: "Community verified",
+    2: "Contact verified",
+    3: "Government verified",
+    4: "Licensed professional",
+  };
+  const tierLabel = (v) => {
+    if (!v) return "Verified";
+    if (TIER_LABELS[Number(v.tier)]) return TIER_LABELS[Number(v.tier)];
+    const l = String(v.label || "").trim();
+    return l ? l.charAt(0).toUpperCase() + l.slice(1) : "Verified";
+  };
+
   const asList = (v) => (Array.isArray(v) ? v.filter(Boolean).join(", ") : "");
 
   const filtersActive = Boolean(
@@ -412,7 +427,7 @@ export const TravelDirectory = ({
             const where = addressLine(b);
             const website = b.url ? safeUrl(b.url) : null;
             const logo = b.logo || b.image ? safeUrl(b.logo || b.image) : null;
-            const badge = b.verification?.label || "Verified";
+            const badge = tierLabel(b.verification);
             const kweliPage = kweliPlaceUrl(b.kweliUrl);
             const badgeUrl = kweliPlaceUrl(b.verification?.url);
             const payment = asList(b.paymentAccepted);
