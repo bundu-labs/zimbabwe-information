@@ -208,7 +208,14 @@
           },
           {
             "group": "Historic Sites",
-            "pages": ["historic/index", "historic/colonial-buildings"]
+            "pages": [
+              "historic/index",
+              "historic/colonial-buildings",
+              "historic/national-heroes-acre",
+              "historic/old-bulawayo",
+              "historic/museums",
+              "historic/mission-and-pioneer-sites"
+            ]
           }
         ]
       },
@@ -282,6 +289,7 @@
               "destinations/harare",
               "destinations/bulawayo",
               "destinations/bulawayo-street-names",
+              "destinations/gweru-street-names",
               "destinations/mutare",
               "destinations/masvingo",
               "destinations/gweru"
