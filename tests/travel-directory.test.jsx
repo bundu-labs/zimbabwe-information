@@ -59,6 +59,7 @@ describe("TravelDirectory", () => {
   it("lists only verified places, whatever the feed sends", () => {
     expect(source).toContain("Number(b.verification.tier) >= 1");
     expect(source).toContain("setTotal(dropped > 0 ? null : count)");
-    expect(source).toContain("fetchPage(rawOffset)");
+    expect(source).toContain("fetchPage(rawOffsets)");
+    expect(source).toContain("buildUrl(offsets[t] || 0, t || null)");
   });
 });
