@@ -5,7 +5,6 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: /
-    target-branch: staging
     schedule:
       interval: weekly
     # Wait a week before proposing a newly published version.
