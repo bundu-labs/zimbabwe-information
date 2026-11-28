@@ -9,3 +9,7 @@ apps/
 tests/
 supabase/
 .github/
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+AGENTS.md
+snippets/README.md
